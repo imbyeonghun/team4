@@ -13,7 +13,7 @@
     <a class="navbar-brand" href="#">
       <img src="img_avatar1.png" alt="Logo" style="width:40px;" class="rounded-pill">
     </a>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" href="#">회원가입</a>
@@ -25,7 +25,7 @@
           <a class="nav-link" href="#">마이페이지</a>
         </li>  
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Dropdown</a>
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">마이페이지</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">개인정보</a></li>
             <li><a class="dropdown-item" href="#">내 정보 수정</a></li>

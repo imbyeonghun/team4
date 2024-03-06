@@ -11,15 +11,24 @@
 </head>
 <body>
 <!-- header 영역 -->
-<jsp:include page = "/WEB-INF/views/header.jsp"/>
-	
-<!-- nav 영역 -->
-
-<!-- section 영역 -->	
-
-<!-- footer 영역 -->
-
+<header>
+	<jsp:include page = "/WEB-INF/views/header.jsp"/>
+</header>
 
 <h1>카페 HOME</h1>
+	
+<!-- nav 영역 -->
+<nav>
+
+</nav>
+<!-- section 영역 -->	
+<section>
+
+</section>
+<!-- footer 영역 -->
+<footer>
+
+</footer>
+
 </body>
 </html>
