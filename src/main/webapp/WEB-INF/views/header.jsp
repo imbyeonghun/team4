@@ -6,7 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>header</title>
+
+<style type="text/css">
+
+</style>
+
 </head>
+
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <div class="container-fluid">
