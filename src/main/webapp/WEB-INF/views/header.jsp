@@ -23,7 +23,10 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">마이페이지</a>
-        </li>  
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<c:url value="/board/list"/>">게시글</a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">마이페이지</a>
           <ul class="dropdown-menu">
