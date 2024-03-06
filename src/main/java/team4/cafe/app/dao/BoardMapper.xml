@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team4.cafe.app.dao.BoardDAO">
+	<select id="selectGategoryList" resultType="team4.cafe.app.model.vo.CategoryVO">
+		SELECT * FROM category
+	</select>
+</mapper>
