@@ -16,20 +16,20 @@
 </header>
 
 <h1>카페 HOME</h1>
+
 <div class="container-fluid">
-    <div class="row">
-     <!-- 3단길이의 첫번째 열 -->
-      <div class="col-md-3">
-      <h1>첫번째 열의 제목</h1>
-      <p>첫번째 열의 본문</p>
-      </div>
-      <!-- 9단길이의 첫번째 열 -->
-      <div class="col-md-9">
-      <h1>두번째 열의 제목</h1>
-      <p>두번째 열의 본문</p>
-      </div>
-     </div>
-
-
+	<div class="row">
+		<!-- 3단길이의 첫번째 열 -->
+		<div class="col-md-3">
+			<h1>첫번째 열의 제목</h1>
+			<p>첫번째 열의 본문</p>
+		</div>
+		<!-- 9단길이의 첫번째 열 -->
+		<div class="col-md-9">
+			<h1>두번째 열의 제목</h1>
+			<p>두번째 열의 본문</p>
+		</div>
+	</div>
+</div>
 </body>
 </html>
