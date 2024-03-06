@@ -13,8 +13,7 @@
     <a class="navbar-brand" href="#">
       <img src="img_avatar1.png" alt="Logo" style="width:40px;" class="rounded-pill">
     </a>
-  </div>
-   <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" href="#">회원가입</a>
@@ -34,7 +33,8 @@
           </ul>
         </li>
       </ul>
-    </div>
+     </div>
+	</div>	
 </nav>
 </body>
 </html>
