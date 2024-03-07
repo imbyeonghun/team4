@@ -30,7 +30,43 @@ public class BoardServiceImp implements BoardService {
 	//카테고리 목록을 가져옴
 	@Override
 	public ArrayList<CategoryVO> getCategoryList() {
-		return boardDao.selectGategoryList();
+		return boardDao.selectCategoryList();
+	}
+	
+	//카테고리 등록
+	@Override
+	public boolean insertCategory(String category) {
+		if(category==null) {
+			return false;
+		}
+		ArrayList<CategoryVO>categoryList=boardDao.selectCategoryList();
+		for(CategoryVO tmp:categoryList) {
+			if(tmp.getCo_name().equals(category)) {
+				return false;
+			}
+		}
+		return boardDao.insertCategory(category);
+	}
+	
+	//카테고리 삭제
+	@Override
+	public boolean deleteCategory(int co_num) {
+		return boardDao.deleteCategory(co_num);
+	}
+	
+	//카테고리 수정
+	@Override
+	public boolean updateCategory(CategoryVO category) {
+		if(category==null||category.getCo_name()==null) {
+			return false;
+		}
+		ArrayList<CategoryVO> categoryList=boardDao.selectCategoryList();
+		for(CategoryVO tmp:categoryList) {
+			if(tmp.getCo_name().equals(category.getCo_name())) {
+				return false;
+			}
+		}
+		return boardDao.updateCategory(category);
 	}
 	
 }
