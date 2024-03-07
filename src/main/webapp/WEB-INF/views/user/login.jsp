@@ -71,7 +71,7 @@ html, body {
 
 	<div id="container">
 		<div id="loginBox">
-			<div id="loginBoxTitle">Login</div>
+			<div id="loginBoxTitle">로그인</div>
 			<div id="inputBox">
 				<div class="input-form-box">
 					<span>아이디 </span><input type="text" name="uid" class="form-control">
@@ -79,12 +79,19 @@ html, body {
 				<div class="input-form-box">
 					<span>비밀번호 </span><input type="password" name="upw" class="form-control">
 				</div>
+				<div class="input-form-box">
+					<div id = "error"></div>
+				</div>
 				<div class="button-login-box">
 					<button type="button" class="btn btn-primary btn-xs" style="width: 100%">로그인</button>
 				</div>
 			</div>
 		</div>
 	</div>
+
+
+
+
 
 </body>
 </html>

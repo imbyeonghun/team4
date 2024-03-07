@@ -22,14 +22,17 @@
     <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#">회원가입</a>
+          <a class="nav-link" href="<c:url value="/user/signup"/>">회원가입</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">로그인</a>
+          <a class="nav-link" href="<c:url value="/user/login"/>">로그인</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/mypage/myPageHome"/>">마이페이지</a>
-        </li>  
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<c:url value="/post/list"/>">게시글</a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">마이페이지</a>
           <ul class="dropdown-menu">
