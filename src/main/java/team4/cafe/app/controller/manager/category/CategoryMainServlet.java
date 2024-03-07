@@ -1,4 +1,4 @@
-package team4.cafe.app.controller.manager;
+package team4.cafe.app.controller.manager.category;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import team4.cafe.app.service.BoardServiceImp;
 
 
 @WebServlet("/manager/category")
-public class CategoryPageServlet extends HttpServlet {
+public class CategoryMainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private BoardService bs=new BoardServiceImp();
   

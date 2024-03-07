@@ -45,7 +45,7 @@
 $(".update").click(function(){
   let num=$(this).data('num');
   console.log(num);
-  $("#update").attr("action",`<c:url value="/manager/category/update?num=\${num}" />`);
+  $("#update").attr("action",`<c:url value="/manager/board/category?num=\${num}" />`);
 });
 
 </script>

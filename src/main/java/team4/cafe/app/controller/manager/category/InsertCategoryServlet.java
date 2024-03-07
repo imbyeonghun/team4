@@ -1,4 +1,4 @@
-package team4.cafe.app.controller.manager;
+package team4.cafe.app.controller.manager.category;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import team4.cafe.app.dao.BoardDAO;
+import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.CategoryVO;
 
 public class BoardServiceImp implements BoardService {
@@ -67,6 +68,12 @@ public class BoardServiceImp implements BoardService {
 			}
 		}
 		return boardDao.updateCategory(category);
+	}
+
+	//게시판 목록을 가져옴
+	@Override
+	public ArrayList<BoardVO> getBoardList(int co_num) {
+		return boardDao.selectBoardList(co_num);
 	}
 	
 }

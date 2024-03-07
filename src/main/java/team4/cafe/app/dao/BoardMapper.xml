@@ -16,4 +16,7 @@
 		update category set co_name=#{ca.co_name} 
 		where co_num=#{ca.co_num}
 	</update>
+	<select id="selectBoardList" resultType="team4.cafe.app.model.vo.BoardVO">
+		SELECT * FROM board where bo_co_num=#{num}
+	</select>
 </mapper>
