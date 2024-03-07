@@ -71,7 +71,7 @@ CREATE TABLE `state` (
 DROP TABLE IF EXISTS `grade`;
 
 CREATE TABLE `grade` (
-	`gr_ name`	varchar(10)	PRIMARY KEY
+	`gr_name`	varchar(10)	PRIMARY KEY
 );
 
 ALTER TABLE `member` ADD CONSTRAINT `FK_state_TO_member_1` FOREIGN KEY (
@@ -85,7 +85,7 @@ ALTER TABLE `member` ADD CONSTRAINT `FK_grade_TO_member_1` FOREIGN KEY (
 	`me_gr_name`
 )
 REFERENCES `grade` (
-	`gr_ name`
+	`gr_name`
 );
 
 ALTER TABLE `board` ADD CONSTRAINT `FK_category_TO_board_1` FOREIGN KEY (
@@ -129,4 +129,3 @@ ALTER TABLE `comment` ADD CONSTRAINT `FK_post_TO_comment_1` FOREIGN KEY (
 REFERENCES `post` (
 	`po_num`
 );
-
