@@ -46,9 +46,9 @@ CREATE TABLE `post` (
 	`po_date`	datetime not	NULL,
 	`po_title`	varchar(50) not	NULL,
 	`po_content`	text not	NULL,
-	`po_view`	int not	NULL,
+	`po_view`	int not	NULL default 0,
 	`po_bo_num`	int	NOT NULL,
-	`po_id`	varchar(20)	NOT NULL,
+	`po_me_id`	varchar(20)	NOT NULL,
 	`po_pt_num`	int	NOT NULL
 );
 
