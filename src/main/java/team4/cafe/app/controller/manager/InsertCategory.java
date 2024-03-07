@@ -15,7 +15,7 @@ import team4.cafe.app.service.BoardServiceImp;
 
 
 @WebServlet("/manager/category")
-public class InsertGategory extends HttpServlet {
+public class InsertCategory extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private BoardService bs=new BoardServiceImp();
   
