@@ -3,7 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team4.cafe.app.dao.BoardDAO">
-	<select id="selectGategoryList" resultType="team4.cafe.app.model.vo.CategoryVO">
+	<select id="selectCategoryList" resultType="team4.cafe.app.model.vo.CategoryVO">
 		SELECT * FROM category
 	</select>
+	<insert id="insertCategory">
+		insert into category(co_name) value(#{category})
+	</insert>
+	<delete id="deleteCategory">
+		delete from category where co_num=#{num}
+	</delete>
+	<update id="updateCategory">
+		update category set co_name=#{ca.co_name} 
+		where co_num=#{ca.co_num}
+	</update>
 </mapper>

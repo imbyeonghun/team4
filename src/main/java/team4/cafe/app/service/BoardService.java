@@ -8,4 +8,10 @@ public interface BoardService {
 
 	ArrayList<CategoryVO> getCategoryList();
 
+	boolean insertCategory(String category);
+
+	boolean deleteCategory(int co_num);
+
+	boolean updateCategory(CategoryVO category);
+
 }
