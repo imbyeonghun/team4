@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
 <!-- 캐시를 비활성화 -->
 	<settings>
 		<setting name="cacheEnabled" value="false"/>
@@ -22,6 +21,8 @@
 	</environments>
 	<mappers>
 		<mapper resource="team4/cafe/app/dao/PostMapper.xml"/>
+    <mapper resource="team4/cafe/app/dao/BoardMapper.xml"/>
+    <mapper resource="team4/cafe/app/dao/MemberMapper.xml"/>
 	</mappers>
 
 </configuration>
