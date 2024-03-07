@@ -14,6 +14,6 @@ public class MainServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		request.getRequestDispatcher("/WEB-INF/views/test.jsp").forward(request, response);
-		request.getRequestDispatcher("/WEB-INF/views/user/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/home.jsp").forward(request, response);
 	}
 }
