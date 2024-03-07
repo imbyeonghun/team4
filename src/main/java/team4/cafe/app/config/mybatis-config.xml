@@ -20,5 +20,6 @@
   </environments>
   <mappers>
     <mapper resource="team4/cafe/app/dao/BoardMapper.xml"/>
+    <mapper resource="team4/cafe/app/dao/MemberMapper.xml"/>
   </mappers>
 </configuration>
