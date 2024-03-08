@@ -42,7 +42,7 @@
 				 		</div>
 				 		<div class="mb-3 mt-3">
 				   			<label for="writer" class="form-label">조회수:</label>
-				   			<input type="text" class="form-control" readonly="readonly" value="${post.po_me_id}" >
+				   			<input type="text" class="form-control" readonly="readonly" value="${post.po_view}" >
 				 		</div>
 					</form>
 					<a href="<c:url value="/post/list"/>" class="btn btn-outline-primary">목록으로</a>

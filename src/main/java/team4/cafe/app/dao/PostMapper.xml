@@ -7,10 +7,14 @@
 		select * from post where po_bo_num = #{bo_num}
 	</select>
 	<insert id="insertPost">
-		insert into post(po_bo_num,po_title, po_content, po_me_id)
-		select (bo_num, #{post.po_title}, #{post.po_content}, #{post.po_me_id})
-		from board
-		where bo_num = #{post.po_bo_num}
+		insert into
+			post(po_bo_num,po_title, po_content, po_me_id)
+		select
+			(bo_num, #{post.po_title}, #{post.po_content}, #{post.po_me_id})
+		from
+			board
+		where
+			bo_num = #{post.po_bo_num}
 	</insert>
 	<select id="selectPost" resultType="team4.cafe.app.model.vo.PostVO">
 		select * from post where po_bo_num = #{bo_num} and po_num = #{po_num}
@@ -18,4 +22,19 @@
 	<delete id="deletePost">
 		delete from post where po_num = #{po_num}
 	</delete>
+	<update id="updateView">
+		update post
+		set
+			po_view = po_view + 1
+		where
+			bo_num = #{bo_num} and po_num = #{po_num}
+	</update>
+	<update id="updatePost">
+		update post
+		set
+			po_title = #{post.po_title},
+			po_content = #{post.po_content}
+		where
+			bo_num = #{bo_num} and po_num = #{po_num}
+	</update>
 </mapper>

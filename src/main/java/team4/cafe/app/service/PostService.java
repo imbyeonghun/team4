@@ -13,4 +13,10 @@ public interface PostService {
 
 	boolean deletePost(MemberVO user, int bo_num, int po_num);
 
+	PostVO getPost(int bo_num, int po_num);
+
+	boolean updateView(int bo_num, int po_num);
+
+	boolean updatePost(PostVO post, MemberVO user);
+
 }

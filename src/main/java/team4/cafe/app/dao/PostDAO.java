@@ -16,4 +16,8 @@ public interface PostDAO {
 
 	PostVO selectPost(@Param("bo_num") int bo_num, @Param("po_num") int po_num);
 
+	boolean updateView(@Param("bo_num") int bo_num, @Param("po_num") int po_num);
+
+	boolean updatePost(@Param("post") PostVO post);
+
 }
