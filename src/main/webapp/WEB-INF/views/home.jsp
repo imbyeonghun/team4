@@ -23,13 +23,7 @@
 		<div class="col-md-3">
 			<h1>첫번째 열의 제목</h1>
 			<p>첫번째 열의 본문</p>
-			<div class="container">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-				 		<a class="nav-link" href="<c:url value="/post/list"/>"><h3>임시 게시판(1)</h3></a>
-					</li>
-				</ul>
-			</div>
+			<jsp:include page = "/WEB-INF/views/sidebar.jsp"/>
 		</div>
 		<!-- 9단길이의 첫번째 열 -->
 		<div class="col-md-9">
@@ -37,12 +31,6 @@
 				<h1>홈화면</h1>
 				<p>홈</p>
 			</div>
-			<jsp:include page = "/WEB-INF/views/sidebar.jsp"/>
-		</div>
-		<!-- 9단길이의 첫번째 열 -->
-		<div class="col-md-9">
-			<h1>본문 페이지 영역</h1>
-			<p>~~~~~~~</p>
 		</div>
 	</div>
 </div>
