@@ -14,6 +14,6 @@ public class PostVO {
 	private String po_content;
 	private int po_view;
 	private int po_bo_num;
-	private String po_id;
+	private String po_me_id;
 	private int po_pt_num;
 }
