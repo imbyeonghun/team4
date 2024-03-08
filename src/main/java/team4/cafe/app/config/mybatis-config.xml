@@ -23,7 +23,7 @@
 		<mapper resource="team4/cafe/app/dao/PostMapper.xml"/>
 	    <mapper resource="team4/cafe/app/dao/BoardMapper.xml"/>
 	    <mapper resource="team4/cafe/app/dao/MemberMapper.xml"/>
-	    <mapper resource="team4/cafe/app/dao/MyPageMapper.xml"/>
+		<mapper resource="team4/cafe/app/dao/MyPageMapper.xml"/>
 	</mappers>
 
 </configuration>
