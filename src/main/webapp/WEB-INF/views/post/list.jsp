@@ -11,22 +11,18 @@
 </head>
 <body>
 <jsp:include page = "/WEB-INF/views/header.jsp"/>
+
 <div class="container-fluid">
 	<div class="row">
-		<!-- 3단길이의 첫번째 열 -->
+		<!-- 사이드 바 영역 -->
 		<div class="col-md-3">
-			<h1>게시판 임시</h1>
-			<p>게시판</p>
-			<div class="container">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-				 		<a class="nav-link" href="<c:url value="/post/list"/>"><h3>임시 게시판(1)</h3></a>
-					</li>
-				</ul>
-			</div>
+			<h1>첫번째 열의 제목</h1>
+			<p>첫번째 열의 본문</p>
+			<jsp:include page = "/WEB-INF/views/sidebar.jsp"/>
 		</div>
-		<!--본문 영역 -->
+		<!-- 9단길이의 첫번째 열 -->
 		<div class="col-md-9">
+			<div class="col-md-9">
 			<div class="container">
 				<h1>게시글</h1>
 				<p>목록</p>
@@ -45,7 +41,7 @@
 							<tr>
 								<td>${post.po_num}</td>
 								<td>${post.po_title}</td>
-								<td>${post.po_me_id}</td>
+								<td>${post.po_me_name}</td>
 								<td>${post.po_date}</td>
 								<td>${post.po_view}</td>
 							</tr>
@@ -55,6 +51,9 @@
 				<a href="<c:url value="/post/insert"/>" class="btn btn-outline-danger">글 등록</a>
 			</div>
 		</div>
+
+		</div>
+	
 	</div>
 </div>
 </body>

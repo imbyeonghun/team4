@@ -5,9 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 등록</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<title>Insert title here</title>
 </head>
 <body>
 <jsp:include page = "/WEB-INF/views/header.jsp"/>
@@ -34,29 +32,26 @@
 					<form action="<c:url value="/post/insert"/>" method="post">
 						<h1>게시글 등록</h1>
 						<div class="mb-3 mt-3">
-				   			<label for="cafe" class="form-label">게시판:</label>
-				   			<select class="form-control" id="cafe" name="cafe">
-				   				<c:forEach items="${list}" var="cafe">
-				   					<option value="${cafe.bo_num}">${cafe.bo_name}</option>
-				   				</c:forEach>
-				   			</select>
-				 		</div>
-						<div class="mb-3 mt-3">
 				   			<label for="title" class="form-label">제목:</label>
-				   			<input type="text" class="form-control" id="title" placeholder="제목" name="title">
+				   			<input type="text" class="form-control" readonly="readonly" value="${post.po_title}">
 				 		</div>
 				 		<div class="mb-3 mt-3">
 				   			<label for="writer" class="form-label">작성자:</label>
-				   			<input type="text" class="form-control" id="writer" name="writer" value="${user.me_id}">
+				   			<input type="text" class="form-control" readonly="readonly" value="${post.po_me_id}" >
 				 		</div>
 				 		<div class="mb-3 mt-3">
 				   			<label for="content" class="form-label">내용:</label>
-				   			<textarea rows="10" class="form-control" id="content" name="content" placeholder="내용"></textarea>
+				   			<textarea rows="10" class="form-control" readonly="readonly" value="${post.po_content}"></textarea>
 				 		</div>
-				 		<button class="btn btn-outline-warning col-12">글 등록</button>
+				 		<button class="btn btn-outline-warning col-12">수정</button>
+				 		<button class="btn btn-outline-warning col-12">삭제</button>
 					</form>
+					<a href="<c:url value="/post/list"/>" class="btn btn-outline-primary">목록으로</a>
+					<c:if test="${post.po_id == user.me_id}">
+						<a href="<c:url value="/post/delete?num=${post.bo_num}"/>"class="btn btn-outline-danger">삭제</a>
+						<a href="<c:url value="/post/update?num=${post.bo_num}"/>"class="btn btn-outline-danger">수정</a>
+					</c:if>
 				</div>
-				
 			</div>
 		</div>
 	</div>

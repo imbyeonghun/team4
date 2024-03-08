@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import team4.cafe.app.dao.PostDAO;
+import team4.cafe.app.model.vo.MemberVO;
 import team4.cafe.app.model.vo.PostVO;
 
 public class PostServiceImp implements PostService{
@@ -50,5 +51,18 @@ public class PostServiceImp implements PostService{
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public boolean deletePost(MemberVO user, int num) {
+		if(user == null) {
+			return false;
+		}
+		PostVO post = postDao.selectPost(num);
+		
+		if(user == null || !post.getPo_me_id().equals(user.getMe_id())) {
+			return false;
+		}
+		return postDao.deletePost(num);
 	}
 }

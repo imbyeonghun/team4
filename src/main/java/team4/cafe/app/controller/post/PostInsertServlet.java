@@ -1,4 +1,4 @@
-package team4.cafe.app.controller;
+package team4.cafe.app.controller.post;
 
 import java.io.IOException;
 

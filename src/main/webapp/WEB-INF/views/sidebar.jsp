@@ -31,7 +31,7 @@
 		<a  href="#" > 전체 글 보기</a>
 		<ul class="list-group">
 			<li class="list-group-item">카테고리1
-				<ul><a href="#" > 게시판1</a></ul>
+				<ul><a class="list-group" href='<c:url value="/post/list"/>' > 게시판1</a></ul>
 				<ul><a href="#" > 게시판2</a></ul>
 			</li>
 		</ul>

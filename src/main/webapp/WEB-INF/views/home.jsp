@@ -24,7 +24,6 @@
 			<h1>첫번째 열의 제목</h1>
 			<p>첫번째 열의 본문</p>
 			<jsp:include page = "/WEB-INF/views/sidebar.jsp"/>
-<<<<<<< HEAD
 		</div>
 		<!-- 9단길이의 첫번째 열 -->
 		<div class="col-md-9">
@@ -32,17 +31,7 @@
 				<h1>홈화면</h1>
 				<p>홈</p>
 			</div>
-=======
-			
-		</div>
-		<!-- 본문 영역 -->
-		<div class="col-md-9">
-			<div class="container">
-					<h1>홈화면</h1>
-					<p>홈</p>
-			</div>
-			
->>>>>>> main
+
 		</div>
 	
 	</div>
