@@ -11,6 +11,7 @@ CREATE TABLE `member` (
 	`me_pw`	varchar(20) not	NULL,
 	`me_email`	varchar(30) not	NULL,
 	`me_name`	varchar(12) not	NULL,
+    `me_date` datetime not null,
 	`me_loginCount`	int not	NULL default 0,
 	`me_fail`	int not	NULL default 0,
 	`me_st_state`	varchar(6)	NOT NULL,
@@ -46,9 +47,9 @@ CREATE TABLE `post` (
 	`po_date`	datetime not	NULL,
 	`po_title`	varchar(50) not	NULL,
 	`po_content`	text not	NULL,
-	`po_view`	int not	NULL,
+	`po_view`	int not	NULL default 0,
 	`po_bo_num`	int	NOT NULL,
-	`po_id`	varchar(20)	NOT NULL,
+	`po_me_id`	varchar(20)	NOT NULL,
 	`po_pt_num`	int	NOT NULL
 );
 
@@ -58,7 +59,7 @@ CREATE TABLE `comment` (
 	`co_num`	int	PRIMARY KEY auto_increment,
 	`co_content`	text not	NULL,
 	`co_date`	datetime not	NULL,
-	`co_id`	varchar(20)	NOT NULL,
+	`co_me_id`	varchar(20)	NOT NULL,
 	`co_po_num`	int	NOT NULL
 );
 
@@ -103,7 +104,7 @@ REFERENCES `board` (
 );
 
 ALTER TABLE `post` ADD CONSTRAINT `FK_member_TO_post_1` FOREIGN KEY (
-	`po_id`
+	`po_me_id`
 )
 REFERENCES `member` (
 	`me_id`
@@ -117,7 +118,7 @@ REFERENCES `post_type` (
 );
 
 ALTER TABLE `comment` ADD CONSTRAINT `FK_member_TO_comment_1` FOREIGN KEY (
-	`co_id`
+	`co_me_id`
 )
 REFERENCES `member` (
 	`me_id`

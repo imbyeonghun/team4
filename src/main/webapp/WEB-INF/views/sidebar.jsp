@@ -11,7 +11,7 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">CAFE Title</h3>
 		</div>
-		<-- 메뉴목록 -->
+		<!-- 메뉴목록 -->
 		<ul class="list-group">
 			<li class="list-group-item"><a href="#">카페정보</a></li>
 			<li class="list-group-item">회원수</li>

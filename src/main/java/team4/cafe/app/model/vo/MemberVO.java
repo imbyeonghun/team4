@@ -1,5 +1,7 @@
 package team4.cafe.app.model.vo;
 
+import java.util.Date;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +13,7 @@ public class MemberVO {
 	private String me_pw;
 	private String me_email;
 	private String me_name;
+	private Date me_date;
 	private int me_loginCount;
 	private int me_fail;
 	private String me_st_state;
