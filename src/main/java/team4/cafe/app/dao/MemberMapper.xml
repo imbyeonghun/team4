@@ -8,5 +8,8 @@
 		values(#{member.me_id}, #{member.me_pw}, #{member.me_email}, 
 				#{member.me_name}, #{member.me_date}, "이용중", "Level1")
 	</insert>
+	<select id="selectMember" resultType="team4.cafe.app.model.vo.MemberVO">
+		SELECT * FROM MEMBER WHERE me_id = #{me_id}
+	</select>
 	
 </mapper>

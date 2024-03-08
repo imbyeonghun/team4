@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import team4.cafe.app.dao.MemberDAO;
+import team4.cafe.app.model.dto.LoginDTO;
 import team4.cafe.app.model.vo.MemberVO;
 
 public class MemberServiceImp implements MemberService {
@@ -28,6 +29,7 @@ public class MemberServiceImp implements MemberService {
 		}
 	}
 	
+	/** 회원가입 */
 	@Override
 	public boolean signup(MemberVO memberVO) {
 		//null값 체크
@@ -53,6 +55,26 @@ public class MemberServiceImp implements MemberService {
 			return false;
 		}
 		
+	}
+
+	/** 로그인 */
+	@Override
+	public MemberVO login(LoginDTO loginDTO) {
+		if(loginDTO == null) {
+			return null;
+		}
+		
+		MemberVO user = memberDAO.selectMember(loginDTO.getId());
+		
+		if(user == null) {
+			return null;
+		}
+		
+		if(user.getMe_pw().equals(loginDTO.getPw())) {
+			return user;
+		}
+		
+		return null;
 	}
 
 }
