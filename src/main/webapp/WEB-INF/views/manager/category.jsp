@@ -48,6 +48,7 @@ $(".update").click(function(){
   $("#update").attr("action",`<c:url value="/manager/board/category?num=\${num}" />`);
 });
 
+
 </script>
 </body>
 </html>
