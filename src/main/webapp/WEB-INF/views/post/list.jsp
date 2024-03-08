@@ -25,7 +25,7 @@
 				</ul>
 			</div>
 		</div>
-		<!-- 9단길이의 첫번째 열 -->
+		<!--본문 영역 -->
 		<div class="col-md-9">
 			<div class="container">
 				<h1>게시글</h1>
