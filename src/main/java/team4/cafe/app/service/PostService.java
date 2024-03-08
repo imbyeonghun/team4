@@ -11,6 +11,6 @@ public interface PostService {
 
 	boolean insertBoard(PostVO post);
 
-	boolean deletePost(MemberVO user, int num);
+	boolean deletePost(MemberVO user, int bo_num, int po_num);
 
 }

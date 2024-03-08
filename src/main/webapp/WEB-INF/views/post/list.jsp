@@ -41,7 +41,7 @@
 							<tr>
 								<td>${post.po_num}</td>
 								<td>${post.po_title}</td>
-								<td>${post.po_me_name}</td>
+								<td>${post.po_id}</td>
 								<td>${post.po_date}</td>
 								<td>${post.po_view}</td>
 							</tr>

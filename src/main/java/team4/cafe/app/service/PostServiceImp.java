@@ -54,15 +54,18 @@ public class PostServiceImp implements PostService{
 	}
 
 	@Override
-	public boolean deletePost(MemberVO user, int num) {
+	public boolean deletePost(MemberVO user, int bo_num, int po_num) {
 		if(user == null) {
 			return false;
 		}
-		PostVO post = postDao.selectPost(num);
+		PostVO post = postDao.selectPost(bo_num, po_num);
 		
-		if(user == null || !post.getPo_me_id().equals(user.getMe_id())) {
+		if( user == null ||
+			post.getPo_bo_num() != bo_num ||
+			!post.getPo_me_id().equals(user.getMe_id())) {
 			return false;
 		}
-		return postDao.deletePost(num);
+		
+		return postDao.deletePost(po_num);
 	}
 }

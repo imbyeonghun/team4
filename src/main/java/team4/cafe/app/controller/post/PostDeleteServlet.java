@@ -21,17 +21,18 @@ public class PostDeleteServlet extends HttpServlet {
     private PostService postService = new PostServiceImp();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//num을 가져옴
-		int num = 0;
+		int po_num, bo_num = 0;
 		try {
-			num = Integer.parseInt(request.getParameter("num"));
+			po_num = Integer.parseInt(request.getParameter("poNum"));
+			bo_num = Integer.parseInt(request.getParameter("boNum"));
 		} catch (Exception e) {
-			num = 0;
+			po_num = 0;
 		}
 		//회원정보를 가져옴
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		
 		//board에게 삭제라하고 시킴
-		boolean res = postService.deletePost(user, num);
+		boolean res = postService.deletePost(user, bo_num, po_num);
 		//회원이면 게시글을 삭제한다
 		if(res) {
 			request.setAttribute("msg", "게시글을 삭제했습니다.");
