@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import team4.cafe.app.dao.MemberDAO;
+import team4.cafe.app.model.dto.LoginDTO;
 import team4.cafe.app.model.vo.MemberVO;
 
 public class MemberServiceImp implements MemberService {
@@ -28,6 +29,7 @@ public class MemberServiceImp implements MemberService {
 		}
 	}
 	
+	/** 회원가입 */
 	@Override
 	public boolean signup(MemberVO memberVO) {
 		//null값 체크
@@ -35,12 +37,44 @@ public class MemberServiceImp implements MemberService {
 			memberVO.getMe_id() == null || 
 			memberVO.getMe_pw() == null || 
 			memberVO.getMe_email() == null ||
-			memberVO.getMe_name() == null) {
+			memberVO.getMe_name() == null||
+			memberVO.getMe_date() == null) {
+			System.out.println("null값");
+			return false;
+		}
+		//null이 아니라면
+		
+		//정규표현식 체크
+		
+		//아이디 중복 체크
+		try {
+			System.out.println("null값 아님");
+			return memberDAO.insertMember(memberVO);
+		}catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 		
-		//null이 아니라면 ( 정규표현식과 아이디 중복체크는 입력받을 때)
-		return memberDAO.insertMember(memberVO);
+	}
+
+	/** 로그인 */
+	@Override
+	public MemberVO login(LoginDTO loginDTO) {
+		if(loginDTO == null) {
+			return null;
+		}
+		
+		MemberVO user = memberDAO.selectMember(loginDTO.getId());
+		
+		if(user == null) {
+			return null;
+		}
+		
+		if(user.getMe_pw().equals(loginDTO.getPw())) {
+			return user;
+		}
+		
+		return null;
 	}
 
 }

@@ -16,15 +16,15 @@
 			<h3 class="panel-title">CAFE Title</h3>
 		</div>
 		<!-- 메뉴목록 -->
-			<li>카페정보</li>
+			<a>카페정보</a>
 		<ul class="list-group">
 			<li class="list-group-item">
 				<ul><a  href="#" > 카페정보</a></ul>
 				<ul>회원 수</ul>
 				<ul>게시글 수</ul>
 			</li>
-			<button class="btn btn-outline-success">로그인</button>
-			<button class="btn btn-outline-success">회원가입</button>
+			<button type="button" class="btn btn-outline-success" >로그인</button>
+			<button type="button" class="btn btn-outline-success">회원가입</button>
 		</ul>
 		
 		<!-- 카테고리 및 게시판 리스트 -->
@@ -36,5 +36,12 @@
 			</li>
 		</ul>
 	</div>
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>
