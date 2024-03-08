@@ -26,13 +26,17 @@ public class PostInsertServlet extends HttpServlet {
 		//유저 정보를 받아온다
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		//작성자 닉네임으로 고정
-		String writer = user.getMe_name(); 
+		String writer = user.getMe_name();
+		//작성시간 받아온다
 		//게시판 번호는 현재 선택된 게시판 번호로
 		int bo_num = Integer.parseInt(request.getParameter("boNum"));
 		PostVO post = new PostVO(bo_num, title, writer, content);
 		
 		boolean res = postService.insertBoard(post);
-		
+		if(res) {
+			request.setAttribute("msg", "게시글을 등록했습니다.");
+			request.setAttribute("url", "/post/list");
+		}
 		request.getRequestDispatcher("/WEB-INF/views/post/insert.jsp").forward(request, response);
 	}
 

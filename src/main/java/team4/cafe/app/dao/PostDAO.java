@@ -10,4 +10,6 @@ public interface PostDAO {
 
 	ArrayList<PostVO> selectPostList(@Param("bo_num") int boardNum);
 
+	boolean insertPost(@Param("post") PostVO post);
+
 }

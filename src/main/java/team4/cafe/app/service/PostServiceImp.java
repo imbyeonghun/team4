@@ -31,5 +31,24 @@ public class PostServiceImp implements PostService{
 	public ArrayList<PostVO> getPostList(int boardNum) {
 		return postDao.selectPostList(boardNum);
 	}
+
+	@Override
+	public boolean insertBoard(PostVO post) {
+		if(post.getPo_bo_num() == 0) {
+			return false;
+		}
+		if(	!checkString(post.getPo_content()) ||
+			!checkString(post.getPo_title()) ||
+			!checkString(post.getPo_me_id())) {
+			return false;
+		}
+		return postDao.insertPost(post);
+	}
 	
+	private boolean checkString(String string) {
+		if(string == null || string.length() == 0) {
+			return false;
+		}
+		return true;
+	}
 }
