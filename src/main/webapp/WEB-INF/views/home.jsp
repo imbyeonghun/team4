@@ -19,14 +19,14 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<!-- 3단길이의 첫번째 열 -->
+		<!-- 사이드 바 영역 -->
 		<div class="col-md-3">
 			<h1>첫번째 열의 제목</h1>
 			<p>첫번째 열의 본문</p>
 			<jsp:include page = "/WEB-INF/views/sidebar.jsp"/>
 			
 		</div>
-		<!-- 9단길이의 첫번째 열 -->
+		<!-- 본문 영역 -->
 		<div class="col-md-9">
 			<div class="container">
 					<h1>홈화면</h1>
