@@ -14,8 +14,8 @@ CREATE TABLE `member` (
     `me_date` datetime not null,
 	`me_loginCount`	int not	NULL default 0,
 	`me_fail`	int not	NULL default 0,
-	`me_st_state`	varchar(6)	NOT NULL,
-	`me_gr_name`	varchar(10)	NOT NULL
+	`me_st_state`	varchar(6)	NOT NULL default "이용중",
+	`me_gr_name`	varchar(10)	NOT NULL default "Level1"
 );
 
 DROP TABLE IF EXISTS `category`;
