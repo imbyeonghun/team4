@@ -4,8 +4,9 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team4.cafe.app.dao.MemberDAO">
 	<insert id="insertMember">
-		insert into Member(me_id,me_pw,me_email,me_name)
-		values(#{member.me_id},#{member.me_pw},#{member.me_email},#{member.me_name})
+		insert into Member(me_id, me_pw, me_email ,me_name, me_date, me_st_state, me_gr_name)
+		values(#{member.me_id}, #{member.me_pw}, #{member.me_email}, 
+				#{member.me_name}, #{member.me_date}, "이용중", "Level1")
 	</insert>
 	
 </mapper>

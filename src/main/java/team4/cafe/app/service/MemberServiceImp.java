@@ -35,12 +35,24 @@ public class MemberServiceImp implements MemberService {
 			memberVO.getMe_id() == null || 
 			memberVO.getMe_pw() == null || 
 			memberVO.getMe_email() == null ||
-			memberVO.getMe_name() == null) {
+			memberVO.getMe_name() == null||
+			memberVO.getMe_date() == null) {
+			System.out.println("null값");
+			return false;
+		}
+		//null이 아니라면
+		
+		//정규표현식 체크
+		
+		//아이디 중복 체크
+		try {
+			System.out.println("null값 아님");
+			return memberDAO.insertMember(memberVO);
+		}catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 		
-		//null이 아니라면 ( 정규표현식과 아이디 중복체크는 입력받을 때)
-		return memberDAO.insertMember(memberVO);
 	}
 
 }
