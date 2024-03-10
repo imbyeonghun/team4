@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import team4.cafe.app.dao.MyPageDAO;
 import team4.cafe.app.model.vo.MemberVO;
+import team4.cafe.app.model.vo.MyPageMemberVO;
 
 public class MyPageServiceImp implements MyPageService {
 
@@ -45,7 +46,7 @@ public class MyPageServiceImp implements MyPageService {
 	}
 
 	@Override
-	public boolean updateUserInfo(MemberVO updateUser) {
+	public boolean updateUserInfo(MyPageMemberVO updateUser) {
 		if(updateUser == null) {
 			return false;
 		}

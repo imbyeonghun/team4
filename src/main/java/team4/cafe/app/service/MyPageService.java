@@ -1,6 +1,7 @@
 package team4.cafe.app.service;
 
 import team4.cafe.app.model.vo.MemberVO;
+import team4.cafe.app.model.vo.MyPageMemberVO;
 
 public interface MyPageService {
 
@@ -8,5 +9,5 @@ public interface MyPageService {
 
 	int getCommentCount(MemberVO user);
 
-	boolean updateUserInfo(MemberVO updateUser);
+	boolean updateUserInfo(MyPageMemberVO updateUser);
 }

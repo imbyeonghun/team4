@@ -44,8 +44,8 @@
 					<input type="text" id="count" name="count" value="${user.me_loginCount}" readonly>
 				</div>
 				<div>
-					게시글 수 : <a href="#" id="board">${postCount}개</a>  |  
-					댓 글 수 : <a href="#">${commentCount}개</a>
+					게시글 수 : <a href="<c:url value="/mypage/userPost"/>">${postCount}개</a>  |  
+					댓 글 수 : <a href="<c:url value="#"/>">${commentCount}개</a>
 				</div>
 				<a href="<c:url value="/mypage/check"/>">내 정보 수정</a>
 				<c:if test="${user.me_id == admin}">

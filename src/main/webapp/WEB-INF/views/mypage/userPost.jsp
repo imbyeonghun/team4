@@ -10,6 +10,47 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-	
+	<!-- header 영역 -->
+	<header>
+		<jsp:include page = "/WEB-INF/views/header.jsp"/>
+	</header>
+	<div class="container-fluid">
+		<div class="row">
+			<!-- 3단길이의 첫번째 열 -->
+			<div class="col-md-3">
+				<jsp:include page = "/WEB-INF/views/sidebar.jsp"/>
+			</div>
+			<!-- 9단길이의 첫번째 열 -->
+			<div class="col-md-9 container mt-5">
+				<h1>총 게시글 수 : ${postCount}</h1>
+				<hr>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>[게시판 이름]</th>
+							<th>제목[댓글 수]</th>
+							<th>작성 시간</th>
+							<th>조회수</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${boardList}" var="board">
+							<tr>
+								<td>${board.bo_num}</td>
+								<td>${board.community.co_name}</td>
+								<td>
+									<a href="<c:url value="/board/detail?num=${board.bo_num}"/>">${board.bo_title}</a>
+								</td>
+								<td>
+									<a href="<c:url value=""/>">${board.bo_me_id}</a>
+								</td>
+								<td>${board.bo_view}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import team4.cafe.app.model.vo.MemberVO;
+import team4.cafe.app.model.vo.MyPageMemberVO;
 import team4.cafe.app.service.MyPageService;
 import team4.cafe.app.service.MyPageServiceImp;
 
@@ -46,7 +47,7 @@ public class MyPageUpdateServlet extends HttpServlet {
 		}
 		
 		// 로그인된 아이디와 해당 정보들을 가지는 객체를 생성
-		MemberVO updateUser = new MemberVO(user.getMe_id(), pw, email, name);
+		MyPageMemberVO updateUser = new MyPageMemberVO(user.getMe_id(), pw, email, name);
 		
 		// 생성된 객체를 서비스에게 보내서 업데이트
 		if(myPageService.updateUserInfo(updateUser)) {
