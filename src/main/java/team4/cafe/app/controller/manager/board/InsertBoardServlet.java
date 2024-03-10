@@ -27,7 +27,11 @@ public class InsertBoardServlet extends HttpServlet {
 		String bo_name=request.getParameter("addBoard");
 		BoardVO board=new BoardVO(bo_name, num);
 		boolean res=bs.insertBoard(board);
-		
+		if(res) {
+			response.sendRedirect(request.getContextPath()+"/manager/board");
+		}else {
+			
+		}
 	}
 
 }

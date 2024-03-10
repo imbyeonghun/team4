@@ -19,4 +19,8 @@ public interface BoardDAO {
 
 	ArrayList<BoardVO> selectBoardList(@Param("num")int co_num);
 
+	boolean insertBoard(@Param("board")BoardVO board);
+
+	boolean updateBoard(@Param("board")BoardVO board);
+
 }

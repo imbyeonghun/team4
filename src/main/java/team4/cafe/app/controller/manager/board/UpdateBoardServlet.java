@@ -23,7 +23,7 @@ public class UpdateBoardServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		String bo_name=request.getParameter("addBoard");
+		String bo_name=request.getParameter("update");
 		BoardVO board=new BoardVO(bo_name, num);
 		boolean res=bs.updateBoard(board);
 	}

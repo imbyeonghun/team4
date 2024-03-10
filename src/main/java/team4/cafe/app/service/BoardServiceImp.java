@@ -75,5 +75,31 @@ public class BoardServiceImp implements BoardService {
 	public ArrayList<BoardVO> getBoardList(int co_num) {
 		return boardDao.selectBoardList(co_num);
 	}
+
+	//게시판 추가
+	@Override
+	public boolean insertBoard(BoardVO board) {
+		if(board==null||checked(board.getBo_name())) {
+			return false;
+		}
+		return boardDao.insertBoard(board);
+	}
+
+	//게시판 수정
+	@Override
+	public boolean updateBoard(BoardVO board) {
+		if(board==null||checked(board.getBo_name())) {
+			return false;
+		}
+		return boardDao.updateBoard(board);
+	}
+	
+	//null,크기 확인
+	private boolean checked(String str) {
+		if(str==null||str.length()==0) {
+			return true;
+		}
+		return false;
+	}
 	
 }

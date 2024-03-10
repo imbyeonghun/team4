@@ -17,4 +17,8 @@ public interface BoardService {
 
 	ArrayList<BoardVO> getBoardList(int co_num);
 
+	boolean insertBoard(BoardVO board);
+
+	boolean updateBoard(BoardVO board);
+
 }
