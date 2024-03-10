@@ -32,6 +32,10 @@
 					<input type="text" id="grade" name="grade" value="${user.me_gr_name}" readonly>
 				</div>
 				<div>
+					<label for="email">이메일</label>
+					<input type="text" id="email" name="email" value="${user.me_email}" readonly>
+				</div>
+				<div>
 					<label for="date">가입일</label>
 					<input type="date" id="date" name="date" value="${user.me_date}" readonly>
 				</div>
@@ -40,15 +44,15 @@
 					<input type="text" id="count" name="count" value="${user.me_loginCount}" readonly>
 				</div>
 				<div>
-					게시글 수 : <a href="#" id="board">${boardCount}개</a>  |  
+					게시글 수 : <a href="#" id="board">${postCount}개</a>  |  
 					댓 글 수 : <a href="#">${commentCount}개</a>
 				</div>
+				<a href="<c:url value="/mypage/check"/>">내 정보 수정</a>
 				<c:if test="${user.me_id == admin}">
 					<div>
 						<a href="<c:url value="#"/>">카페 관리</a>
 					</div>
 				</c:if>
-				<a href="<c:url value="/mypage/check"/>">내 정보 수정</a>
 				<a href="<c:url value="#"/>">카페탈퇴하기</a>
 			</div>
 		</div>

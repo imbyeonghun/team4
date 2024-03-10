@@ -16,7 +16,7 @@ public class MyPageServiceImp implements MyPageService {
 	private MyPageDAO myPageDao;
 	
 	public MyPageServiceImp() {
-		String resource = "kr/kh/app/config/mybatis-config.xml";
+		String resource = "team4/cafe/app/config/mybatis-config.xml";
 		
 		try {
 			InputStream inputStream = Resources.getResourceAsStream(resource);
@@ -29,11 +29,11 @@ public class MyPageServiceImp implements MyPageService {
 	}
 	
 	@Override
-	public int getBoardCount(MemberVO user) {
+	public int getPostCount(MemberVO user) {
 		if(user == null) {
 			return 0;
 		}
-		return myPageDao.selectCountBoard(user);
+		return myPageDao.selectCountPost(user);
 	}
 
 	@Override
@@ -44,4 +44,11 @@ public class MyPageServiceImp implements MyPageService {
 		return myPageDao.selectCountComment(user);
 	}
 
+	@Override
+	public boolean updateUserInfo(MemberVO updateUser) {
+		if(updateUser == null) {
+			return false;
+		}
+		return myPageDao.updateInfo(updateUser);
+	}
 }

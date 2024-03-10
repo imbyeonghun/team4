@@ -3,11 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team4.cafe.app.dao.MyPageDAO">
-	<select id="selectCountBoard" resultType="int">
-		select count(*) from post where po_me_id = ${user.me_id}
+	<select id="selectCountPost" resultType="int">
+		select count(*) from post where po_me_id = #{user.me_id}
 	</select>
 
 	<select id="selectCountComment" resultType="int">
-		select count(*) from comment where co_me_id = ${user.me_id}
+		select count(*) from comment where co_me_id = #{user.me_id}
 	</select>
+	
+	<update id="updateInfo">
+		update member set  
+			me_pw = #{user.me_pw},
+			me_name = #{user.me_name},
+			me_email = #{user.me_email}
+		where 
+			me_id = #{user.me_id}
+	</update>
 </mapper>

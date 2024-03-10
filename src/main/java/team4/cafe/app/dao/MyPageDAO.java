@@ -6,7 +6,9 @@ import team4.cafe.app.model.vo.MemberVO;
 
 public interface MyPageDAO {
 
-	int selectCountBoard(@Param("user")MemberVO user);
+	int selectCountPost(@Param("user")MemberVO user);
 
 	int selectCountComment(@Param("user")MemberVO user);
+
+	boolean updateInfo(@Param("user")MemberVO updateUser);
 }

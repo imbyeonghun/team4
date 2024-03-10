@@ -36,7 +36,7 @@
 						<label for="email">이메일</label>
 						<input type="text" id="email" name="email" value="">
 					</div>
-					<button class="btn"><a href="<c:url value="/mypage/myPageHome"/>">내 정보 수정</a></button>
+					<button type="submit">내 정보 수정</button>
 				</form>
 			</div>
 		</div>
