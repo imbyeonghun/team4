@@ -24,15 +24,21 @@ public class MyPageCheckServlet extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		
-//		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
-//		String pw = user.getMe_pw();
-//		
-//		String checkPw = request.getParameter("checkPw");
-//		System.out.println(pw);
-//		System.out.println(checkPw);
 		
-		//request.getRequestDispatcher("/WEB-INF/views/mypage/check.jsp").forward(request, response);
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+		String pw = user.getMe_pw();
+		
+		String checkPw = request.getParameter("checkPw");
+		System.out.println(pw);
+		System.out.println(checkPw);
+		
+		if(pw.equals(checkPw)) {
+			request.setAttribute("msg", "본인확인 완료");
+			request.setAttribute("url", "mypage/update");
+		}else {
+			request.setAttribute("msg", "본인확인 실패");
+			request.setAttribute("url", "mypage/check");
+		}
+		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 	}
-	
 }
