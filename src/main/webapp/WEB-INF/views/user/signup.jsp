@@ -69,11 +69,11 @@
 	</header>
 	
 	<div id="container">
-		<form action="<c:url value="/signup"/>" method="post" id="loginBox">
+		<form action="<c:url value="/user/signup"/>" method="post" id="loginBox">
 			<div id="loginBoxTitle">회원가입</div>
 			<div id="inputBox">
 				<div class="input-form-box">
-					<span>아이디 </span><input type="text" name="uid" class="form-control">
+					<span>아이디 </span><input type="text" name="id" class="form-control">
 				</div>
 				<div class="input-form-box">
 					<span>비밀번호 </span><input type="password" name="pw" class="form-control">
@@ -91,7 +91,7 @@
 					<div id = "error">에러메세지(추후 추가예정)</div>
 				</div>
 				<div class="button-login-box">
-					<button type="button" class="btn btn-primary btn-xs" style="width: 100%">로그인</button>
+					<button class="btn btn-primary btn-xs btn-member-signup" style="width: 100%">회원가입</button>
 				</div>
 			</div>
 		</form>
@@ -100,7 +100,32 @@
 
 
 <script src="//code.jquery.com/jquery-3.4.1.js"></script>
+<!-- 회원가입 버튼 이벤트 -->
 <script type="text/javascript">
+/*
+	let flag = false;
+	$(".btn-member-signup").click(function(){
+		//아이디 중복 검사
+		
+		let id = $("[name=id]").val();
+		fetch(`<c:url value="/id/check"/>?id=\${id}`)
+		.then(response=>response.text())
+		.then(data => {
+			if(data == 'true'){
+				alert("사용 가능한 아이디 입니다.");
+				flag = true;
+			}else{
+				console.log(data);
+				alert("이미 사용중인 아이디 입니다.");
+			}
+		
+		//아이디 정규 표현식 검사
+		
+		//
+		
+	});	//회원가입 버튼 click function end
+*/
+
 	/* 아이디 중복 검사, 아이디 정규표현식 */
 
 
@@ -122,5 +147,6 @@
 	}
 	*/
 </script>
+
 </body>
 </html>
