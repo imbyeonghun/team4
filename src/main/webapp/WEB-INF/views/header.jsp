@@ -16,17 +16,19 @@
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="<c:url value="/"/>"">
       <img src="img_avatar1.png" alt="Logo" style="width:40px;" class="rounded-pill">
     </a>
     <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/user/signup"/>">회원가입</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/user/login"/>">로그인</a>
-        </li>
+      	<c:if test="${user == null}">
+	      	<li class="nav-item">
+	          <a class="nav-link" href="<c:url value="/user/signup"/>">회원가입</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="<c:url value="/user/login"/>">로그인</a>
+	        </li>
+      	</c:if>
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/mypage/myPageHome"/>">마이페이지</a>
         </li>

@@ -1,6 +1,7 @@
 package team4.cafe.app.controller.user;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,8 +33,11 @@ public class SignupServlet extends HttpServlet {
 		String pw = request.getParameter("pw");
 		String email = request.getParameter("email");
 		String nickName = request.getParameter("nickName");
+		Date date = new Date();
 		
-		if(memberService.signup(new MemberVO(id, pw, email, nickName))) {
+		System.out.println(id+pw+email+nickName+date);
+		
+		if(memberService.signup(new MemberVO(id, pw, email, nickName, date))) {
 			//회원가입에 성공하면 메인 페이지로 이동
 			System.out.println("회원가입 성공");
 			response.sendRedirect(request.getContextPath()+"/");
@@ -45,9 +49,6 @@ public class SignupServlet extends HttpServlet {
 		}
 	}
 
-	private void alert(String string) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

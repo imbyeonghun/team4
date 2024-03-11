@@ -30,12 +30,14 @@ public class MemberVO {
 
 	
 	
-	public MemberVO(String me_id, String me_pw, String me_email, String me_name) {
+	public MemberVO(String me_id, String me_pw, String me_email, String me_name, Date me_date) {
 		super();
 		this.me_id = me_id;
 		this.me_pw = me_pw;
 		this.me_email = me_email;
 		this.me_name = me_name;
+		this.me_date = me_date;
+		
 	}
 	
 	
