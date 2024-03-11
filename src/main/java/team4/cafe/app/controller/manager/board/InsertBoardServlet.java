@@ -18,20 +18,16 @@ public class InsertBoardServlet extends HttpServlet {
 	private BoardService bs=new BoardServiceImp();    
    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int num=0;
+		int co_num=0;
 		try {
-			num=Integer.parseInt(request.getParameter("num"));
+			co_num=Integer.parseInt(request.getParameter("coNum"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		String bo_name=request.getParameter("addBoard");
-		BoardVO board=new BoardVO(bo_name, num);
+		String bo_name=request.getParameter("boName");
+		BoardVO board=new BoardVO(bo_name, co_num);
 		boolean res=bs.insertBoard(board);
-		if(res) {
-			response.sendRedirect(request.getContextPath()+"/manager/board");
-		}else {
-			
-		}
+		response.getWriter().write(res?"ok":"");
 	}
 
 }

@@ -26,6 +26,13 @@ public class UpdateBoardServlet extends HttpServlet {
 		String bo_name=request.getParameter("update");
 		BoardVO board=new BoardVO(bo_name, num);
 		boolean res=bs.updateBoard(board);
+		if(res) {
+			request.setAttribute("msg","수정 완료");
+		}else {
+			request.setAttribute("msg","수정 실패");
+		}
+		request.setAttribute("url","/manager/board");
+		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 	}
 
 }

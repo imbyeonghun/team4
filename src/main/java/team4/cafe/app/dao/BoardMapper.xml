@@ -25,4 +25,7 @@
 	<update id="updateBoard">
 		update board set bo_name=#{board.bo_name} where bo_num=#{board.bo_co_num} 
 	</update>
+	<delete id="deleteBoard">
+		delete from board where bo_num=#{bo_num}
+	</delete>
 </mapper>

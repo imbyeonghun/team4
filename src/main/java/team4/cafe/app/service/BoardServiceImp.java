@@ -94,6 +94,11 @@ public class BoardServiceImp implements BoardService {
 		return boardDao.updateBoard(board);
 	}
 	
+	@Override
+	public boolean deleteBoard(int bo_num) {
+		return boardDao.deleteBoard(bo_num);
+	}
+	
 	//null,크기 확인
 	private boolean checked(String str) {
 		if(str==null||str.length()==0) {
@@ -101,5 +106,4 @@ public class BoardServiceImp implements BoardService {
 		}
 		return false;
 	}
-	
 }

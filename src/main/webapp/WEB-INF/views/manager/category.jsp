@@ -22,7 +22,7 @@
       <!-- 페이지 넘기기 -->
     </div>
     <div class="update-box hidden">
-      <form  method="post" id="updateCategory" accept-charset="utf-8">
+      <form  method="post" id="updateCategory">
         <label for="update">카테고리 수정</label>
         <input type="text" placeholder="카테고리명" name="update">
         <button type="submit">수정</button>

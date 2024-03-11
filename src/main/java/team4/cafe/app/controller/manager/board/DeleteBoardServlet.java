@@ -16,12 +16,15 @@ public class DeleteBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BoardService bs=new BoardServiceImp(); 
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		int bo_num=0;
+		try {
+			bo_num=Integer.parseInt(request.getParameter("num"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		boolean res=bs.deleteBoard(bo_num);
+		response.getWriter().write(res?"ok":"");
 	}
 
 }

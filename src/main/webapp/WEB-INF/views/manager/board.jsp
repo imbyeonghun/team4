@@ -23,10 +23,8 @@
 	    </select>
     </div>
     <div class="insertBoard">
-      <form  method="post" id="addBoard">
-        <input type="text" placeholder="게시판 이름을 입력" name="addBoard">
-        <button type="submit">게시판 등록</button>
-      </form>
+        <input type="text" placeholder="게시판 이름을 입력" id="addBoard">
+        <button type="button" id="insertBoard">게시판 등록</button>
     </div> 
     <div class="main">
       	
@@ -35,57 +33,112 @@
       <!-- 페이지 넘기기 -->
     </div>
     <div class="update-box hidden">
-      <form  method="post" id="update">
+      <form  method="post" id="updateBoard">
         <label for="update">게시판 수정</label>
-        <input type="text" placeholder="bo_name" name="update">
+        <input type="text" placeholder="게시판 이름" name="update">
         <button type="submit">수정</button>
       </form>
     </div>
   </div>
 <script type="text/javascript">
-$(document).on("click",".update", function(){
+let coNum;
+$(document).on("click","#btn-update", function(){
   let num=$(this).data('num');
-  console.log(num);
-  $("#update").attr("action",`<c:url value="/manager/board/update?num=\${num}" />`);
+  $("#updateBoard").attr("action",`<c:url value="/manager/board/update?num=\${num}" />`);
 });
 
 //카테고리 선택후 게시판 관리 기능
 $("select[name=category]").change(function(){
-    let coNum=$(this).val();
-    if(coNum==null){
-    	return;
-    }
-    $.ajax({
-		url : '<c:url value="/manager/board/list"/>',
-		method : "post",
+    coNum=$(this).val();  
+    printBoard(coNum);
+ });
+  
+//게시판 등록 기능
+$(document).on("click","#insertBoard", function(){
+	if(coNum==''){
+		alert("카테고리를 선택해주세요");
+		return;
+	}
+ 	let boName=$('#addBoard').val();
+ 	$.ajax({
+		url : '<c:url value="/manager/board/insert" />',
+		method : 'post',
 		data : {
-			coNum
+			coNum,
+			boName
 		},
 		success : function(data){
-			console.log(coNum);
-			console.log(data.boardList);
-			let str='';
-			for(board of data.boardList){
-				str+=
-				`
-				<div class="line">
-	       			<div class="bo-name">\${board.bo_name}</div>
-	        		<div class="action">
-	          			<a href="#" class="update" data-num="\${board.bo_num}">수정</a>
-	         			 <a href="<c:url value="/manager/board/delete?num=\${board.bo_num}" />" class="delete">삭제</a>
-	        		</div>
-	      		</div>
-				`;
+			if(data == "ok"){
+				alert("게시판을 추가했습니다.");
+				printBoard(coNum);
+			}else{
+				alert("게시판을 추가하지 못했습니다.");
 			}
-			$('.main').html(str);
-			$("#addBoard").attr("action",`<c:url value="/manager/board/insert?num=\${coNum}" />`);
 		}, 
-		error : function(a, b, c){
+		error : function(a,b,c){
 			
 		}
 	});
-  });
+});
 
+//게시판 삭제
+$(document).on("click","#btn-delete", function(){
+	if(coNum==''){
+		alert("카테고리를 선택해주세요");
+		return;
+	}
+	let num = $(this).data("num");
+	$.ajax({
+		url : '<c:url value="/manager/board/delete" />',
+		method : 'post',
+		data : {
+			num
+		},
+		success : function(data){
+			if(data == 'ok'){
+				alert("게시판을 삭제했습니다.");
+				printBoard(coNum);
+			}else{
+				alert("게시판을 삭제하지 못했습니다.");
+			}
+		}, 
+		error : function(a,b,c){
+			
+		}
+	});
+});
+
+//게시판 리스트 출력
+function printBoard(coNum){
+	 $.ajax({
+			url : '<c:url value="/manager/board/list"/>',
+			method : "post",
+			data : {
+				coNum
+			},
+			success : function(data){
+				let str='';
+				for(board of data.boardList){
+					str+=
+					`
+					<div class="line">
+		       			<div class="bo-name">\${board.bo_name}</div>
+		        		<div class="action">
+		          			<div data-num="\${board.bo_num}" id="btn-update">수정</div>
+		         			<div data-num="\${board.bo_num}" id="btn-delete">삭제</div>
+		        		</div>
+		      		</div>
+					`;
+				}
+				$('.main').html(str);
+			}, 
+			error : function(a, b, c){
+				
+			}
+		});
+}
+
+printBoard(coNum)
 </script>
 </body>
 </html>
