@@ -25,5 +25,4 @@
 	    <mapper resource="team4/cafe/app/dao/MemberMapper.xml"/>
 		<mapper resource="team4/cafe/app/dao/MyPageMapper.xml"/>
 	</mappers>
-
 </configuration>
