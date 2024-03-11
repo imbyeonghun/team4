@@ -27,7 +27,6 @@ public class UpdateCategoryServlet extends HttpServlet {
 		String co_name=request.getParameter("update");
 		CategoryVO category=new CategoryVO(co_num,co_name);
 		boolean res=bs.updateCategory(category);
-		
 		if(res) {
 			request.setAttribute("msg","수정 완료");
 		}else {

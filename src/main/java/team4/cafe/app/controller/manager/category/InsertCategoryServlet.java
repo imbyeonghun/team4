@@ -17,15 +17,9 @@ public class InsertCategoryServlet extends HttpServlet {
 	private BoardService bs=new BoardServiceImp();
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String category=request.getParameter("addCategory");
+		String category=request.getParameter("coName");
 		boolean res=bs.insertCategory(category);
-		if(res) {
-			request.setAttribute("msg","카테고리가 추가되었습니다.");
-		}else {
-			request.setAttribute("msg","카테고리가 중복 됩니다.");
-		}
-		request.setAttribute("url","manager/category");
-		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
+		response.getWriter().write(res?"ok":"");
 	}
 
 }
