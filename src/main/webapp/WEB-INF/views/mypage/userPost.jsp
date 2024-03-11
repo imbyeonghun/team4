@@ -34,17 +34,14 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${boardList}" var="board">
+						<c:forEach items="${postList}" var="post">
 							<tr>
-								<td>${board.bo_num}</td>
-								<td>${board.community.co_name}</td>
+								<td>[게시판 이름]</td>
 								<td>
-									<a href="<c:url value="/board/detail?num=${board.bo_num}"/>">${board.bo_title}</a>
+									<a href="<c:url value="/board/detail?num=${post.bo_num}"/>">${post.po_name}[댓글수]</a>
 								</td>
-								<td>
-									<a href="<c:url value=""/>">${board.bo_me_id}</a>
-								</td>
-								<td>${board.bo_view}</td>
+								<td>${post.po_date}</td>
+								<td>${post.po_view}</td>
 							</tr>
 						</c:forEach>
 					</tbody>

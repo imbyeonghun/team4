@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Param;
 
 import team4.cafe.app.model.vo.MemberVO;
 import team4.cafe.app.model.vo.MyPageMemberVO;
+import team4.cafe.app.model.vo.PostVO;
 
 public interface MyPageDAO {
 
@@ -12,4 +13,6 @@ public interface MyPageDAO {
 	int selectCountComment(@Param("user")MemberVO user);
 
 	boolean updateInfo(@Param("user")MyPageMemberVO updateUser);
+
+	PostVO selectPostListByuser(@Param("user")MemberVO user);
 }
