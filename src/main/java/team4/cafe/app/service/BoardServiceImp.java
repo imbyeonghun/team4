@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import team4.cafe.app.dao.BoardDAO;
+import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.CategoryVO;
 
 public class BoardServiceImp implements BoardService {
@@ -68,5 +69,41 @@ public class BoardServiceImp implements BoardService {
 		}
 		return boardDao.updateCategory(category);
 	}
+
+	//게시판 목록을 가져옴
+	@Override
+	public ArrayList<BoardVO> getBoardList(int co_num) {
+		return boardDao.selectBoardList(co_num);
+	}
+
+	//게시판 추가
+	@Override
+	public boolean insertBoard(BoardVO board) {
+		if(board==null||checked(board.getBo_name())) {
+			return false;
+		}
+		return boardDao.insertBoard(board);
+	}
+
+	//게시판 수정
+	@Override
+	public boolean updateBoard(BoardVO board) {
+		if(board==null||checked(board.getBo_name())) {
+			return false;
+		}
+		return boardDao.updateBoard(board);
+	}
 	
+	@Override
+	public boolean deleteBoard(int bo_num) {
+		return boardDao.deleteBoard(bo_num);
+	}
+	
+	//null,크기 확인
+	private boolean checked(String str) {
+		if(str==null||str.length()==0) {
+			return true;
+		}
+		return false;
+	}
 }
