@@ -6,6 +6,9 @@
 	<select id="selectCategoryList" resultType="team4.cafe.app.model.vo.CategoryVO">
 		SELECT * FROM category
 	</select>
+	<select id="getCategoryList" resultType="team4.cafe.app.model.vo.CategoryVO">
+		SELECT * FROM category LIMIT #{cri.pageStart}, #{cri.perPageNum}
+	</select>
 	<insert id="insertCategory">
 		insert into category(co_name) value(#{category})
 	</insert>
@@ -28,4 +31,8 @@
 	<delete id="deleteBoard">
 		delete from board where bo_num=#{bo_num}
 	</delete>
+	
+	<select id="getCategoryCount" resultType="int">
+		select count(*) from category
+	</select>
 </mapper>
