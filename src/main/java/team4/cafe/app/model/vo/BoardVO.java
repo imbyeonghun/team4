@@ -9,4 +9,5 @@ public class BoardVO {
 	private int bo_num;
 	private String bo_name;
 	private int bo_co_num;
+	private PostVO post;
 }

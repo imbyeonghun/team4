@@ -3,6 +3,24 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team4.cafe.app.dao.MyPageDAO">
+
+<!-- 
+게시글 댓글수 가져오는 법
+SELECT board.*, count(cm_bo_num) FROM community.board 
+left join comment on bo_num = cm_bo_num group by bo_num; 
+-->
+
+	<resultMap type="kr.kh.app.model.vo.BoardVO" id="boardMap">
+		<id property="bo_num" column="bo_num"/>
+		<result property="bo_name" column="bo_name"/>
+		<result property="bo_co_num" column="bo_co_num"/>
+		<collection property="post" ofType="kr.kh.app.model.vo.PostVO"
+			column="po_bo_num" select="selectBoard"/>
+	</resultMap>
+
+	<select id="selectBoard" resultType="kr.kh.app.model.vo.BoardVO">
+		select * from board where bo_num = #{po_bo_num}
+	</select>
 	
 	<select id="selectCountPost" resultType="int">
 		select count(*) from post where po_me_id = #{user.me_id}
