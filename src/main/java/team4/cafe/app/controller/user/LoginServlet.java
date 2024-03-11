@@ -30,6 +30,19 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
+		
+		//아이디와 비번 입력을 하지 않았다면
+		if(id == null) {
+			//아이디를 입력해주세요 메세지 추가
+			response.getWriter().write("id");
+		}else if(pw == null) {
+			//비번을 입력해주세요 메세지 추가
+			response.getWriter().write("pw");
+		}
+		
+		//아이디와 비번 체크
+		
+		//로그인 서비스
 		MemberVO user = memberService.login(new LoginDTO(id,pw));
 		
 		//로그인 성공 시 회원 정보를 세션에 저장해 로그인 유지
@@ -37,11 +50,25 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session =  request.getSession();
 			session.setAttribute("user", user);
 			System.out.println("로그인 성공");
+			request.setAttribute("msg", "환영합니다.");
 			response.sendRedirect(request.getContextPath() + "/");	//메인화면으로
+			
+			//카페 접속 횟수++
+		
+			
+			
+//			res = true;
 		}else {
 			System.out.println("로그인 실패");
+			request.setAttribute("msg", "아이디 또는 비밀번호를 잘못 입력했습니다.");
+			//로그인 실패 횟수++
+			
 			doGet(request, response);
+//			res = false;
 		}
+		
+		//message.jsp 화면을 전송
+		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 	}
 
 }

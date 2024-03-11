@@ -9,6 +9,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 
 <style type="text/css">
 
@@ -90,6 +91,35 @@ html, body {
 	</form>
 
 
+	<!-- 로그인 성공 및 실패 -->
+	<script type="text/javascript">
+		$.ajax({
+			url : '<c:url value="/user/login"/>',
+			method : "post",
+			data : {	//매개변수명 : 값
+				
+			},
+			success : function(data){
+				
+				switch (data) {
+				case "id":
+					alert("id를 입력하세요");
+					break;
+				case "pw":
+					alert("pw를 입력하세요");
+					
+					break;
+
+				default:
+					break;
+				}
+				
+			},
+			error : function(xhr, status, error){
+				
+			}
+		})
+	</script>
 
 </body>
 </html>
