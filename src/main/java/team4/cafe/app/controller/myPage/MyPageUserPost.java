@@ -1,6 +1,7 @@
 package team4.cafe.app.controller.myPage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.MemberVO;
 import team4.cafe.app.model.vo.PostVO;
 import team4.cafe.app.service.MyPageService;
@@ -28,13 +30,14 @@ public class MyPageUserPost extends HttpServlet {
 		// 회원 정보를 서비스에게 보내 게시글 조회에서 게시글 총 수를 가져오게 시킴
 		int postCount = myPageService.getPostCount(user);
 		
-		// 회원이 작성한 게시글 가져오기
-		PostVO PostList = myPageService.getPostList(user);
+		// 회원이 작성한 게시글을 가져오는데 해당 게시글에 게시판도 가져옴
+		ArrayList<BoardVO> postList = myPageService.getPostListWithBoard(user);
+		System.out.println(postList);
 		
 		// 화면에 전송
 		request.setAttribute("user", user);
 		request.setAttribute("postCount", postCount);
-		request.setAttribute("PostList", PostList);
+		request.setAttribute("postList", postList);
 		request.getRequestDispatcher("/WEB-INF/views/mypage/userPost.jsp").forward(request, response);
 	}
 }

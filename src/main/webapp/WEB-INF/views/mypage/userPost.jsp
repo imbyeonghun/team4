@@ -36,9 +36,9 @@
 					<tbody>
 						<c:forEach items="${postList}" var="post">
 							<tr>
-								<td>[게시판 이름]</td>
+								<td>[${post.board.bo_name}]</td>
 								<td>
-									<a href="<c:url value="/board/detail?num=${post.bo_num}"/>">${post.po_name}[댓글수]</a>
+									<a href="<c:url value="/board/detail?num=${post.po_num}"/>">${post.po_title}[${post.commentCount}]</a>
 								</td>
 								<td>${post.po_date}</td>
 								<td>${post.po_view}</td>

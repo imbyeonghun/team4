@@ -2,6 +2,7 @@ package team4.cafe.app.service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -9,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import team4.cafe.app.dao.MyPageDAO;
+import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.MemberVO;
 import team4.cafe.app.model.vo.MyPageMemberVO;
 import team4.cafe.app.model.vo.PostVO;
@@ -60,5 +62,13 @@ public class MyPageServiceImp implements MyPageService {
 			return null;
 		}
 		return myPageDao.selectPostListByuser(user);
+	}
+
+	@Override
+	public ArrayList<BoardVO> getPostListWithBoard(MemberVO user) {
+		if(user == null) {
+			return null;
+		}
+		return myPageDao.selectPostListWithBoard(user);
 	}
 }

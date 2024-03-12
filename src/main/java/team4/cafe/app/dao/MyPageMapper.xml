@@ -6,22 +6,35 @@
 
 <!-- 
 게시글 댓글수 가져오는 법
-SELECT board.*, count(cm_bo_num) FROM community.board 
-left join comment on bo_num = cm_bo_num group by bo_num; 
+SELECT board.*, count(cm_bo_num) as a FROM community.board 
+left join comment on bo_num = cm_bo_num group by bo_num;
 -->
 
-	<resultMap type="kr.kh.app.model.vo.BoardVO" id="boardMap">
-		<id property="bo_num" column="bo_num"/>
-		<result property="bo_name" column="bo_name"/>
-		<result property="bo_co_num" column="bo_co_num"/>
-		<collection property="post" ofType="kr.kh.app.model.vo.PostVO"
+	<resultMap type="team4.cafe.app.model.vo.PostVO" id="postMap">
+		<id property="po_num" column="po_num"/>
+		<result property="po_date" column="po_date"/>
+		<result property="po_title" column="po_title"/>
+		<result property="po_content" column="po_content"/>
+		<result property="po_view" column="po_view"/>
+		<result property="po_bo_num" column="po_bo_num"/>
+		<result property="po_me_id" column="po_me_id"/>
+		<result property="po_pt_num" column="po_pt_num"/>
+		<result property="commentCount" column="commentCount"/>
+		<collection property="board" ofType="team4.cafe.app.model.vo.BoardVO"
 			column="po_bo_num" select="selectBoard"/>
 	</resultMap>
 
-	<select id="selectBoard" resultType="kr.kh.app.model.vo.BoardVO">
+	<!--  -->
+	<select id="selectBoard" resultType="team4.cafe.app.model.vo.BoardVO">
 		select * from board where bo_num = #{po_bo_num}
 	</select>
 	
+	<!--  -->
+	<select id="selectPostListWithBoard" resultMap="postMap">
+		select post.*, (select count(co_po_num) from comment) as commentCount from post
+		left join comment on po_num = co_po_num  where po_me_id = #{user.me_id} group by po_num
+	</select>
+
 	<select id="selectCountPost" resultType="int">
 		select count(*) from post where po_me_id = #{user.me_id}
 	</select>
