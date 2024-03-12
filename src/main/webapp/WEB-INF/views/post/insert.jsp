@@ -31,7 +31,6 @@
 							<div class="mb-3 mt-3">
 					   			<label for="cafe" class="form-label">게시판:</label>
 					   			<select class="form-control" id="cafe" name="cafe">
-					   				<
 					   				<c:forEach items="${list}" var="cafe">
 					   					<option value="${cafe.bo_num}">${cafe.bo_name}</option>
 					   				</c:forEach>
