@@ -20,7 +20,7 @@
 		where co_num=#{ca.co_num}
 	</update>
 	<select id="selectBoardList" resultType="team4.cafe.app.model.vo.BoardVO">
-		SELECT * FROM board where bo_co_num=#{num}
+		SELECT * FROM board where bo_co_num=#{cri.bo_co_num} LIMIT #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<insert id="insertBoard">
 		insert into board(bo_name,bo_co_num) values(#{board.bo_name},#{board.bo_co_num})
@@ -34,5 +34,8 @@
 	
 	<select id="getCategoryCount" resultType="int">
 		select count(*) from category
+	</select>
+	<select id="getBoardCount" resultType="int">
+		select count(*) from board where bo_co_num=#{cri.bo_co_num}
 	</select>
 </mapper>

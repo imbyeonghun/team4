@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.CategoryVO;
+import team4.cafe.app.pagination.BoardCriteria;
 import team4.cafe.app.pagination.Criteria;
 
 public interface BoardService {
@@ -16,7 +17,7 @@ public interface BoardService {
 
 	boolean updateCategory(CategoryVO category);
 
-	ArrayList<BoardVO> getBoardList(int co_num);
+	ArrayList<BoardVO> getBoardList(BoardCriteria cri);
 
 	boolean insertBoard(BoardVO board);
 
@@ -27,5 +28,7 @@ public interface BoardService {
 	int getCategoryCount(Criteria cri);
 
 	ArrayList<CategoryVO> selectCategoryList();
+
+	int getBoardCount(BoardCriteria cri);
 
 }

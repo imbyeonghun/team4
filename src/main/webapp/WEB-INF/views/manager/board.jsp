@@ -8,6 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>게시판관리</title>
    <script src="//code.jquery.com/jquery-3.6.1.js"></script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -16,9 +18,9 @@
     </div>
     <div class="select">
     	<select name="category" id="category">
-    		<option value="">카테고리 선택</option>
+    		<option value="0">카테고리 선택</option>
       		<c:forEach items="${categoryList}" var="category">
-	        	<option value="${category.co_num }">${category.co_name }</option>
+	        	<option value="${category.co_num}">${category.co_name}</option>
 	        </c:forEach>
 	    </select>
     </div>
@@ -29,9 +31,11 @@
     <div class="main">
       	
     </div>
-    <div class="pagination">
-      <!-- 페이지 넘기기 -->
-    </div>
+    <div class="comment-pagination">
+		<ul class="pagination justify-content-center">
+			  				
+		</ul>
+	</div>
     <div class="update-box hidden">
       <form  method="post" id="updateBoard">
         <label for="update">게시판 수정</label>
@@ -41,7 +45,11 @@
     </div>
   </div>
 <script type="text/javascript">
-let coNum;
+let cri={
+	page:1,
+	coNum:0
+}
+
 $(document).on("click","#btn-update", function(){
   let num=$(this).data('num');
   $("#updateBoard").attr("action",`<c:url value="/manager/board/update?num=\${num}" />`);
@@ -49,17 +57,19 @@ $(document).on("click","#btn-update", function(){
 
 //카테고리 선택후 게시판 관리 기능
 $("select[name=category]").change(function(){
-    coNum=$(this).val();  
-    printBoard(coNum);
+	cri.coNum=$(this).val();  
+	console.log(cri);
+    printBoard(cri);
  });
   
 //게시판 등록 기능
 $(document).on("click","#insertBoard", function(){
-	if(coNum==''){
+	if(cri.coNum==0){
 		alert("카테고리를 선택해주세요");
 		return;
 	}
  	let boName=$('#addBoard').val();
+ 	let coNum=cri.coNum;
  	$.ajax({
 		url : '<c:url value="/manager/board/insert" />',
 		method : 'post',
@@ -70,7 +80,7 @@ $(document).on("click","#insertBoard", function(){
 		success : function(data){
 			if(data == "ok"){
 				alert("게시판을 추가했습니다.");
-				printBoard(coNum);
+				printBoard(cri);
 			}else{
 				alert("게시판을 추가하지 못했습니다.");
 			}
@@ -83,7 +93,7 @@ $(document).on("click","#insertBoard", function(){
 
 //게시판 삭제
 $(document).on("click","#btn-delete", function(){
-	if(coNum==''){
+	if(cri.coNum==0){
 		alert("카테고리를 선택해주세요");
 		return;
 	}
@@ -97,7 +107,7 @@ $(document).on("click","#btn-delete", function(){
 		success : function(data){
 			if(data == 'ok'){
 				alert("게시판을 삭제했습니다.");
-				printBoard(coNum);
+				printBoard(cri);
 			}else{
 				alert("게시판을 삭제하지 못했습니다.");
 			}
@@ -109,13 +119,12 @@ $(document).on("click","#btn-delete", function(){
 });
 
 //게시판 리스트 출력
-function printBoard(coNum){
+function printBoard(cri){
 	 $.ajax({
 			url : '<c:url value="/manager/board/list"/>',
 			method : "post",
-			data : {
-				coNum
-			},
+			data : cri
+			,
 			success : function(data){
 				let str='';
 				for(board of data.boardList){
@@ -131,6 +140,34 @@ function printBoard(coNum){
 					`;
 				}
 				$('.main').html(str);
+				let pm = JSON.parse(data.pm);
+				let pmStr = "";
+				//이전 버튼 활성화 여부
+				if(pm.prev){
+					pmStr += `
+					<li class="page-item">
+						<a class="page-link" href="javascript:void(0);" data-page="\${pm.startPage-1}">이전</a>
+					</li>
+					`;
+				}
+				//숫자 페이지
+				for(i = pm.startPage; i<= pm.endPage; i++){
+					let active = pm.cri.page == i ? "active" :"";
+					pmStr += `
+					<li class="page-item \${active}">
+						<a class="page-link" href="javascript:void(0);" data-page="\${i}">\${i}</a>
+					</li>
+					`
+				}
+				//다음 버튼 활성화 여부
+				if(pm.next){
+					pmStr += `
+					<li class="page-item">
+						<a class="page-link" href="javascript:void(0);" data-page="\${pm.endPage+1}">다음</a>
+					</li>
+					`;
+				}
+				$(".comment-pagination>ul").html(pmStr);
 			}, 
 			error : function(a, b, c){
 				
@@ -138,7 +175,6 @@ function printBoard(coNum){
 		});
 }
 
-printBoard(coNum)
 </script>
 </body>
 </html>
