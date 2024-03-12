@@ -21,7 +21,7 @@ public class BoardMainServlet extends HttpServlet {
 	private BoardService bs=new BoardServiceImp();   
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<CategoryVO> categoryList=bs.getCategoryList();
+		ArrayList<CategoryVO> categoryList=bs.selectCategoryList();
 		request.setAttribute("categoryList", categoryList);
 		request.getRequestDispatcher("/WEB-INF/views/manager/board.jsp").forward(request, response);
 	}
