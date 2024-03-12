@@ -63,6 +63,10 @@ html, body {
   padding: 3px 5px;
 }
 
+#error {
+	color: red; font-size: 12px;
+}
+
 </style>
 </head>
 <body>
@@ -71,7 +75,8 @@ html, body {
 	</header>
 
 	<div id="container">
-	<form action="<c:url value="/user/login"/>" method="post" id="loginBox">
+	<!-- action="<c:url value="/user/login"/>"  -->
+	<form action="<c:url value="/user/login"/>" method="post"  id="loginBox">
 			<div id="loginBoxTitle">로그인</div>
 			<div id="inputBox">
 				<div class="input-form-box">
@@ -84,7 +89,7 @@ html, body {
 					<div id = "error"></div>
 				</div>
 				<div class="button-login-box">
-					<button class="btn btn-primary btn-xs" style="width: 100%">로그인</button>
+					<button type="submit" class="btn btn-primary btn-xs btn-login" style="width: 100%">로그인</button>
 				</div>
 			</div>
 		</div>
@@ -93,32 +98,23 @@ html, body {
 
 	<!-- 로그인 성공 및 실패 -->
 	<script type="text/javascript">
-		$.ajax({
-			url : '<c:url value="/user/login"/>',
-			method : "post",
-			data : {	//매개변수명 : 값
-				
-			},
-			success : function(data){
-				
-				switch (data) {
-				case "id":
-					alert("id를 입력하세요");
-					break;
-				case "pw":
-					alert("pw를 입력하세요");
-					
-					break;
-
-				default:
-					break;
-				}
-				
-			},
-			error : function(xhr, status, error){
-				
+	$(document).ready(function(){
+		$("#loginBox").submit(function() {
+			//빈 문자열 체크
+			if($('input[name = id]').val() == ''){
+				$('#error').text("* 아이디를 입력하세요.");
+				return false;
+			}else if($('input[name = pw]').val() == ''){
+				$('#error').text("* 비밀번호를 입력하세요.");
+				return false;
 			}
-		})
+		})	//submit end
+	}); //ready end
+	
+	
+	
+	
+	
 	</script>
 
 </body>
