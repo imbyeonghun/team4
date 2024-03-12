@@ -64,10 +64,26 @@
 	$.ajax({
 		url : '<c:url value="/sidebar"/>',
 		method : "get",	//get도 상관없음 (post면 dopost에, get이면 doget에 작업할 것)
-		data : {},
+		data : {
+			
+		},
 		success : function(data){
 			//alert("네비바 연결");
-			alert(JSON.stringify(data));
+
+			/* 출력 값 확인 */
+			console.log(data);
+			for(category of data.caList){
+				console.log(category.co_name);
+				for(board of data.boList){
+					if(category.co_num == board.bo_co_num){
+						console.log(" ㄴ " + board.bo_name);
+					}
+				}
+			}
+			
+			
+			
+			
 			let caStr = '';
 			for(category of data.caList){
 				let boStr=''
