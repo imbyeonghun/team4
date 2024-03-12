@@ -14,4 +14,10 @@ public class BoardVO {
 		this.bo_name = bo_name;
 		this.bo_co_num = bo_co_num;
 	}
+
+	public BoardVO(int bo_num, String bo_name, int bo_co_num) {
+		this.bo_name = bo_name;
+		this.bo_co_num = bo_co_num;
+		this.bo_num = bo_num;
+	}
 }
