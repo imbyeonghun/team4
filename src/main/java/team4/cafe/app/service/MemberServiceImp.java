@@ -63,18 +63,24 @@ public class MemberServiceImp implements MemberService {
 		if(loginDTO == null) {
 			return null;
 		}
-		
+		//아이디로 회원 정보 요청
 		MemberVO user = memberDAO.selectMember(loginDTO.getId());
 		
+		//아이디 확인
 		if(user == null) {
 			return null;
 		}
-		
+		//비번 확인
 		if(user.getMe_pw().equals(loginDTO.getPw())) {
 			return user;
 		}
-		
 		return null;
+	}
+
+	/* 로그인 횟수(카페 접속 횟수 증가) */
+	@Override
+	public void addLoginCount(String id, int loginCount) {
+		memberDAO.updateLoginCount(id, loginCount);
 	}
 
 }

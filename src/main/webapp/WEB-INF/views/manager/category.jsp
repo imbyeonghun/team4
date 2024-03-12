@@ -6,6 +6,8 @@
 <head>
   <meta charset="UTF-8">
   <title>카테고리 관리</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
    <script src="//code.jquery.com/jquery-3.6.1.js"></script>
 </head>
 <body>
@@ -18,9 +20,12 @@
     <div class="main">
     	
     </div>
-    <div class="pagination">
-      <!-- 페이지 넘기기 -->
-    </div>
+    <!-- 페이지 -->
+  	<div class="comment-pagination">
+		<ul class="pagination justify-content-center">
+			  				
+		</ul>
+	</div>
     <div class="update-box hidden">
       <form  method="post" id="updateCategory">
         <label for="update">카테고리 수정</label>
@@ -58,14 +63,16 @@ $("#insertCategory").click(function(){
 		}
 	});
 });
-
+let cri={
+	page:1
+}
 //카테고리 목록 출력
 function printCategory(){
 	$.ajax({
 		url : '<c:url value="/manager/category/select" />',
 		method : 'post',
 		data : {
-			
+			cri
 		},
 		success : function(data){
 			let str='';
@@ -83,6 +90,34 @@ function printCategory(){
 			     `;
 			}
 			$(".main").html(str);	
+			let pm = JSON.parse(data.pm);
+			let pmStr = "";
+			//이전 버튼 활성화 여부
+			if(pm.prev){
+				pmStr += `
+				<li class="page-item">
+					<a class="page-link" href="javascript:void(0);" data-page="\${pm.startPage-1}">이전</a>
+				</li>
+				`;
+			}
+			//숫자 페이지
+			for(i = pm.startPage; i<= pm.endPage; i++){
+				let active = pm.cri.page == i ? "active" :"";
+				pmStr += `
+				<li class="page-item \${active}">
+					<a class="page-link" href="javascript:void(0);" data-page="\${i}">\${i}</a>
+				</li>
+				`
+			}
+			//다음 버튼 활성화 여부
+			if(pm.next){
+				pmStr += `
+				<li class="page-item">
+					<a class="page-link" href="javascript:void(0);" data-page="\${pm.endPage+1}">다음</a>
+				</li>
+				`;
+			}
+			$(".comment-pagination>ul").html(pmStr);
 		}, 
 		error : function(a,b,c){
 			
