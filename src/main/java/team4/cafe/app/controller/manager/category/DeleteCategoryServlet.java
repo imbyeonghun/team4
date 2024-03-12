@@ -1,4 +1,4 @@
-package team4.cafe.app.controller.manager;
+package team4.cafe.app.controller.manager.category;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,22 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 import team4.cafe.app.service.BoardService;
 import team4.cafe.app.service.BoardServiceImp;
 
-
-@WebServlet("/manager/category/insert")
-public class InsertCategoryServlet extends HttpServlet {
+@WebServlet("/manager/category/delete")
+public class DeleteCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BoardService bs=new BoardServiceImp();
-	
+   
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String category=request.getParameter("addCategory");
-		boolean res=bs.insertCategory(category);
-		if(res) {
-			request.setAttribute("msg","카테고리가 추가되었습니다.");
-		}else {
-			request.setAttribute("msg","카테고리가 중복 됩니다.");
+		int co_num;
+		try {
+			co_num=Integer.parseInt(request.getParameter("num")); 
+		} catch (Exception e) {
+			co_num=0;
 		}
-		request.setAttribute("url","manager/category");
-		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
+		boolean res=bs.deleteCategory(co_num);
+		
+		response.getWriter().write(res?"ok":"");
 	}
 
 }
