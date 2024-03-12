@@ -1,6 +1,7 @@
 package team4.cafe.app.controller.post;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,7 +48,8 @@ public class PostUpdateServlet extends HttpServlet {
 		}
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		PostVO post = new PostVO(bo_num, title, content, "");
+		Date date = new Date();
+		PostVO post = new PostVO(bo_num, title, content, "", date);
 		post.setPo_num(po_num);
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		
