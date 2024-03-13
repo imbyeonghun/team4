@@ -24,7 +24,6 @@
 			<h3 class="panel-title">CAFE Title</h3>
 		</div>
 		<!-- 메뉴목록 -->
-			<a>카페정보</a>
 		<ul class="list-group">
 			<li class="list-group-item">
 				<span>카페정보</span>
@@ -52,7 +51,8 @@
 			<!-- 카테고리명 -->
 				<hr>
 				<!-- 게시판명 -->
-				<a href="#" class ="board post-list"></a>
+				<p><a href="#" class ="board post-list"></a></p>
+
 			</li>
 		</ul>
 		
@@ -64,11 +64,14 @@
 	$.ajax({
 		url : '<c:url value="/sidebar"/>',
 		method : "get",	//get도 상관없음 (post면 dopost에, get이면 doget에 작업할 것)
-		data : {},
+		data : {
+			
+		},
 		success : function(data){
-			//alert("네비바 연결");
-			alert(JSON.stringify(data));
-			let caStr = '';
+
+			let caStr = '';	//카테고리 코드
+			console.log(data);
+
 			for(category of data.caList){
 				let boStr=''
 				for(board of data.boList){
@@ -78,16 +81,18 @@
 							<c:url var="url" value="/post/list">
 								<c:param name="num" value="\${board.bo_num}" />
 							</c:url>
-								<a href="\${url}" class ="board post-list">\${board.bo_name}</a>
+								<p><a href="${url}" class ="board post-list">\${board.bo_name}</a></p>
 							`;
 					}
 				}
+				
+				console.log(boStr);	//콘솔창 확인
 				
 				//만약 카테고리의 게시판이 없다면
 				if(boStr == ''){
 					boStr +=
 						`
-							<a class ="board post-list">하위 게시판이 없습니다.</a>
+							<p><a class ="board post-list">하위 게시판이 없습니다.</a></p>
 						`;
 				}
 				
@@ -100,7 +105,7 @@
 					<hr style="border-width:1px 0 0 0; border-style:solid; border-color:#bbb;">
 				`;
 				
-			}
+			console.log(caStr);	//콘솔창 확인
 			if(caStr == ''){
 				caStr += `
 					<li class="list-group-item">
@@ -109,7 +114,8 @@
 					<hr style="border-width:1px 0 0 0; border-style:solid; border-color:#bbb;">
 				`;
 			}
-			$(".listCaBo>ul").html(caStr);
+			$(".listCaBo").html(caStr);
+			}
 		},
 		error : function(a, b, c){
 			
@@ -117,11 +123,7 @@
 	});
 	
 	</script>
-		
-		
 
-	
-	
 	
 </body>
 </html>

@@ -36,7 +36,7 @@
           <a class="nav-link" href="<c:url value="/post/list"/>">게시글</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">마이페이지</a>
+          <a class="nav-link dropdown-toggle" href="<c:url value="/mypage/myPageHome"/>" role="button" data-bs-toggle="dropdown">마이페이지</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">개인정보</a></li>
             <li><a class="dropdown-item" href="#">내 정보 수정</a></li>
@@ -47,5 +47,9 @@
      </div>
 	</div>	
 </nav>
+
+
+
+
 </body>
 </html>
