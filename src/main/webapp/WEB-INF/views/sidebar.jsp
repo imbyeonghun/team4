@@ -53,6 +53,7 @@
 				<hr>
 				<!-- 게시판명 -->
 				<p><a href="#" class ="board post-list"></a></p>
+
 			</li>
 		</ul>
 		
@@ -68,8 +69,10 @@
 			
 		},
 		success : function(data){
+
 			let caStr = '';	//카테고리 코드
 			
+
 			for(category of data.caList){
 				let boStr=''
 				for(board of data.boList){
@@ -79,6 +82,7 @@
 							<c:url var="url" value="/post/list">
 								<c:param name="num" value="\${board.bo_num}" />
 							</c:url>
+
 								<p><a href="${url}" class ="board post-list">\${board.bo_name}</a></p>
 							`;
 					}
@@ -103,8 +107,6 @@
 					<hr style="border-width:1px 0 0 0; border-style:solid; border-color:#bbb;">
 				`;
 				
-				
-			}
 			console.log(caStr);	//콘솔창 확인
 			if(caStr == ''){
 				caStr += `
@@ -115,6 +117,7 @@
 				`;
 			}
 			$(".listCaBo").html(caStr);
+
 		},
 		error : function(a, b, c){
 			
@@ -122,11 +125,7 @@
 	});
 	
 	</script>
-		
-		
 
-	
-	
 	
 </body>
 </html>
