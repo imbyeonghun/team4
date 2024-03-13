@@ -40,14 +40,8 @@
 		<!-- 카테고리 및 게시판 리스트 -->
 		
 		<ul class="list-group">
-<<<<<<< HEAD
-			<li class="list-group-item">카테고리1
-				<ul><a class="list-group" href='<c:url value="/post/list"/>' > 게시판1</a></ul>
-				<ul><a href="#" > 게시판2</a></ul>
-=======
 			<li class="list-group-item">
 				<a href="#" class ="post-list" > 전체 글 보기</a>
->>>>>>> main
 			</li>
 		</ul>
 		<hr>
@@ -123,7 +117,7 @@
 				`;
 			}
 			$(".listCaBo").html(caStr);
-
+			}
 		},
 		error : function(a, b, c){
 			

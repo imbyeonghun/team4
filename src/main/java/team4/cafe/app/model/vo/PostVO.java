@@ -18,7 +18,6 @@ public class PostVO {
 	private String po_me_id;
 	private int po_pt_num;
 	
-<<<<<<< HEAD
 	public PostVO(int bo_num, String title, String writer, String content, Date po_date) {
 		this.po_bo_num = bo_num;
 		this.po_title = title;
@@ -27,9 +26,3 @@ public class PostVO {
 		this.po_date = po_date;
 	}
 }
-=======
-	private BoardVO board;
-	private int commentCount;
-
-}
->>>>>>> main
