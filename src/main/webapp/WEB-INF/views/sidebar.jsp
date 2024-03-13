@@ -71,7 +71,7 @@
 		success : function(data){
 
 			let caStr = '';	//카테고리 코드
-			
+			console.log(data);
 
 			for(category of data.caList){
 				let boStr=''
@@ -82,7 +82,6 @@
 							<c:url var="url" value="/post/list">
 								<c:param name="num" value="\${board.bo_num}" />
 							</c:url>
-
 								<p><a href="${url}" class ="board post-list">\${board.bo_name}</a></p>
 							`;
 					}
@@ -117,7 +116,7 @@
 				`;
 			}
 			$(".listCaBo").html(caStr);
-
+			}
 		},
 		error : function(a, b, c){
 			
