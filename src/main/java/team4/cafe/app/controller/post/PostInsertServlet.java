@@ -61,7 +61,7 @@ public class PostInsertServlet extends HttpServlet {
 		}else {
 			request.setAttribute("msg", "게시글을 등록하지 못했습니다.");
 		}
-		request.setAttribute("url", "/post/list");
+		request.setAttribute("url", "post/list");
 		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 	}
 }
