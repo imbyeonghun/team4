@@ -12,13 +12,13 @@
 <body>
 	<!-- header 영역 -->
 	<header>
-		<jsp:include page = "/WEB-INF/views/header.jsp"/>
+		<jsp:include page = "/WEB-INF/views/common/header.jsp"/>
 	</header>
 	<div class="container-fluid">
 		<div class="row">
 			<!-- 3단길이의 첫번째 열 -->
 			<div class="col-md-3">
-				<jsp:include page = "/WEB-INF/views/sidebar.jsp"/>
+				<jsp:include page = "/WEB-INF/views/common/sidebar.jsp"/>
 			</div>
 			<!-- 9단길이의 첫번째 열 -->
 			<div class="col-md-9 container">

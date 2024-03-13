@@ -12,7 +12,7 @@
 <body>
 <!-- header 영역 -->
 <header>
-	<jsp:include page = "/WEB-INF/views/header.jsp"/>
+	<jsp:include page = "/WEB-INF/views/common/header.jsp"/>
 </header>
 
 <h1>카페 HOME</h1>
@@ -21,7 +21,7 @@
 	<div class="row">
 		<!-- 사이드 바 영역 -->
 		<div class="col-md-3">
-			<jsp:include page = "/WEB-INF/views/sidebar.jsp"/>
+			<jsp:include page = "/WEB-INF/views/common/sidebar.jsp"/>
 		</div>
 		<!-- 본문 영역 -->
 		<div class="col-md-9">

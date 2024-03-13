@@ -65,7 +65,7 @@
 </head>
 <body>
 	<header>
-		<jsp:include page = "/WEB-INF/views/header.jsp"/>
+		<jsp:include page = "/WEB-INF/views/common/header.jsp"/>
 	</header>
 	
 	<div id="container">
