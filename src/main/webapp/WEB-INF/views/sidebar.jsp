@@ -81,7 +81,7 @@
 				}
 			}
 			
-			
+			//$('.post-list').text("게시판 이름");
 			
 			
 			let caStr = '';
@@ -98,6 +98,8 @@
 							`;
 					}
 				}
+				
+				console.log(boStr);
 				
 				//만약 카테고리의 게시판이 없다면
 				if(boStr == ''){
