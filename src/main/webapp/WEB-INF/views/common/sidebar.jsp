@@ -24,7 +24,6 @@
 			<h3 class="panel-title">CAFE Title</h3>
 		</div>
 		<!-- 메뉴목록 -->
-			<a>카페정보</a>
 		<ul class="list-group">
 			<li class="list-group-item">
 				<span>카페정보</span>
