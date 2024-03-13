@@ -9,4 +9,6 @@ public interface MemberService {
 
 	MemberVO login(LoginDTO loginDTO);
 
+	void addLoginCount(String id, int loginCount);
+
 }

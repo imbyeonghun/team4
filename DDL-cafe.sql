@@ -56,11 +56,11 @@ CREATE TABLE `post` (
 DROP TABLE IF EXISTS `comment`;
 
 CREATE TABLE `comment` (
-	`co_num`	int	PRIMARY KEY auto_increment,
-	`co_content`	text not	NULL,
-	`co_date`	datetime not	NULL,
-	`co_me_id`	varchar(20)	NOT NULL,
-	`co_po_num`	int	NOT NULL
+	`cm_num`	int	PRIMARY KEY auto_increment,
+	`cm_content`	text not	NULL,
+	`cm_date`	datetime not	NULL,
+	`cm_me_id`	varchar(20)	NOT NULL,
+	`cm_po_num`	int	NOT NULL
 );
 
 DROP TABLE IF EXISTS `state`;
@@ -118,14 +118,14 @@ REFERENCES `post_type` (
 );
 
 ALTER TABLE `comment` ADD CONSTRAINT `FK_member_TO_comment_1` FOREIGN KEY (
-	`co_me_id`
+	`cm_me_id`
 )
 REFERENCES `member` (
 	`me_id`
 );
 
 ALTER TABLE `comment` ADD CONSTRAINT `FK_post_TO_comment_1` FOREIGN KEY (
-	`co_po_num`
+	`cm_po_num`
 )
 REFERENCES `post` (
 	`po_num`

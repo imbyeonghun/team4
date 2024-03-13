@@ -10,4 +10,6 @@ public interface MemberDAO {
 
 	MemberVO selectMember(@Param("me_id")String id);
 
+	void updateLoginCount(@Param("me_id")String id, @Param("me_loginCount")int loginCount);
+
 }
