@@ -1,7 +1,10 @@
 package team4.cafe.app.service;
 
+import java.util.ArrayList;
+
 import team4.cafe.app.model.dto.LoginDTO;
 import team4.cafe.app.model.vo.MemberVO;
+import team4.cafe.app.pagination.Criteria;
 
 public interface MemberService {
 
@@ -10,5 +13,9 @@ public interface MemberService {
 	MemberVO login(LoginDTO loginDTO);
 
 	void addLoginCount(String id, int loginCount);
+
+	ArrayList<MemberVO> getMemberList(Criteria cri);
+
+	int getMemberCount(Criteria cri);
 
 }

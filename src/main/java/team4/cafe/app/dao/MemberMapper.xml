@@ -15,4 +15,19 @@
 		update member set me_loginCount = #{me_loginCount} where me_id = #{me_id}
 	</update>
 	
+	<select id="getMemberList">
+	
+	</select>
+	<select id="getMemberCount" resultType="int">
+		select count(*) from member 
+		<if test='cri.type==all'>
+		
+		</if>
+		<if test='cri.type=='>
+		
+		</if>
+		<if test='cri.type==all'>
+		
+		</if>
+	</select>
 </mapper>
