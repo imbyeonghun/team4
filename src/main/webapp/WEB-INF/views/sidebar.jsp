@@ -52,7 +52,7 @@
 			<!-- 카테고리명 -->
 				<hr>
 				<!-- 게시판명 -->
-				<a href="#" class ="board post-list"></a>
+				<p><a href="#" class ="board post-list"></a></p>
 			</li>
 		</ul>
 		
@@ -68,23 +68,8 @@
 			
 		},
 		success : function(data){
-			//alert("네비바 연결");
-
-			/* 출력 값 확인 */
-			console.log(data);
-			for(category of data.caList){
-				console.log(category.co_name);
-				for(board of data.boList){
-					if(category.co_num == board.bo_co_num){
-						console.log(" ㄴ " + board.bo_name);
-					}
-				}
-			}
+			let caStr = '';	//카테고리 코드
 			
-			//$('.post-list').text("게시판 이름");
-			
-			
-			let caStr = '';
 			for(category of data.caList){
 				let boStr=''
 				for(board of data.boList){
@@ -94,18 +79,18 @@
 							<c:url var="url" value="/post/list">
 								<c:param name="num" value="\${board.bo_num}" />
 							</c:url>
-								<a href="\${url}" class ="board post-list">\${board.bo_name}</a>
+								<p><a href="${url}" class ="board post-list">\${board.bo_name}</a></p>
 							`;
 					}
 				}
 				
-				console.log(boStr);
+				console.log(boStr);	//콘솔창 확인
 				
 				//만약 카테고리의 게시판이 없다면
 				if(boStr == ''){
 					boStr +=
 						`
-							<a class ="board post-list">하위 게시판이 없습니다.</a>
+							<p><a class ="board post-list">하위 게시판이 없습니다.</a></p>
 						`;
 				}
 				
@@ -118,7 +103,9 @@
 					<hr style="border-width:1px 0 0 0; border-style:solid; border-color:#bbb;">
 				`;
 				
+				
 			}
+			console.log(caStr);	//콘솔창 확인
 			if(caStr == ''){
 				caStr += `
 					<li class="list-group-item">
@@ -127,7 +114,7 @@
 					<hr style="border-width:1px 0 0 0; border-style:solid; border-color:#bbb;">
 				`;
 			}
-			$(".listCaBo>ul").html(caStr);
+			$(".listCaBo").html(caStr);
 		},
 		error : function(a, b, c){
 			
