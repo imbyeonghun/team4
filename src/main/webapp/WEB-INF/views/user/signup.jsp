@@ -65,6 +65,9 @@
 	#inputBox button {
 	  padding: 3px 5px;
 	}
+	.error {
+		color: red; font-size: 12px; text-align: right; margin-bottom: 5px;
+	}
 
 </style>
 </head>
@@ -74,31 +77,29 @@
 	</header>
 	
 	<div id="container">
-		<form action="<c:url value="/user/signup"/>" method="post" id="signupBox">
-			<div id="signupBoxitle">회원가입</div>
+		<form action="<c:url value="/user/signup"/>" method="post" id="loginBox" class="signupBox">
+			<div id="loginBoxTitle">회원가입</div>
 			<div id="inputBox">
 				<div class="input-form-box">
-					<span>아이디 </span><input type="text" name="me_id" class="form-control">
-					<label id = "id-error" class="error text-danger" for="id"></label>
+					<span>아이디 </span><input type="text" name="id" class="form-control">
 				</div>
+					<div id = "id-error" class="error" ></div>
 				<div class="input-form-box">
-					<span>비밀번호 </span><input type="password" name="me_pw" class="form-control">
-					<label id = "pw-error" class="error text-danger" for="pw"></label>
+					<span>비밀번호 </span><input type="password" name="pw" class="form-control">
 				</div>
+					<div id = "pw-error" class="error" ></div>
 				<div class="input-form-box">
-					<span>비밀번호 확인 </span><input type="password" name="me_pw2" class="form-control">
-					<label id = "pw2-error" class="error text-danger" for="pw2"></label>
+					<span>비밀번호 확인 </span><input type="password" name="pw2" class="form-control">
 				</div>
+					<div id = "pw2-error" class="error" ></div>
 				<div class="input-form-box">
-					<span>닉네임 </span><input type="text" name="me_nickName" class="form-control">
+					<span>닉네임 </span><input type="text" name="nickName" class="form-control">
 				</div>
+					<div id = "nickName-error" class="error" ></div>
 				<div class="input-form-box">
-					<span>이메일 </span><input type="email" name="me_email" class="form-control">
-					<label id = "email-error" class="error text-danger" for="email"></label>
+					<span>이메일 </span><input type="email" name="email" class="form-control">
 				</div>
-				<div class="input-form-box">
-					<div id = "error">에러메세지(추후 추가예정)</div>
-				</div>
+					<div id = "email-error" class="error" ></div>
 				<div class="button-login-box">
 					<button class="btn btn-primary btn-xs btn-member-signup" style="width: 100%">회원가입</button>
 				</div>
@@ -111,26 +112,87 @@
 <script src="//code.jquery.com/jquery-3.4.1.js"></script>
 
 
-<!-- 회원가입 시 유효성 검사 -->
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#signupBox").submit(function() {
-			//빈 문자열 체크
-			if($('input[name = id]').val() == ''){
-				$('#error').text("* 아이디를 입력하세요.");
-				return false;
-			}else if($('input[name = pw]').val() == ''){
-				$('#error').text("* 비밀번호를 입력하세요.");
-				return false;
-			}
-		})	//submit end
-	}); //ready end
-</script>
+	<!-- 회원가입 시 유효성 검사 -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".signupBox").submit(function() {
+				$('.error').text("");
+				
+				/* 빈 문자열 및 정규표현식 체크 */
+				
+				//아이디 (중복체크)
+				let regexId = /^\d+$/;
+				if($('input[name = id]').val() == ''){
+					$('#id-error').text("* 아이디를 입력하세요.");
+					return false;
+				}else if(!regexId.test($('input[name = id]').val())){
+					$('#id-error').text("* 정규표현식 틀림");
+					return false;
+				}
+				/*
+				let id = $("[name=id]").val();
+				fetch(`<c:url value="/id/check"/>?id=\${id}`)
+				.then(response=>response.text())
+				.then(data => {
+					if(data == 'true'){
+						alert("사용 가능한 아이디 입니다.");
+						flag = true;
+					}else{
+						console.log(data);
+						alert("이미 사용중인 아이디 입니다.");
+					}
+				*/
+				//비밀번호
+				let regexPw = /^\d+$/;
+				if($('input[name = pw]').val() == ''){
+					$('#pw-error').text("* 비밀번호를 입력하세요.");
+					return false;
+				}else if(!regexPw.test($('input[name = pw]').val())){
+					$('#pw-error').text("* 정규표현식 틀림");
+					return false;
+				}
+				
+				//비번확인
+				if($('input[name = pw2]').val() == ''){
+					$('#pw2-error').text("* 비밀번호 확인을 입력하세요.");
+					return false;
+				}else if($('input[name = pw]').val() != $('input[name = pw2]').val()){
+					$('#pw2-error').text("* 비밀번호와 일치하지 않습니다.");
+					return false;
+				}
+				
+				//닉네임
+				let regexNickName = /^\d+$/;
+				if($('input[name = nickName]').val() == ''){
+					$('#nickName-error').text("* 닉네임을 입력하세요.");
+					return false;
+				}else if(!regexPw.test($('input[name = nickName]').val())){
+					$('#nickName-error').text("* 정규표현식 틀림");
+					return false;
+				}
+				//이메일
+				let regexEmail = /^\d+$/;
+				if($('input[name = email]').val() == ''){
+					$('#email-error').text("* 이메일을 입력하세요.");
+					return false;
+				}else if(!regexPw.test($('input[name = email]').val())){
+					$('#email-error').text("* 정규표현식 틀림");
+					return false;
+				}
 
+				
+				
+			})	//submit end
+		}); //ready end
+	</script>
 
-
-
-<!-- 회원가입 버튼 이벤트 -->
+	
+	
+	
+	
+	
+		
+		<!--회원가입 버튼 이벤트 -->
 <script type="text/javascript">
 /*
 	let flag = false;
@@ -156,27 +218,8 @@
 	});	//회원가입 버튼 click function end
 */
 
-	/* 아이디 중복 검사, 아이디 정규표현식 */
 
-
-	/* 입력한 값이 숫자로된 문자열인지 아닌지 확인한는 예제 샘플코드*/
-	/* (나중에 맞춰서 수정하기)
-	let input = document.getElementById("input");
-	input.onchange = function(){
-		let text = this.value;
-		let regex = /^\d+$/;	//정규표현식
-		let error;
-		//text가 정규표현식에 맞으면
-		if(regex.test(text)){
-			error = "숫자로만 되어 있습니다.";
-		}else{
-			error = "숫자가 아닌 문자가 있습니다."
-		}
-		let errorBox = document.getElementById("error");
-		errorBox.innerText = error;
-	}
-	*/
-</script>
+	</script>
 
 </body>
 </html>

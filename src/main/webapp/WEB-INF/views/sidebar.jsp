@@ -11,8 +11,20 @@
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <style type="text/css">
 	.post-list {text-decoration: none; color: black;}
+	.list-group{
+		width:170px;
+	}
 	.post-list:hover{
 		text-decoration: underline;
+	}
+	.cafe-info {
+		line-height: 0.7;
+	}
+	.list-group-item{
+		line-height: 0.8;
+	}
+	.btnMenu{
+		display : block; height: 35px; width:140px; text-align: center;
 	}
 </style>
 
@@ -24,13 +36,26 @@
 			<h3 class="panel-title">CAFE Title</h3>
 		</div>
 		<!-- 메뉴목록 -->
-		<ul class="list-group">
+		<ul class="list-group ">
 			<li class="list-group-item">
-				<span>카페정보</span>
-				<span>회원 수</span>
-				<span>게시글 수</span>
-				<button type="button" class="btn btn-outline-success" >로그인</button>
-				<button type="button" class="btn btn-outline-success">회원가입</button>
+			<br>
+			<div class="cafe-info">
+				<p>카페정보</p>
+				<p>회원 수</p>
+				<p>게시글 수</p>
+			</div>
+			<c:if test="${user == null}">
+				<div class="btn-guest">
+					<button type="button" class="btn btn-outline-success btnMenu" >로그인</button>
+					<button type="button" class="btn btn-outline-success btnMenu">회원가입</button>
+				</div>
+			</c:if>
+			<c:if test="${user != null }">
+				<div class="btn-user">
+					<button type="button" class="btn btn-outline-success btnMenu" >글쓰기</button>
+					<button type="button" class="btn btn-outline-success btnMenu" >탈퇴하기</button>
+				</div>
+			</c:if>
 			</li>
 		</ul>
 		
@@ -58,6 +83,13 @@
 		
 		
 	</div>
+	
+	<!-- 버튼 링크 걸기 -->
+	<script type="text/javascript">
+	
+	</script>
+	
+	
 		
 	<!-- 카테고리와 게시판 출력 -->
 	<script type="text/javascript">
@@ -121,7 +153,6 @@
 			
 		}
 	});
-	
 	</script>
 
 	
