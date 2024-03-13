@@ -7,13 +7,13 @@ import team4.cafe.app.model.vo.PostVO;
 
 public interface PostService {
 
-	ArrayList<PostVO> getPostList(int boardNum);
+	ArrayList<PostVO> getPostList(int bo_num);
 
-	boolean insertBoard(PostVO post);
+	boolean insertPost(PostVO post);
 
 	boolean deletePost(MemberVO user, int bo_num, int po_num);
 
-	PostVO getPost(int bo_num, int po_num);
+	PostVO getPost(int po_num);
 
 	boolean updateView(int bo_num, int po_num);
 

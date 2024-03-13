@@ -40,15 +40,17 @@
 						<c:forEach items="${postList}" var="post">
 							<tr>
 								<td>${post.po_num}</td>
-								<td>${post.po_title}</td>
-								<td>${post.po_id}</td>
+								<td>
+									<a href="<c:url value="/post/detail?poNum=${post.po_num}"/>">${post.po_title}</a>
+								</td>
+								<td>${post.po_me_id}</td>
 								<td>${post.po_date}</td>
 								<td>${post.po_view}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-				<a href="<c:url value="/post/insert"/>" class="btn btn-outline-danger">글 등록</a>
+				<a href="<c:url value="/post/insert?num=${bo_num}"/>" class="btn btn-outline-danger">글 등록</a>
 			</div>
 		</div>
 

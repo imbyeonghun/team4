@@ -79,11 +79,7 @@
 					if(category.co_num == board.bo_co_num){
 						boStr +=
 							`
-							<c:url var="url" value="/post/list">
-								<c:param name="num" value="\${board.bo_num}" />
-							</c:url>
-
-								<p><a href="${url}" class ="board post-list">\${board.bo_name}</a></p>
+								<p><a href="<c:url value="/post/list?num=\${board.bo_num}"/>" class ="board post-list">\${board.bo_name}</a></p>
 							`;
 					}
 				}

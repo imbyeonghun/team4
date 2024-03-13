@@ -19,15 +19,17 @@ public class PostListServlet extends HttpServlet {
 	private PostService postService = new PostServiceImp();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//게시판 번호를 받아온다
-		int boardNum;
+		int bo_num;
 		//게시판 번호와 일치하는 게시글 리스트를 불러온다
 		try {
-			boardNum = Integer.parseInt(request.getParameter("boNum"));
+			bo_num = Integer.parseInt(request.getParameter("num"));
 		} catch (Exception e) {
-			boardNum = 0;
+			bo_num = 0;
 		}
+		request.setAttribute("bo_num", ""+bo_num);
+		
 		//게시글 리스트를 화면에 출력한다.
-		ArrayList<PostVO> postList = postService.getPostList(boardNum);
+		ArrayList<PostVO> postList = postService.getPostList(bo_num);
 		request.setAttribute("postList", postList);
 		request.getRequestDispatcher("/WEB-INF/views/post/list.jsp").forward(request, response);
 	}

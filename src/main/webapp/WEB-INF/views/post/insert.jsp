@@ -23,17 +23,13 @@
 		<div class="col-md-9">
 			<div class="col-md-9">
 				<div class="container">
-					<h1>게시글 등록</h1>
-					<p>작성</p>
 					<div class="container">
 						<form action="<c:url value="/post/insert"/>" method="post">
 							<h1>게시글 등록</h1>
 							<div class="mb-3 mt-3">
 					   			<label for="cafe" class="form-label">게시판:</label>
-					   			<select class="form-control" id="cafe" name="cafe">
-					   				<c:forEach items="${list}" var="cafe">
-					   					<option value="${cafe.bo_num}">${cafe.bo_name}</option>
-					   				</c:forEach>
+					   			<select class="form-control" id="cafe" name="num">
+				   					<option value="${board.bo_num}">${board.bo_name}</option>
 					   			</select>
 					 		</div>
 							<div class="mb-3 mt-3">
@@ -46,7 +42,7 @@
 					 		</div>
 					 		<div class="mb-3 mt-3">
 					   			<label for="content" class="form-label">내용:</label>
-					   			<textarea rows="10" class="form-control" id="content" name="content" placeholder="내용"></textarea>
+					   			<textarea rows="10" class="form-control" id="content" name="content" placeholder="내용">${board}</textarea>
 					 		</div>
 					 		<button class="btn btn-outline-warning col-12">글 등록</button>
 						</form>

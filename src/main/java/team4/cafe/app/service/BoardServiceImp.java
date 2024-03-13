@@ -137,6 +137,11 @@ public class BoardServiceImp implements BoardService {
 		return false;
 	}
 
+	@Override
+	public BoardVO getBoard(int bo_num) {
+		return boardDao.selectBoard(bo_num);
+	}
+
 
 
 

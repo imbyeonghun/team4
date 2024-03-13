@@ -18,16 +18,14 @@ public class PostDetailServlet extends HttpServlet {
     private PostService postService = new PostServiceImp();
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int bo_num, po_num = 0;
+		int po_num = 0;
 		try {
-			bo_num = Integer.parseInt(request.getParameter("boNum"));
 			po_num = Integer.parseInt(request.getParameter("poNum"));
 		} catch (Exception e) {
-			bo_num = 0;
 			po_num = 0;
 		}
-		postService.updateView(bo_num, po_num);
-		PostVO post = postService.getPost(bo_num, po_num);
+		//postService.updateView(po_num);
+		PostVO post = postService.getPost(po_num);
 		request.setAttribute("post", post);
 		request.getRequestDispatcher("/WEB-INF/views/post/detail.jsp").forward(request, response);
 	}

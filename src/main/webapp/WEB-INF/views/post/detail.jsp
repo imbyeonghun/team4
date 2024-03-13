@@ -23,11 +23,9 @@
 		<div class="col-md-9">
 			<div class="col-md-9">
 			<div class="container">
-				<h1>게시글 등록</h1>
-				<p>작성</p>
 				<div class="container">
 					<form action="<c:url value="/post/detail"/>" method="post">
-						<h1>게시글 등록</h1>
+						<h1>상세 조회</h1>
 						<div class="mb-3 mt-3">
 				   			<label for="title" class="form-label">제목:</label>
 				   			<input type="text" class="form-control" readonly="readonly" value="${post.po_title}">
@@ -46,9 +44,9 @@
 				 		</div>
 					</form>
 					<a href="<c:url value="/post/list"/>" class="btn btn-outline-primary">목록으로</a>
-					<c:if test="${post.po_id == user.me_id}">
-						<a href="<c:url value="/post/delete?num=${post.bo_num}"/>"class="btn btn-outline-danger">삭제</a>
-						<a href="<c:url value="/post/update?num=${post.bo_num}"/>"class="btn btn-outline-danger">수정</a>
+					<c:if test="${post.po_me_id == user.me_id}">
+						<a href="<c:url value="/post/delete?num=${post.po_num}"/>"class="btn btn-outline-danger">삭제</a>
+						<a href="<c:url value="/post/update?num=${post.po_num}"/>"class="btn btn-outline-danger">수정</a>
 					</c:if>
 				</div>
 			</div>
