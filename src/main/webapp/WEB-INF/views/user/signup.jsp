@@ -8,6 +8,11 @@
 <title>Signup</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- jquery validtaion -->
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js"></script>
+
 <style type="text/css">
 
 	html, body {
@@ -69,23 +74,27 @@
 	</header>
 	
 	<div id="container">
-		<form action="<c:url value="/user/signup"/>" method="post" id="loginBox">
-			<div id="loginBoxTitle">회원가입</div>
+		<form action="<c:url value="/user/signup"/>" method="post" id="signupBox">
+			<div id="signupBoxitle">회원가입</div>
 			<div id="inputBox">
 				<div class="input-form-box">
-					<span>아이디 </span><input type="text" name="id" class="form-control">
+					<span>아이디 </span><input type="text" name="me_id" class="form-control">
+					<label id = "id-error" class="error text-danger" for="id"></label>
 				</div>
 				<div class="input-form-box">
-					<span>비밀번호 </span><input type="password" name="pw" class="form-control">
+					<span>비밀번호 </span><input type="password" name="me_pw" class="form-control">
+					<label id = "pw-error" class="error text-danger" for="pw"></label>
 				</div>
 				<div class="input-form-box">
-					<span>비밀번호 확인 </span><input type="password" name="pw2" class="form-control">
+					<span>비밀번호 확인 </span><input type="password" name="me_pw2" class="form-control">
+					<label id = "pw2-error" class="error text-danger" for="pw2"></label>
 				</div>
 				<div class="input-form-box">
-					<span>닉네임 </span><input type="text" name="nickName" class="form-control">
+					<span>닉네임 </span><input type="text" name="me_nickName" class="form-control">
 				</div>
 				<div class="input-form-box">
-					<span>이메일 </span><input type="email" name="email" class="form-control">
+					<span>이메일 </span><input type="email" name="me_email" class="form-control">
+					<label id = "email-error" class="error text-danger" for="email"></label>
 				</div>
 				<div class="input-form-box">
 					<div id = "error">에러메세지(추후 추가예정)</div>
@@ -100,6 +109,27 @@
 
 
 <script src="//code.jquery.com/jquery-3.4.1.js"></script>
+
+
+<!-- 회원가입 시 유효성 검사 -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#signupBox").submit(function() {
+			//빈 문자열 체크
+			if($('input[name = id]').val() == ''){
+				$('#error').text("* 아이디를 입력하세요.");
+				return false;
+			}else if($('input[name = pw]').val() == ''){
+				$('#error').text("* 비밀번호를 입력하세요.");
+				return false;
+			}
+		})	//submit end
+	}); //ready end
+</script>
+
+
+
+
 <!-- 회원가입 버튼 이벤트 -->
 <script type="text/javascript">
 /*
