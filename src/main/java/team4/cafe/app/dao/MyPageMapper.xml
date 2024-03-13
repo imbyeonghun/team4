@@ -31,8 +31,8 @@ left join comment on bo_num = cm_bo_num group by bo_num;
 	
 	<!--  -->
 	<select id="selectPostListWithBoard" resultMap="postMap">
-		select post.*, (select count(co_po_num) from comment) as commentCount from post
-		left join comment on po_num = co_po_num  where po_me_id = #{user.me_id} group by po_num
+		select post.*, (select count(cm_po_num) from comment) as commentCount from post
+		left join comment on po_num = cm_po_num  where po_me_id = #{user.me_id} group by po_num
 	</select>
 
 	<select id="selectCountPost" resultType="int">
@@ -40,7 +40,7 @@ left join comment on bo_num = cm_bo_num group by bo_num;
 	</select>
 
 	<select id="selectCountComment" resultType="int">
-		select count(*) from comment where co_me_id = #{user.me_id}
+		select count(*) from comment where cm_me_id = #{user.me_id}
 	</select>
 	
 	<update id="updateInfo">
