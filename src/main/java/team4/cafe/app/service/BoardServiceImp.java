@@ -12,6 +12,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import team4.cafe.app.dao.BoardDAO;
 import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.CategoryVO;
+import team4.cafe.app.pagination.BoardCriteria;
+import team4.cafe.app.pagination.Criteria;
 
 public class BoardServiceImp implements BoardService {
 	private BoardDAO boardDao;
@@ -30,8 +32,16 @@ public class BoardServiceImp implements BoardService {
 	
 	//카테고리 목록을 가져옴
 	@Override
-	public ArrayList<CategoryVO> getCategoryList() {
+	public ArrayList<CategoryVO> selectCategoryList() {
 		return boardDao.selectCategoryList();
+	}
+
+	@Override
+	public ArrayList<CategoryVO> getCategoryList(Criteria cri) {
+		if(cri==null) {
+			cri=new Criteria();
+		}
+		return boardDao.getCategoryList(cri);
 	}
 	
 	//카테고리 등록
@@ -72,8 +82,11 @@ public class BoardServiceImp implements BoardService {
 
 	//게시판 목록을 가져옴
 	@Override
-	public ArrayList<BoardVO> getBoardList(int co_num) {
-		return boardDao.selectBoardList(co_num);
+	public ArrayList<BoardVO> getBoardList(BoardCriteria cri) {
+		if(cri==null) {
+			return null;
+		}
+		return boardDao.selectBoardList(cri);
 	}
 
 	//게시판 추가
@@ -99,6 +112,23 @@ public class BoardServiceImp implements BoardService {
 		return boardDao.deleteBoard(bo_num);
 	}
 	
+	@Override
+	public int getCategoryCount(Criteria cri) {
+		if(cri==null) {
+			return 0;
+		}
+		return boardDao.getCategoryCount();
+	}
+	
+	@Override
+	public int getBoardCount(BoardCriteria cri) {
+		if(cri==null) {
+			return 0;
+		}
+		return boardDao.getBoardCount(cri);
+	}
+	
+	
 	//null,크기 확인
 	private boolean checked(String str) {
 		if(str==null||str.length()==0) {
@@ -106,4 +136,8 @@ public class BoardServiceImp implements BoardService {
 		}
 		return false;
 	}
+
+
+
+
 }
