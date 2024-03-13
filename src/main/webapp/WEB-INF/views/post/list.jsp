@@ -10,7 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<jsp:include page = "/WEB-INF/views/common/header.jsp"/>
+<jsp:include page = "/WEB-INF/views/header.jsp"/>
 <div class="container-fluid">
 	<div class="row">
 		<!-- 3단길이의 첫번째 열 -->
