@@ -125,7 +125,7 @@ REFERENCES `member` (
 );
 
 ALTER TABLE `comment` ADD CONSTRAINT `FK_post_TO_comment_1` FOREIGN KEY (
-	`cm_po_num`
+	`cmcomment_po_num`
 )
 REFERENCES `post` (
 	`po_num`

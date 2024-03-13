@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.MemberVO;
 import team4.cafe.app.model.vo.PostVO;
+import team4.cafe.app.pagination.Criteria;
 import team4.cafe.app.service.MyPageService;
 import team4.cafe.app.service.MyPageServiceImp;
 
@@ -32,10 +33,18 @@ public class MyPageUserPost extends HttpServlet {
 		
 		// 회원이 작성한 게시글을 가져오는데 해당 게시글에 게시판도 가져옴
 		ArrayList<BoardVO> postList = myPageService.getPostListWithBoard(user);
-		System.out.println(postList);
+		
+		int page;
+		try {
+			page = Integer.parseInt(request.getParameter("page"));
+		}catch(Exception e) {
+			// 예외가 발생하면 기본 1페이지
+			page = 1;
+		}
+		// 현재 페이지정보를 가지고 페이지에 맞는 게시글을 가져옴
+		Criteria cri = new Criteria(page, 2);
 		
 		// 화면에 전송
-		request.setAttribute("user", user);
 		request.setAttribute("postCount", postCount);
 		request.setAttribute("postList", postList);
 		request.getRequestDispatcher("/WEB-INF/views/mypage/userPost.jsp").forward(request, response);
