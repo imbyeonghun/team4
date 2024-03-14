@@ -46,14 +46,14 @@
 			</div>
 			<c:if test="${user == null}">
 				<div class="btn-guest">
-					<button type="button" class="btn btn-outline-success btnMenu" >로그인</button>
-					<button type="button" class="btn btn-outline-success btnMenu">회원가입</button>
+					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/user/login'/>'">로그인</button>
+					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/user/signup'/>'">회원가입</button>
 				</div>
 			</c:if>
 			<c:if test="${user != null }">
 				<div class="btn-user">
-					<button type="button" class="btn btn-outline-success btnMenu" >글쓰기</button>
-					<button type="button" class="btn btn-outline-success btnMenu" >탈퇴하기</button>
+					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/'/>'">글쓰기</button>
+					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/'/>'">탈퇴하기</button>
 				</div>
 			</c:if>
 			</li>
@@ -84,10 +84,7 @@
 		
 	</div>
 	
-	<!-- 버튼 링크 걸기 -->
-	<script type="text/javascript">
 	
-	</script>
 	
 	
 		
