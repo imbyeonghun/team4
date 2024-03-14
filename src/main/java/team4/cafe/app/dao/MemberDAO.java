@@ -12,4 +12,6 @@ public interface MemberDAO {
 
 	void updateLoginCount(@Param("me_id")String id, @Param("me_loginCount")int loginCount);
 
+	MemberVO selectMemberNickName(@Param("me_name")String nickName);
+
 }

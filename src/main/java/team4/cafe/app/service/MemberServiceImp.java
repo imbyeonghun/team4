@@ -83,4 +83,18 @@ public class MemberServiceImp implements MemberService {
 		memberDAO.updateLoginCount(id, loginCount);
 	}
 
+	@Override
+	public boolean checkId(String id) {
+		MemberVO member = memberDAO.selectMember(id);
+		
+		return member == null;
+	}
+
+	@Override
+	public boolean checkNickName(String nickName) {
+		MemberVO member = memberDAO.selectMemberNickName(nickName);
+		
+		return member == null;
+	}
+
 }

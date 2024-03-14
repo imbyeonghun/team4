@@ -11,4 +11,8 @@ public interface MemberService {
 
 	void addLoginCount(String id, int loginCount);
 
+	boolean checkId(String id);
+
+	boolean checkNickName(String nickName);
+
 }
