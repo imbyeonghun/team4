@@ -80,6 +80,8 @@ public class MemberServiceImp implements MemberService {
 			//카페 접속 횟수++
 			int loginCount = user.getMe_loginCount() + 1;
 			memberDAO.updateLoginCount(user.getMe_id(), loginCount);
+			//로그인 실패 횟수 0으로
+			
 			return user;
 		}
 		return null;

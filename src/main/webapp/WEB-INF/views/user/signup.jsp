@@ -179,7 +179,37 @@
 				}
 				
 				
-
+				/*
+				//아이디 : 중복체크
+				let id = $("input[name=id]").val();
+				fetch(`<c:url value="/user/id/check"/>?id=\${id}`)
+				.then(response=>response.text())
+				.then(data => {
+					if(data == 'true'){
+						$('#id-error').text("* 아이디: 사용가능한 아이디입니다.");
+						console.log(data);
+					}else{
+						console.log(data);
+						$('#id-error').text("* 아이디: 중복된 아이디입니다.");
+						return false;
+					}
+				}	
+					
+					//닉네임 : 중복체크
+					
+					let id = $("input[name=nickName]").val();
+					fetch(`<c:url value="/user/nickName/check"/>?id=\${id}`)
+					.then(response=>response.text())
+					.then(data => {
+						if(data == 'true'){
+							$('#nickName-error').text("* 닉네임: 사용가능한 닉네임입니다.");
+						}else{
+							console.log(data);
+							$('#nickName-error').text("* 닉네임: 중복된 닉네임입니다.");
+							return false;
+						}
+						*/
+					
 				
 				
 				
