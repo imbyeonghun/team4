@@ -18,10 +18,10 @@ public class PostVO {
 	private String po_me_id;
 	private int po_pt_num;
 	
-	public PostVO(int bo_num, String title, String writer, String content, Date po_date) {
+	public PostVO(int bo_num, String title, String userName, String content, Date po_date) {
 		this.po_bo_num = bo_num;
 		this.po_title = title;
-		this.po_me_id = writer;
+		this.po_me_id = userName;
 		this.po_content = content;
 		this.po_date = po_date;
 	}

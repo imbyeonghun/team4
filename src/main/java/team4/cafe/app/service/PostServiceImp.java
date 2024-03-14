@@ -9,7 +9,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import team4.cafe.app.dao.BoardDAO;
 import team4.cafe.app.dao.PostDAO;
+import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.MemberVO;
 import team4.cafe.app.model.vo.PostVO;
 
@@ -35,9 +37,11 @@ public class PostServiceImp implements PostService{
 
 	@Override
 	public boolean insertPost(PostVO post) {
+		if(post.getPo_me_id() == null) {
+			return false;
+		}
 		if(	!checkString(post.getPo_content()) ||
-			!checkString(post.getPo_title()) ||
-			!checkString(post.getPo_me_id())) {
+			!checkString(post.getPo_title())) {
 			return false;
 		}
 		return postDao.insertPost(post);
@@ -51,14 +55,12 @@ public class PostServiceImp implements PostService{
 	}
 
 	@Override
-	public boolean deletePost(MemberVO user, int bo_num, int po_num) {
-		PostVO post = postDao.selectPost(bo_num, po_num);
+	public boolean deletePost(MemberVO user, int po_num) {
+		PostVO post = postDao.selectPost(po_num);
 		if( user == null ||
-			post.getPo_bo_num() != bo_num ||
 			!post.getPo_me_id().equals(user.getMe_id())) {
 			return false;
 		}
-		
 		return postDao.deletePost(po_num);
 	}
 
@@ -68,19 +70,30 @@ public class PostServiceImp implements PostService{
 	}
 
 	@Override
-	public boolean updateView(int bo_num, int po_num) {
-		return postDao.updateView(bo_num, po_num);
+	public boolean updateView(int po_num) {
+		return postDao.updateView(po_num);
 	}
 
 	@Override
 	public boolean updatePost(PostVO post, MemberVO user) {
-		if(user == null || !post.getPo_me_id().equals(user.getMe_id())) {
+		if(user == null) {
 			return false;
 		}
 		if( !checkString(post.getPo_title()) ||
-			!checkString(post.getPo_content())) {
+				!checkString(post.getPo_content())) {
 			return false;
 		}
+		PostVO dbPost = postDao.selectPost(post.getPo_num());
+		if(dbPost == null || !dbPost.getPo_me_id().equals(user.getMe_id())) {
+			return false;
+		}
+		
 		return postDao.updatePost(post);
 	}
+
+	@Override
+	public BoardVO getBoardList(int bo_num) {
+		return postDao.selectBoard(bo_num);
+	}
+
 }

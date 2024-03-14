@@ -2,7 +2,9 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
 <mapper namespace="team4.cafe.app.dao.PostDAO">
+
 	<select id="selectPostList" resultType="team4.cafe.app.model.vo.PostVO">
 		select * from post where po_bo_num = #{bo_num}
 	</select>
@@ -22,14 +24,18 @@
 		set
 			po_view = po_view + 1
 		where
-			bo_num = #{bo_num} and po_num = #{po_num}
+			po_num = #{po_num}
 	</update>
 	<update id="updatePost">
 		update post
 		set
 			po_title = #{post.po_title},
-			po_content = #{post.po_content}
+			po_content = #{post.po_content},
+			po_date = #{post.po_date}
 		where
-			bo_num = #{bo_num} and po_num = #{po_num}
+			po_num = #{post.po_num}
 	</update>
+	<select id="selectBoard" resultMap="team4.cafe.app.model.vo.PostVO">
+		select * from post where po_bo_num = #{bo_num}
+	</select>
 </mapper>

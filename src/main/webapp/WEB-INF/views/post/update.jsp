@@ -24,27 +24,30 @@
 			<div class="col-md-9">
 				<div class="container">
 					<div class="container">
-						<form action="<c:url value="/post/insert"/>" method="post">
-							<h1>게시글 등록</h1>
+						<form action="<c:url value="/post/update"/>" method="post">
+							<h1>${board}</h1>
+							<input type="hidden" name="num" value="${post.po_num}">
 							<div class="mb-3 mt-3">
-					   			<label for="board" class="form-label">게시판:</label>
-					   			<select class="form-control" id="board" name="num">
-				   					<option value="${board.bo_num}">${board.bo_name}</option>
-					   			</select>
-					 		</div>
+								<label for="board" class="form-label">게시판:</label>
+								<select class="form-control" name="board" id="board">
+									<c:forEach items="${board}" var="board">
+										<option value="${board.bo_num}" <c:if test="${post.po_bo_num == board.bo_num}">selected</c:if>>${board.bo_name}</option>
+									</c:forEach>
+								</select>
+							</div>
 							<div class="mb-3 mt-3">
 					   			<label for="title" class="form-label">제목:</label>
-					   			<input type="text" class="form-control" id="title" placeholder="제목" name="title">
+					   			<input type="text" class="form-control" id="title" name="title" value="${post.po_title}">
 					 		</div>
 					 		<div class="mb-3 mt-3">
 					   			<label for="writer" class="form-label">작성자:</label>
-					   			<input type="text" class="form-control" id="writer" name="writer" value="${user.me_name}">
+					   			<input type="text" class="form-control" id="writer" name="writer" value="${user.me_id}">
 					 		</div>
 					 		<div class="mb-3 mt-3">
 					   			<label for="content" class="form-label">내용:</label>
-					   			<textarea rows="10" class="form-control" id="content" name="content" placeholder="내용"></textarea>
+					   			<textarea rows="10" class="form-control" id="content" name="content">${post.po_content}</textarea>
 					 		</div>
-					 		<button class="btn btn-outline-warning col-12">글 등록</button>
+					 		<button type="submit" class="btn btn-outline-warning col-12">글 등록</button>
 						</form>
 					</div>
 				</div>

@@ -2,6 +2,7 @@ package team4.cafe.app.service;
 
 import java.util.ArrayList;
 
+import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.MemberVO;
 import team4.cafe.app.model.vo.PostVO;
 
@@ -11,12 +12,14 @@ public interface PostService {
 
 	boolean insertPost(PostVO post);
 
-	boolean deletePost(MemberVO user, int bo_num, int po_num);
+	boolean deletePost(MemberVO user, int bo_num);
 
 	PostVO getPost(int po_num);
 
-	boolean updateView(int bo_num, int po_num);
+	boolean updateView(int po_num);
 
 	boolean updatePost(PostVO post, MemberVO user);
+
+	BoardVO getBoardList(int bo_num);
 
 }

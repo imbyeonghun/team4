@@ -24,29 +24,27 @@
 			<div class="col-md-9">
 			<div class="container">
 				<div class="container">
-					<form action="<c:url value="/post/detail"/>" method="post">
-						<h1>상세 조회</h1>
-						<div class="mb-3 mt-3">
-				   			<label for="title" class="form-label">제목:</label>
-				   			<input type="text" class="form-control" readonly="readonly" value="${post.po_title}">
-				 		</div>
-				 		<div class="mb-3 mt-3">
-				   			<label for="writer" class="form-label">작성자:</label>
-				   			<input type="text" class="form-control" readonly="readonly" value="${post.po_me_id}" >
-				 		</div>
-				 		<div class="mb-3 mt-3">
-				   			<label for="content" class="form-label">내용:</label>
-				   			<textarea rows="10" class="form-control" readonly="readonly" value="${post.po_content}"></textarea>
-				 		</div>
-				 		<div class="mb-3 mt-3">
-				   			<label for="writer" class="form-label">조회수:</label>
-				   			<input type="text" class="form-control" readonly="readonly" value="${post.po_view}" >
-				 		</div>
-					</form>
-					<a href="<c:url value="/post/list"/>" class="btn btn-outline-primary">목록으로</a>
+					<h1>상세 조회</h1>
+					<div class="mb-3 mt-3">
+			   			<label for="title" class="form-label">제목:</label>
+			   			<input type="text" class="form-control" readonly="readonly" value="${post.po_title}">
+			 		</div>
+			 		<div class="mb-3 mt-3">
+			   			<label for="writer" class="form-label">작성자:</label>
+			   			<input type="text" class="form-control" readonly="readonly" value="${post.po_me_id}" >
+			 		</div>
+			 		<div class="mb-3 mt-3">
+			   			<label for="content" class="form-label">내용:</label>
+			   			<textarea rows="10" class="form-control" readonly="readonly">${post.po_content}</textarea>
+			 		</div>
+			 		<div class="mb-3 mt-3">
+			   			<label for="writer" class="form-label">조회수:</label>
+			   			<input type="text" class="form-control" readonly="readonly" value="${post.po_view}" >
+			 		</div>
+					<a href="<c:url value="/post/list?num=${post.po_bo_num}"/>" class="btn btn-outline-primary">목록으로</a>
 					<c:if test="${post.po_me_id == user.me_id}">
 						<a href="<c:url value="/post/delete?num=${post.po_num}"/>"class="btn btn-outline-danger">삭제</a>
-						<a href="<c:url value="/post/update?num=${post.po_num}"/>"class="btn btn-outline-danger">수정</a>
+						<a href="<c:url value="/post/update?po_num=${post.po_num}&bo_num=${board.bo_num}"/>"class="btn btn-outline-danger">수정</a>
 					</c:if>
 				</div>
 			</div>

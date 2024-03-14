@@ -20,11 +20,11 @@ public class PostDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int po_num = 0;
 		try {
-			po_num = Integer.parseInt(request.getParameter("poNum"));
+			po_num = Integer.parseInt(request.getParameter("num"));
 		} catch (Exception e) {
 			po_num = 0;
 		}
-		//postService.updateView(po_num);
+		
 		PostVO post = postService.getPost(po_num);
 		request.setAttribute("post", post);
 		request.getRequestDispatcher("/WEB-INF/views/post/detail.jsp").forward(request, response);
