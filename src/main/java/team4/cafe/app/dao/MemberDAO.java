@@ -17,6 +17,9 @@ public interface MemberDAO {
 
 	void updateLoginCount(@Param("me_id")String id, @Param("me_loginCount")int loginCount);
 
+
+	MemberVO selectMemberNickName(@Param("me_name")String nickName);
+
 	ArrayList<MemberVO> getMemberList(@Param("cri")Criteria cri);
 
 	int getMemberCount(@Param("cri")Criteria cri);
@@ -26,5 +29,6 @@ public interface MemberDAO {
 	ArrayList<GradeVO> selectGradeList();
 
 	boolean updateMember(@Param("member")MemberVO member);
+
 
 }

@@ -105,6 +105,22 @@ public class MemberServiceImp implements MemberService {
 		return memberDAO.getMemberCount(cri);
 	}
 
+
+	@Override
+	public boolean checkId(String id) {
+		MemberVO member = memberDAO.selectMember(id);
+		
+		return member == null;
+	}
+
+	@Override
+	public boolean checkNickName(String nickName) {
+		MemberVO member = memberDAO.selectMemberNickName(nickName);
+		
+		return member == null;
+	}
+
+
 	//상태 리스트
 	@Override
 	public ArrayList<StateVO> getStateList() {
@@ -140,4 +156,5 @@ public class MemberServiceImp implements MemberService {
 		}
 		return false;
 	}
+
 }

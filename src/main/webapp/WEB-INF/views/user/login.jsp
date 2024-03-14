@@ -100,6 +100,7 @@ html, body {
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$("#loginBox").submit(function() {
+			$('#error').text("");
 			//빈 문자열 체크
 			if($('input[name = id]').val() == ''){
 				$('#error').text("* 아이디를 입력하세요.");

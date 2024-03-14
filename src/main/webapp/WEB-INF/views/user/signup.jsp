@@ -8,6 +8,11 @@
 <title>Signup</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- jquery validtaion -->
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js"></script>
+
 <style type="text/css">
 
 	html, body {
@@ -60,6 +65,9 @@
 	#inputBox button {
 	  padding: 3px 5px;
 	}
+	.error {
+		color: red; font-size: 12px; text-align: right; margin-bottom: 5px;
+	}
 
 </style>
 </head>
@@ -69,27 +77,29 @@
 	</header>
 	
 	<div id="container">
-		<form action="<c:url value="/user/signup"/>" method="post" id="loginBox">
+		<form action="<c:url value="/user/signup"/>" method="post" id="loginBox" class="signupBox">
 			<div id="loginBoxTitle">회원가입</div>
 			<div id="inputBox">
 				<div class="input-form-box">
-					<span>아이디 </span><input type="text" name="id" class="form-control">
+					<span>아이디 </span><input type="text" name="id" id="id" class="form-control">
 				</div>
+					<div id = "id-error" class="error" ></div>
 				<div class="input-form-box">
-					<span>비밀번호 </span><input type="password" name="pw" class="form-control">
+					<span>비밀번호 </span><input type="password" name="pw" id="pw" class="form-control">
 				</div>
+					<div id = "pw-error" class="error" ></div>
 				<div class="input-form-box">
-					<span>비밀번호 확인 </span><input type="password" name="pw2" class="form-control">
+					<span>비밀번호 확인 </span><input type="password" name="pw2" id="pw2" class="form-control">
 				</div>
+					<div id = "pw2-error" class="error" ></div>
 				<div class="input-form-box">
-					<span>닉네임 </span><input type="text" name="nickName" class="form-control">
+					<span>닉네임 </span><input type="text" name="nickName" id="nickName" class="form-control">
 				</div>
+					<div id = "nickName-error" class="error" ></div>
 				<div class="input-form-box">
-					<span>이메일 </span><input type="email" name="email" class="form-control">
+					<span>이메일 </span><input type="text" name="email" id="email" class="form-control">
 				</div>
-				<div class="input-form-box">
-					<div id = "error">에러메세지(추후 추가예정)</div>
-				</div>
+					<div id = "email-error" class="error" ></div>
 				<div class="button-login-box">
 					<button class="btn btn-primary btn-xs btn-member-signup" style="width: 100%">회원가입</button>
 				</div>
@@ -99,54 +109,83 @@
 
 
 
-<script src="//code.jquery.com/jquery-3.4.1.js"></script>
-<!-- 회원가입 버튼 이벤트 -->
-<script type="text/javascript">
-/*
-	let flag = false;
-	$(".btn-member-signup").click(function(){
-		//아이디 중복 검사
-		
-		let id = $("[name=id]").val();
-		fetch(`<c:url value="/id/check"/>?id=\${id}`)
-		.then(response=>response.text())
-		.then(data => {
-			if(data == 'true'){
-				alert("사용 가능한 아이디 입니다.");
-				flag = true;
-			}else{
-				console.log(data);
-				alert("이미 사용중인 아이디 입니다.");
-			}
-		
-		//아이디 정규 표현식 검사
-		
-		//
-		
-	});	//회원가입 버튼 click function end
-*/
 
-	/* 아이디 중복 검사, 아이디 정규표현식 */
+<script src="//code.jquery.com/jquery-3.6.1.js"></script>
 
+	<!-- 회원가입 시 유효성 검사 -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".signupBox").submit(function() {
+					
+				
+				
+				
+				
+			
+				$('.error').text("");
+				
+				//아이디 : 빈 문자열 및 정규표현식 체크
+				let regexId = /^[a-zA-Z0-9]{8,20}$/; // /^\d+$/
+				if($('input[name = id]').val() == ''){
+					$('#id-error').text("* 아이디: 필수 정보입니다.");
+					return false;
+				}else if(!regexId.test($('input[name = id]').val())){
+					$('#id-error').text("* 아이디: 8~20자의 영문 대소문자, 숫자만 사용 가능합니다.");
+					return false;
+				}
+				
+				
 
-	/* 입력한 값이 숫자로된 문자열인지 아닌지 확인한는 예제 샘플코드*/
-	/* (나중에 맞춰서 수정하기)
-	let input = document.getElementById("input");
-	input.onchange = function(){
-		let text = this.value;
-		let regex = /^\d+$/;	//정규표현식
-		let error;
-		//text가 정규표현식에 맞으면
-		if(regex.test(text)){
-			error = "숫자로만 되어 있습니다.";
-		}else{
-			error = "숫자가 아닌 문자가 있습니다."
-		}
-		let errorBox = document.getElementById("error");
-		errorBox.innerText = error;
-	}
-	*/
-</script>
+				//비밀번호 : 빈 문자열 및 정규표현식 체크
+				let regexPw = /^[a-zA-Z0-9,.!@]{10,20}$/;
+				if($('input[name = pw]').val() == ''){
+					$('#pw-error').text("* 비밀번호: 필수 정보입니다.");
+					return false;
+				}else if(!regexPw.test($('input[name = pw]').val())){
+					$('#pw-error').text("* 비밀번호: 10~20자의 영문 대소문자, 숫자, 특수 문자(,.!@)만 사용 가능합니다.");
+					return false;
+				}
+				
+				//비번확인 : 빈 문자열 및 정규표현식 체크
+				if($('input[name = pw2]').val() == ''){
+					$('#pw2-error').text("* 비밀번호 확인: 필수 정보입니다.");
+					return false;
+				}else if($('input[name = pw]').val() != $('input[name = pw2]').val()){
+					$('#pw2-error').text("* 비밀번호와 일치하지 않습니다.");
+					return false;
+				}
+
+				
+				
+				//닉네임 : 빈 문자열 및 정규표현식 체크
+				let regexNickName =  /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{3,12}$/;
+				if($('input[name = nickName]').val() == ''){
+					$('#nickName-error').text("* 닉네임: 필수 정보입니다.");
+					return false;
+				}else if(!regexNickName.test($('input[name = nickName]').val())){
+					$('#nickName-error').text("* 닉네임: 3~12자만 사용가능합니다.");
+					return false;
+				}
+				
+				
+				//이메일 : 빈 문자열 및 정규표현식 체크
+				let regexEmail = /^[a-z0-9\.\-_]+@([a-z0-9\-]+\.)+[a-z]{2,6}$/;
+				if($('input[name = email]').val() == ''){
+					$('#email-error').text("* 이메일: 필수 정보입니다.");
+					return false;
+				}else if(!regexEmail.test($('input[name = email]').val())){
+					$('#email-error').text("* 올바른 이메일 형식이 아닙니다.");
+					return false;
+				}
+				
+				
+
+				
+				
+				
+			})	//submit end
+		}); //ready end
+	</script>
 
 </body>
 </html>

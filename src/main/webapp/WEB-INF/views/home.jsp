@@ -21,10 +21,7 @@
 	<div class="row">
 		<!-- 사이드 바 영역 -->
 		<div class="col-md-3">
-			<h1>첫번째 열의 제목</h1>
-			<p>첫번째 열의 본문</p>
 			<jsp:include page = "/WEB-INF/views/sidebar.jsp"/>
-			
 		</div>
 		<!-- 본문 영역 -->
 		<div class="col-md-9">

@@ -11,6 +11,9 @@
 	<select id="selectMember" resultType="team4.cafe.app.model.vo.MemberVO">
 		SELECT * FROM MEMBER WHERE me_id = #{me_id}
 	</select>
+	<select id="selectMemberNickName" resultType="team4.cafe.app.model.vo.MemberVO">
+		SELECT * FROM MEMBER WHERE me_name = #{me_name}
+	</select>
 	<update id="updateLoginCount">
 		update member set me_loginCount = #{me_loginCount} where me_id = #{me_id}
 	</update>

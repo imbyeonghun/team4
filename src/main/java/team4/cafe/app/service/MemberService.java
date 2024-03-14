@@ -16,6 +16,11 @@ public interface MemberService {
 
 	void addLoginCount(String id, int loginCount);
 
+
+	boolean checkId(String id);
+
+	boolean checkNickName(String nickName);
+
 	ArrayList<MemberVO> getMemberList(Criteria cri);
 
 	int getMemberCount(Criteria cri);
@@ -25,5 +30,6 @@ public interface MemberService {
 	ArrayList<GradeVO> getGradeList();
 
 	boolean updateMember(MemberVO member);
+
 
 }
