@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="header">
-	<jsp:include page = "/WEB-INF/views/header.jsp"/>
+	
 </div>
 <div class="container">
 	<div class="search">
@@ -25,7 +25,6 @@
 		<button type="button" id="search">검색</button>
 	</div>
 	<div class="main">
-	
 	</div>
 	<div class="comment-pagination">
 		<ul class="pagination justify-content-center">
@@ -35,33 +34,77 @@
 </div>
 <div class="control-box hidden">
     <div>
-    	<div>아이디</div>
-    	<select name="grand" id="grand">
-    		<option></option>
+    	<div id="userID"></div>
+    	<select name="grade" id="grade">
+    		<option value="default">등급</option>
+	    	<c:forEach items="${gradeList }" var="grade">
+    			<option value="${grade.gr_name}">${grade.gr_name}</option>
+	    	</c:forEach>
     	</select>
     	<select name="state" id="state">
-    		<option></option>
+    		<option value="default">상태</option>
+    		<c:forEach items="${stateList }" var="state">
+    			<option value="${state.st_state}">${state.st_state}</option>
+	    	</c:forEach>
     	</select>
-    	<button type="button">수정</button>
+    	<button type="button" id="update">수정</button>
     </div>
 </div>
 <script type="text/javascript">
 let cri={
 	page:1,
-	type:'all',
-	search:""
+	type:null,
+	search:null
 }
-
-$(document).on("change","[name=type]",function(){
-	cri.type=$(this).val();
-	console.log(cri);
-});
 
 $(document).on("click","#search",function(){
 	cri.search=$("[name=search]").val();
-	console.log(cri);
+	cri.type=$("select").val();
+	if(cri.search==""){
+		cri.type=null;
+	}
+	printMember(cri);
 });
 
+$(document).on("click",".line",function(){
+	let text=$(this).data("name");
+	$("#userID").text(text);
+});
+let st;
+let gr;
+$("[name=state]").change(function(){
+	st=$("[name=state]").val();
+});
+$("[name=grade]").change(function(){
+	gr=$("[name=grade]").val();
+	
+});
+
+$(document).on("click","#update",function(){
+	$.ajax({
+		url : '<c:url value="/manager/member/update"/>',
+		method : "post",
+		data :{
+			grade:gr,
+			state:st,
+			userId:$("#userID").text()
+		},success : function(data){
+			if("ok"){
+				alert("수정 완료");
+				$("[name=state] option:eq(0)").prop("selected", true);
+				$("[name=grade] option:eq(0)").prop("selected", true);
+				printMember(cri);
+			}else{
+				alert("수정 실패");
+			}
+		},error : function(a, b, c){
+			
+		}
+	});
+
+});
+
+//출력
 function printMember(cri){
 	$.ajax({
 		url : '<c:url value="/manager/member/list"/>',
@@ -70,10 +113,16 @@ function printMember(cri){
 		,
 		success : function(data){
 			let str='';
+			if(data.list==0){
+				str+=`<h1>일치하는 결과가 없습니다</h1>`;
+				$('.main').html(str);
+				return;
+			}
+			
 			for(member of data.list){
 				str+=
 				`
-				<div class="line">
+				<div class="line" data-name="\${member.me_id}">
 					<ul>
 						<li>등급:<span>\${member.me_gr_name}</span></li>
 						<li>아이디<span>\${member.me_id}</span></li>
@@ -113,14 +162,15 @@ function printMember(cri){
 				`;
 			}
 			$(".comment-pagination>ul").html(pmStr);
+			
 		}, 
 		error : function(a, b, c){
 			
 		}
 	});
-	
-	printMember(cri);
 }
+
+printMember(cri);
 </script>
 </body>
 </html>

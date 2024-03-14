@@ -27,13 +27,15 @@ public class MemberListServlet extends HttpServlet {
   
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int page=1;
-		String type=null,search=null;
+		String type,search;
 		try {
 			page=Integer.parseInt(request.getParameter("page"));
 			type=request.getParameter("type");
 			search=request.getParameter("search");
 		} catch (Exception e) {
 			e.printStackTrace();
+			type=null;
+			search=null;
 		}
 		Criteria cri = new Criteria(page, 5, type, search);
 		ArrayList<MemberVO> list=ms.getMemberList(cri);
@@ -49,7 +51,6 @@ public class MemberListServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		jobj.put("list", list);
 		jobj.put("pm", pmStr);
 		response.setContentType("application/json; charset=utf-8");

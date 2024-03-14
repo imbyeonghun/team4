@@ -11,7 +11,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import team4.cafe.app.dao.MemberDAO;
 import team4.cafe.app.model.dto.LoginDTO;
+import team4.cafe.app.model.vo.GradeVO;
 import team4.cafe.app.model.vo.MemberVO;
+import team4.cafe.app.model.vo.StateVO;
 import team4.cafe.app.pagination.Criteria;
 
 public class MemberServiceImp implements MemberService {
@@ -103,4 +105,39 @@ public class MemberServiceImp implements MemberService {
 		return memberDAO.getMemberCount(cri);
 	}
 
+	//상태 리스트
+	@Override
+	public ArrayList<StateVO> getStateList() {
+		return memberDAO.selectStateList();
+	}
+	
+	//등급 리스트
+	@Override
+	public ArrayList<GradeVO> getGradeList() {
+		return memberDAO.selectGradeList();
+	}
+
+	@Override
+	public boolean updateMember(MemberVO member) {
+		if(member==null) {
+			return false;
+		}
+		if(checkString(member.getMe_gr_name())||
+			checkString(member.getMe_id())||
+			checkString(member.getMe_st_state())) {
+			return false;
+		}
+		MemberVO DBmember=memberDAO.selectMember(member.getMe_id());
+		if(DBmember==null) {
+			return false;
+		}
+		return memberDAO.updateMember(member);
+	}
+	
+	private boolean checkString(String str) {
+		if(str==null||str.length()==0) {
+			return true;
+		}
+		return false;
+	}
 }
