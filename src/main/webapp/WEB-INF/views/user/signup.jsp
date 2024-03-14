@@ -116,7 +116,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$(".signupBox").submit(function() {
-				$('.error').text("");
+$('.error').text("");
 				
 				//아이디 : 빈 문자열 및 정규표현식 체크
 				let regexId = /^[a-zA-Z0-9]{8,20}$/; // /^\d+$/
@@ -126,23 +126,25 @@
 				}else if(!regexId.test($('input[name = id]').val())){
 					$('#id-error').text("* 아이디: 8~20자의 영문 대소문자, 숫자만 사용 가능합니다.");
 					return false;
+				}else{
+					//아이디 중복체크
+					
+						let id = $("[name=id]").val();
+						fetch(`<c:url value="/user/id/check"/>?id=\${id}`)
+						.then(response=>response.text())
+						.then(data => {
+							if(data == 'true'){
+								$('#id-error').text('사용가능한 아이디입니다.');
+							}
+							else{
+								$('#id-error').text('중복된 아이디입니다. 다른 아이디를 입력해주세요.');
+								return false;
+							}
+						})
+						.catch(error => console.error("Error : ", error));
+					
 				}
-				//아이디 중복체크
-				$("#id").blur(function(){
-					let id = $("[name=id]").val();
-					fetch(`<c:url value="user/id/check"/>?id=\${id}`)
-					.then(response=>response.text())
-					.then(data => {
-						if(data == 'true'){
-							alert("사용 가능한 아이디 입니다.");
-							return false;
-						}else{
-							$('#id-error').text('중복된 아이디입니다. 다른 아이디를 입력해주세요.');
-							return false;
-						}
-					})
-					.catch(error => console.error("Error : ", error));
-				});
+				
 				
 				//비밀번호 : 빈 문자열 및 정규표현식 체크
 				let regexPw = /^[a-zA-Z0-9,.!@]{10,20}$/;
@@ -171,22 +173,22 @@
 				}else if(!regexNickName.test($('input[name = nickName]').val())){
 					$('#nickName-error').text("* 닉네임: 3~12자만 사용가능합니다.");
 					return false;
+				}else{
+					//닉네임 중복체크
+						let id = $("[name=nickName]").val();
+						fetch(`<c:url value="/user/nickName/check"/>?nickName=\${nickName}`)
+						.then(response=>response.text())
+						.then(data => {
+							if(data == 'true'){
+								$('#nickName-error').text('사용가능한 닉네임입니다.');
+							}
+							else{
+								$('#nickName-error').text('중복된 닉네임입니다. 다른 닉네임을 입력해주세요.');
+								return false;
+							}
+						})
+						.catch(error => console.error("Error : ", error));
 				}
-				//닉네임 중복체크
-				$("#nickName").blur(function(){
-					let id = $("[name=id]").val();
-					fetch(`<c:url value="/id/check"/>?id=\${id}`)
-					.then(response=>response.text())
-					.then(data => {
-						if(data == 'true'){
-							alert("사용 가능한 아이디 입니다.");
-						}else{
-							$('#id-error').text('아이디: 중복된 아이디입니다. 다른 아이디를 입력해주세요.');
-							return false;
-						}
-					})
-					.catch(error => console.error("Error : ", error));
-				});
 				
 				//이메일 : 빈 문자열 및 정규표현식 체크
 				let regexEmail = /^[a-z0-9\.\-_]+@([a-z0-9\-]+\.)+[a-z]{2,6}$/;
@@ -199,59 +201,8 @@
 				}
 				
 				
-				/*
-				//아이디 : 중복체크
-				
-					
-					//닉네임 : 중복체크
-					
-					let id = $("input[name=nickName]").val();
-					fetch(`<c:url value="/user/nickName/check"/>?id=\${id}`)
-					.then(response=>response.text())
-					.then(data => {
-						if(data == 'true'){
-							$('#nickName-error').text("* 닉네임: 사용가능한 닉네임입니다.");
-						}else{
-							console.log(data);
-							$('#nickName-error').text("* 닉네임: 중복된 닉네임입니다.");
-							return false;
-						}
-						*/
-					
-				
-				
-				
 			})	//submit end
 		}); //ready end
-		
-		
-		
-		
-		
-		/*
-		function checkId(){
-			let res;
-		
-			 $.ajax({
-			 	 url: '<c:url value="/user/idCheck"/>',
-				 method: 'GET',
-		         data: {
-		        	 id : $('input[name = id]').val();
-		         },
-		         success: function(data) {
-	                if (data == 0) {
-	                	res = true;
-	                }else{
-	                	$('#id-error').text('아이디: 사용가능한 아이디입니다.');
-	                	res = true;
-	                }
-	             },
-	             error: function(a, b, c) {
-	             }
-	        });
-			 return res;
-		}
-		*/
 		
 	</script>
 

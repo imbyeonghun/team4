@@ -52,13 +52,13 @@ public class LoginServlet extends HttpServlet {
 			//비밀번호만 틀렸을 때 
 			
 				//로그인 실패 횟수++
-				int loginFail = user.getMe_fail();
+				//int loginFail = user.getMe_fail();
 				//만약 로그인 실패 횟수가 5회면 정지
-				
-				if(loginFail == 5) {
-					str += "\n로그인 실패횟수를 다 사용했습니다. 계정이 정지됩니다.";
-					
-				}
+//				
+//				if(loginFail == 5) {
+//					str += "\n로그인 실패횟수를 다 사용했습니다. 계정이 정지됩니다.";
+//					
+//				}
 			
 			request.setAttribute("msg", str);
 			request.setAttribute("url", "user/login");

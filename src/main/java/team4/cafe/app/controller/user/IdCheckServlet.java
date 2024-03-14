@@ -11,7 +11,7 @@ import team4.cafe.app.service.MemberService;
 import team4.cafe.app.service.MemberServiceImp;
 
 
-@WebServlet("user/id/check")
+@WebServlet("/user/id/check")
 public class IdCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -19,9 +19,7 @@ public class IdCheckServlet extends HttpServlet {
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
-		System.out.println("아이디 체크 : " + id);
 		boolean res = memberService.checkId(id);
-		System.out.println(res);
 		response.getWriter().write(""+res);
 }
 

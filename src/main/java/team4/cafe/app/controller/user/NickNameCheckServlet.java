@@ -11,7 +11,7 @@ import team4.cafe.app.service.MemberService;
 import team4.cafe.app.service.MemberServiceImp;
 
 
-@WebServlet("/user/nickNameCheck")
+@WebServlet("/user/nickName/check")
 public class NickNameCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

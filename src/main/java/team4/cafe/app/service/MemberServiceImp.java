@@ -47,12 +47,15 @@ public class MemberServiceImp implements MemberService {
 			return false;
 		}
 		//null이 아니라면
-		
-		//정규표현식 체크
+		System.out.println("null값 아님");
 		
 		//아이디 중복 체크
+		if((memberDAO.selectMember(memberVO.getMe_id())) != null) {
+			System.out.println("아이디: 중복");
+			return false;
+		}
+		
 		try {
-			System.out.println("null값 아님");
 			return memberDAO.insertMember(memberVO);
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -110,14 +113,12 @@ public class MemberServiceImp implements MemberService {
 	@Override
 	public boolean checkId(String id) {
 		MemberVO member = memberDAO.selectMember(id);
-		
 		return member == null;
 	}
 
 	@Override
 	public boolean checkNickName(String nickName) {
 		MemberVO member = memberDAO.selectMemberNickName(nickName);
-		
 		return member == null;
 	}
 
