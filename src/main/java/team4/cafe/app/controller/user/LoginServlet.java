@@ -40,10 +40,7 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session =  request.getSession();
 			session.setAttribute("user", user);
 
-			//카페 접속 횟수++
-			int loginCount = user.getMe_loginCount() + 1;
-			System.out.println(loginCount);
-			memberService.addLoginCount(user.getMe_id(), loginCount);
+			
 			
 			request.setAttribute("msg", "환영합니다.");
 			request.setAttribute("url", "");

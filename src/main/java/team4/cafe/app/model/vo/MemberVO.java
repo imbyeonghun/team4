@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
   Level 1 : 기본값, 게시글 0, 댓글 0
   Level 2 : 게시글 10, 댓글 10
   Level 3 : 게시글 20, 댓글 20
-  
  */
 
 @Data
@@ -27,8 +26,6 @@ public class MemberVO {
 	private int me_fail;			//로그인 실패 횟수 (default 0)
 	private String me_st_state;		//상태 (이용중, 기간정지, 영구정지, 탈퇴)
 	private String me_gr_name;		//등급명 (운영자, Level 1, Level 2, Level 3) 
-
-	
 	
 	public MemberVO(String me_id, String me_pw, String me_email, String me_name, Date me_date) {
 		this.me_id = me_id;
@@ -45,5 +42,10 @@ public class MemberVO {
 		this.me_email = me_email;
 		this.me_name = me_name;
 	}
-	
+
+	public MemberVO(String me_id, String me_st_state, String me_gr_name) {
+		this.me_id = me_id;
+		this.me_st_state = me_st_state;
+		this.me_gr_name = me_gr_name;
+	}
 }

@@ -8,6 +8,29 @@
 <title>카페 HOME</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<style type="text/css">
+	body{
+		margin:0;
+		padding:0;
+	}
+	#wrap{
+		width:100%;
+		position : relative;
+		min-height:100vh; 
+	}
+	footer{
+		width: 100%;
+		height: 110px;
+		bottom: 0px;
+		position: absolute;
+		text-align: center;
+	}
+	section{
+		padding-bottom : 110px;	/*footer의  height와 동일*/
+	}
+</style>
+
 </head>
 <body>
 <!-- header 영역 -->
@@ -17,14 +40,12 @@
 
 <h1>카페 HOME</h1>
 
-<div class="container-fluid">
+<div class="container-fluid" id='wrap'>
+	<section>
 	<div class="row">
 		<!-- 사이드 바 영역 -->
 		<div class="col-md-3">
-			<h1>첫번째 열의 제목</h1>
-			<p>첫번째 열의 본문</p>
 			<jsp:include page = "/WEB-INF/views/sidebar.jsp"/>
-			
 		</div>
 		<!-- 본문 영역 -->
 		<div class="col-md-9">
@@ -34,8 +55,14 @@
 			</div>
 			
 		</div>
-	
 	</div>
+	</section>
+	<!-- footer 영역 -->
+	<footer>
+	<br>
+		<hr style="border-width:1px 0 0 0; border-style:solid; border-color:#bbb;">
+		<a>footer 영역</a>
+	</footer>
 </div>
 </body>
 </html>
