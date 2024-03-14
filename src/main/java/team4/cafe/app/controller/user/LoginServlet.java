@@ -49,6 +49,10 @@ public class LoginServlet extends HttpServlet {
 		}else {	//로그인 실패 시
 			String str="아이디 또는 비밀번호를 잘못 입력했습니다.";
 			
+			//아이디로 회원정보 불러오기
+			
+			//로그인 실패 횟수 증가
+			
 			//비밀번호만 틀렸을 때 
 			
 				//로그인 실패 횟수++
