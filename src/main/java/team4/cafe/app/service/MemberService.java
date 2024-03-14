@@ -14,9 +14,6 @@ public interface MemberService {
 
 	MemberVO login(LoginDTO loginDTO);
 
-	void addLoginCount(String id, int loginCount);
-
-
 	boolean checkId(String id);
 
 	boolean checkNickName(String nickName);

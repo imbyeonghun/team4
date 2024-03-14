@@ -76,16 +76,15 @@ public class MemberServiceImp implements MemberService {
 		}
 		//비번 확인
 		if(user.getMe_pw().equals(loginDTO.getPw())) {
+			//로그인에 성공하면
+			//카페 접속 횟수++
+			int loginCount = user.getMe_loginCount() + 1;
+			memberDAO.updateLoginCount(user.getMe_id(), loginCount);
 			return user;
 		}
 		return null;
 	}
 
-	/* 로그인 횟수(카페 접속 횟수 증가) */
-	@Override
-	public void addLoginCount(String id, int loginCount) {
-		memberDAO.updateLoginCount(id, loginCount);
-	}
 	
 	//회원 리스트
 	@Override
