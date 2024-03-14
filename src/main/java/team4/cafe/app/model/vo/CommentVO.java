@@ -4,6 +4,7 @@ import java.util.Date;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Data
 @NoArgsConstructor
 public class CommentVO {
@@ -12,4 +13,6 @@ public class CommentVO {
 	private Date cm_date;
 	private String cm_id;
 	private int cm_po_num;
+	
+	private String postTitle;
 }

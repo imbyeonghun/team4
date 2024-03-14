@@ -22,7 +22,7 @@
 			</div>
 			<!-- 9단길이의 첫번째 열 -->
 			<div class="col-md-9 container mt-5">
-				<h1>총 게시글 수 : ${postCount}</h1>
+				<h1>총 작성 게시글 수 : ${postCount}</h1>
 				<hr>
 				<table class="table table-hover">
 					<thead>
@@ -38,7 +38,7 @@
 							<tr>
 								<td>[${post.board.bo_name}]</td>
 								<td>
-									<a href="<c:url value="/board/detail?num=${post.po_num}"/>">${post.po_title}[${post.commentCount}]</a>
+									<a href="<c:url value="/post/detail?num=${post.po_num}"/>">${post.po_title}[${post.commentCount}]</a>
 								</td>
 								<td>${post.po_date}</td>
 								<td>${post.po_view}</td>

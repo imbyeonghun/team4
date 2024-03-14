@@ -37,7 +37,7 @@
 				</div>
 				<div>
 					<label for="date">가입일</label>
-					<input type="date" id="date" name="date" value="${user.me_date}" readonly>
+					<input type="text" id="date" name="date" value="${user.me_date}" readonly>
 				</div>
 				<div>
 					<label for="count">방문횟수</label>
@@ -45,7 +45,7 @@
 				</div>
 				<div>
 					게시글 수 : <a href="<c:url value="/mypage/userPost"/>">${postCount}개</a>  |  
-					댓 글 수 : <a href="<c:url value="#"/>">${commentCount}개</a>
+					댓 글 수 : <a href="<c:url value="/mypage/userComment"/>">${commentCount}개</a>
 				</div>
 				<a href="<c:url value="/mypage/check"/>">내 정보 수정</a>
 				<c:if test="${user.me_id == admin}">

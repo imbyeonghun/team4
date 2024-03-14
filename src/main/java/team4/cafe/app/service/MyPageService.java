@@ -3,8 +3,8 @@ package team4.cafe.app.service;
 import java.util.ArrayList;
 
 import team4.cafe.app.model.vo.BoardVO;
+import team4.cafe.app.model.vo.CommentVO;
 import team4.cafe.app.model.vo.MemberVO;
-import team4.cafe.app.model.vo.MyPageMemberVO;
 import team4.cafe.app.model.vo.PostVO;
 
 public interface MyPageService {
@@ -13,9 +13,9 @@ public interface MyPageService {
 
 	int getCommentCount(MemberVO user);
 
-	boolean updateUserInfo(MyPageMemberVO updateUser);
+	boolean updateUserInfo(MemberVO updateUser);
 
-	PostVO getPostList(MemberVO user);
+	ArrayList<BoardVO> getPostListByUser(MemberVO user);
 
-	ArrayList<BoardVO> getPostListWithBoard(MemberVO user);
+	ArrayList<CommentVO> getCommentListByUser(MemberVO user);
 }

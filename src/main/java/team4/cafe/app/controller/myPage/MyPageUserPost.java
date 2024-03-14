@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.MemberVO;
-import team4.cafe.app.model.vo.PostVO;
 import team4.cafe.app.pagination.Criteria;
 import team4.cafe.app.service.MyPageService;
 import team4.cafe.app.service.MyPageServiceImp;
@@ -32,7 +31,7 @@ public class MyPageUserPost extends HttpServlet {
 		int postCount = myPageService.getPostCount(user);
 		
 		// 회원이 작성한 게시글을 가져오는데 해당 게시글에 게시판도 가져옴
-		ArrayList<BoardVO> postList = myPageService.getPostListWithBoard(user);
+		ArrayList<BoardVO> postList = myPageService.getPostListByUser(user);
 		
 		int page;
 		try {

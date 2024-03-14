@@ -11,9 +11,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import team4.cafe.app.dao.MyPageDAO;
 import team4.cafe.app.model.vo.BoardVO;
+import team4.cafe.app.model.vo.CommentVO;
 import team4.cafe.app.model.vo.MemberVO;
-import team4.cafe.app.model.vo.MyPageMemberVO;
-import team4.cafe.app.model.vo.PostVO;
 
 public class MyPageServiceImp implements MyPageService {
 
@@ -49,7 +48,7 @@ public class MyPageServiceImp implements MyPageService {
 	}
 
 	@Override
-	public boolean updateUserInfo(MyPageMemberVO updateUser) {
+	public boolean updateUserInfo(MemberVO updateUser) {
 		if(updateUser == null) {
 			return false;
 		}
@@ -57,18 +56,18 @@ public class MyPageServiceImp implements MyPageService {
 	}
 
 	@Override
-	public PostVO getPostList(MemberVO user) {
+	public ArrayList<BoardVO> getPostListByUser(MemberVO user) {
 		if(user == null) {
 			return null;
 		}
-		return myPageDao.selectPostListByuser(user);
+		return myPageDao.selectPostListByUser(user);
 	}
 
 	@Override
-	public ArrayList<BoardVO> getPostListWithBoard(MemberVO user) {
+	public ArrayList<CommentVO> getCommentListByUser(MemberVO user) {
 		if(user == null) {
 			return null;
 		}
-		return myPageDao.selectPostListWithBoard(user);
+		return myPageDao.selectCommentListByUser(user);
 	}
 }
