@@ -39,10 +39,10 @@ public class MemberServiceImp implements MemberService {
 	public boolean signup(MemberVO memberVO) {
 		//null값 체크
 		if(memberVO == null || 
-			!checkString(memberVO.getMe_id()) || 
-			!checkString(memberVO.getMe_pw()) || 
-			!checkString(memberVO.getMe_email()) || 
-			!checkString(memberVO.getMe_name()) || 
+			checkString(memberVO.getMe_id()) || 
+			checkString(memberVO.getMe_pw()) || 
+			checkString(memberVO.getMe_email()) || 
+			checkString(memberVO.getMe_name()) || 
 			memberVO.getMe_date() == null) {
 			System.out.println("memberService.signup() : null값");
 			return false;
