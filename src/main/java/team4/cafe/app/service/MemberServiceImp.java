@@ -44,40 +44,39 @@ public class MemberServiceImp implements MemberService {
 			memberVO.getMe_email() == null ||
 			memberVO.getMe_name() == null||
 			memberVO.getMe_date() == null) {
-			System.out.println("null값");
+			System.out.println("memberService.signup() : null값");
 			return false;
 		}
 		
-		System.out.println("null값 아님");
+		System.out.println("memberService.signup() : null값 아님");
 		
 		//아이디 중복 체크
 		if((memberDAO.selectMember(memberVO.getMe_id())) != null) {
-			System.out.println("아이디: 중복");
+			System.out.println("memberService.signup() : 아이디: 중복");
 			return false;
 		}
 		//닉네임 중복체크
 		if((memberDAO.selectMemberNickName(memberVO.getMe_name())) != null) {
-			System.out.println("닉네임: 중복");
+			System.out.println("memberService.signup() : 닉네임: 중복");
 			return false;
 		}
-		System.out.println("중복 아님");
+		System.out.println("memberService.signup() : 중복 아님");
 		
 		//정규표현식 체크
 		
 		String regexId = "^[a-zA-Z0-9]{8,20}$";
 		String regexPw = "^[a-zA-Z0-9,.!@]{10,20}$";	
 		String regexNickName =  "^[\\w\\Wㄱ-ㅎㅏ-ㅣ가-힣]{3,12}$";
-//		String regexEmail = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";	//이메일 형식 틀림
+		String regexEmail = "^[a-z0-9\\.\\-_]+@([a-z0-9\\-]+\\.)+[a-z]{2,6}$";	//이메일 형식 틀림
 		if( !checkRegex(regexId,memberVO.getMe_id()) ||
-			!checkRegex(regexPw,memberVO.getMe_id()) ||
-			!checkRegex(regexNickName,memberVO.getMe_id()) 
-//			|| !checkRegex(regexEmail,memberVO.getMe_id())
-				){
-			System.out.println("정규표현식 틀림");
+			!checkRegex(regexPw,memberVO.getMe_pw()) ||
+			!checkRegex(regexNickName,memberVO.getMe_name()) || 
+			!checkRegex(regexEmail,memberVO.getMe_email())){
+			System.out.println("memberService.signup() : 정규표현식 틀림");
 			return false;
 		}
 		
-		System.out.println("정규표현식 맞음");
+		System.out.println("memberService.signup() : 정규표현식 맞음");
 		
 		try {
 			return memberDAO.insertMember(memberVO);
@@ -91,10 +90,10 @@ public class MemberServiceImp implements MemberService {
 	//정규 표현식 체크
 	private boolean checkRegex(String regex, String str) {
 		if(!Pattern.matches(regex, str)) {
-			System.out.println("checkRegex() : 정규표현식 틀림");
+			System.out.println("memberService.checkRegex() : 정규표현식 틀림");
 			return false;
 		}
-		System.out.println("checkRegex() : 정규표현식 맞음");
+		System.out.println("memberService.checkRegex() : 정규표현식 맞음");
 		return true;
 	}
 
