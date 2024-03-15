@@ -30,5 +30,11 @@ public interface MemberService {
 
 	int getAllMemberCount();
 
+	MemberVO getMember(String id);
+
+	void addFailCount(MemberVO user);
+
+	void stopMember(MemberVO userFail);
+
 
 }

@@ -47,23 +47,36 @@ public class LoginServlet extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 			return;
 		}else {	//로그인 실패 시
-			String str="아이디 또는 비밀번호를 잘못 입력했습니다.";
+			String str="아이디 또는 비밀번호를 잘못 입력했습니다.\\n"
+					+ "비밀번호 6회 이상 불일치 할 경우 계정이 정지됩니다.";
 			
 			//아이디로 회원정보 불러오기
+			MemberVO userFail = memberService.getMember(id);
 			
-			//로그인 실패 횟수 증가
+			int loginFailCount;
 			
-			//비밀번호만 틀렸을 때 
+			//비번만 틀렸을 때
+			if(userFail != null) {
+				System.out.println("LoginServlet : 비번만 틀림");
+				//로그인 실패 횟수 증가
+				memberService.addFailCount(userFail);
+				//로그인 카운트 불러오기
+				loginFailCount = userFail.getMe_fail() + 1;
+			}else {
+				System.out.println("LoginServlet : 아이디와 비번 다 틀림");
+				loginFailCount = 1;
+			}
 			
-				//로그인 실패 횟수++
-				//int loginFail = user.getMe_fail();
-				//만약 로그인 실패 횟수가 5회면 정지
-//				
-//				if(loginFail == 5) {
-//					str += "\n로그인 실패횟수를 다 사용했습니다. 계정이 정지됩니다.";
-//					
-//				}
+			str += "\\n현재 로그인 실패 횟수 : " + loginFailCount + "회";
+					
+			if(loginFailCount > 5) {
+				System.out.println("로그인 실패 횟수 5회됨 : 정지");
+				str += "\\n로그인 실패횟수를 다 사용했습니다.\\n계정이 정지됩니다.";
+				memberService.stopMember(userFail);
+			}
 			
+			
+			System.out.println(str);
 			request.setAttribute("msg", str);
 			request.setAttribute("url", "user/login");
 			

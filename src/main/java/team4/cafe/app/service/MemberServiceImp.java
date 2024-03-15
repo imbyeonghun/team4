@@ -39,10 +39,10 @@ public class MemberServiceImp implements MemberService {
 	public boolean signup(MemberVO memberVO) {
 		//null값 체크
 		if(memberVO == null || 
-			memberVO.getMe_id() == null || 
-			memberVO.getMe_pw() == null || 
-			memberVO.getMe_email() == null ||
-			memberVO.getMe_name() == null||
+			!checkString(memberVO.getMe_id()) || 
+			!checkString(memberVO.getMe_pw()) || 
+			!checkString(memberVO.getMe_email()) || 
+			!checkString(memberVO.getMe_name()) || 
 			memberVO.getMe_date() == null) {
 			System.out.println("memberService.signup() : null값");
 			return false;
@@ -197,6 +197,30 @@ public class MemberServiceImp implements MemberService {
 	@Override
 	public int getAllMemberCount() {
 		return memberDAO.getAllMemberCount();
+	}
+
+	//아이디로 멤버 정보 가져오기
+	@Override
+	public MemberVO getMember(String id) {
+		if(checkString(id)) {
+			return null;
+		}
+		return memberDAO.selectMember(id);
+	}
+
+	@Override
+	public void addFailCount(MemberVO user) {
+		int loginFailCount = user.getMe_fail() + 1;
+		memberDAO.updateFailCount(user.getMe_id(), loginFailCount);
+		
+	}
+
+	@Override
+	public void stopMember(MemberVO userFail) {
+		if(userFail != null) {
+			memberDAO.updateMemberState(userFail.getMe_id());
+		}
+		
 	}
 
 }
