@@ -101,7 +101,7 @@
 				</div>
 					<div id = "email-error" class="error" ></div>
 				<div class="button-login-box">
-					<button class="btn btn-primary btn-xs btn-member-signup" style="width: 100%">회원가입</button>
+					<button class="btn btn-primary btn-xs btn-member-signup" id="btnSingn" style="width: 100%">회원가입</button>
 				</div>
 			</div>
 		</form>
@@ -116,13 +116,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$(".signupBox").submit(function() {
-					
-				
-				
-				
-				
-			
-				$('.error').text("");
+$('.error').text("");
 				
 				//아이디 : 빈 문자열 및 정규표현식 체크
 				let regexId = /^[a-zA-Z0-9]{8,20}$/; // /^\d+$/
@@ -132,10 +126,26 @@
 				}else if(!regexId.test($('input[name = id]').val())){
 					$('#id-error').text("* 아이디: 8~20자의 영문 대소문자, 숫자만 사용 가능합니다.");
 					return false;
+				}else{
+					//아이디 중복체크
+					
+						let id = $("[name=id]").val();
+						fetch(`<c:url value="/user/id/check"/>?id=\${id}`)
+						.then(response=>response.text())
+						.then(data => {
+							if(data == 'true'){
+								$('#id-error').text('사용가능한 아이디입니다.');
+							}
+							else{
+								$('#id-error').text('중복된 아이디입니다. 다른 아이디를 입력해주세요.');
+								return false;
+							}
+						})
+						.catch(error => console.error("Error : ", error));
+					
 				}
 				
 				
-
 				//비밀번호 : 빈 문자열 및 정규표현식 체크
 				let regexPw = /^[a-zA-Z0-9,.!@]{10,20}$/;
 				if($('input[name = pw]').val() == ''){
@@ -155,8 +165,6 @@
 					return false;
 				}
 
-				
-				
 				//닉네임 : 빈 문자열 및 정규표현식 체크
 				let regexNickName =  /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{3,12}$/;
 				if($('input[name = nickName]').val() == ''){
@@ -165,8 +173,22 @@
 				}else if(!regexNickName.test($('input[name = nickName]').val())){
 					$('#nickName-error').text("* 닉네임: 3~12자만 사용가능합니다.");
 					return false;
+				}else{
+					//닉네임 중복체크
+						let id = $("[name=nickName]").val();
+						fetch(`<c:url value="/user/nickName/check"/>?nickName=\${nickName}`)
+						.then(response=>response.text())
+						.then(data => {
+							if(data == 'true'){
+								$('#nickName-error').text('사용가능한 닉네임입니다.');
+							}
+							else{
+								$('#nickName-error').text('중복된 닉네임입니다. 다른 닉네임을 입력해주세요.');
+								return false;
+							}
+						})
+						.catch(error => console.error("Error : ", error));
 				}
-				
 				
 				//이메일 : 빈 문자열 및 정규표현식 체크
 				let regexEmail = /^[a-z0-9\.\-_]+@([a-z0-9\-]+\.)+[a-z]{2,6}$/;
@@ -179,12 +201,9 @@
 				}
 				
 				
-
-				
-				
-				
 			})	//submit end
 		}); //ready end
+		
 	</script>
 
 </body>

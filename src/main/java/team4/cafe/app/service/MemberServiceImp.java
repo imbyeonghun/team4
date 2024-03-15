@@ -47,12 +47,15 @@ public class MemberServiceImp implements MemberService {
 			return false;
 		}
 		//null이 아니라면
-		
-		//정규표현식 체크
+		System.out.println("null값 아님");
 		
 		//아이디 중복 체크
+		if((memberDAO.selectMember(memberVO.getMe_id())) != null) {
+			System.out.println("아이디: 중복");
+			return false;
+		}
+		
 		try {
-			System.out.println("null값 아님");
 			return memberDAO.insertMember(memberVO);
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -80,8 +83,11 @@ public class MemberServiceImp implements MemberService {
 			//카페 접속 횟수++
 			int loginCount = user.getMe_loginCount() + 1;
 			memberDAO.updateLoginCount(user.getMe_id(), loginCount);
+			//로그인 실패 횟수 0으로
+			
 			return user;
 		}
+		//비번이 틀리면 
 		return null;
 	}
 
@@ -108,14 +114,12 @@ public class MemberServiceImp implements MemberService {
 	@Override
 	public boolean checkId(String id) {
 		MemberVO member = memberDAO.selectMember(id);
-		
 		return member == null;
 	}
 
 	@Override
 	public boolean checkNickName(String nickName) {
 		MemberVO member = memberDAO.selectMemberNickName(nickName);
-		
 		return member == null;
 	}
 
@@ -154,6 +158,12 @@ public class MemberServiceImp implements MemberService {
 			return true;
 		}
 		return false;
+	}
+
+	//모든 멤버 수 카운트
+	@Override
+	public int getAllMemberCount() {
+		return memberDAO.getAllMemberCount();
 	}
 
 }

@@ -39,10 +39,12 @@
 		<ul class="list-group ">
 			<li class="list-group-item">
 			<br>
+			<p style="font-weight: bold; font-size:20px;">[ 카페정보 ]</p> 
 			<div class="cafe-info">
-				<p>카페정보</p>
-				<p>회원 수</p>
-				<p>게시글 수</p>
+				<p style="height:50%; float:left; font-weight: bold;" align="justify" >회원 수</p>
+				<p class="memberTotalCount" style="height:50%; float:right;" align="justify"">00명</p>
+				<p style="height:50%; float:left; font-weight: bold;" align="justify" font-weight: bold;>게시글 수</p>
+				<p class="postTotalCount" style="height:50%; float:right;" align="justify"">00개</p>
 			</div>
 			<c:if test="${user == null}">
 				<div class="btn-guest">
@@ -97,7 +99,20 @@
 			
 		},
 		success : function(data){
+			
+			
+			
+			//카페정보 출력
+			if(data.MTC){
+				$('.memberTotalCount').text(data.MTC + "명");
+			}
+			if(data.PTC){
+				$('.postTotalCount').text(data.PTC + "개");
+			}
+			
 
+			//카테고리, 게시판 출력 
+			
 			let caStr = '';	//카테고리 코드
 			console.log(data);
 

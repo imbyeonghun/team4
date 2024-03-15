@@ -137,6 +137,12 @@ public class BoardServiceImp implements BoardService {
 		return false;
 	}
 
+	//전체 게시글 수
+	@Override
+	public int getAllBoardCount() {
+		return boardDao.getAllBoardCount();
+	}
+
 
 
 
