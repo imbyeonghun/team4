@@ -160,4 +160,10 @@ public class MemberServiceImp implements MemberService {
 		return false;
 	}
 
+	//모든 멤버 수 카운트
+	@Override
+	public int getAllMemberCount() {
+		return memberDAO.getAllMemberCount();
+	}
+
 }

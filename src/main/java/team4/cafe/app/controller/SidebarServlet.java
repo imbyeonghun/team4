@@ -15,11 +15,14 @@ import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.CategoryVO;
 import team4.cafe.app.service.BoardService;
 import team4.cafe.app.service.BoardServiceImp;
+import team4.cafe.app.service.MemberService;
+import team4.cafe.app.service.MemberServiceImp;
 
 @WebServlet("/sidebar")
 public class SidebarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BoardService boardService = new BoardServiceImp();
+	private MemberService memberService = new MemberServiceImp();
 //	private CategoryService
        
     public SidebarServlet() {
@@ -45,10 +48,16 @@ public class SidebarServlet extends HttpServlet {
 		boardAllList.add(new BoardVO(4, "게시판2-2", 2));
 		boardAllList.add(new BoardVO(5, "게시판2-3", 2));
 		
+		//회원 수 & 게시글 수
+		int memberTotalCount = memberService.getAllMemberCount();
+		int postTotalCount = boardService.getAllBoardCount();
+
 		JSONObject jobj = new JSONObject();
 		
 		jobj.put("caList", categoryAllList);
 		jobj.put("boList", boardAllList);
+		jobj.put("MTC", memberTotalCount);
+		jobj.put("PTC", postTotalCount);
 		
 		response.setContentType("application/json; charset=utf-8");
 		response.getWriter().print(jobj);
