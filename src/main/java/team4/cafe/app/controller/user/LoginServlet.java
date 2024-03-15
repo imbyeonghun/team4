@@ -36,11 +36,23 @@ public class LoginServlet extends HttpServlet {
 		
 		//로그인 성공 시 회원 정보를 세션에 저장해 로그인 유지
 		if(user != null) {
+			String str = "";
+			
+			//회원 상태가 이용중일 때만 로그인 가능
+			if(!user.getMe_st_state().equals("이용중")) {
+				System.out.println("LoginServlet : 회원상태 - " + user.getMe_st_state());
+				str += "현재 계정이" + user.getMe_st_state() + "상태라 로그인이 불가능합니다.";
+				request.setAttribute("msg", str);
+				request.setAttribute("url", "user/login");
+				request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
+				return;
+			}
+			
 			//로그인 세션에 회원 정보 저장 및 유지
 			HttpSession session =  request.getSession();
 			session.setAttribute("user", user);
-
-			request.setAttribute("msg", "환영합니다.");
+			str += "환영합니다.";
+			request.setAttribute("msg", str);
 			request.setAttribute("url", "");
 			
 			//message.jsp 화면을 전송
