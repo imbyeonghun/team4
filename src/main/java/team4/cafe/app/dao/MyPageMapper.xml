@@ -30,7 +30,12 @@ left join comment on bo_num = cm_bo_num group by bo_num;
 	
 	<select id="selectPostListByUser" resultMap="postMap">
 		select post.*, (select count(cm_po_num) from comment) as commentCount from post
-		left join comment on po_num = cm_po_num  where po_me_id = #{user.me_id} group by po_num
+		left join comment on po_num = cm_po_num 
+		where (po_me_id = #{user.me_id}) and
+		po_title like concat('%', #{cri.search} , '%')
+		group by po_num
+		ORDER BY po_num DESC
+		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 
 	<select id="selectCountPost" resultType="int">
@@ -49,14 +54,18 @@ left join comment on bo_num = cm_bo_num group by bo_num;
 		where 
 			me_id = #{user.me_id}
 	</update>
-	
-	<select id="selectPostListByuser" resultType="team4.cafe.app.model.vo.PostVO">
-		select * from post where po_me_id = #{user.me_id}		
-	</select>
-	
+
 	<select id="selectCommentListByUser" resultType="team4.cafe.app.model.vo.CommentVO">
 		select comment.*, (select post.po_title from post) as postTitle
 		from comment
-		left join post on po_num = cm_po_num  where cm_me_id = #{user.me_id} group by cm_num	
+		left join post on po_num = cm_po_num 
+		where cm_me_id = #{user.me_id} group by cm_num	
+	</select>
+	
+	<select id="selectTotalCount" resultType="int">
+		SELECT count(*)
+		FROM post
+		where po_title like concat('%', #{cri.search} , '%') 
+		or po_me_id = #{cri.search}
 	</select>
 </mapper>

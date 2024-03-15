@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.MemberVO;
 import team4.cafe.app.pagination.Criteria;
+import team4.cafe.app.pagination.PageMaker;
 import team4.cafe.app.service.MyPageService;
 import team4.cafe.app.service.MyPageServiceImp;
 
@@ -30,9 +31,7 @@ public class MyPageUserPost extends HttpServlet {
 		// 회원 정보를 서비스에게 보내 게시글 조회에서 게시글 총 수를 가져오게 시킴
 		int postCount = myPageService.getPostCount(user);
 		
-		// 회원이 작성한 게시글을 가져오는데 해당 게시글에 게시판도 가져옴
-		ArrayList<BoardVO> postList = myPageService.getPostListByUser(user);
-		
+		String search = request.getParameter("search");
 		int page;
 		try {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -40,10 +39,18 @@ public class MyPageUserPost extends HttpServlet {
 			// 예외가 발생하면 기본 1페이지
 			page = 1;
 		}
-		// 현재 페이지정보를 가지고 페이지에 맞는 게시글을 가져옴
-		Criteria cri = new Criteria(page, 2);
+		// 검색어, 검색 타입, 현재 페이지, 한 페이지 컨텐츠 개수를 이용하여 현재 페이지 정보 객체를 생성
+		Criteria cri = new Criteria(page, 2, "all", search);
 		
+		int totalCount = myPageService.getTotalCount(cri);
+		
+		PageMaker pm = new PageMaker(2, cri, totalCount);
+		
+		// 회원이 작성한 게시글을 가져오는데 해당 게시글에 게시판도 가져옴
+		ArrayList<BoardVO> postList = myPageService.getPostListByUser(user, cri);
+				
 		// 화면에 전송
+		request.setAttribute("pm", pm);
 		request.setAttribute("postCount", postCount);
 		request.setAttribute("postList", postList);
 		request.getRequestDispatcher("/WEB-INF/views/mypage/userPost.jsp").forward(request, response);

@@ -13,6 +13,7 @@ import team4.cafe.app.dao.MyPageDAO;
 import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.CommentVO;
 import team4.cafe.app.model.vo.MemberVO;
+import team4.cafe.app.pagination.Criteria;
 
 public class MyPageServiceImp implements MyPageService {
 
@@ -56,11 +57,14 @@ public class MyPageServiceImp implements MyPageService {
 	}
 
 	@Override
-	public ArrayList<BoardVO> getPostListByUser(MemberVO user) {
+	public ArrayList<BoardVO> getPostListByUser(MemberVO user, Criteria cri) {
 		if(user == null) {
 			return null;
 		}
-		return myPageDao.selectPostListByUser(user);
+		if(cri == null) {
+			cri = new Criteria();
+		}
+		return myPageDao.selectPostListByUser(user, cri);
 	}
 
 	@Override
@@ -69,5 +73,13 @@ public class MyPageServiceImp implements MyPageService {
 			return null;
 		}
 		return myPageDao.selectCommentListByUser(user);
+	}
+
+	@Override
+	public int getTotalCount(Criteria cri) {
+		if(cri == null) {
+			cri = new Criteria();
+		}
+		return myPageDao.selectTotalCount(cri);
 	}
 }

@@ -8,6 +8,7 @@ import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.CommentVO;
 import team4.cafe.app.model.vo.MemberVO;
 import team4.cafe.app.model.vo.PostVO;
+import team4.cafe.app.pagination.Criteria;
 
 public interface MyPageDAO {
 
@@ -17,7 +18,9 @@ public interface MyPageDAO {
 
 	boolean updateInfo(@Param("user")MemberVO updateUser);
 
-	ArrayList<BoardVO> selectPostListByUser(@Param("user")MemberVO user);
+	ArrayList<BoardVO> selectPostListByUser(@Param("user")MemberVO user, @Param("cri")Criteria cri);
 
 	ArrayList<CommentVO> selectCommentListByUser(@Param("user")MemberVO user);
+
+	int selectTotalCount(@Param("cri")Criteria cri);
 }
