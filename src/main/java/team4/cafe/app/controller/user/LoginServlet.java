@@ -41,12 +41,14 @@ public class LoginServlet extends HttpServlet {
 			//회원 상태가 이용중일 때만 로그인 가능
 			if(!user.getMe_st_state().equals("이용중")) {
 				System.out.println("LoginServlet : 회원상태 - " + user.getMe_st_state());
-				str += "현재 계정이" + user.getMe_st_state() + "상태라 로그인이 불가능합니다.";
+				str += "현재 계정이 [" + user.getMe_st_state() + "] 상태라 로그인이 불가능합니다.";
 				request.setAttribute("msg", str);
 				request.setAttribute("url", "user/login");
 				request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 				return;
 			}
+			//로그인 실패 횟수 0으로 
+			memberService.setFailCount(user, 0);
 			
 			//로그인 세션에 회원 정보 저장 및 유지
 			HttpSession session =  request.getSession();
@@ -70,10 +72,10 @@ public class LoginServlet extends HttpServlet {
 			//비번만 틀렸을 때
 			if(userFail != null) {
 				System.out.println("LoginServlet : 비번만 틀림");
-				//로그인 실패 횟수 증가
-				memberService.addFailCount(userFail);
 				//로그인 카운트 불러오기
 				loginFailCount = userFail.getMe_fail() + 1;
+				//로그인 실패 횟수 증가
+				memberService.setFailCount(userFail, loginFailCount);
 			}else {
 				System.out.println("LoginServlet : 아이디와 비번 다 틀림");
 				loginFailCount = 1;
@@ -84,7 +86,8 @@ public class LoginServlet extends HttpServlet {
 			if(loginFailCount > 5) {
 				System.out.println("로그인 실패 횟수 5회됨 : 정지");
 				str += "\\n로그인 실패횟수를 다 사용했습니다.\\n계정이 정지됩니다.";
-				memberService.stopMember(userFail);
+				String state = "기간정지";
+				memberService.setMemberState(userFail, state);
 			}
 			
 			

@@ -208,17 +208,18 @@ public class MemberServiceImp implements MemberService {
 		return memberDAO.selectMember(id);
 	}
 
+
+
 	@Override
-	public void addFailCount(MemberVO user) {
-		int loginFailCount = user.getMe_fail() + 1;
+	public void setFailCount(MemberVO user, int loginFailCount) {
 		memberDAO.updateFailCount(user.getMe_id(), loginFailCount);
 		
 	}
 
 	@Override
-	public void stopMember(MemberVO userFail) {
-		if(userFail != null) {
-			memberDAO.updateMemberState(userFail.getMe_id());
+	public void setMemberState(MemberVO user, String state) {
+		if(user != null) {
+			memberDAO.updateMemberState(user.getMe_id(), state);
 		}
 		
 	}

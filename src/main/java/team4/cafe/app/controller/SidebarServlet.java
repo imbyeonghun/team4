@@ -17,12 +17,15 @@ import team4.cafe.app.service.BoardService;
 import team4.cafe.app.service.BoardServiceImp;
 import team4.cafe.app.service.MemberService;
 import team4.cafe.app.service.MemberServiceImp;
+import team4.cafe.app.service.PostService;
+import team4.cafe.app.service.PostServiceImp;
 
 @WebServlet("/sidebar")
 public class SidebarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BoardService boardService = new BoardServiceImp();
 	private MemberService memberService = new MemberServiceImp();
+	private PostService postService = new PostServiceImp();
 //	private CategoryService
        
     public SidebarServlet() {
@@ -32,25 +35,14 @@ public class SidebarServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//전체 카테고리 리스트 가져오기
-//		ArrayList<CategoryVO> categoryAllList = categoryService.getAllCategory();
+		ArrayList<CategoryVO> categoryAllList = boardService.selectCategoryList();
 		//전체 게시판 리스트 가져오기
-//		ArrayList<BoardVO> boardAllList = boardService.getAllBoardList();
-		
-		ArrayList<CategoryVO> categoryAllList = new ArrayList<CategoryVO>();
-		categoryAllList.add(new CategoryVO(1, "카테고리1"));
-		categoryAllList.add(new CategoryVO(2, "카테고리2"));
-		
-		
-		ArrayList<BoardVO> boardAllList = new ArrayList<BoardVO>();
-		boardAllList.add(new BoardVO(1, "게시판1-1", 1));
-		boardAllList.add(new BoardVO(2, "게시판1-2", 1));
-		boardAllList.add(new BoardVO(3, "게시판2-1", 2));
-		boardAllList.add(new BoardVO(4, "게시판2-2", 2));
-		boardAllList.add(new BoardVO(5, "게시판2-3", 2));
-		
+		ArrayList<BoardVO> boardAllList = boardService.getAllBoardList();
+	
 		//회원 수 & 게시글 수
 		int memberTotalCount = memberService.getAllMemberCount();
-		int postTotalCount = boardService.getAllBoardCount();
+		int postTotalCount = 2;
+//		int postTotalCount = postService.getAllPostCount();	//전체 게시글 수
 
 		JSONObject jobj = new JSONObject();
 		

@@ -8,4 +8,6 @@ public interface PostService {
 
 	ArrayList<PostVO> getPostList(int boardNum);
 
+
+
 }

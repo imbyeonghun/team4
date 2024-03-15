@@ -22,6 +22,9 @@
 	<select id="selectBoardList" resultType="team4.cafe.app.model.vo.BoardVO">
 		SELECT * FROM board where bo_co_num=#{cri.bo_co_num} LIMIT #{cri.pageStart}, #{cri.perPageNum}
 	</select>
+	<select id="selectAllBoardList" resultType="team4.cafe.app.model.vo.BoardVO">
+		SELECT * FROM board 
+	</select>
 	<insert id="insertBoard">
 		insert into board(bo_name,bo_co_num) values(#{board.bo_name},#{board.bo_co_num})
 	</insert>

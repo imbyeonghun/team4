@@ -34,7 +34,7 @@ public interface MemberDAO {
 
 	void updateFailCount(@Param("me_id")String me_id, @Param("me_fail")int loginFailCount);
 
-	void updateMemberState(@Param("me_id")String me_id);
+	void updateMemberState(@Param("me_id")String me_id, @Param("me_st_state")String state);
 
 
 }

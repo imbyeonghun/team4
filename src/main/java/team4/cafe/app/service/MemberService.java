@@ -32,9 +32,9 @@ public interface MemberService {
 
 	MemberVO getMember(String id);
 
-	void addFailCount(MemberVO user);
+	void setFailCount(MemberVO user, int loginFailCount);
 
-	void stopMember(MemberVO userFail);
+	void setMemberState(MemberVO user, String state);
 
 
 }

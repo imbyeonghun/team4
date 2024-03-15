@@ -31,7 +31,7 @@
 		update member set me_fail = #{me_fail} where me_id = #{me_id}
 	</update>
 	<update id="updateMemberState">
-		update member set me_st_state = "기간정지" where me_id = #{me_id}
+		update member set me_st_state = #{me_st_state} where me_id = #{me_id}
 	</update>
 	<select id="getMemberList" resultType="team4.cafe.app.model.vo.MemberVO">
 		select * from member 
