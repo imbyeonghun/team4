@@ -52,8 +52,8 @@
 			</c:if>
 			<c:if test="${user != null }">
 				<div class="btn-user">
-					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/'/>'">글쓰기</button>
-					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/'/>'">탈퇴하기</button>
+					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/mypage/myPageHome'/>'">개인정보</button>
+					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/user/logout'/>'">로그아웃</button>
 				</div>
 			</c:if>
 			</li>

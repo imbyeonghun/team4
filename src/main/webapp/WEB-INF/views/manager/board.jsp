@@ -7,9 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>게시판관리</title>
-   <script src="//code.jquery.com/jquery-3.6.1.js"></script>
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 </head>
 <body>
   <div class="header">
@@ -18,7 +16,7 @@
   <div class="container">
     <div class="select">
     	<select name="category" id="category">
-    		<option value="0">카테고리 선택</option>
+    		<option value="0" >카테고리 선택</option>
       		<c:forEach items="${categoryList}" var="category">
 	        	<option value="${category.co_num}">${category.co_name}</option>
 	        </c:forEach>
@@ -47,7 +45,7 @@
 <script type="text/javascript">
 let cri={
 	page:1,
-	coNum:0
+	coNum:'${category.co_num}'
 }
 
 $(document).on("click","#btn-update", function(){

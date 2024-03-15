@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.CategoryVO;
+import team4.cafe.app.model.vo.MemberVO;
 import team4.cafe.app.service.BoardService;
 import team4.cafe.app.service.BoardServiceImp;
 
