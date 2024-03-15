@@ -17,6 +17,8 @@ public class PostVO {
 	private int po_bo_num;
 	private String po_me_id;
 	private int po_pt_num;
+	private String po_bo_name;
+	private String po_me_name;
 	
 	public PostVO(int bo_num, String title, String userName, String content, Date po_date) {
 		this.po_bo_num = bo_num;

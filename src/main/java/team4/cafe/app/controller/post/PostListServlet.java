@@ -22,7 +22,7 @@ public class PostListServlet extends HttpServlet {
 		int bo_num;
 		//게시판 번호와 일치하는 게시글 리스트를 불러온다
 		try {
-			bo_num = Integer.parseInt(request.getParameter("num"));
+			bo_num = Integer.parseInt(request.getParameter("bo_num"));
 		} catch (Exception e) {
 			bo_num = 0;
 		}
@@ -32,10 +32,6 @@ public class PostListServlet extends HttpServlet {
 		ArrayList<PostVO> postList = postService.getPostList(bo_num);
 		request.setAttribute("postList", postList);
 		request.getRequestDispatcher("/WEB-INF/views/post/list.jsp").forward(request, response);
-	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 }

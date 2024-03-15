@@ -41,13 +41,17 @@
 							<tr>
 								<td>${post.po_num}</td>
 								<td>
-									<a href="<c:url value="/post/detail?num=${post.po_num}"/>">${post.po_title}</a>
+									<c:url value="/post/detail" var="url">
+										<c:param name="num">${post.po_num}</c:param>
+										<c:param name="bo_num">${post.po_bo_num}</c:param>
+									</c:url>
+									<a href="${url}">${post.po_title}</a>
 								</td>
-								<td>${post.po_me_id}</td>
+								<td>${post.po_me_name}</td>
 								<td>${post.po_date}</td>
 								<td>${post.po_view}</td>
-							</tr>
-						</c:forEach>
+							</tr>	
+						</c:forEach>				
 					</tbody>
 				</table>
 				<a href="<c:url value="/post/insert?num=${bo_num}"/>" class="btn btn-outline-danger">글 등록</a>

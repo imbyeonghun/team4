@@ -9,7 +9,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import team4.cafe.app.dao.BoardDAO;
 import team4.cafe.app.dao.PostDAO;
 import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.MemberVO;
@@ -47,11 +46,8 @@ public class PostServiceImp implements PostService{
 		return postDao.insertPost(post);
 	}
 	
-	private boolean checkString(String string) {
-		if(string == null || string.length() == 0) {
-			return false;
-		}
-		return true;
+	private boolean checkString(String str) {
+		return str != null && str.length() != 0;
 	}
 
 	@Override
@@ -80,19 +76,18 @@ public class PostServiceImp implements PostService{
 			return false;
 		}
 		if( !checkString(post.getPo_title()) ||
-				!checkString(post.getPo_content())) {
+			!checkString(post.getPo_content())) {
 			return false;
 		}
 		PostVO dbPost = postDao.selectPost(post.getPo_num());
 		if(dbPost == null || !dbPost.getPo_me_id().equals(user.getMe_id())) {
 			return false;
 		}
-		
 		return postDao.updatePost(post);
 	}
 
 	@Override
-	public BoardVO getBoardList(int bo_num) {
+	public BoardVO getBoard(int bo_num) {
 		return postDao.selectBoard(bo_num);
 	}
 

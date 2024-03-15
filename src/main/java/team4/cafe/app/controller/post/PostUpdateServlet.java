@@ -23,35 +23,36 @@ public class PostUpdateServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//게시판, 게시글 번호를 받아온다
-		int po_num, bo_num = 0;
+		int num, bo_num;
 		try {
-			po_num = Integer.parseInt(request.getParameter("po_num"));
+			num = Integer.parseInt(request.getParameter("num"));
 			bo_num = Integer.parseInt(request.getParameter("bo_num"));
 		} catch (Exception e) {
-			po_num = 0;
+			num = 0;
 			bo_num = 0;
 		}
-		PostVO post = postService.getPost(po_num);
-		BoardVO board = postService.getBoardList(bo_num);
+		PostVO post = postService.getPost(num);
+		//현재 게시글 출력
 		request.setAttribute("post", post);
-		request.setAttribute("board", board);
+		//현재 게시판 출력
+		request.setAttribute("bo_num", bo_num);
 		request.getRequestDispatcher("/WEB-INF/views/post/update.jsp").forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int po_num,bo_num= 0;
+		int num, bo_num;
 		try {
-			po_num = Integer.parseInt(request.getParameter("num"));
-			bo_num = Integer.parseInt(request.getParameter("board"));
+			num = Integer.parseInt(request.getParameter("num"));
+			bo_num = Integer.parseInt(request.getParameter("bo_num"));
 		} catch (Exception e) {
-			po_num = 0;
+			num = 0;
 			bo_num = 0;
 		}
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		Date today = new Date();
-		PostVO post = new PostVO(bo_num, title, content, "", today);
-		post.setPo_num(po_num);
+		PostVO post = new PostVO(bo_num, title, "", content, today);
+		post.setPo_num(num);
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		
 		boolean res = postService.updatePost(post, user);
@@ -60,7 +61,7 @@ public class PostUpdateServlet extends HttpServlet {
 		}else {
 			request.setAttribute("msg", "게시글을 수정하지 못했습니다.");
 		}
-		request.setAttribute("url", "post/list");
+		request.setAttribute("url", "/");
 		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 	}
 

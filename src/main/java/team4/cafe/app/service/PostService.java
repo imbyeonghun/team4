@@ -20,6 +20,6 @@ public interface PostService {
 
 	boolean updatePost(PostVO post, MemberVO user);
 
-	BoardVO getBoardList(int bo_num);
+	BoardVO getBoard(int bo_num);
 
 }
