@@ -20,7 +20,13 @@ public interface MyPageDAO {
 
 	ArrayList<BoardVO> selectPostListByUser(@Param("user")MemberVO user, @Param("cri")Criteria cri);
 
-	ArrayList<CommentVO> selectCommentListByUser(@Param("user")MemberVO user);
+	ArrayList<CommentVO> selectCommentListByUser(@Param("user")MemberVO user, @Param("cri")Criteria cri);
 
-	int selectTotalCount(@Param("cri")Criteria cri);
+	int selectTotalCountPost(@Param("cri")Criteria cri);
+
+	int selectTotalCountComment(@Param("cri")Criteria cri);
+
+	boolean deleteMember(@Param("me_id")String me_id);
+
+	void updateMemberSecession(@Param("me_id")String me_id);
 }

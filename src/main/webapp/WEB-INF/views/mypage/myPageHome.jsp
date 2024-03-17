@@ -53,9 +53,23 @@
 						<a href="<c:url value="#"/>">카페 관리</a>
 					</div>
 				</c:if>
-				<a href="<c:url value="#"/>">카페탈퇴하기</a>
+				<button type="button" class="btn btn-outline-success btn-secession">카페 탈퇴하기</button>
 			</div>
 		</div>
 	</div>
+<script type="text/javascript">
+	$(".btn-secession").click(function(){
+		//확인 누르면 로그인 페이지로
+		if(confirm("정말 카페를 탈퇴하시겠습니까?")){
+			location.href = "<c:url value='/mypage/secession?id=${user.me_id}'/>"
+			return;
+		}
+		//취소 누르면 현재 페이지에서 동작을 안함
+		else{
+			location.href = "<c:url value='/mypage/myPageHome'/>"
+			return;
+		}
+	});
+</script>
 </body>
 </html>

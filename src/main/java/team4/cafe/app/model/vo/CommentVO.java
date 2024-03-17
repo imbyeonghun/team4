@@ -11,8 +11,8 @@ public class CommentVO {
 	private int cm_num;
 	private String cm_content;
 	private Date cm_date;
-	private String cm_id;
+	private String cm_me_id;
 	private int cm_po_num;
 	
-	private String postTitle;
+	private PostVO post;
 }

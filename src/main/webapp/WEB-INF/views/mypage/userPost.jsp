@@ -53,11 +53,35 @@
 					    <button class="btn btn-outline-warning">검색</button>
 					</div>
 				</form>
-				
 				<ul class="pagination justify-content-center">
-				    <li class="page-item"><a class="page-link" href="#">이전</a></li>
-				    <li class="page-item"><a class="page-link" href="#">1</a></li>
-				    <li class="page-item"><a class="page-link" href="#">다음</a></li>
+					
+					<c:if test="${pm.prev}">
+						<c:url var="prevUrl" value="/mypage/userPost">
+							<c:param name="search" value="${pm.cri.search}"/>
+							<c:param name="page" value="${pm.startPage-1}"/>
+						</c:url>
+					    <li class="page-item">
+					    	<a class="page-link" href="${prevUrl}">이전</a>
+					    </li>
+				    </c:if>
+					<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
+					   <li class="page-item <c:if test="${pm.cri.page == i}">active</c:if>">
+					   		<c:url var="page" value="/mypage/userPost">
+								<c:param name="search" value="${pm.cri.search}"/>
+								<c:param name="page" value="${i}"/>
+						    </c:url>
+					   		<a class="page-link" href="${page}">${i}</a>
+					   </li>
+				   </c:forEach>
+				   <c:if test="${pm.next}">
+					   <li class="page-item">
+						   <c:url var="nextUrl" value="/mypage/userPost">
+								<c:param name="search" value="${pm.cri.search}"/>
+								<c:param name="page" value="${pm.endPage+1}"/>
+						   </c:url>
+					   		<a class="page-link" href="${nextUrl}">다음</a>
+					   </li>
+				   </c:if>
 				</ul>
 			</div>
 		</div>

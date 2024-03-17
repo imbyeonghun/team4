@@ -17,7 +17,13 @@ public interface MyPageService {
 
 	ArrayList<BoardVO> getPostListByUser(MemberVO user, Criteria cri);
 
-	ArrayList<CommentVO> getCommentListByUser(MemberVO user);
+	ArrayList<CommentVO> getCommentListByUser(MemberVO user, Criteria cri);
 
-	int getTotalCount(Criteria cri);
+	int getTotalCountPost(Criteria cri);
+
+	int getTotalCountComment(Criteria cri);
+
+	boolean deleteMember(String me_id);
+
+	void updateMemberSecession(String me_id);
 }

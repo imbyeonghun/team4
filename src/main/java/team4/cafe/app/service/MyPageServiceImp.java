@@ -68,18 +68,46 @@ public class MyPageServiceImp implements MyPageService {
 	}
 
 	@Override
-	public ArrayList<CommentVO> getCommentListByUser(MemberVO user) {
+	public ArrayList<CommentVO> getCommentListByUser(MemberVO user, Criteria cri) {
 		if(user == null) {
 			return null;
 		}
-		return myPageDao.selectCommentListByUser(user);
-	}
-
-	@Override
-	public int getTotalCount(Criteria cri) {
 		if(cri == null) {
 			cri = new Criteria();
 		}
-		return myPageDao.selectTotalCount(cri);
+		return myPageDao.selectCommentListByUser(user, cri);
+	}
+
+	@Override
+	public int getTotalCountPost(Criteria cri) {
+		if(cri == null) {
+			cri = new Criteria();
+		}
+		return myPageDao.selectTotalCountPost(cri);
+	}
+
+	@Override
+	public int getTotalCountComment(Criteria cri) {
+		if(cri == null) {
+			cri = new Criteria();
+		}
+		return myPageDao.selectTotalCountComment(cri);
+	}
+
+	@Override
+	public boolean deleteMember(String me_id) {
+		if(me_id == null) {
+			return false;
+		}
+		return myPageDao.deleteMember(me_id);
+	}
+
+	@Override
+	public void updateMemberSecession(String me_id) {
+		if(me_id == null) {
+			return;
+		}
+		 myPageDao.updateMemberSecession(me_id);
+		return;
 	}
 }
