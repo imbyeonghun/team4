@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.MemberVO;
+import team4.cafe.app.model.vo.PostTypeVO;
 import team4.cafe.app.model.vo.PostVO;
 import team4.cafe.app.service.PostService;
 import team4.cafe.app.service.PostServiceImp;
@@ -23,35 +24,37 @@ public class PostUpdateServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//게시판, 게시글 번호를 받아온다
-		int num, bo_num;
+		int num;
 		try {
 			num = Integer.parseInt(request.getParameter("num"));
-			bo_num = Integer.parseInt(request.getParameter("bo_num"));
 		} catch (Exception e) {
 			num = 0;
-			bo_num = 0;
 		}
+		ArrayList<BoardVO> boList = postService.getBoardList();
+		ArrayList<PostTypeVO> typeList = postService.getPostTypeList();
 		PostVO post = postService.getPost(num);
-		//현재 게시글 출력
+		request.setAttribute("boList", boList);
+		request.setAttribute("typeList", typeList);
 		request.setAttribute("post", post);
-		//현재 게시판 출력
-		request.setAttribute("bo_num", bo_num);
 		request.getRequestDispatcher("/WEB-INF/views/post/update.jsp").forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int num, bo_num;
+		int num, bo_num, pt_num;
 		try {
 			num = Integer.parseInt(request.getParameter("num"));
 			bo_num = Integer.parseInt(request.getParameter("bo_num"));
+			pt_num = Integer.parseInt(request.getParameter("pt_num"));
 		} catch (Exception e) {
 			num = 0;
 			bo_num = 0;
+			pt_num = 0;
 		}
+		System.out.println(bo_num);
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		Date today = new Date();
-		PostVO post = new PostVO(bo_num, title, "", content, today);
+		PostVO post = new PostVO(bo_num, pt_num, title, "", content, today);
 		post.setPo_num(num);
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		

@@ -24,7 +24,7 @@
 			<div class="col-md-9">
 			<div class="container">
 				<div class="container">
-					<h1>${bo_num}</h1>
+					<h1>${post.po_bo_name}</h1>
 					<div class="mb-3 mt-3">
 			   			<label for="title" class="form-label">제목</label>
 			   			<input type="text" class="form-control" readonly="readonly" value="${post.po_title}">

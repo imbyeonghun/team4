@@ -27,11 +27,24 @@
 						<form action="<c:url value="/post/update"/>" method="post">
 							<h1>게시글 수정</h1>
 							<input type="hidden" name="num" value="${post.po_num}">
-							<input type="hidden" name="bo_num" value="${post.po_bo_num}">
 							<div class="mb-3 mt-3">
 								<label for="board" class="form-label">게시판:</label>
-								<input type="text" class="form-control" id="title" name="board" readonly="readonly" value="${post.po_bo_name}">
+								<select class="form-control" id="board" name="bo_num">
+									<c:forEach items="${boList}" var="board">
+										<option value="${board.bo_num}">${board.bo_name}</option>
+									</c:forEach>
+								</select>
 							</div>
+							<c:if test='${user.me_id == "admin"}'>
+						 		<div class="mb-3 mt-3">
+								<label for="post_type" class="form-label">말머리</label>
+								<select class="form-control" id="post_type" name="pt_num">
+									<c:forEach items="${typeList}" var="postType">
+										<option value="${postType.pt_num}">${postType.pt_name}</option>
+									</c:forEach>
+								</select>
+							</div>
+					 		</c:if>
 							<div class="mb-3 mt-3">
 					   			<label for="title" class="form-label">제목:</label>
 					   			<input type="text" class="form-control" id="title" name="title" value="${post.po_title}">

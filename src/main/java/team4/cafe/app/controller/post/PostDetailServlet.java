@@ -29,8 +29,8 @@ public class PostDetailServlet extends HttpServlet {
 		}
 		postService.updateView(num);
 		PostVO post = postService.getPost(num);
-		request.setAttribute("post", post);
 		request.setAttribute("bo_num", bo_num);
+		request.setAttribute("post", post);
 		request.getRequestDispatcher("/WEB-INF/views/post/detail.jsp").forward(request, response);
 	}
 

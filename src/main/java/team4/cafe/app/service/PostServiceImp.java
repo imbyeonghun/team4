@@ -12,7 +12,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import team4.cafe.app.dao.PostDAO;
 import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.MemberVO;
+import team4.cafe.app.model.vo.PostTypeVO;
 import team4.cafe.app.model.vo.PostVO;
+import team4.cafe.app.pagination.Criteria;
 
 public class PostServiceImp implements PostService{
 	
@@ -89,6 +91,24 @@ public class PostServiceImp implements PostService{
 	@Override
 	public BoardVO getBoard(int bo_num) {
 		return postDao.selectBoard(bo_num);
+	}
+
+	@Override
+	public ArrayList<BoardVO> getBoardList() {
+		return postDao.selectBoardList();
+	}
+
+	@Override
+	public int getTotalCount(Criteria cri) {
+		if(cri == null) {
+			cri = new Criteria();
+		}
+		return postDao.selectTotalCount(cri);
+	}
+
+	@Override
+	public ArrayList<PostTypeVO> getPostTypeList() {
+		return postDao.selectPostType();
 	}
 
 }

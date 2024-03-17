@@ -20,8 +20,9 @@ public class PostVO {
 	private String po_bo_name;
 	private String po_me_name;
 	
-	public PostVO(int bo_num, String title, String userName, String content, Date po_date) {
+	public PostVO(int bo_num, int pt_num, String title, String userName, String content, Date po_date) {
 		this.po_bo_num = bo_num;
+		this.po_pt_num = pt_num;
 		this.po_title = title;
 		this.po_me_id = userName;
 		this.po_content = content;

@@ -27,21 +27,31 @@
 						<form action="<c:url value="/post/insert"/>" method="post">
 							<h1>게시글 등록</h1>
 							<div class="mb-3 mt-3">
-					   			<label for="board" class="form-label">게시판:</label>
+					   			<label for="board" class="form-label">게시판</label>
 					   			<select class="form-control" id="board" name="num">
 				   					<option value="${board.bo_num}">${board.bo_name}</option>
 					   			</select>
 					 		</div>
+					 		<c:if test='${user.me_id == "admin"}'>
+						 		<div class="mb-3 mt-3">
+								<label for="post_type" class="form-label">말머리</label>
+								<select class="form-control" id="post_type" name="pt_num">
+									<c:forEach items="${typeList}" var="postType">
+										<option value="${postType.pt_num}">${postType.pt_name}</option>
+									</c:forEach>
+								</select>
+							</div>
+					 		</c:if>
 							<div class="mb-3 mt-3">
-					   			<label for="title" class="form-label">제목:</label>
+					   			<label for="title" class="form-label">제목</label>
 					   			<input type="text" class="form-control" id="title" placeholder="제목" name="title">
 					 		</div>
 					 		<div class="mb-3 mt-3">
-					   			<label for="writer" class="form-label">작성자:</label>
+					   			<label for="writer" class="form-label">작성자</label>
 					   			<input type="text" class="form-control" id="writer" name="writer" value="${user.me_name}">
 					 		</div>
 					 		<div class="mb-3 mt-3">
-					   			<label for="content" class="form-label">내용:</label>
+					   			<label for="content" class="form-label">내용</label>
 					   			<textarea rows="10" class="form-control" id="content" name="content" placeholder="내용"></textarea>
 					 		</div>
 					 		<button class="btn btn-outline-warning col-12">글 등록</button>

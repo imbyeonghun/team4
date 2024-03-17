@@ -1,6 +1,7 @@
 package team4.cafe.app.controller.post;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.MemberVO;
+import team4.cafe.app.model.vo.PostTypeVO;
 import team4.cafe.app.model.vo.PostVO;
 import team4.cafe.app.service.BoardService;
 import team4.cafe.app.service.BoardServiceImp;
@@ -32,7 +34,9 @@ public class PostInsertServlet extends HttpServlet {
 		
 		int bo_num = Integer.parseInt(request.getParameter("num"));
 		BoardVO board = boardService.getBoard(bo_num);
+		ArrayList<PostTypeVO> typeList = postService.getPostTypeList();
 		request.setAttribute("board", board);
+		request.setAttribute("typeList", typeList);
 		request.getRequestDispatcher("/WEB-INF/views/post/insert.jsp").forward(request, response);
 	}
 	
@@ -44,7 +48,14 @@ public class PostInsertServlet extends HttpServlet {
 			return;
 		}
 		//게시판 번호는 현재 선택된 게시판 번호로
-		int bo_num = Integer.parseInt(request.getParameter("num"));
+		int bo_num,pt_num;
+		try {
+			bo_num = Integer.parseInt(request.getParameter("num"));
+			pt_num = Integer.parseInt(request.getParameter("pt_num"));
+		} catch (Exception e) {
+			bo_num = 0;
+			pt_num = 0;
+		}
 		//입력한 제목 받아온다.
 		String title = request.getParameter("title");
 		//입력한 내용 받아온다.
@@ -55,7 +66,7 @@ public class PostInsertServlet extends HttpServlet {
 		Date today = new Date();
 		
 		
-		PostVO post = new PostVO(bo_num, title, writer, content, today);
+		PostVO post = new PostVO(bo_num, pt_num, title, writer, content, today);
 		boolean res = postService.insertPost(post);
 		
 		if(res) {
