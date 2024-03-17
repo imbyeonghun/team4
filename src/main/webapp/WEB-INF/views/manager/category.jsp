@@ -6,8 +6,6 @@
 <head>
   <meta charset="UTF-8">
   <title>카테고리 관리</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
    <script src="//code.jquery.com/jquery-3.6.1.js"></script>
 </head>
 <body>
@@ -37,6 +35,10 @@
       </form>
    </div>
 <script type="text/javascript">
+let cri={
+		page:1
+	}
+
 //수정 버튼 클릭시 이벤트
 $(document).on("click","#btn-update",function(){
   let num=$(this).data('num');
@@ -44,7 +46,7 @@ $(document).on("click","#btn-update",function(){
 });
 
 //카테고리 추가 이벤트
-$("#insertCategory").click(function(){
+$("#insertCategory").onclick(function(){
 	let coName=$("#addCategory").val();
 	$.ajax({
 		url : '<c:url value="/manager/category/insert" />',
@@ -65,17 +67,13 @@ $("#insertCategory").click(function(){
 		}
 	});
 });
-let cri={
-	page:1
-}
+
 //카테고리 목록 출력
 function printCategory(){
 	$.ajax({
 		url : '<c:url value="/manager/category/select" />',
 		method : 'post',
-		data : {
-			cri
-		},
+		data : cri,
 		success : function(data){
 			let str='';
 				
