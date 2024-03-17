@@ -11,7 +11,7 @@ import team4.cafe.app.pagination.Criteria;
 
 public interface PostDAO {
 
-	ArrayList<PostVO> selectPostList(@Param("bo_num") int bo_num);
+	ArrayList<PostVO> selectPostList(@Param("bo_num") int bo_num, @Param("cri") Criteria cri);
 
 	boolean insertPost(@Param("post") PostVO post);
 

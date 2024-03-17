@@ -32,8 +32,11 @@ public class PostServiceImp implements PostService{
 	}
 	
 	@Override
-	public ArrayList<PostVO> getPostList(int bo_num) {
-		return postDao.selectPostList(bo_num);
+	public ArrayList<PostVO> getPostList(int bo_num, Criteria cri) {
+		if(cri == null) {
+			cri = new Criteria();
+		}
+		return postDao.selectPostList(bo_num, cri);
 	}
 
 	@Override

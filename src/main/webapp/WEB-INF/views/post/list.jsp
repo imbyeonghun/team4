@@ -58,8 +58,8 @@
 					<div class="input-group">
 						<select name="type" class="form-control">
 							<option value="all"<c:if test='${pm.cri.type == "all"}'>selected</c:if>>전체</option>
-							<option value="title"<c:if test='${pm.cri.type == "title"}'>selected</c:if>>제목</option>
-							<option value="writer"<c:if test='${pm.cri.type == "writer"}'>selected</c:if>>작성자</option>
+							<option value="po_title"<c:if test='${pm.cri.type == "po_title"}'>selected</c:if>>제목</option>
+							<option value="po_me_name"<c:if test='${pm.cri.type == "po_me_name"}'>selected</c:if>>작성자</option>
 						</select>
 						<input type="text" class="form-control" placeholder="검색어" name="search" value="${pm.cri.search}">
 						<span class="btn btn-outline-warning">검색</span>
@@ -69,6 +69,7 @@
 					<c:if test="${pm.prev}">
 						<li class="page-item">
 							<c:url var="prevUrl" value="/post/list">
+								<c:param name="bo_num" value="${bo_num}"/>
 								<c:param name="type" value="${pm.cri.type}"/>
 								<c:param name="search" value="${pm.cri.search}"/>
 								<c:param name="page" value="${pm.startPage-1}"/>
@@ -79,6 +80,7 @@
 					<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
 						<li class="page-item <c:if test="${pm.cri.page == i}">active</c:if>">
 							<c:url var="page" value="/post/list">
+								<c:param name="bo_num" value="${bo_num}"/>
 								<c:param name="type" value="${pm.cri.type}"/>
 								<c:param name="search" value="${pm.cri.search}"/>
 								<c:param name="page" value="${i}"/>
@@ -89,6 +91,7 @@
 					<c:if test="${pm.next}">
 						<li class="page-item">
 							<c:url var="nextUrl" value="/post/list">
+								<c:param name="bo_num" value="${bo_num}"/>
 								<c:param name="type" value="${pm.cri.type}"/>
 								<c:param name="search" value="${pm.cri.search}"/>
 								<c:param name="page" value="${pm.endPage+1}"/>

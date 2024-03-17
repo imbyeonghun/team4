@@ -38,14 +38,14 @@ public class PostListServlet extends HttpServlet {
 		}
 		System.out.println(page);
 		//검색어, 검색 타입, 현재 페이지, 한 페이지 컨텐츠 개수를 이용하여 편재 페이지 정보 객체를 생성
-		Criteria cri = new Criteria(page, 2, type, search);
-		//검색어, 검색타입에 맞는 전체 게시글 개수를 가져옴
+		Criteria cri = new Criteria(page, 10, type, search);
 		int totalCount = postService.getTotalCount(cri);
 		PageMaker pm = new PageMaker(5, cri, totalCount);
 		request.setAttribute("pm", pm);
 		//게시글 리스트를 화면에 출력한다.
 		request.setAttribute("bo_num", ""+bo_num);
-		ArrayList<PostVO> postList = postService.getPostList(bo_num);
+		//검색어, 검색타입에 맞는 전체 게시글 개수를 가져옴
+		ArrayList<PostVO> postList = postService.getPostList(bo_num, cri);
 		request.setAttribute("postList", postList);
 		request.getRequestDispatcher("/WEB-INF/views/post/list.jsp").forward(request, response);
 	}

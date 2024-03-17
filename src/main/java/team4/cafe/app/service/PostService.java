@@ -10,7 +10,7 @@ import team4.cafe.app.pagination.Criteria;
 
 public interface PostService {
 
-	ArrayList<PostVO> getPostList(int bo_num);
+	ArrayList<PostVO> getPostList(int bo_num, Criteria cri);
 
 	boolean insertPost(PostVO post);
 

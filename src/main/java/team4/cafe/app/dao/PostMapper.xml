@@ -6,15 +6,27 @@
 <mapper namespace="team4.cafe.app.dao.PostDAO">
 
 	<select id="selectPostList" resultType="team4.cafe.app.model.vo.PostVO">
-		SELECT 
+	SELECT 
     	*, bo_name AS po_bo_name, me_name AS po_me_name
 	FROM
    		post
+		<if test='cri.type=="all"'>
+			where po_title like concat('%', #{cri.search},'%') 
+				or po_me_id = #{cri.search}
+		</if>
+		<if test='cri.type=="title"'>
+			where po_title like concat('%', #{cri.search},'%') 
+		</if>
+		<if test='cri.type=="writer"'>
+			where po_me_id = #{cri.search}
+		</if>
         	JOIN
    		board ON bo_num = po_bo_num
    			JOIN
 		member ON me_id = po_me_id
 		where po_bo_num = #{bo_num}
+		ORDER BY po_num DESC
+		LIMIT #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<insert id="insertPost">
 		insert into
@@ -73,7 +85,7 @@
 			where po_title like concat('%', #{cri.search},'%') 
 		</if>
 		<if test='cri.type=="writer"'>
-			or po_me_id = #{cri.search}
+			where po_me_id = #{cri.search}
 		</if>
 	</select>
 	<select id="selectPostType" resultType="team4.cafe.app.model.vo.PostTypeVO">
