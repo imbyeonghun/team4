@@ -40,8 +40,6 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session =  request.getSession();
 			session.setAttribute("user", user);
 
-			
-			
 			request.setAttribute("msg", "환영합니다.");
 			request.setAttribute("url", "");
 			
@@ -49,12 +47,25 @@ public class LoginServlet extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 			return;
 		}else {	//로그인 실패 시
-			request.setAttribute("msg", "아이디 또는 비밀번호를 잘못 입력했습니다.");
+			String str="아이디 또는 비밀번호를 잘못 입력했습니다.";
+			
+			//아이디로 회원정보 불러오기
+			
+			//로그인 실패 횟수 증가
+			
+			//비밀번호만 틀렸을 때 
+			
+				//로그인 실패 횟수++
+				//int loginFail = user.getMe_fail();
+				//만약 로그인 실패 횟수가 5회면 정지
+//				
+//				if(loginFail == 5) {
+//					str += "\n로그인 실패횟수를 다 사용했습니다. 계정이 정지됩니다.";
+//					
+//				}
+			
+			request.setAttribute("msg", str);
 			request.setAttribute("url", "user/login");
-			
-			//로그인 실패 횟수++
-			
-			//만약 로그인 실패 횟수가 5회면 정지
 			
 			
 			//message.jsp 화면을 전송

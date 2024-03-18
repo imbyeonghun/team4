@@ -30,5 +30,7 @@ public interface MemberDAO {
 
 	boolean updateMember(@Param("member")MemberVO member);
 
+	int getAllMemberCount();
+
 
 }

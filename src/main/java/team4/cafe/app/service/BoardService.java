@@ -31,4 +31,6 @@ public interface BoardService {
 
 	int getBoardCount(BoardCriteria cri);
 
+	int getAllBoardCount();
+
 }

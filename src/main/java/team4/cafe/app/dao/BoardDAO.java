@@ -33,4 +33,6 @@ public interface BoardDAO {
 
 	int getBoardCount(@Param("cri")BoardCriteria cri);
 
+	int getAllBoardCount();
+
 }
