@@ -86,9 +86,13 @@ public class BoardServiceImp implements BoardService {
 		if(cri==null) {
 			return null;
 		}
-		return boardDao.selectBoardList(cri);
+		return boardDao.getBoardList(cri);
 	}
-
+	@Override
+	public ArrayList<BoardVO> selectBoardList() {
+		return boardDao.selectBoardList();
+	}
+	
 	//게시판 추가
 	@Override
 	public boolean insertBoard(BoardVO board) {
