@@ -10,7 +10,7 @@ SELECT board.*, count(cm_bo_num) as a FROM community.board
 left join comment on bo_num = cm_bo_num group by bo_num;
 -->
 
-	<resultMap type="team4.cafe.app.model.vo.PostVO" id="postMap">
+	<resultMap type="team4.cafe.app.model.vo.PostVO" id="PostMap">
 		<id property="po_num" column="po_num"/>
 		<result property="po_date" column="po_date"/>
 		<result property="po_title" column="po_title"/>
@@ -23,16 +23,42 @@ left join comment on bo_num = cm_bo_num group by bo_num;
 		<collection property="board" ofType="team4.cafe.app.model.vo.BoardVO"
 			column="po_bo_num" select="selectBoard"/>
 	</resultMap>
-
-	<!--  -->
+	
 	<select id="selectBoard" resultType="team4.cafe.app.model.vo.BoardVO">
 		select * from board where bo_num = #{po_bo_num}
 	</select>
 	
-	<!--  -->
-	<select id="selectPostListWithBoard" resultMap="postMap">
-		select post.*, (select count(cm_po_num) from comment) as commentCount from post
-		left join comment on po_num = cm_po_num  where po_me_id = #{user.me_id} group by po_num
+	<select id="selectPostListByUser" resultMap="PostMap">
+		select post.*, (select count(cm_po_num) from comment where cm_po_num = po_num) as commentCount from post
+		left join comment on po_num = cm_po_num 
+		where po_me_id = #{user.me_id} and
+		po_title like concat('%', #{cri.search} , '%')
+		group by po_num
+		ORDER BY po_num DESC
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+
+	<resultMap type="team4.cafe.app.model.vo.CommentVO" id="CommentMap">
+		<id property="cm_num" column="cm_num"/>
+		<result property="cm_content" column="cm_content"/>
+		<result property="cm_date" column="cm_date"/>
+		<result property="cm_me_id" column="cm_me_id"/>
+		<result property="cm_po_num" column="cm_po_num"/>	
+		<collection property="post" ofType="team4.cafe.app.model.vo.PostVO"
+			column="cm_po_num" select="selectPost"/>
+	</resultMap>
+
+	<select id="selectPost" resultType="team4.cafe.app.model.vo.PostVO">
+		select * from post where po_num = #{cm_po_num}
+	</select>
+
+	<select id="selectCommentListByUser" resultMap="CommentMap">
+		select * from comment
+		where cm_me_id = #{user.me_id} and
+		cm_content like concat('%', #{cri.search} , '%')
+		group by cm_num	
+		ORDER BY cm_num DESC
+		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 
 	<select id="selectCountPost" resultType="int">
@@ -52,7 +78,19 @@ left join comment on bo_num = cm_bo_num group by bo_num;
 			me_id = #{user.me_id}
 	</update>
 	
-	<select id="selectPostListByuser" resultType="team4.cafe.app.model.vo.PostVO">
-		select * from post where po_me_id = #{user.me_id}		
+	<select id="selectTotalCountPost" resultType="int">
+		SELECT count(*)
+		FROM post
+		where po_title like concat('%', #{cri.search} , '%')
 	</select>
+	
+	<select id="selectTotalCountComment" resultType="int">
+		SELECT count(*)
+		FROM comment
+		where cm_content like concat('%', #{cri.search} , '%')
+	</select>
+
+	<update id="updateMemberSecession">
+		update member set me_st_state = '탈퇴' where me_id = #{me_id}
+	</update>
 </mapper>
