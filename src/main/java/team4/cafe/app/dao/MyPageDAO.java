@@ -27,8 +27,4 @@ public interface MyPageDAO {
 	int selectTotalCountComment(@Param("cri")Criteria cri);
 
 	boolean updateMemberSecession(@Param("me_id")String me_id);
-
-	boolean updatePostSecession(@Param("me_id")String me_id);
-
-	boolean updateCommentSecession(@Param("me_id")String me_id);
 }

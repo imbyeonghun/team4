@@ -93,15 +93,4 @@ left join comment on bo_num = cm_bo_num group by bo_num;
 	<update id="updateMemberSecession">
 		update member set me_st_state = '탈퇴' where me_id = #{me_id}
 	</update>
-	
-	<update id="updatePostSecession">
-		update post set 
-			po_title = '탈퇴한 회원의 게시글입니다.',
-			po_content = '탈퇴한 회원의 게시글입니다.' 
-		where po_me_id = #{me_id}
-	</update>
-	
-	<update id="updateCommentSecession">
-		update comment set cm_content = '탈퇴한 회원의 댓글입니다.' where cm_me_id = #{me_id}
-	</update>
 </mapper>

@@ -94,20 +94,11 @@ public class MyPageServiceImp implements MyPageService {
 		return myPageDao.selectTotalCountComment(cri);
 	}
 
-
 	@Override
 	public boolean updateMemberSecession(String me_id) {
-		boolean res = false;
-
 		if(me_id == null) {
 			return false;
 		}
-		
-		if(myPageDao.updateMemberSecession(me_id) &&
-			myPageDao.updatePostSecession(me_id) && 
-			myPageDao.updateCommentSecession(me_id)) {
-				res = true;
-		}
-		return res;
+		return myPageDao.updateMemberSecession(me_id);
 	}
 }
