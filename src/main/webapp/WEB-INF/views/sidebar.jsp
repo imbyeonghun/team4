@@ -11,8 +11,10 @@
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <style type="text/css">
 	.post-list {text-decoration: none; color: black;}
+	
 	.list-group{
 		width:170px;
+		
 	}
 	.post-list:hover{
 		text-decoration: underline;
@@ -32,11 +34,14 @@
 <body>
 
 	<div class="panel panel-info">
+	<!-- 
 		<div class="panel-heading">
-			<h3 class="panel-title">CAFE Title</h3>
+			<h3 class="panel-title">CAFE TITLE</h3>
 		</div>
+	
+	 -->
 		<!-- 메뉴목록 -->
-		<ul class="list-group ">
+		<ul class="list-group">
 			<li class="list-group-item">
 			<br>
 			<p style="font-weight: bold; font-size:20px;">[ 카페정보 ]</p> 
@@ -100,7 +105,7 @@
 		},
 		success : function(data){
 			
-			
+			console.log("포스트 수 : "+data.PTC)
 			
 			//카페정보 출력
 			if(data.MTC){
