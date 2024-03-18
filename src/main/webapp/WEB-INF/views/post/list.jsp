@@ -39,6 +39,7 @@
 					<tbody>
 						<c:forEach items="${postList}" var="post">
 							<tr>
+							<!-- c:choose로 될거같음 말머리 뜨게 -->
 								<td>${post.po_num}</td>
 								<td>
 									<c:url value="/post/detail" var="url">

@@ -22,39 +22,59 @@
 		<!-- 9단길이의 첫번째 열 -->
 		<div class="col-md-9">
 			<div class="col-md-9">
-			<div class="container">
 				<div class="container">
-					<h1>${post.po_bo_name}</h1>
-					<div class="mb-3 mt-3">
-			   			<label for="title" class="form-label">제목</label>
-			   			<input type="text" class="form-control" readonly="readonly" value="${post.po_title}">
-			 		</div>
-			 		<div class="mb-3 mt-3">
-			   			<label for="writer" class="form-label">작성자</label>
-			   			<input type="text" class="form-control" readonly="readonly" value="${post.po_me_name}" >
-			 		</div>
-			 		<div class="mb-3 mt-3">
-			   			<label for="content" class="form-label">내용</label>
-			   			<textarea rows="10" class="form-control" readonly="readonly">${post.po_content}</textarea>
-			 		</div>
-			 		<div class="mb-3 mt-3">
-			   			<label for="writer" class="form-label">조회수</label>
-			   			<input type="text" class="form-control" readonly="readonly" value="${post.po_view}" >
-			 		</div>
-					<a href="<c:url value="/post/list?num=${post.po_bo_num}"/>" class="btn btn-outline-primary">목록으로</a>
-					<c:if test="${post.po_me_id == user.me_id}">
-						<a href="<c:url value="/post/delete?num=${post.po_num}"/>"class="btn btn-outline-danger">삭제</a>
-						<c:url value="/post/update" var="url">
-							<c:param name="num">${post.po_num}</c:param>
-							<c:param name="bo_num">${post.po_bo_num}</c:param>
-						</c:url>
-						<a href="${url}" class="btn btn-outline-danger">수정</a>
-					</c:if>
+					<div class="container">
+						<h1>${post.po_bo_name}</h1>
+						<div class="mb-3 mt-3">
+				   			<label for="title" class="form-label">제목</label>
+				   			<input type="text" class="form-control" readonly="readonly" value="${post.po_title}">
+				 		</div>
+				 		<div class="mb-3 mt-3">
+				   			<label for="writer" class="form-label">작성자</label>
+				   			<input type="text" class="form-control" readonly="readonly" value="${post.po_me_name}" >
+				 		</div>
+				 		<div class="mb-3 mt-3">
+				   			<label for="writer" class="form-label">조회수</label>
+				   			<input type="text" class="form-control" readonly="readonly" value="${post.po_view}" >
+				 		</div>
+				 		<div class="mb-3 mt-3">
+				   			<label for="content" class="form-label">내용</label>
+				   			<textarea rows="10" class="form-control" readonly="readonly">${post.po_content}</textarea>
+				 		</div>
+				 		
+						<div class="container-comment mt-3 mb-3">
+							<h2>댓글</h2>
+							<div class="box-comment row">
+								<div class="col-3">아이디</div>
+								<div class="col-3">내용</div>
+							</div>
+							<div class="box-pagination">
+							
+							</div>
+							<div class="box-comment-insert">
+							
+							</div>
+							<hr>
+						</div>
+						
+						<a href="<c:url value="/post/list?bo_num=${post.po_bo_num}"/>" class="btn btn-outline-primary">목록으로</a>
+						<c:if test="${post.po_me_id == user.me_id}">
+							<a href="<c:url value="/post/delete?num=${post.po_num}"/>"class="btn btn-outline-danger">삭제</a>
+							<c:url value="/post/update" var="url">
+								<c:param name="num">${post.po_num}</c:param>
+								<c:param name="bo_num">${post.po_bo_num}</c:param>
+							</c:url>
+							<a href="${url}" class="btn btn-outline-danger">수정</a>
+						</c:if>
+					</div>
 				</div>
 			</div>
 		</div>
-		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	
+
+</script>
 </body>
 </html>

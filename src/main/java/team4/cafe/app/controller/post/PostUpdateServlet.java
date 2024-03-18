@@ -61,10 +61,12 @@ public class PostUpdateServlet extends HttpServlet {
 		boolean res = postService.updatePost(post, user);
 		if(res) {
 			request.setAttribute("msg", "게시글을 수정했습니다.");
+			//여기
+			request.setAttribute("url", "/post/list?bo_num="+bo_num);
 		}else {
 			request.setAttribute("msg", "게시글을 수정하지 못했습니다.");
+			request.setAttribute("url", "/");
 		}
-		request.setAttribute("url", "/");
 		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 	}
 
