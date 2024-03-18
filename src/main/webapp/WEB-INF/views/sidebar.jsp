@@ -11,8 +11,20 @@
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <style type="text/css">
 	.post-list {text-decoration: none; color: black;}
+	.list-group{
+		width:170px;
+	}
 	.post-list:hover{
 		text-decoration: underline;
+	}
+	.cafe-info {
+		line-height: 0.7;
+	}
+	.list-group-item{
+		line-height: 0.8;
+	}
+	.btnMenu{
+		display : block; height: 35px; width:140px; text-align: center;
 	}
 </style>
 
@@ -24,14 +36,28 @@
 			<h3 class="panel-title">CAFE Title</h3>
 		</div>
 		<!-- 메뉴목록 -->
-			<a>카페정보</a>
-		<ul class="list-group">
+		<ul class="list-group ">
 			<li class="list-group-item">
-				<span>카페정보</span>
-				<span>회원 수</span>
-				<span>게시글 수</span>
-				<button type="button" class="btn btn-outline-success" >로그인</button>
-				<button type="button" class="btn btn-outline-success">회원가입</button>
+			<br>
+			<p style="font-weight: bold; font-size:20px;">[ 카페정보 ]</p> 
+			<div class="cafe-info">
+				<p style="height:50%; float:left; font-weight: bold;" align="justify" >회원 수</p>
+				<p class="memberTotalCount" style="height:50%; float:right;" align="justify"">00명</p>
+				<p style="height:50%; float:left; font-weight: bold;" align="justify" font-weight: bold;>게시글 수</p>
+				<p class="postTotalCount" style="height:50%; float:right;" align="justify"">00개</p>
+			</div>
+			<c:if test="${user == null}">
+				<div class="btn-guest">
+					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/user/login'/>'">로그인</button>
+					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/user/signup'/>'">회원가입</button>
+				</div>
+			</c:if>
+			<c:if test="${user != null }">
+				<div class="btn-user">
+					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/'/>'">글쓰기</button>
+					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/'/>'">탈퇴하기</button>
+				</div>
+			</c:if>
 			</li>
 		</ul>
 		
@@ -59,6 +85,10 @@
 		
 		
 	</div>
+	
+	
+	
+	
 		
 	<!-- 카테고리와 게시판 출력 -->
 	<script type="text/javascript">
@@ -69,9 +99,22 @@
 			
 		},
 		success : function(data){
-
-			let caStr = '';	//카테고리 코드
 			
+			
+			
+			//카페정보 출력
+			if(data.MTC){
+				$('.memberTotalCount').text(data.MTC + "명");
+			}
+			if(data.PTC){
+				$('.postTotalCount').text(data.PTC + "개");
+			}
+			
+
+			//카테고리, 게시판 출력 
+			
+			let caStr = '';	//카테고리 코드
+			console.log(data);
 
 			for(category of data.caList){
 				let boStr=''
@@ -79,7 +122,10 @@
 					if(category.co_num == board.bo_co_num){
 						boStr +=
 							`
-								<p><a href="<c:url value="/post/list?bo_num=\${board.bo_num}"/>" class ="board post-list">\${board.bo_name}</a></p>
+							<c:url var="url" value="/post/list">
+								<c:param name="num" value="\${board.bo_num}" />
+							</c:url>
+								<p><a href="${url}" class ="board post-list">\${board.bo_name}</a></p>
 							`;
 					}
 				}
@@ -119,7 +165,6 @@
 			
 		}
 	});
-	
 	</script>
 
 	

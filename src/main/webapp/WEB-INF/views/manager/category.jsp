@@ -11,8 +11,10 @@
    <script src="//code.jquery.com/jquery-3.6.1.js"></script>
 </head>
 <body>
+  <div class="header">
+  	<jsp:include page = "/WEB-INF/views/header.jsp"/>
+  </div>
   <div class="container">
-    <!-- 헤더부분 -->
     <div class="insertCategory">
         <input type="text" placeholder="카테고리 이름을 입력" id="addCategory">
         <button type="button" id="insertCategory">카테고리 등록</button> 
@@ -26,14 +28,14 @@
 			  				
 		</ul>
 	</div>
-    <div class="update-box hidden">
+  </div>
+  <div class="update-box hidden">
       <form  method="post" id="updateCategory">
         <label for="update">카테고리 수정</label>
         <input type="text" placeholder="카테고리명" name="update">
         <button type="submit">수정</button>
       </form>
-    </div>
-  </div>
+   </div>
 <script type="text/javascript">
 //수정 버튼 클릭시 이벤트
 $(document).on("click","#btn-update",function(){

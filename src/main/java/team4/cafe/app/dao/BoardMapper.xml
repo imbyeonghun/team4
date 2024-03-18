@@ -38,7 +38,11 @@
 	<select id="getBoardCount" resultType="int">
 		select count(*) from board where bo_co_num=#{cri.bo_co_num}
 	</select>
+
 	<select id="selectBoard" resultType="team4.cafe.app.model.vo.BoardVO">
 		select * from board where bo_num = #{bo_num}
+	</select>
+	<select id="getAllBoardCount" resultType="int">
+		select count(*) from board
 	</select>
 </mapper>

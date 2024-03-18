@@ -11,8 +11,51 @@
 	<select id="selectMember" resultType="team4.cafe.app.model.vo.MemberVO">
 		SELECT * FROM MEMBER WHERE me_id = #{me_id}
 	</select>
+	<select id="selectMemberNickName" resultType="team4.cafe.app.model.vo.MemberVO">
+		SELECT * FROM MEMBER WHERE me_name = #{me_name}
+	</select>
 	<update id="updateLoginCount">
 		update member set me_loginCount = #{me_loginCount} where me_id = #{me_id}
 	</update>
+	<select id="selectStateList" resultType="team4.cafe.app.model.vo.StateVO">
+		select * from state 
+	</select>
+	<select id="selectGradeList" resultType="team4.cafe.app.model.vo.GradeVO">
+		select * from grade 
+	</select>
+	<update id="updateMember">
+		update member set me_st_state=#{member.me_st_state} ,me_gr_name=#{member.me_gr_name}
+		where me_id=#{member.me_id}
+	</update>
+	
+	<select id="getMemberList" resultType="team4.cafe.app.model.vo.MemberVO">
+		select * from member 
+		<if test='cri.type=="all"'>
+			where me_gr_name=#{cri.search} or me_name=#{cri.search}
+		</if>
+		<if test='cri.type=="grand"'>
+			where me_gr_name=#{cri.search}
+		</if>
+		<if test='cri.type=="name"'>
+			where me_name=#{cri.search}
+		</if>
+		ORDER BY me_date DESC
+		LIMIT #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	<select id="getMemberCount" resultType="int">
+		select count(*) from member 	
+		<if test='cri.type=="all"'>
+			where me_gr_name=#{cri.search} or me_name=#{cri.search}
+		</if>
+		<if test='cri.type=="grand"'>
+			where me_gr_name=#{cri.search}
+		</if>
+		<if test='cri.type=="name"'>
+			where me_name=#{cri.search}
+		</if>
+	</select>
+	<select id="getAllMemberCount" resultType="int">
+		select count(*) from member 	
+	</select>
 	
 </mapper>

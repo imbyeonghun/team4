@@ -35,4 +35,7 @@ public interface BoardDAO {
 
 	BoardVO selectBoard(@Param("bo_num") int bo_num);
 
+	int getAllBoardCount();
+
+
 }

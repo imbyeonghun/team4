@@ -40,5 +40,13 @@ public class MemberVO {
 		
 	}
 
+
+
+	public MemberVO(String me_id, String me_st_state, String me_gr_name) {
+		this.me_id = me_id;
+		this.me_st_state = me_st_state;
+		this.me_gr_name = me_gr_name;
+	}
+
 	
 }

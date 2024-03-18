@@ -12,10 +12,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+  <div class="header">
+      <jsp:include page = "/WEB-INF/views/header.jsp"/>
+  </div>
   <div class="container">
-    <div class="header">
-      <!-- 해드부분 -->
-    </div>
     <div class="select">
     	<select name="category" id="category">
     		<option value="0">카테고리 선택</option>
@@ -36,13 +36,13 @@
 			  				
 		</ul>
 	</div>
-    <div class="update-box hidden">
-      <form  method="post" id="updateBoard">
-        <label for="update">게시판 수정</label>
-        <input type="text" placeholder="게시판 이름" name="update">
-        <button type="submit">수정</button>
-      </form>
-    </div>
+  </div>
+  <div class="update-box hidden">
+    <form  method="post" id="updateBoard">
+      <label for="update">게시판 수정</label>
+      <input type="text" placeholder="게시판 이름" name="update">
+      <button type="submit">수정</button>
+    </form>
   </div>
 <script type="text/javascript">
 let cri={
