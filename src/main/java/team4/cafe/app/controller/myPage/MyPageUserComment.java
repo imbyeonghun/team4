@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import team4.cafe.app.model.vo.BoardVO;
+import team4.cafe.app.model.vo.CommentVO;
 import team4.cafe.app.model.vo.MemberVO;
 import team4.cafe.app.pagination.Criteria;
 import team4.cafe.app.pagination.PageMaker;
@@ -17,19 +17,19 @@ import team4.cafe.app.service.MyPageService;
 import team4.cafe.app.service.MyPageServiceImp;
 
 
-@WebServlet("/mypage/userPost")
-public class MyPageUserPost extends HttpServlet {
+@WebServlet("/mypage/userComment")
+public class MyPageUserComment extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
     private MyPageService myPageService = new MyPageServiceImp();
- 
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 회원 정보를 가져옴
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
 		
-		// 회원 정보를 서비스에게 보내 게시글 조회에서 게시글 총 수를 가져오게 시킴
-		int postCount = myPageService.getPostCount(user);
+		// 회원의 총 댓글 수 가져옴
+		int commentCount = myPageService.getCommentCount(user);
 		
 		String search = request.getParameter("search");
 		int page;
@@ -42,17 +42,19 @@ public class MyPageUserPost extends HttpServlet {
 		// 검색어, 검색 타입, 현재 페이지, 한 페이지 컨텐츠 개수를 이용하여 현재 페이지 정보 객체를 생성
 		Criteria cri = new Criteria(page, 2, "all", search);
 		
-		int totalCount = myPageService.getTotalCountPost(cri);
+		int totalCommentCount = myPageService.getTotalCountComment(cri);
 		
-		PageMaker pm = new PageMaker(2, cri, totalCount);
+		PageMaker pm = new PageMaker(2, cri, totalCommentCount);
+
+		// 회원 정보를 주고, 게시글 이름 + 댓글을 가져온다
+		ArrayList<CommentVO> commentList = myPageService.getCommentListByUser(user, cri);
 		
-		// 회원이 작성한 게시글을 가져오는데 해당 게시글에 게시판도 가져옴
-		ArrayList<BoardVO> postList = myPageService.getPostListByUser(user, cri);
-				
 		// 화면에 전송
 		request.setAttribute("pm", pm);
-		request.setAttribute("postCount", postCount);
-		request.setAttribute("postList", postList);
-		request.getRequestDispatcher("/WEB-INF/views/mypage/userPost.jsp").forward(request, response);
+		request.setAttribute("user", user);
+		request.setAttribute("commentCount", commentCount);
+		request.setAttribute("commentList", commentList);
+		
+		request.getRequestDispatcher("/WEB-INF/views/mypage/userComment.jsp").forward(request, response);
 	}
 }

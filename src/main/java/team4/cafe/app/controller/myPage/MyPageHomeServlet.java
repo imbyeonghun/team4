@@ -20,16 +20,15 @@ public class MyPageHomeServlet extends HttpServlet {
 	private MyPageService myPageService = new MyPageServiceImp();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		// 회원 정보를 가져옴
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
 		
 		// 회원 정보를 서비스에게 보내 게시글 조회에서 게시글 총 수를 가져오게 시킴
 		int postCount = myPageService.getPostCount(user);
-		System.out.println("게시글"+postCount);
 		
 		// 회원 정보를 서비스에게 보내 댓글 총 수를 가져오게 시킴
 		int commentCount = myPageService.getCommentCount(user);
-		System.out.println("댓글"+commentCount);
 		
 		// 화면에 전송
 		request.setAttribute("user", user);
