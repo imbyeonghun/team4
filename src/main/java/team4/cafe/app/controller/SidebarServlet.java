@@ -26,18 +26,10 @@ public class SidebarServlet extends HttpServlet {
 	private BoardService boardService = new BoardServiceImp();
 	private MemberService memberService = new MemberServiceImp();
 	private PostService postService = new PostServiceImp();
-//	private CategoryService
        
-    public SidebarServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//전체 카테고리 리스트 가져오기
-		ArrayList<CategoryVO> categoryAllList = boardService.selectCategoryList();
-		//전체 게시판 리스트 가져오기
-		ArrayList<BoardVO> boardAllList = boardService.getAllBoardList();
+		ArrayList<CategoryVO> categoryList =boardService.selectCategoryList() ;
+		ArrayList<BoardVO> boardList =boardService.selectBoardList();
 	
 		//회원 수 & 게시글 수
 		int memberTotalCount = memberService.getAllMemberCount();
@@ -50,6 +42,7 @@ public class SidebarServlet extends HttpServlet {
 		jobj.put("boList", boardAllList);
 		jobj.put("MTC", memberTotalCount);
 		jobj.put("PTC", postTotalCount);
+
 		
 		response.setContentType("application/json; charset=utf-8");
 		response.getWriter().print(jobj);

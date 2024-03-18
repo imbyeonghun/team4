@@ -38,7 +38,7 @@
       	</c:if>
       	<c:if test="${user.me_gr_name=='운영자' }">
 	      	 <li class="nav-item dropdown">
-	         	<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">관리자페이지</a>
+	         	<a class="nav-link dropdown-toggle" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">관리자페이지</a>
 	          	<ul class="dropdown-menu">
 	            	<li><a class="dropdown-item" href="<c:url value="/manager/category"/>">카테고리 관리</a></li>
 	           		<li><a class="dropdown-item" href="<c:url value="/manager/board"/>">게시판 관리</a></li>
@@ -49,7 +49,7 @@
 
         <c:if test="${user != null}">
 	        <li class="nav-item dropdown">
-         		<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">마이페이지</a>
+         		<a class="nav-link dropdown-toggle" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">마이페이지</a>
           		<ul class="dropdown-menu">
             		<li><a class="dropdown-item" href="<c:url value="/mypage/myPageHome"/>">개인정보</a></li>
            			<li><a class="dropdown-item" href="<c:url value="/mypage/check"/>">내 정보 수정</a></li>

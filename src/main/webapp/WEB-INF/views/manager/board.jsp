@@ -7,9 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>게시판관리</title>
-   <script src="//code.jquery.com/jquery-3.6.1.js"></script>
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 </head>
 <body>
   <div class="header">
@@ -18,15 +16,16 @@
   <div class="container">
     <div class="select">
     	<select name="category" id="category">
-    		<option value="0">카테고리 선택</option>
+    		<option value="0" <c:if test='${cri.coNum==0}' >selected</c:if>>카테고리 선택</option>
       		<c:forEach items="${categoryList}" var="category">
-	        	<option value="${category.co_num}">${category.co_name}</option>
+	        	<option value="${category.co_num}" <c:if test='${category.co_num==cri.coNum }' >selected</c:if>
+	        	>${category.co_name}</option>
 	        </c:forEach>
 	    </select>
     </div>
     <div class="insertBoard">
-        <input type="text" placeholder="게시판 이름을 입력" id="addBoard">
-        <button type="button" id="insertBoard">게시판 등록</button>
+      	<input type="text" placeholder="게시판 이름을 입력" id="addBoard">
+	  	<button type="button" id="insertBoard">게시판 등록</button>
     </div> 
     <div class="main">
       	
@@ -174,7 +173,6 @@ function printBoard(cri){
 			}
 		});
 }
-
 </script>
 </body>
 </html>
