@@ -47,13 +47,13 @@
 		<div class="col-md-3">
 			<jsp:include page = "/WEB-INF/views/sidebar.jsp"/>
 		</div>
-		<!-- 본문 영역 -->
+		<!-- 9단길이의 첫번째 열 -->
 		<div class="col-md-9">
 			<div class="container">
-					<h1>홈화면</h1>
-					<p>홈</p>
+				<h1>홈화면</h1>
+				<p>홈</p>
 			</div>
-			
+
 		</div>
 	</div>
 	</section>

@@ -43,6 +43,7 @@
 	          	</ul>
 	        </li>
       	</c:if>
+
         <c:if test="${user != null}">
 	        <li class="nav-item dropdown">
          		<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">마이페이지</a>
