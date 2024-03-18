@@ -116,8 +116,8 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$(".signupBox").submit(function() {
-$('.error').text("");
-				
+				$('.error').text("");
+				let flag = true;
 				//아이디 : 빈 문자열 및 정규표현식 체크
 				let regexId = /^[a-zA-Z0-9]{8,20}$/; // /^\d+$/
 				if($('input[name = id]').val() == ''){
@@ -135,6 +135,7 @@ $('.error').text("");
 						.then(data => {
 							if(data == 'true'){
 								$('#id-error').text('사용가능한 아이디입니다.');
+								flag = true;
 							}
 							else{
 								$('#id-error').text('중복된 아이디입니다. 다른 아이디를 입력해주세요.');
@@ -175,15 +176,17 @@ $('.error').text("");
 					return false;
 				}else{
 					//닉네임 중복체크
-						let id = $("[name=nickName]").val();
+						let nickName = $("[name=nickName]").val();
 						fetch(`<c:url value="/user/nickName/check"/>?nickName=\${nickName}`)
 						.then(response=>response.text())
 						.then(data => {
 							if(data == 'true'){
 								$('#nickName-error').text('사용가능한 닉네임입니다.');
+								flag = true;
 							}
 							else{
 								$('#nickName-error').text('중복된 닉네임입니다. 다른 닉네임을 입력해주세요.');
+								flag = false;
 								return false;
 							}
 						})
@@ -200,6 +203,9 @@ $('.error').text("");
 					return false;
 				}
 				
+				if(!flag){
+					return false;
+				}
 				
 			})	//submit end
 		}); //ready end
