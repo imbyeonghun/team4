@@ -38,7 +38,7 @@
 	<jsp:include page = "/WEB-INF/views/header.jsp"/>
 </header>
 
-<h1>카페 HOME</h1>
+
 
 <div class="container-fluid" id='wrap'>
 	<section>

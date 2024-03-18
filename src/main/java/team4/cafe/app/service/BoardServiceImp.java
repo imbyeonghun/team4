@@ -148,4 +148,10 @@ public class BoardServiceImp implements BoardService {
 		return boardDao.getAllBoardCount();
 	}
 
+	//전체 게시글 리스트
+	@Override
+	public ArrayList<BoardVO> getAllBoardList() {
+		return boardDao.selectAllBoardList();
+	}
+
 }

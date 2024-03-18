@@ -3,6 +3,7 @@ package team4.cafe.app.service;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -38,22 +39,44 @@ public class MemberServiceImp implements MemberService {
 	public boolean signup(MemberVO memberVO) {
 		//null값 체크
 		if(memberVO == null || 
-			memberVO.getMe_id() == null || 
-			memberVO.getMe_pw() == null || 
-			memberVO.getMe_email() == null ||
-			memberVO.getMe_name() == null||
+			checkString(memberVO.getMe_id()) || 
+			checkString(memberVO.getMe_pw()) || 
+			checkString(memberVO.getMe_email()) || 
+			checkString(memberVO.getMe_name()) || 
 			memberVO.getMe_date() == null) {
-			System.out.println("null값");
+			System.out.println("memberService.signup() : null값");
 			return false;
 		}
-		//null이 아니라면
-		System.out.println("null값 아님");
+		
+		System.out.println("memberService.signup() : null값 아님");
 		
 		//아이디 중복 체크
 		if((memberDAO.selectMember(memberVO.getMe_id())) != null) {
-			System.out.println("아이디: 중복");
+			System.out.println("memberService.signup() : 아이디: 중복");
 			return false;
 		}
+		//닉네임 중복체크
+		if((memberDAO.selectMemberNickName(memberVO.getMe_name())) != null) {
+			System.out.println("memberService.signup() : 닉네임: 중복");
+			return false;
+		}
+		System.out.println("memberService.signup() : 중복 아님");
+		
+		//정규표현식 체크
+		
+		String regexId = "^[a-zA-Z0-9]{8,20}$";
+		String regexPw = "^[a-zA-Z0-9,.!@]{10,20}$";	
+		String regexNickName =  "^[\\w\\Wㄱ-ㅎㅏ-ㅣ가-힣]{3,12}$";
+		String regexEmail = "^[a-z0-9\\.\\-_]+@([a-z0-9\\-]+\\.)+[a-z]{2,6}$";	//이메일 형식 틀림
+		if( !checkRegex(regexId,memberVO.getMe_id()) ||
+			!checkRegex(regexPw,memberVO.getMe_pw()) ||
+			!checkRegex(regexNickName,memberVO.getMe_name()) || 
+			!checkRegex(regexEmail,memberVO.getMe_email())){
+			System.out.println("memberService.signup() : 정규표현식 틀림");
+			return false;
+		}
+		
+		System.out.println("memberService.signup() : 정규표현식 맞음");
 		
 		try {
 			return memberDAO.insertMember(memberVO);
@@ -62,6 +85,16 @@ public class MemberServiceImp implements MemberService {
 			return false;
 		}
 		
+	}
+	
+	//정규 표현식 체크
+	private boolean checkRegex(String regex, String str) {
+		if(!Pattern.matches(regex, str)) {
+			System.out.println("memberService.checkRegex() : 정규표현식 틀림");
+			return false;
+		}
+		System.out.println("memberService.checkRegex() : 정규표현식 맞음");
+		return true;
 	}
 
 	/** 로그인 */
@@ -164,6 +197,31 @@ public class MemberServiceImp implements MemberService {
 	@Override
 	public int getAllMemberCount() {
 		return memberDAO.getAllMemberCount();
+	}
+
+	//아이디로 멤버 정보 가져오기
+	@Override
+	public MemberVO getMember(String id) {
+		if(checkString(id)) {
+			return null;
+		}
+		return memberDAO.selectMember(id);
+	}
+
+
+
+	@Override
+	public void setFailCount(MemberVO user, int loginFailCount) {
+		memberDAO.updateFailCount(user.getMe_id(), loginFailCount);
+		
+	}
+
+	@Override
+	public void setMemberState(MemberVO user, String state) {
+		if(user != null) {
+			memberDAO.updateMemberState(user.getMe_id(), state);
+		}
+		
 	}
 
 }

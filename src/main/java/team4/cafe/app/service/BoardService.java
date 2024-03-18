@@ -33,5 +33,8 @@ public interface BoardService {
 
 	BoardVO getBoard(int bo_num);
 
+	ArrayList<BoardVO> getAllBoardList();
+
 	int getAllBoardCount();
+
 }

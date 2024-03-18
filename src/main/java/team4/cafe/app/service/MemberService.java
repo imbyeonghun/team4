@@ -30,5 +30,11 @@ public interface MemberService {
 
 	int getAllMemberCount();
 
+	MemberVO getMember(String id);
+
+	void setFailCount(MemberVO user, int loginFailCount);
+
+	void setMemberState(MemberVO user, String state);
+
 
 }

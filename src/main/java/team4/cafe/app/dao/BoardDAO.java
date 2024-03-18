@@ -37,5 +37,6 @@ public interface BoardDAO {
 
 	int getAllBoardCount();
 
+	ArrayList<BoardVO> selectAllBoardList();
 
 }
