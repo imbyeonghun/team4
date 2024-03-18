@@ -46,7 +46,7 @@ $(document).on("click","#btn-update",function(){
 });
 
 //카테고리 추가 이벤트
-$("#insertCategory").onclick(function(){
+$("#insertCategory").click(function(){
 	let coName=$("#addCategory").val();
 	$.ajax({
 		url : '<c:url value="/manager/category/insert" />',
@@ -57,6 +57,7 @@ $("#insertCategory").onclick(function(){
 		success : function(data){
 			if(data == "ok"){
 				alert("카테고리를 추가했습니다.");
+				$("#addCategory").val('');
 				printCategory();
 			}else{
 				alert("카테고리를 추가하지 못했습니다.");

@@ -20,35 +20,15 @@ import team4.cafe.app.service.BoardServiceImp;
 public class SidebarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BoardService boardService = new BoardServiceImp();
-//	private CategoryService
-       
-    public SidebarServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//전체 카테고리 리스트 가져오기
-//		ArrayList<CategoryVO> categoryAllList = categoryService.getAllCategory();
-		//전체 게시판 리스트 가져오기
-//		ArrayList<BoardVO> boardAllList = boardService.getAllBoardList();
-		
-		ArrayList<CategoryVO> categoryAllList = new ArrayList<CategoryVO>();
-		categoryAllList.add(new CategoryVO(1, "카테고리1"));
-		categoryAllList.add(new CategoryVO(2, "카테고리2"));
-		
-		
-		ArrayList<BoardVO> boardAllList = new ArrayList<BoardVO>();
-		boardAllList.add(new BoardVO(1, "게시판1-1", 1));
-		boardAllList.add(new BoardVO(2, "게시판1-2", 1));
-		boardAllList.add(new BoardVO(3, "게시판2-1", 2));
-		boardAllList.add(new BoardVO(4, "게시판2-2", 2));
-		boardAllList.add(new BoardVO(5, "게시판2-3", 2));
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		ArrayList<CategoryVO> categoryList =boardService.selectCategoryList() ;
+		ArrayList<BoardVO> boardList =boardService.selectBoardList();
 		
 		JSONObject jobj = new JSONObject();
 		
-		jobj.put("caList", categoryAllList);
-		jobj.put("boList", boardAllList);
+		jobj.put("caList",categoryList);
+		jobj.put("boList",boardList);
 		
 		response.setContentType("application/json; charset=utf-8");
 		response.getWriter().print(jobj);

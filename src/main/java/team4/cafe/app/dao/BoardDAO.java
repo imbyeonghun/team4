@@ -19,7 +19,9 @@ public interface BoardDAO {
 
 	boolean updateCategory(@Param("ca") CategoryVO category);
 
-	ArrayList<BoardVO> selectBoardList(@Param("cri")BoardCriteria cri);
+	ArrayList<BoardVO> getBoardList(@Param("cri")BoardCriteria cri);
+	
+	ArrayList<BoardVO> selectBoardList();
 
 	boolean insertBoard(@Param("board")BoardVO board);
 

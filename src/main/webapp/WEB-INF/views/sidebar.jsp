@@ -58,37 +58,20 @@
 			</c:if>
 			</li>
 		</ul>
-		
-		
 		<hr style="border:0; height:3px; background: black;" >
 		<!-- 카테고리 및 게시판 리스트 -->
-		
 		<ul class="list-group">
 			<li class="list-group-item">
 				<a href="#" class ="post-list" > 전체 글 보기</a>
 			</li>
 		</ul>
 		<hr>
-		
 		<!-- 카테고리와 게시판을 출력하는 박스 -->
 		<ul class="list-group listCaBo">
-			<li class="list-group-item">
-			<!-- 카테고리명 -->
-				<hr>
-				<!-- 게시판명 -->
-				<p><a href="#" class ="board post-list"></a></p>
-
-			</li>
-		</ul>
 		
-		
-	</div>
-	
-	
-	
-	
-		
-	<!-- 카테고리와 게시판 출력 -->
+		</ul>	
+	</div>	
+<!-- 카테고리와 게시판 출력 -->
 	<script type="text/javascript">
 	$.ajax({
 		url : '<c:url value="/sidebar"/>',
@@ -121,7 +104,7 @@
 				if(boStr == ''){
 					boStr +=
 						`
-							<p><a class ="board post-list">하위 게시판이 없습니다.</a></p>
+							<p>하위 게시판이 없습니다.</p>
 						`;
 				}
 				
