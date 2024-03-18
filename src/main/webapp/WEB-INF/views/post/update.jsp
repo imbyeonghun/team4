@@ -12,7 +12,7 @@
 <body>
 <jsp:include page = "/WEB-INF/views/header.jsp"/>
 <div class="container-fluid">
-<div class="row">
+	<div class="row">
 		<!-- 사이드 바 영역 -->
 		<div class="col-md-3">
 			<h1>첫번째 열의 제목</h1>
@@ -21,16 +21,21 @@
 		</div>
 		<!-- 9단길이의 첫번째 열 -->
 		<div class="col-md-9">
+			<div class="col-md-9">
+				<div class="container">
 					<div class="container">
-						<form action="<c:url value="/post/insert"/>" method="post">
-							<h1>게시글 등록</h1>
+						<form action="<c:url value="/post/update"/>" method="post">
+							<h1>게시글 수정</h1>
+							<input type="hidden" name="num" value="${post.po_num}">
 							<div class="mb-3 mt-3">
-					   			<label for="board" class="form-label">게시판</label>
-					   			<select class="form-control" id="board" name="num">
-				   					<option value="${board.bo_num}">${board.bo_name}</option>
-					   			</select>
-					 		</div>
-					 		<c:if test='${user.me_id == "admin"}'>
+								<label for="board" class="form-label">게시판:</label>
+								<select class="form-control" id="board" name="bo_num">
+									<c:forEach items="${boList}" var="board">
+										<option value="${board.bo_num}">${board.bo_name}</option>
+									</c:forEach>
+								</select>
+							</div>
+							<c:if test='${user.me_id == "admin"}'>
 						 		<div class="mb-3 mt-3">
 								<label for="post_type" class="form-label">말머리</label>
 								<select class="form-control" id="post_type" name="pt_num">
@@ -41,21 +46,22 @@
 							</div>
 					 		</c:if>
 							<div class="mb-3 mt-3">
-					   			<label for="title" class="form-label">제목</label>
-					   			<input type="text" class="form-control" id="title" placeholder="제목" name="title">
+					   			<label for="title" class="form-label">제목:</label>
+					   			<input type="text" class="form-control" id="title" name="title" value="${post.po_title}">
 					 		</div>
 					 		<div class="mb-3 mt-3">
-					   			<label for="writer" class="form-label">작성자</label>
-					   			<input type="text" class="form-control" id="writer" name="writer" value="${user.me_name}">
+					   			<label for="writer" class="form-label">작성자:</label>
+					   			<input type="text" class="form-control" id="writer" name="writer" readonly="readonly" value="${user.me_name}">
 					 		</div>
 					 		<div class="mb-3 mt-3">
-					   			<label for="content" class="form-label">내용</label>
-					   			<textarea rows="10" class="form-control" id="content" name="content" placeholder="내용"></textarea>
+					   			<label for="content" class="form-label">내용:</label>
+					   			<textarea rows="10" class="form-control" id="content" name="content">${post.po_content}</textarea>
 					 		</div>
-					 		<button class="btn btn-outline-warning col-12">글 등록</button>
+					 		<button type="submit" class="btn btn-outline-warning col-12">수정</button>
 						</form>
 					</div>
 				</div>
+			</div>
 		</div>
 	</div>
 </div>

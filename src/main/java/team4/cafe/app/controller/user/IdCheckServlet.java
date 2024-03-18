@@ -19,7 +19,6 @@ public class IdCheckServlet extends HttpServlet {
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
-		System.out.println("아이디 체크 : " + id);
 		boolean res = memberService.checkId(id);
 		response.getWriter().write(""+res);
 }

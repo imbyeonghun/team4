@@ -10,17 +10,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <style type="text/css">
 
+	
+
 </style>
 
 </head>
 
 <body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<!-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark"> -->
+<nav class="navbar navbar-expand-sm"  style="font-weight:bold;  background-color: #e3f2fd;"> 
   <div class="container-fluid">
-    <a class="navbar-brand" href="<c:url value="/"/>"">
-      <img src="img_avatar1.png" alt="Logo" style="width:40px;" class="rounded-pill">
+    <a class="navbar-brand" href="<c:url value="/"/>">
+      <img  src="Logo.png" alt="Team4" style="width:40px;" class="rounded-pill">
     </a>
-    <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+    <div class="collapse navbar-collapse justify-content-end"  id="collapsibleNavbar">
       <ul class="navbar-nav">
         <li class="nav-item">
           	<a class="nav-link" href="<c:url value="/post/list"/>">게시글</a>
@@ -43,6 +46,7 @@
 	          	</ul>
 	        </li>
       	</c:if>
+
         <c:if test="${user != null}">
 	        <li class="nav-item dropdown">
          		<a class="nav-link dropdown-toggle" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">마이페이지</a>

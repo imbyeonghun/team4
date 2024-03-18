@@ -141,7 +141,21 @@ public class BoardServiceImp implements BoardService {
 		return false;
 	}
 
+	@Override
+	public BoardVO getBoard(int bo_num) {
+		return boardDao.selectBoard(bo_num);
+	}
+	
+	//전체 게시글 수
+	@Override
+	public int getAllBoardCount() {
+		return boardDao.getAllBoardCount();
+	}
 
-
+	//전체 게시글 리스트
+	@Override
+	public ArrayList<BoardVO> getAllBoardList() {
+		return boardDao.selectAllBoardList();
+	}
 
 }

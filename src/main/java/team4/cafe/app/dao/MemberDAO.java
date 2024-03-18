@@ -30,5 +30,11 @@ public interface MemberDAO {
 
 	boolean updateMember(@Param("member")MemberVO member);
 
+	int getAllMemberCount();
+
+	void updateFailCount(@Param("me_id")String me_id, @Param("me_fail")int loginFailCount);
+
+	void updateMemberState(@Param("me_id")String me_id, @Param("me_st_state")String state);
+
 
 }
