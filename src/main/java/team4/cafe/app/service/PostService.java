@@ -3,6 +3,7 @@ package team4.cafe.app.service;
 import java.util.ArrayList;
 
 import team4.cafe.app.model.vo.BoardVO;
+import team4.cafe.app.model.vo.CommentVO;
 import team4.cafe.app.model.vo.MemberVO;
 import team4.cafe.app.model.vo.PostTypeVO;
 import team4.cafe.app.model.vo.PostVO;
@@ -29,6 +30,10 @@ public interface PostService {
 	int getTotalCount(Criteria cri);
 
 	ArrayList<PostTypeVO> getPostTypeList();
+
+	ArrayList<CommentVO> getCommentList(Criteria cri);
+
+	int getTotalCommentCount(Criteria cri);
 
 
 

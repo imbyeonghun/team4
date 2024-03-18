@@ -44,12 +44,14 @@
 				 		
 						<div class="container-comment mt-3 mb-3">
 							<h2>댓글</h2>
-							<div class="box-comment row">
-								<div class="col-3">아이디</div>
-								<div class="col-3">내용</div>
+							<div class="box-comment-list">
+								<div class="box-comment row">
+									<div class="col-3">아이디</div>
+									<div class="col-3">내용</div>
+								</div>
 							</div>
 							<div class="box-pagination">
-							
+								<ul class="pagination justify-content-center"></ul>
 							</div>
 							<div class="box-comment-insert">
 							
@@ -73,8 +75,71 @@
 	</div>
 </div>
 <script type="text/javascript">
+	let cri = {
+			page : 1,
+			poNum : '${post.po_num}'
+	}
 	
-
+	displayCommentAndPagination(cri);
+	
+	function displayCommentAndPagination(cri){
+		$.ajax({
+			async : true,
+			url : '<c:url value="/comment/list"/>',
+			method : "get", //원하는 방식 선택
+			data : cri,
+			success : function(data){
+				displayComment(data.coList);
+				displayCommentPagination(JSON.parse(data.pm));
+			}
+		});
+	}
+	
+	function displayComment(coList){
+		let str = '';
+		if(coList.length == 0){
+			$(".box-comment-list").html('<h3>등록된 댓글이 없습니다.</h3>')
+			return;
+		}
+		
+		for(item of coList){
+			str += `
+			<div class="box-comment row">
+				<div class="col-3">\${item.cm_me_id}</div>
+				<div class="col-3">\${item.cm_content}</div>
+			</div>`;
+		}
+		$(".box-comment-list").html(str);
+	}
+	
+	function displayCommentPagination(pm){
+		let str = '';
+		if(pm.prev){
+			str += 
+			`
+			<li class="page-item">
+				<a class="page-link" href="javascript:void(0);" data-page="\${pm.startPage - 1}">이전</a>
+			</li>
+			`;
+		}
+		if(let i = pm.startPage; i<=pm.endPage; i++){
+			str += 
+			`
+			<li class="page-item \${active}">
+				<a class="page-link" href="javascript:void(0);" data-page="\${i}">\${i}</a>
+			</li>
+			`
+		}
+		if(pm.next){
+			str += 
+			`
+			<li class="page-item">
+				<a class="page-link" href="javascript:void(0);" data-page="\${pm.endPage + 1}">다음</a>
+			</li>
+			`;
+		}
+		$('.box-pagination>ul').html(str);
+	}
 </script>
 </body>
 </html>

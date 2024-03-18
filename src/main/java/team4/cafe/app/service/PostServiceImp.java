@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import team4.cafe.app.dao.PostDAO;
 import team4.cafe.app.model.vo.BoardVO;
+import team4.cafe.app.model.vo.CommentVO;
 import team4.cafe.app.model.vo.MemberVO;
 import team4.cafe.app.model.vo.PostTypeVO;
 import team4.cafe.app.model.vo.PostVO;
@@ -112,6 +113,19 @@ public class PostServiceImp implements PostService{
 	@Override
 	public ArrayList<PostTypeVO> getPostTypeList() {
 		return postDao.selectPostType();
+	}
+
+	@Override
+	public ArrayList<CommentVO> getCommentList(Criteria cri) {
+		if(cri == null) {
+			return null;
+		}
+		return postDao.selectCommentList(cri);
+	}
+
+	@Override
+	public int getTotalCommentCount(Criteria cri) {
+		return postDao.selectTotalCommentCount(cri);
 	}
 
 }
