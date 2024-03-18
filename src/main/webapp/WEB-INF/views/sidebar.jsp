@@ -127,10 +127,7 @@
 					if(category.co_num == board.bo_co_num){
 						boStr +=
 							`
-							<c:url var="url" value="/post/list">
-								<c:param name="num" value="\${board.bo_num}" />
-							</c:url>
-								<p><a href="${url}" class ="board post-list">\${board.bo_name}</a></p>
+								<p><a href="<c:url value="/post/list?bo_num=\${board.bo_num}"/>" class ="board post-list">\${board.bo_name}</a></p>
 							`;
 					}
 				}
@@ -141,7 +138,7 @@
 				if(boStr == ''){
 					boStr +=
 						`
-							<p><a class ="board post-list">하위 게시판이 없습니다.</a></p>
+							<p>하위 게시판이 없습니다.</p>
 						`;
 				}
 				
