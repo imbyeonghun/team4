@@ -31,8 +31,10 @@ public interface BoardService {
 
 	int getBoardCount(BoardCriteria cri);
 
-	int getAllBoardCount();
+	BoardVO getBoard(int bo_num);
 
 	ArrayList<BoardVO> getAllBoardList();
+
+	int getAllBoardCount();
 
 }

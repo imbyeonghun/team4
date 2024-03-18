@@ -2,8 +2,93 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
 <mapper namespace="team4.cafe.app.dao.PostDAO">
+
 	<select id="selectPostList" resultType="team4.cafe.app.model.vo.PostVO">
+	SELECT 
+    	*, bo_name AS po_bo_name, me_name AS po_me_name
+	FROM
+   		post
+        	JOIN
+   		board ON bo_num = po_bo_num
+   			JOIN
+		member ON me_id = po_me_id
+		<if test='cri.type=="all"'>
+			where po_title like concat('%', #{cri.search},'%') 
+				or po_me_id = #{cri.search}
+		</if>
+		<if test='cri.type=="title"'>
+			where po_title like concat('%', #{cri.search},'%') 
+		</if>
+		<if test='cri.type=="writer"'>
+			where po_me_id = #{cri.search}
+		</if>
+		and po_bo_num = #{bo_num}
+		ORDER BY po_num DESC
+		LIMIT #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	<insert id="insertPost">
+		insert into
+		post(po_bo_num, po_title, po_content, po_me_id, po_date, po_pt_num)
+		values(#{post.po_bo_num}, #{post.po_title}, #{post.po_content}, #{post.po_me_id}, now(), #{post.po_pt_num})
+	</insert>
+	<select id="selectPost" resultType="team4.cafe.app.model.vo.PostVO">
+	SELECT 
+    	*, bo_name AS po_bo_name, me_name AS po_me_name
+	FROM
+   		post
+        	JOIN
+   		board ON bo_num = po_bo_num
+   			JOIN
+		member ON me_id = po_me_id
+    where po_num = #{po_num}
+	</select>
+	<delete id="deletePost">
+		delete from post where po_num = #{po_num}
+	</delete>
+	<update id="updateView">
+		update post
+		set
+			po_view = po_view + 1
+		where
+			po_num = #{po_num}
+	</update>
+	<update id="updatePost">
+		update post
+		set
+			po_bo_num = #{post.po_bo_num},
+			po_pt_num = #{post.po_pt_num},
+			po_title = #{post.po_title},
+			po_content = #{post.po_content},
+			po_date = #{post.po_date}
+		where
+			po_num = #{post.po_num}
+	</update>
+	<select id="selectBoard" resultType="team4.cafe.app.model.vo.PostVO">
 		select * from post where po_bo_num = #{bo_num}
+	</select>
+	<select id="selectBoardList" resultType="team4.cafe.app.model.vo.BoardVO">
+		select * from board
+	</select>
+	<select id="selectTotalCount" resultType="int">
+		SELECT count(*) 
+		FROM
+			post
+				JOIN
+		member ON me_id = po_me_id
+		<if test='cri.type=="all"'>
+			where po_title like concat('%', #{cri.search},'%') 
+				or po_me_id = #{cri.search}
+		</if>
+		<if test='cri.type=="title"'>
+			where po_title like concat('%', #{cri.search},'%') 
+		</if>
+		<if test='cri.type=="writer"'>
+			where po_me_id = #{cri.search}
+		</if>
+	</select>
+	<select id="selectPostType" resultType="team4.cafe.app.model.vo.PostTypeVO">
+		select * from post_type
 	</select>
 </mapper>
