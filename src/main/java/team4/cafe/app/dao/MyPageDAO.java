@@ -27,4 +27,10 @@ public interface MyPageDAO {
 	int selectTotalCountComment(@Param("cri")Criteria cri);
 
 	boolean updateMemberSecession(@Param("me_id")String me_id);
+
+	void updateMemberStop(@Param("user")MemberVO user);
+
+	void updateMemberFail(@Param("user")MemberVO user);
+
+	void updateMemberSuccess(@Param("user")MemberVO user);
 }

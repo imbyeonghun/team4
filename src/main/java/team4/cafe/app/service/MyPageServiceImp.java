@@ -101,4 +101,23 @@ public class MyPageServiceImp implements MyPageService {
 		}
 		return myPageDao.updateMemberSecession(me_id);
 	}
+
+	@Override
+	public void checkFail(MemberVO user) {
+		if(user == null) {
+			return;
+		}
+		myPageDao.updateMemberFail(user);
+		if(user.getMe_fail() == 5) {
+			myPageDao.updateMemberStop(user);
+		}
+	}
+
+	@Override
+	public void checkSuccess(MemberVO user) {
+		if(user == null) {
+			return;
+		}
+		myPageDao.updateMemberSuccess(user);
+	}
 }
