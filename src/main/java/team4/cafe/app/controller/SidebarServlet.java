@@ -38,8 +38,8 @@ public class SidebarServlet extends HttpServlet {
 
 		JSONObject jobj = new JSONObject();
 		
-		jobj.put("caList", categoryAllList);
-		jobj.put("boList", boardAllList);
+		jobj.put("caList", categoryList);
+		jobj.put("boList", boardList);
 		jobj.put("MTC", memberTotalCount);
 		jobj.put("PTC", postTotalCount);
 
