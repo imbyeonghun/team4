@@ -25,7 +25,9 @@ public interface MyPageService {
 
 	boolean updateMemberSecession(String me_id);
 
-	void checkFail(MemberVO user);
+	MemberVO getMember(MemberVO user);
 
-	void checkSuccess(MemberVO user);
+	void updateMemberStop(MemberVO user);
+
+	void updateFailCount(MemberVO user);
 }

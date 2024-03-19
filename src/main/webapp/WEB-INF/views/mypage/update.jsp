@@ -26,7 +26,7 @@
 				<form action="" method="post">
 					<div>
 						<label for="pw">비밀번호</label>
-						<input type="text" id="pw" name="pw" value="">
+						<input type=password id="pw" name="pw" value="">
 					</div>
 					<div>
 						<label for="name">닉네임</label>

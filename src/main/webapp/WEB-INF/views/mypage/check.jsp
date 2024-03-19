@@ -21,7 +21,7 @@
 				<input type="password" id="checkPw" name="checkPw" placeholder="비밀번호를 입력하세요">
 			</div>
 			<span>
-		    	아이디 또는 비밀번호가 잘못되었습니다. 
+		    	비밀번호가 잘못되었습니다.
 		    	로그인 실패 5회 시 계정이 정지됩니다. (현재 로그인 실패 횟수 : ${user.me_fail}회)
 		    </span>
 		    <button type="submit">본인확인</button>

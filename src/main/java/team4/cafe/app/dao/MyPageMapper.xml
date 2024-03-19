@@ -98,11 +98,11 @@ left join comment on bo_num = cm_bo_num group by bo_num;
 		update member set me_st_state = '기간정지' where me_id = #{user.me_id}
 	</update>
 	
-	<update id="updateMemberFail">
-		update member set me_fail = me_fail + 1 where me_id = #{user.me_id}
+	<update id="updateFailCount">
+		update member set me_fail = ${user.me_fail} where me_id = #{user.me_id}
 	</update>
 	
-	<update id="updateMemberSuccess">
-		update member set me_fail = 0 where me_id = #{user.me_id}
-	</update>
+	<select id="selectMember" resultType="team4.cafe.app.model.vo.MemberVO">
+		select * from member where me_id = #{user.me_id}
+	</select>
 </mapper>

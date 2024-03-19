@@ -116,7 +116,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$(".signupBox").submit(function() {
-$('.error').text("");
+				$('.error').text("");
 				
 				//아이디 : 빈 문자열 및 정규표현식 체크
 				let regexId = /^[a-zA-Z0-9]{8,20}$/; // /^\d+$/

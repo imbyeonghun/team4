@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Param;
 import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.CommentVO;
 import team4.cafe.app.model.vo.MemberVO;
-import team4.cafe.app.model.vo.PostVO;
 import team4.cafe.app.pagination.Criteria;
 
 public interface MyPageDAO {
@@ -30,7 +29,7 @@ public interface MyPageDAO {
 
 	void updateMemberStop(@Param("user")MemberVO user);
 
-	void updateMemberFail(@Param("user")MemberVO user);
+	MemberVO selectMember(@Param("user")MemberVO user);
 
-	void updateMemberSuccess(@Param("user")MemberVO user);
+	void updateFailCount(@Param("user")MemberVO user);
 }

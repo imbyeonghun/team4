@@ -103,21 +103,26 @@ public class MyPageServiceImp implements MyPageService {
 	}
 
 	@Override
-	public void checkFail(MemberVO user) {
+	public MemberVO getMember(MemberVO user) {
 		if(user == null) {
-			return;
+			return null;
 		}
-		myPageDao.updateMemberFail(user);
-		if(user.getMe_fail() == 5) {
-			myPageDao.updateMemberStop(user);
-		}
+		return myPageDao.selectMember(user);
 	}
 
 	@Override
-	public void checkSuccess(MemberVO user) {
+	public void updateMemberStop(MemberVO user) {
 		if(user == null) {
 			return;
 		}
-		myPageDao.updateMemberSuccess(user);
+		myPageDao.updateMemberStop(user);
+	}
+
+	@Override
+	public void updateFailCount(MemberVO user) {
+		if(user == null) {
+			return;
+		}
+		myPageDao.updateFailCount(user);
 	}
 }
