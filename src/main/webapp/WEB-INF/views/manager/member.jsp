@@ -115,7 +115,6 @@ function printMember(cri){
 				$('.main').html(str);
 				return;
 			}
-			
 			for(member of data.list){
 				str+=
 				`
@@ -124,7 +123,7 @@ function printMember(cri){
 						<li>등급:<span>\${member.me_gr_name}</span></li>
 						<li>아이디<span>\${member.me_id}</span></li>
 						<li>닉네임<span>\${member.me_name}</span></li>
-						<li>가입일<span>\${member.me_date}</span></li>
+						<li>가입일<span>\${toStringFormatting(member.me_date)}</span></li>
 						<li>상태<span>\${member.me_st_state}</span></li>
 					</ul>
 				</div>
@@ -167,6 +166,21 @@ function printMember(cri){
 	});
 }
 
+function toStringFormatting(source){
+	  let replaced_source = source.replace('KST', '');
+      var  date = new Date(replaced_source);
+      const year = date.getFullYear();
+      const month = leftPad(date.getMonth() + 1);
+      const day = leftPad(date.getDate());
+      return [year, month, day].join('-');
+}
+
+function leftPad(value){
+	if (Number(value) >= 10) {
+		return value;
+	}
+	return "0" + value;
+}
 printMember(cri);
 </script>
 </body>
