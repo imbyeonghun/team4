@@ -13,7 +13,7 @@
 	.post-list {text-decoration: none; color: black;}
 	
 	.list-group{
-		width:170px;
+		width:170px; align-content: center;
 		
 	}
 	.post-list:hover{
@@ -34,12 +34,12 @@
 <body>
 
 	<div class="panel panel-info">
-	<!-- 
+
 		<div class="panel-heading">
-			<h3 class="panel-title">CAFE TITLE</h3>
+			<h3 class="panel-title"></h3>
 		</div>
 	
-	 -->
+
 		<!-- 메뉴목록 -->
 		<ul class="list-group">
 			<li class="list-group-item">
@@ -65,14 +65,14 @@
 			</c:if>
 			</li>
 		</ul>
-		<hr style="border:0; height:3px; background: black;" >
+		<hr style="border:0; height:3px; width:170px; background: black;" >
 		<!-- 카테고리 및 게시판 리스트 -->
 		<ul class="list-group">
 			<li class="list-group-item">
 				<a href="#" class ="post-list" > 전체 글 보기</a>
 			</li>
 		</ul>
-		<hr>
+		<hr style="border:0; height:1px; width:170px; background: black;">
 		<!-- 카테고리와 게시판을 출력하는 박스 -->
 		<ul class="list-group listCaBo">
 		
