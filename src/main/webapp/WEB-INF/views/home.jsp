@@ -16,9 +16,9 @@
 		
 	}
 	#wrap{
-		width:100%;
+		width:1200px;
 		position : relative;
-		min-height:100vh; 
+		min-height:100vh; margin: auto;
 	}
 	footer{
 		width: 100%;
@@ -30,9 +30,8 @@
 	section{
 		padding-bottom : 110px;	/*footer의  height와 동일*/
 	}
-	.container-fluid{
+	#wrap{
 		margin-top: 20px;
-
 	}
 </style>
 
@@ -100,7 +99,7 @@
 
 				<!-- 최신글 목록(최신글 10개) -->
 				<br>
-				<h3>최신글 목록</h3>
+				<h3 style="color: #7dafd4;">최신글 목록</h3>
 				<hr style="width : 700px">
 				<div class="">
 					
@@ -116,8 +115,10 @@
 	<!-- footer 영역 -->
 	<footer>
 	<br>
-		<hr style="border-width:1px 0 0 0; border-style:solid; border-color:#bbb;">
-		<a>footer 영역</a>
+	<hr style="border-width:1px 0 0 0; border-style:solid; border-color:#bbb;">
+	<a style="color: #7dafd4;">Team Project - Team4</a>
+	<br>
+	<a style="color: #7dafd4;">CAFE</a>
 	</footer>
 </div>
 </body>

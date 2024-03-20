@@ -27,6 +27,10 @@
 	}
 	.btnMenu{
 		display : block; height: 35px; width:140px; text-align: center;
+		border-color:#7dafd4; color:#7dafd4; 
+	}
+	.btnMenu:hover{
+		color: #e3f2fd; background-color: #7dafd4;
 	}
 </style>
 
@@ -41,20 +45,20 @@
 	
 
 		<!-- 메뉴목록 -->
-		<ul class="list-group">
-			<li class="list-group-item">
+		<ul class="list-group" >
+			<li class="list-group-item" style="background-color: #e3f2fd; color: #7dafd4;">
 			<br>
-			<p style="font-weight: bold; font-size:20px;">[ 카페정보 ]</p> 
+			<p style="font-weight: bold; font-size:20px; ">[ 카페정보 ]</p> 
 			<div class="cafe-info">
 				<p style="height:50%; float:left; font-weight: bold;" align="justify" >회원 수</p>
-				<p class="memberTotalCount" style="height:50%; float:right;" align="justify"">00명</p>
-				<p style="height:50%; float:left; font-weight: bold;" align="justify" font-weight: bold;>게시글 수</p>
-				<p class="postTotalCount" style="height:50%; float:right;" align="justify"">00개</p>
+				<p class="memberTotalCount" style="height:50%; float:right;" align="justify">00명</p>
+				<p style="height:50%; float:left; font-weight: bold; font-weight: bold;" align="justify" >게시글 수</p>
+				<p class="postTotalCount" style="height:50%; float:right;" align="justify">00개</p>
 			</div>
 			<c:if test="${user == null}">
 				<div class="btn-guest">
-					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/user/login'/>'">로그인</button>
-					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/user/signup'/>'">회원가입</button>
+					<button type="button" class="btn btn-outline-Light btnMenu" style=" font-weight: bold;" onClick="location.href='<c:url value='/user/login'/>'">로그인</button>
+					<button type="button" class="btn btn-outline-Light btnMenu"  style="font-weight: bold;"onClick="location.href='<c:url value='/user/signup'/>'">회원가입</button>
 				</div>
 			</c:if>
 			<c:if test="${user != null }">
