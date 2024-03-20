@@ -40,7 +40,6 @@ public class MemberListServlet extends HttpServlet {
 		Criteria cri = new Criteria(page, 5, type, search);
 		ArrayList<MemberVO> list=ms.getMemberList(cri);
 		int totalCount=ms.getMemberCount(cri);
-		
 		PageMaker pm=new PageMaker(page, cri, totalCount);
 		JSONObject jobj = new JSONObject();
 		ObjectMapper om=new ObjectMapper();

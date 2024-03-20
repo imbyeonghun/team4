@@ -11,8 +11,10 @@
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <style type="text/css">
 	.post-list {text-decoration: none; color: black;}
+	
 	.list-group{
 		width:170px;
+		
 	}
 	.post-list:hover{
 		text-decoration: underline;
@@ -32,11 +34,14 @@
 <body>
 
 	<div class="panel panel-info">
+	<!-- 
 		<div class="panel-heading">
-			<h3 class="panel-title">CAFE Title</h3>
+			<h3 class="panel-title">CAFE TITLE</h3>
 		</div>
+	
+	 -->
 		<!-- 메뉴목록 -->
-		<ul class="list-group ">
+		<ul class="list-group">
 			<li class="list-group-item">
 			<br>
 			<p style="font-weight: bold; font-size:20px;">[ 카페정보 ]</p> 
@@ -54,43 +59,26 @@
 			</c:if>
 			<c:if test="${user != null }">
 				<div class="btn-user">
-					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/'/>'">글쓰기</button>
-					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/'/>'">탈퇴하기</button>
+					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/mypage/myPageHome'/>'">개인정보</button>
+					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/user/logout'/>'">로그아웃</button>
 				</div>
 			</c:if>
 			</li>
 		</ul>
-		
-		
 		<hr style="border:0; height:3px; background: black;" >
 		<!-- 카테고리 및 게시판 리스트 -->
-		
 		<ul class="list-group">
 			<li class="list-group-item">
 				<a href="#" class ="post-list" > 전체 글 보기</a>
 			</li>
 		</ul>
 		<hr>
-		
 		<!-- 카테고리와 게시판을 출력하는 박스 -->
 		<ul class="list-group listCaBo">
-			<li class="list-group-item">
-			<!-- 카테고리명 -->
-				<hr>
-				<!-- 게시판명 -->
-				<p><a href="#" class ="board post-list"></a></p>
-
-			</li>
-		</ul>
 		
-		
-	</div>
-	
-	
-	
-	
-		
-	<!-- 카테고리와 게시판 출력 -->
+		</ul>	
+	</div>	
+<!-- 카테고리와 게시판 출력 -->
 	<script type="text/javascript">
 	$.ajax({
 		url : '<c:url value="/sidebar"/>',
@@ -100,7 +88,7 @@
 		},
 		success : function(data){
 			
-			
+			console.log("포스트 수 : "+data.PTC)
 			
 			//카페정보 출력
 			if(data.MTC){
@@ -122,10 +110,7 @@
 					if(category.co_num == board.bo_co_num){
 						boStr +=
 							`
-							<c:url var="url" value="/post/list">
-								<c:param name="num" value="\${board.bo_num}" />
-							</c:url>
-								<p><a href="${url}" class ="board post-list">\${board.bo_name}</a></p>
+								<p><a href="<c:url value="/post/list?bo_num=\${board.bo_num}"/>" class ="board post-list">\${board.bo_name}</a></p>
 							`;
 					}
 				}
@@ -136,7 +121,7 @@
 				if(boStr == ''){
 					boStr +=
 						`
-							<p><a class ="board post-list">하위 게시판이 없습니다.</a></p>
+							<p>하위 게시판이 없습니다.</p>
 						`;
 				}
 				

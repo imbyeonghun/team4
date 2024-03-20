@@ -18,6 +18,8 @@ public interface BoardService {
 	boolean updateCategory(CategoryVO category);
 
 	ArrayList<BoardVO> getBoardList(BoardCriteria cri);
+	
+	ArrayList<BoardVO> selectBoardList();
 
 	boolean insertBoard(BoardVO board);
 
@@ -34,4 +36,5 @@ public interface BoardService {
 	BoardVO getBoard(int bo_num);
 
 	int getAllBoardCount();
+
 }

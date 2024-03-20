@@ -7,23 +7,21 @@
 <meta charset="UTF-8">
 <title>맴버관리</title>
 <script src="//code.jquery.com/jquery-3.6.1.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<div class="header">
-	
-</div>
+  <div class="header">
+  	<jsp:include page = "/WEB-INF/views/header.jsp"/>
+  </div>
 <div class="container">
-	<div class="search">
+	<form class="search">
 		<select name="type" >
 			<option value="all" <c:if test='${cri.type == "all" }'>selected</c:if>>전체</option>
 			<option value="grand" <c:if test='${cri.type == "grand" }'>selected</c:if>>등급</option>
 			<option value="name" <c:if test='${cri.type == "name" }'>selected</c:if>>닉네임</option>
 		</select>
 		<input type="text"  placeholder="검색어" name="search" value="${cri.search }">
-		<button type="button" id="search">검색</button>
-	</div>
+		<button type="submit" id="search">검색</button>
+	</form>
 	<div class="main">
 	</div>
 	<div class="comment-pagination">
@@ -57,13 +55,12 @@ let cri={
 	search:null
 }
 
-$(document).on("click","#search",function(){
+$(document).on("submit","#search",function(){
 	cri.search=$("[name=search]").val();
 	cri.type=$("select").val();
 	if(cri.search==""){
 		cri.type=null;
 	}
-	printMember(cri);
 });
 
 $(document).on("click",".line",function(){
