@@ -15,7 +15,7 @@ public interface MyPageDAO {
 
 	int selectCountComment(@Param("user")MemberVO user);
 
-	boolean updateInfo(@Param("user")MemberVO updateUser);
+	boolean updateInfo(@Param("user")MemberVO user);
 
 	ArrayList<BoardVO> selectPostListByUser(@Param("user")MemberVO user, @Param("cri")Criteria cri);
 

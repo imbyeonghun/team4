@@ -29,7 +29,7 @@ public class MyPageUpdateServlet extends HttpServlet {
 		
 		// 입력받은 비밀번호,닉네임,이메일을 불러옴
 		String pw = request.getParameter("pw");
-		String name = request.getParameter("name");
+		String name = request.getParameter("nickName");
 		String email = request.getParameter("email");
 		
 		// pw가 없을때
@@ -46,10 +46,13 @@ public class MyPageUpdateServlet extends HttpServlet {
 		}
 		
 		// 로그인된 아이디와 해당 정보들을 가지는 객체를 생성
-		MemberVO updateUser = new MemberVO(user.getMe_id(), pw, email, name);
+		MemberVO newUser = new MemberVO(user.getMe_id(), pw, email, name);
 		
 		// 생성된 객체를 서비스에게 보내서 업데이트
-		if(myPageService.updateUserInfo(updateUser)) {
+		if(myPageService.updateUserInfo(newUser)) {
+			user.setMe_pw(pw);
+			user.setMe_email(email);
+			user.setMe_name(name);
 			request.setAttribute("msg", "정보를 수정했습니다");
 			request.setAttribute("url", "mypage/myPageHome");
 		}else {

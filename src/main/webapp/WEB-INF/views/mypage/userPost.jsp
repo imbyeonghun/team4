@@ -38,7 +38,10 @@
 							<tr>
 								<td>[${post.board.bo_name}]</td>
 								<td>
-									<a href="<c:url value="/"/>">${post.po_title}[${post.commentCount}]</a>
+									<c:url var="url" value="/post/detail">
+										<c:param name="num" value="${post.po_num}"/>
+									</c:url>
+									<a href="${url}">${post.po_title}[${post.commentCount}]</a>
 								</td>
 								<td>${post.po_date}</td>
 								<td>${post.po_view}</td>
