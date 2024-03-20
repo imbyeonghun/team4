@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>맴버관리</title>
 <script src="//code.jquery.com/jquery-3.6.1.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/manager.css">
 </head>
 <body>
   <div class="header">
@@ -23,6 +24,18 @@
 		<button type="submit" id="search">검색</button>
 	</form>
 	<div class="main">
+		<table class="table">
+			<thead class="table-secondary">
+				<tr>
+       				<th>Firstname</th>
+      				<th>Lastname</th>
+      				<th>Email</th>
+     			</tr>
+			</thead>
+			<tbody>
+			
+			</tbody>
+		</table>
 	</div>
 	<div class="comment-pagination">
 		<ul class="pagination justify-content-center">
@@ -118,8 +131,8 @@ function printMember(cri){
 			for(member of data.list){
 				str+=
 				`
-				<div class="line" data-name="\${member.me_id}">
-					<ul>
+				<div class="line mt-2" data-name="\${member.me_id}">
+					<ul class="left click">
 						<li>등급:<span>\${member.me_gr_name}</span></li>
 						<li>아이디<span>\${member.me_id}</span></li>
 						<li>닉네임<span>\${member.me_name}</span></li>
