@@ -8,21 +8,46 @@
 <title>게시글 목록</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<style type="text/css">
+
+	body{
+		margin:0;
+		padding:0;
+		
+	}
+	#wrap{
+		width:1100px;
+		position : relative;
+		min-height:100vh; margin: auto;
+		margin-top: 20px;
+	}
+	footer{
+		width: 100%;
+		height: 110px;
+		bottom: 0px;
+		position: absolute;
+		text-align: center;
+	}
+	section{
+		padding-bottom : 110px;	/*footer의  height와 동일*/
+	}
+</style>
+
 </head>
 <body>
 <jsp:include page = "/WEB-INF/views/header.jsp"/>
 
-<div class="container-fluid">
+<div class="container-fluid" id='wrap'>
+	<section>
 	<div class="row">
 		<!-- 사이드 바 영역 -->
 		<div class="col-md-3">
-			<h1>첫번째 열의 제목</h1>
-			<p>첫번째 열의 본문</p>
 			<jsp:include page = "/WEB-INF/views/sidebar.jsp"/>
 		</div>
 		<!-- 9단길이의 첫번째 열 -->
 		<div class="col-md-9">
-			<div class="col-md-9">
+			
 			<div class="container">
 				<h1>${board.po_bo_name}</h1>
 				<p>목록</p>
@@ -103,11 +128,20 @@
 				</ul>
 				<a href="<c:url value="/post/insert?num=${bo_num}"/>" class="btn btn-outline-danger">글 등록</a>
 			</div>
-		</div>
+
 
 		</div>
 	
 	</div>
+	</section>
+	<!-- footer 영역 -->
+	<footer>
+	<br>
+	<hr style="border-width:1px 0 0 0; border-style:solid; border-color:#bbb;">
+	<a style="color: #7dafd4;">Team Project - Team4</a>
+	<br>
+	<a style="color: #7dafd4;">CAFE</a>
+	</footer>
 </div>
 </body>
 </html>

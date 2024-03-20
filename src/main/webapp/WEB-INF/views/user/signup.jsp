@@ -16,16 +16,17 @@
 <style type="text/css">
 
 	html, body {
-	  height: 100%;
+	  height: 100%; 
 	  background: #ffffff;
 	}
 
 	#container {
-	  display: flex;
+
+	   display: flex; 
 	  flex-direction: row;
 	  justify-content: center;
 	  align-items: center;
-	  height: 100%;
+	  height: 70%;
 	}
 	
 	#loginBox {
