@@ -16,9 +16,10 @@
 		
 	}
 	#wrap{
-		width:1200px;
+		width:1100px;
 		position : relative;
 		min-height:100vh; margin: auto;
+		margin-top: 20px;
 	}
 	footer{
 		width: 100%;
@@ -30,9 +31,7 @@
 	section{
 		padding-bottom : 110px;	/*footer의  height와 동일*/
 	}
-	#wrap{
-		margin-top: 20px;
-	}
+
 </style>
 
 </head>
