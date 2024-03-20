@@ -91,4 +91,29 @@
 	<select id="selectPostType" resultType="team4.cafe.app.model.vo.PostTypeVO">
 		select * from post_type
 	</select>
+	<!-- 모든 postList 가져오는 매퍼 -->
+	<select id="selectAllPost" resultType="team4.cafe.app.model.vo.PostVO">
+		SELECT 
+    	*, me_name AS po_me_name
+	FROM
+   		post
+   			JOIN
+		member ON me_id = po_me_id
+		<if test='cri.type=="all"'>
+			where po_title like concat('%', #{cri.search},'%') 
+				or po_me_id = #{cri.search}
+		</if>
+		<if test='cri.type=="title"'>
+			where po_title like concat('%', #{cri.search},'%') 
+		</if>
+		<if test='cri.type=="writer"'>
+			where po_me_id = #{cri.search}
+		</if>
+		ORDER BY po_num DESC
+		LIMIT #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	<!-- 모든 게시글 수 -->
+	<select id="selectAllPostCount">
+		SELECT count(*) FROM post
+	</select>
 </mapper>
