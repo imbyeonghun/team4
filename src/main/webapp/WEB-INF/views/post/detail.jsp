@@ -24,122 +24,236 @@
 			<div class="col-md-9">
 				<div class="container">
 					<div class="container">
-						<h1>${post.po_bo_name}</h1>
-						<div class="mb-3 mt-3">
-				   			<label for="title" class="form-label">제목</label>
-				   			<input type="text" class="form-control" readonly="readonly" value="${post.po_title}">
-				 		</div>
-				 		<div class="mb-3 mt-3">
-				   			<label for="writer" class="form-label">작성자</label>
-				   			<input type="text" class="form-control" readonly="readonly" value="${post.po_me_name}" >
-				 		</div>
-				 		<div class="mb-3 mt-3">
-				   			<label for="writer" class="form-label">조회수</label>
-				   			<input type="text" class="form-control" readonly="readonly" value="${post.po_view}" >
-				 		</div>
-				 		<div class="mb-3 mt-3">
-				   			<label for="content" class="form-label">내용</label>
-				   			<textarea rows="10" class="form-control" readonly="readonly">${post.po_content}</textarea>
-				 		</div>
-				 		
-						<div class="container-comment mt-3 mb-3">
-							<h2>댓글</h2>
-							<div class="box-comment-list">
-								<div class="box-comment row">
-									<div class="col-3">아이디</div>
-									<div class="col-3">내용</div>
+					<h1>${post.po_bo_name}</h1>
+					<div class="mb-3 mt-3">
+			   			<label for="title" class="form-label">제목</label>
+			   			<input type="text" class="form-control" readonly="readonly" value="${post.po_title}">
+			 		</div>
+			 		<div class="mb-3 mt-3">
+			   			<label for="writer" class="form-label">작성자</label>
+			   			<input type="text" class="form-control" readonly="readonly" value="${post.po_me_name}" >
+			 		</div>
+			 		<div class="mb-3 mt-3">
+			   			<label for="writer" class="form-label">조회수</label>
+			   			<input type="text" class="form-control" readonly="readonly" value="${post.po_view}" >
+			 		</div>
+			 		<div class="mb-3 mt-3">
+			   			<label for="content" class="form-label">내용</label>
+			   			<textarea rows="10" class="form-control" readonly="readonly">${post.po_content}</textarea>
+			 		</div>
+					<h2>댓글</h2>
+					<div class="box-comment-list">
+						<!-- 댓글 보여주는 박스 -->
+						<div class="box-comment input-group">
+								<div class="col-3">아이디</div>
+								<div class="col-3">
+									<div>댓글 내용</div>
+									<div class="btn-group">
+										<button class="btn btn-outline-warning btn-comment-delete">수정</button>
+										<button class="btn btn-outline-danger">삭제</button>
+									</div>
 								</div>
 							</div>
-							<div class="box-pagination">
-								<ul class="pagination justify-content-center"></ul>
-							</div>
-							<div class="box-comment-insert">
-							
-							</div>
-							<hr>
 						</div>
+						<!-- 댓글 페이지네이션 -->
+						<div class="box-comment-pagination">
 						
-						<a href="<c:url value="/post/list?bo_num=${post.po_bo_num}"/>" class="btn btn-outline-primary">목록으로</a>
-						<c:if test="${post.po_me_id == user.me_id}">
-							<a href="<c:url value="/post/delete?num=${post.po_num}"/>"class="btn btn-outline-danger">삭제</a>
-							<c:url value="/post/update" var="url">
-								<c:param name="num">${post.po_num}</c:param>
-								<c:param name="bo_num">${post.po_bo_num}</c:param>
-							</c:url>
-							<a href="${url}" class="btn btn-outline-danger">수정</a>
-						</c:if>
+						</div>
+						<div class="comment-input-box">
+							<textarea class="form-control textarea-comment"></textarea>
+							<button class="btn btn-outline-success btn-comment-insert">댓글 등록</button>
+						</div>
+						<hr>
 					</div>
+					
+					<a href="<c:url value="/post/list?bo_num=${post.po_bo_num}"/>" class="btn btn-outline-primary">목록으로</a>
+					<c:if test="${post.po_me_id == user.me_id}">
+						<a href="<c:url value="/post/delete?num=${post.po_num}"/>"class="btn btn-outline-danger">삭제</a>
+						<c:url value="/post/update" var="url">
+							<c:param name="num">${post.po_num}</c:param>
+							<c:param name="bo_num">${post.po_bo_num}</c:param>
+						</c:url>
+						<a href="${url}" class="btn btn-outline-danger">수정</a>
+					</c:if>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
-	let cri = {
-			page : 1,
-			poNum : '${post.po_num}'
+let cri = {
+		page : 1,
+		poNum : '${post.po_num}'
+}
+
+displayCommentAndPagination(cri);
+
+function displayCommentAndPagination(cri){
+	$.ajax({
+		url : '<c:url value="/comment/list"/>',
+		method : 'get',
+		data : cri,
+		success : function(data){
+			console.log(data)
+			displayComment(data.coList);
+		}
+	});
+}
+function displayComment(commentList) {
+	let str = '';
+	if(commentList.length == 0){
+		$(".box-comment-list").html('<h4>등록된 댓글이 없습니다.</h4>')
+		return;
 	}
 	
-	displayCommentAndPagination(cri);
+	for(comment of commentList){
+		let btns = '';
+		if('${user.me_id}' == comment.cm_me_id){
+			btns +=
+			`
+			<div class="btn-comment-group">
+				<button class="btn btn-outline-warning btn-comment-update" data-num="\${comment.cm_num}">수정</button>
+				<button class="btn btn-outline-danger btn-comment-delete" data-num="\${comment.cm_num}">삭제</button>
+			</div>
+			`;
+		}
+		str +=
+		`
+		<div class="box-comment input-group">
+			<div class="col-3">\${comment.cm_me_id}</div>
+			<div class="col-12 cm_content">
+				<span>\${comment.cm_content}</span>
+			</div>
+			\${btns}
+		</div>
+		`;
+	}
+	$(".input-group").html(str);
+}
+</script>
+<script type="text/javascript">
+$(".btn-comment-insert").click(function(){
+	if(!checkLogin()){
+		return;
+	}
+	let content = $(".textarea-comment").val();
+	let po_num = '${post.po_num}'
+
+	/*
+	if(comment.cm_content.length == 0){
+		alert('댓글 내용을 작성하세요.');
+		return;
+	}
+		*/
 	
-	function displayCommentAndPagination(cri){
-		$.ajax({
-			async : true,
-			url : '<c:url value="/comment/list"/>',
-			method : "get", //원하는 방식 선택
-			data : cri,
-			success : function(data){
-				displayComment(data.coList);
-				displayCommentPagination(JSON.parse(data.pm));
+	$.ajax({
+		url : '<c:url value="/comment/insert"/>',
+		method : 'post',
+		data : {
+			content, //content : content
+			po_num //num : num
+		},
+		success : function(data){
+			if(data == "ok"){
+				alert("댓글을 등록했습니다.");
+				cri.page = 1;
+				getCommentList(cri);
+				$(".comment-content").val("");
+			}else{
+				alert("댓글을 등록하지 못했습니다.");
 			}
-		});
-	}
-	
-	function displayComment(coList){
-		let str = '';
-		if(coList.length == 0){
-			$(".box-comment-list").html('<h3>등록된 댓글이 없습니다.</h3>')
-			return;
+		}, 
+		error : function(a, b, c){
+			
 		}
+	});
+});
+
+function checkLogin(){
+	if('${user.me_id}' != ''){
+		return true;
+	}
+	if(confirm("로그인이 필요한 기능입니다. \n로그인 페이지로 이동하겠습니까?")){
+		location.href = '<c:url value="/user/login"/>';
+	}
+	return false;
+}
+</script>
+<script type="text/javascript">
+$(document).on("click",".btn-comment-delete", function(){
+	
+	let num = $(this).data("num");
+	
+	$.ajax({
+		url: '<c:url value="/comment/delete"/>',
+		method : 'post',
+		data : {
+			num
+		},
+		success : function(data){
+			console.log(data);
+			if(data == 'ok'){
+				alert("댓글을 삭제했습니다.");
+				getCommentList(cri);
+			}else{
+				alert("댓글을 삭제하지 못했습니다.")
+			}
+		},
+		error : function(a, b, c){
+			
+		}
+	});
+});
+</script>
+<script type="text/javascript">
+$(document).on("click",".btn-comment-update", function(){
+	initComment();
+	$(this).parents(".input-group").find(".cm_content").hide();
+	let comment = $(this).parents(".input-group").find(".cm_content").text();
+	let textarea =
+		`
+		<textarea class="form-control com-input">\${comment}</textarea>
+		`
+	$(this).parents(".input-group").find(".cm_content").after(textarea);
 		
-		for(item of coList){
-			str += `
-			<div class="box-comment row">
-				<div class="col-3">\${item.cm_me_id}</div>
-				<div class="col-3">\${item.cm_content}</div>
-			</div>`;
+	$(this).parent().hide();
+	let num = $(this).data("num");
+	let btn =
+		`
+		<button class="btn btn-outline-success btn-complete" data-num="\${num}">수정완료</button>
+		`
+	$(this).parent().after(btn);
+});
+function initComment() {
+	$(".cm_content").show();
+	$(".btn-comment-group").show();
+	$(".com-input").remove();
+	$(".btn-complete").remove();
+}
+
+$(document).on("click","btn-complete", function(){
+	let num = $(this).data("num");
+	let content = $(".com-input").val();
+	$.ajax({
+		url : '<c:url value="/comment/update"/>',
+		method : 'post',
+		data : {
+			num, //num : num,
+			content //content : content
+		},
+		success : function(data){
+			if(data == "ok"){
+				alert("댓글을 수정했습니다.");
+				getCommentList(cri);
+			}else{
+				alert("댓글을 수정하지 못했습니다.");
+			}
+		}, 
+		error : function(xhr, status, error){
+			
 		}
-		$(".box-comment-list").html(str);
-	}
-	
-	function displayCommentPagination(pm){
-		let str = '';
-		if(pm.prev){
-			str += 
-			`
-			<li class="page-item">
-				<a class="page-link" href="javascript:void(0);" data-page="\${pm.startPage - 1}">이전</a>
-			</li>
-			`;
-		}
-		if(let i = pm.startPage; i<=pm.endPage; i++){
-			str += 
-			`
-			<li class="page-item \${active}">
-				<a class="page-link" href="javascript:void(0);" data-page="\${i}">\${i}</a>
-			</li>
-			`
-		}
-		if(pm.next){
-			str += 
-			`
-			<li class="page-item">
-				<a class="page-link" href="javascript:void(0);" data-page="\${pm.endPage + 1}">다음</a>
-			</li>
-			`;
-		}
-		$('.box-pagination>ul').html(str);
-	}
+	});
+})
 </script>
 </body>
 </html>

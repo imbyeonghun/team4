@@ -36,5 +36,11 @@ public interface PostDAO {
 
 	int selectTotalCommentCount(@Param("cri") Criteria cri);
 
+	boolean insertComment(@Param("co") CommentVO comment);
+	//매퍼에 insert 추가
+
+	CommentVO selectComment(@Param("cm_num") int num);
+
+	boolean deleteComment(@Param("cm_num") int num);
 
 }

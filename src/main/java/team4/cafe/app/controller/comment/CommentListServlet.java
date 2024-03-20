@@ -1,4 +1,4 @@
-package team4.cafe.app.controller.post;
+package team4.cafe.app.controller.comment;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import team4.cafe.app.model.vo.CommentVO;
+import team4.cafe.app.pagination.CommentCriteria;
 import team4.cafe.app.pagination.Criteria;
 import team4.cafe.app.pagination.PageMaker;
 import team4.cafe.app.service.PostService;
@@ -33,11 +34,10 @@ public class CommentListServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Criteria cri = new Criteria(page, 2, "", ""+po_num);
+		CommentCriteria cri = new CommentCriteria(page, 2, po_num);
 		ArrayList<CommentVO> coList = postService.getCommentList(cri);
 		int totalCount = postService.getTotalCommentCount(cri);
 		PageMaker pm = new PageMaker(3, cri, totalCount);
-		System.out.println(pm);
 		JSONObject jobj = new JSONObject();
 		
 		ObjectMapper om = new ObjectMapper();

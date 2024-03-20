@@ -42,6 +42,7 @@
 	          	<ul class="dropdown-menu">
 	            	<li><a class="dropdown-item" href="<c:url value="/manager/category"/>">카테고리 관리</a></li>
 	           		<li><a class="dropdown-item" href="<c:url value="/manager/board"/>">게시판 관리</a></li>
+	           		<li><a class="dropdown-item" href="<c:url value="/manager/postCategory"/>">말머리 관리</a></li>
 	            	<li><a class="dropdown-item" href="<c:url value="/manager/member"/>">회원 관리</a></li>
 	          	</ul>
 	        </li>

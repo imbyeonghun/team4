@@ -118,14 +118,40 @@ public class PostServiceImp implements PostService{
 	@Override
 	public ArrayList<CommentVO> getCommentList(Criteria cri) {
 		if(cri == null) {
-			return null;
+			cri = new Criteria(1,2);
 		}
 		return postDao.selectCommentList(cri);
 	}
 
 	@Override
 	public int getTotalCommentCount(Criteria cri) {
+		if(cri == null) {
+			return 0;
+		}
 		return postDao.selectTotalCommentCount(cri);
+	}
+
+	@Override
+	public boolean insertComment(CommentVO comment) {
+		if( !checkString(comment.getCm_content()) ||
+			!checkString(comment.getCm_content())){
+			return false;
+		}
+		return postDao.insertComment(comment);
+	}
+
+	@Override
+	public boolean deleteComment(int num, MemberVO user) {
+		if(user == null) {
+			return false;
+		}
+		CommentVO comment = postDao.selectComment(num);
+		if( comment == null || 
+			!comment.getCm_me_id().equals(user.getMe_id())){
+				return false;
+		}
+		
+		return postDao.deleteComment(num);
 	}
 
 }

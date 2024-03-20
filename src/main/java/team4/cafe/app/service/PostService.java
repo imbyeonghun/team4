@@ -35,6 +35,8 @@ public interface PostService {
 
 	int getTotalCommentCount(Criteria cri);
 
+	boolean insertComment(CommentVO comment);
 
+	boolean deleteComment(int num, MemberVO user);
 
 }
