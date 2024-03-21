@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.CategoryVO;
+import team4.cafe.app.model.vo.GradeVO;
 import team4.cafe.app.model.vo.MemberVO;
 import team4.cafe.app.service.BoardService;
 import team4.cafe.app.service.BoardServiceImp;
@@ -23,7 +24,9 @@ public class BoardMainServlet extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<CategoryVO> categoryList=bs.selectCategoryList();
+		ArrayList<GradeVO> gradeList=bs.selectGradeList();
 		request.setAttribute("categoryList", categoryList);
+		request.setAttribute("gradeList", gradeList);
 		request.getRequestDispatcher("/WEB-INF/views/manager/board.jsp").forward(request, response);
 	}
 	

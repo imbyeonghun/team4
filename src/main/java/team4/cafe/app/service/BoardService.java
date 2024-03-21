@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.CategoryVO;
+import team4.cafe.app.model.vo.GradeVO;
 import team4.cafe.app.pagination.BoardCriteria;
 import team4.cafe.app.pagination.Criteria;
 
@@ -36,5 +37,7 @@ public interface BoardService {
 	BoardVO getBoard(int bo_num);
 
 	int getAllBoardCount();
+
+	ArrayList<GradeVO> selectGradeList();
 
 }
