@@ -31,7 +31,19 @@
 	  	class="col-3 btn btn-outline-secondary">게시판 등록</button>
     </div> 
     <div class="main mt-3 pb-5">
-      	
+      	<table class="table">
+			<thead class="table-secondary">
+				<tr>
+       				<th class="w-30">게시판</th>
+      				<th class="w-30">제한 등급</th>
+      				<th class="w-auto"></th>
+      				<th class="w-auto"></th>
+     			</tr>
+			</thead>
+			<tbody>
+		
+			</tbody>
+		</table>
     </div>
     <div class="comment-pagination mt-3">
 		<ul class="pagination justify-content-center">
@@ -41,8 +53,15 @@
   </div>
   <div class="update-box w-75">
     <form  method="post" id="updateBoard" class="input-group">
-      <label for="update" class="w-25 ">게시판 수정</label>
-      <input type="text" placeholder="게시판 이름" name="update" class="form-control">
+      <label for="update" class="p-2 me-3">게시판 수정</label>
+      <select name="grade" id="grade" class="form-control w-30">
+    		<option value="null">등급 선택</option>
+      		<c:forEach items="${gradeList}" var="grade">
+	        	<option value="${grade.gr_name}" 
+	        	>${grade.gr_name}</option> 
+	        </c:forEach>
+	   </select>
+      <input type="text" placeholder="게시판 이름" name="update" class="form-control w-auto">
       <button type="submit" class="btn btn-outline-secondary">수정</button>
     </form>
     <button type="button" class="btn-close"></button>
@@ -50,9 +69,8 @@
 <script type="text/javascript">
 let cri={
 	page:1,
-	coNum:0
+	coNum:0,
 }
-
 $(document).on("click","#btn-update", function(){
   let num=$(this).data('num');
   $("#updateBoard").attr("action",`<c:url value="/manager/board/update?num=\${num}" />`);
@@ -63,11 +81,9 @@ $(".btn-close").click(function(){
 	 $(".update-box").hide();
 });
 
-
 //카테고리 선택후 게시판 관리 기능
 $("select[name=category]").change(function(){
 	cri.coNum=$(this).val();  
-	console.log(cri);
     printBoard(cri);
  });
   
@@ -102,10 +118,6 @@ $(document).on("click","#insertBoard", function(){
 
 //게시판 삭제
 $(document).on("click","#btn-delete", function(){
-	if(cri.coNum==0){
-		alert("카테고리를 선택해주세요");
-		return;
-	}
 	let num = $(this).data("num");
 	$.ajax({
 		url : '<c:url value="/manager/board/delete" />',
@@ -139,18 +151,17 @@ function printBoard(cri){
 				for(board of data.boardList){
 					str+=
 					`
-					<div class="line mt-2">
-		       			<div class="bo-name left">\${board.bo_name}</div>
-		        		<div class="right">
-		          			<div data-num="\${board.bo_num}" id="btn-update"
-		          				class="click left">수정</div>
-		         			<div data-num="\${board.bo_num}" id="btn-delete"
-		         				class="click right">삭제</div>
-		        		</div>
-		      		</div>
+					<tr class="line mt-2">
+		       			<td>\${board.bo_name}</td>
+		       			<td>\${board.bo_gr_name}</td>
+		        		<td data-num="\${board.bo_num}" id="btn-update"
+	          				class="click ">수정</td>
+	         			<td data-num="\${board.bo_num}" id="btn-delete"
+	         				class="click">삭제</td>		
+		      		</tr>
 					`;
 				}
-				$('.main').html(str);
+				$('.main>table>tbody').html(str);
 				let pm = JSON.parse(data.pm);
 				let pmStr = "";
 				//이전 버튼 활성화 여부

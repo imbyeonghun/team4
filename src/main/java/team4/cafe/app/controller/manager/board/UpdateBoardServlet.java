@@ -18,13 +18,16 @@ public class UpdateBoardServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int num=0;
+		String gr_name=null;
 		try {
 			num=Integer.parseInt(request.getParameter("num"));
+			gr_name=request.getParameter("grade");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		String bo_name=request.getParameter("update");
-		BoardVO board=new BoardVO(bo_name, num);
+		BoardVO board=new BoardVO(num,bo_name,gr_name);
+		System.out.println(board);
 		boolean res=bs.updateBoard(board);
 		if(res) {
 			request.setAttribute("msg","수정 완료");

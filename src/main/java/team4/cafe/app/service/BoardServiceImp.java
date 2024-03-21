@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import team4.cafe.app.dao.BoardDAO;
 import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.CategoryVO;
+import team4.cafe.app.model.vo.GradeVO;
 import team4.cafe.app.pagination.BoardCriteria;
 import team4.cafe.app.pagination.Criteria;
 
@@ -105,7 +106,13 @@ public class BoardServiceImp implements BoardService {
 	//게시판 수정
 	@Override
 	public boolean updateBoard(BoardVO board) {
-		if(board==null||checked(board.getBo_name())) {
+		if(board==null||board.getBo_num()==0) {
+			return false;
+		}
+		if(checked(board.getBo_name())) {
+			board.setBo_name(null);
+		}
+		if(checked(board.getBo_gr_name())) {
 			return false;
 		}
 		return boardDao.updateBoard(board);
@@ -150,6 +157,11 @@ public class BoardServiceImp implements BoardService {
 	@Override
 	public int getAllBoardCount() {
 		return boardDao.getAllBoardCount();
+	}
+
+	@Override
+	public ArrayList<GradeVO> selectGradeList() {
+		return boardDao.selectGradeList();
 	}
 
 }

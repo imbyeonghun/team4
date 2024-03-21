@@ -34,8 +34,6 @@ public class BoardListServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(page);
-		System.out.println(coNum);
 		BoardCriteria cri=new BoardCriteria(page, 5, coNum);
 		ArrayList<BoardVO> boardList=bs.getBoardList(cri);
 		int totalCount=bs.getBoardCount(cri);
