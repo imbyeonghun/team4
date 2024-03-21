@@ -185,29 +185,28 @@ $(".btn-comment-insert").click(function(){
 	if(!checkLogin()){
 		return;
 	}
+	
 	let content = $(".textarea-comment").val();
 	let po_num = '${post.po_num}'
-
-	/*
+	
 	if(comment.cm_content.length == 0){
 		alert('댓글 내용을 작성하세요.');
 		return;
 	}
-		*/
 	
 	$.ajax({
 		url : '<c:url value="/comment/insert"/>',
 		method : 'post',
 		data : {
-			content, //content : content
-			po_num //num : num
+			content,
+			po_num
 		},
 		success : function(data){
 			if(data == "ok"){
 				alert("댓글을 등록했습니다.");
 				cri.page = 1;
-				getCommentList(cri);
-				$(".comment-content").val("");
+				displayCommentAndPagination(cri);
+				$(".textarea-comment").val("");
 			}else{
 				alert("댓글을 등록하지 못했습니다.");
 			}
@@ -245,7 +244,7 @@ $(document).on("click",".btn-comment-delete", function(){
 			console.log(data);
 			if(data == 'ok'){
 				alert("댓글을 삭제했습니다.");
-				getCommentList(cri);
+				displayCommentAndPagination(cri);
 			}else{
 				alert("댓글을 삭제하지 못했습니다.")
 			}
