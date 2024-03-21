@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.MemberVO;
@@ -16,6 +17,7 @@ import team4.cafe.app.model.vo.PostTypeVO;
 import team4.cafe.app.model.vo.PostVO;
 import team4.cafe.app.service.BoardService;
 import team4.cafe.app.service.BoardServiceImp;
+import team4.cafe.app.service.MemberService;
 import team4.cafe.app.service.MyPageService;
 import team4.cafe.app.service.MyPageServiceImp;
 import team4.cafe.app.service.PostService;
@@ -81,20 +83,33 @@ public class PostInsertServlet extends HttpServlet {
 		
 		boolean res = postService.insertPost(post);
 		String str ="";
-		if(myPageService.getPostCount(user)>=10 && myPageService.getCommentCount(user)>=10) {
-			str += "등급이 ";
+		if(myPageService.getPostCount(user)>=10) {
+			str += "등급이 Level2로 올랐습니다.";
 			//레벨셋해서
-			//
 			//유저 등급 을 레벨2로
-		}else if(myPageService.getPostCount(user)>=20 && myPageService.getCommentCount(user)>=20) {
+			user.setMe_gr_name("Level2");
+			//DB에 저장
+			myPageService.updateUserInfo(user);
+			//세션에 저장
+			HttpSession session =  request.getSession();
+			session.setAttribute("user", user);
+		}else if(myPageService.getPostCount(user)>=20) {
+			str += "등급이 Level3로 올랐습니다.";
 			//유저 등급 3으로 
+			user.setMe_gr_name("Level3");
+			//DB에 저장
+			myPageService.updateUserGrade(user);
+			//세션에 저장
+			HttpSession session =  request.getSession();
+			session.setAttribute("user", user);
 		}
 		
 		if(res) {
-			str +=  "게시글을 등록했습니다.";
-			request.setAttribute("msg", "게시글을 등록했습니다.");
+			str +=  "\\n게시글을 등록했습니다.";
+			request.setAttribute("msg", str);
 		}else {
-			request.setAttribute("msg", "게시글을 등록하지 못했습니다.");
+			str +=  "\\n게시글을 등록하지 못했습니다.";
+			request.setAttribute("msg", str);
 		}
 		request.setAttribute("url", "post/list?bo_num="+bo_num);
 		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
