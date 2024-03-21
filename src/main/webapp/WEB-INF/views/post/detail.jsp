@@ -11,7 +11,7 @@
 </head>
 <body>
 <jsp:include page = "/WEB-INF/views/header.jsp"/>
-<div class="container-fluid">
+<div class="container-fluid"></div>
 	<div class="row">
 		<!-- 사이드 바 영역 -->
 		<div class="col-md-3">
@@ -44,7 +44,8 @@
 					<h2>댓글</h2>
 					<div class="box-comment-list">
 						<!-- 댓글 보여주는 박스 -->
-						<div class="box-comment input-group">
+						<div class="comment-list">
+							<div class="box-comment input-group">
 								<div class="col-3">아이디</div>
 								<div class="col-3">
 									<div>댓글 내용</div>
@@ -134,14 +135,12 @@ function displayComment(commentList) {
 		`
 		<div class="box-comment input-group">
 			<div class="col-3">\${comment.cm_me_id}</div>
-			<div class="col-12 cm_content">
-				<span>\${comment.cm_content}</span>
-			</div>
+			<div class="col-3 cm_content"><span>\${comment.cm_content}</span></div>
 			\${btns}
 		</div>
 		`;
 	}
-	$(".input-group").html(str);
+	$(".comment-list").html(str);
 }
 function displayCommentPagination(pm){
 	let pmStr = "";
@@ -186,29 +185,28 @@ $(".btn-comment-insert").click(function(){
 	if(!checkLogin()){
 		return;
 	}
+	
 	let content = $(".textarea-comment").val();
 	let po_num = '${post.po_num}'
-
-	/*
+	
 	if(comment.cm_content.length == 0){
 		alert('댓글 내용을 작성하세요.');
 		return;
 	}
-		*/
 	
 	$.ajax({
 		url : '<c:url value="/comment/insert"/>',
 		method : 'post',
 		data : {
-			content, //content : content
-			po_num //num : num
+			content,
+			po_num
 		},
 		success : function(data){
 			if(data == "ok"){
 				alert("댓글을 등록했습니다.");
 				cri.page = 1;
-				getCommentList(cri);
-				$(".comment-content").val("");
+				displayCommentAndPagination(cri);
+				$(".textarea-comment").val("");
 			}else{
 				alert("댓글을 등록하지 못했습니다.");
 			}
@@ -246,7 +244,7 @@ $(document).on("click",".btn-comment-delete", function(){
 			console.log(data);
 			if(data == 'ok'){
 				alert("댓글을 삭제했습니다.");
-				getCommentList(cri);
+				displayCommentAndPagination(cri);
 			}else{
 				alert("댓글을 삭제하지 못했습니다.")
 			}
