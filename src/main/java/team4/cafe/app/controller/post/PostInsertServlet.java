@@ -56,6 +56,13 @@ public class PostInsertServlet extends HttpServlet {
 			bo_num = 0;
 			pt_num = 0;
 		}
+		//bo_num으로 board 정보를 불러오기
+		BoardVO board = boardService.getBoard(bo_num);
+		//만약 게시판 등급이 유저 등급보다 낮거나 같지 않으면 글을 등록할 수 없다는 메세지 띄운 후 목록페이지 유지
+//		if(board.getBo_gr_name)
+			//request.setAttribute("url", "post/list?bo_num="+bo_num);
+//			request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
+		
 		//입력한 제목 받아온다.
 		String title = request.getParameter("title");
 		//입력한 내용 받아온다.
@@ -65,8 +72,8 @@ public class PostInsertServlet extends HttpServlet {
 		//작성시간 받아온다
 		Date today = new Date();
 		
-		
 		PostVO post = new PostVO(bo_num, pt_num, title, writer, content, today);
+		
 		boolean res = postService.insertPost(post);
 		
 		if(res) {
