@@ -98,7 +98,7 @@
 		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<select id="selectTotalCommentCount" resultType="int">
-		select count(*) from comment where cm_po_num = #{cri.search}
+		select count(*) from comment where cm_po_num = #{cri.poNum}
 	</select>
 	<insert id="insertComment">
 		insert into comment(cm_po_num, cm_me_id, cm_content, cm_date)

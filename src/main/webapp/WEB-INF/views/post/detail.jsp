@@ -57,7 +57,17 @@
 						</div>
 						<!-- 댓글 페이지네이션 -->
 						<div class="box-comment-pagination">
-						
+							<ul class="pagination justify-content-center">
+								<li class="page-item">
+									<a class="page-link" href="javascript:void(0);">이전</a>
+								</li>
+								<li class="page-item active">
+									<a class="page-link" href="javascript:void(0);">i</a>
+								</li>
+								<li class="page-item">
+									<a class="page-link" href="javascript:void(0);">다음</a>
+								</li>
+							</ul>
 						</div>
 						<div class="comment-input-box">
 							<textarea class="form-control textarea-comment"></textarea>
@@ -80,6 +90,8 @@
 		</div>
 	</div>
 </div>
+
+<!-- 댓글 출력 -->
 <script type="text/javascript">
 let cri = {
 		page : 1,
@@ -94,11 +106,12 @@ function displayCommentAndPagination(cri){
 		method : 'get',
 		data : cri,
 		success : function(data){
-			console.log(data)
 			displayComment(data.coList);
+			displayCommentPagination(data.pm);
 		}
 	});
 }
+
 function displayComment(commentList) {
 	let str = '';
 	if(commentList.length == 0){
@@ -130,7 +143,44 @@ function displayComment(commentList) {
 	}
 	$(".input-group").html(str);
 }
+function displayCommentPagination(pm){
+	let pmStr = "";
+	if(pm.prev){
+		pmStr += 
+		`
+		<li class="page-item">
+			<a class="page-link" href="javascript:void(0);" data-page="\${pm.startPage-1}">이전</a>
+		</li>
+		`;
+	}
+	for(i = pm.startPage; i<=pm.endPage; i++){
+		let active = pm.cri.page == i ? "active" : "";
+		pmStr +=
+		`
+		<li class="page-item \${active}">
+			<a class="page-link" href="javascript:void(0);" data-page="\${i}">\${i}</a>
+		</li>
+		`;
+	}
+	if(pm.next){
+		pmStr += 
+		`
+		<li class="page-item">
+			<a class="page-link" href="javascript:void(0);" data-page="\${pm.endPage+1}">다음</a>
+		</li>
+		`;
+	}
+	$(".box-comment-pagination>ul").html(pmStr);
+	
+}
+
+$(document).on("click",".box-comment-pagination .page-link", function(){
+	cri.page = $(this).data("page");
+	displayCommentAndPagination(cri);
+});
 </script>
+
+<!-- 댓글 등록 -->
 <script type="text/javascript">
 $(".btn-comment-insert").click(function(){
 	if(!checkLogin()){
@@ -179,6 +229,8 @@ function checkLogin(){
 	return false;
 }
 </script>
+
+<!-- 댓글 삭제 -->
 <script type="text/javascript">
 $(document).on("click",".btn-comment-delete", function(){
 	
@@ -205,6 +257,8 @@ $(document).on("click",".btn-comment-delete", function(){
 	});
 });
 </script>
+
+<!-- 댓글 수정 -->
 <script type="text/javascript">
 $(document).on("click",".btn-comment-update", function(){
 	initComment();

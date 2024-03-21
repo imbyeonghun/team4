@@ -27,7 +27,8 @@ public class CommentListServlet extends HttpServlet {
 	private PostService postService = new PostServiceImp();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int po_num = 0, page = 1;
+		int page = 1;
+		int po_num = 0;
 		try {
 			page = Integer.parseInt(request.getParameter("page"));
 			po_num = Integer.parseInt(request.getParameter("poNum"));
@@ -38,6 +39,7 @@ public class CommentListServlet extends HttpServlet {
 		ArrayList<CommentVO> coList = postService.getCommentList(cri);
 		int totalCount = postService.getTotalCommentCount(cri);
 		PageMaker pm = new PageMaker(3, cri, totalCount);
+		System.out.println(pm);
 		JSONObject jobj = new JSONObject();
 		
 		ObjectMapper om = new ObjectMapper();

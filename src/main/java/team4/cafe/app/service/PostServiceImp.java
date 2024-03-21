@@ -167,6 +167,7 @@ public class PostServiceImp implements PostService{
 			return false;
 		}
 		return postDao.updateComment(comment);
+	}
 
 	public ArrayList<PostVO> getAllPostList(Criteria cri) {
 		if(cri == null) {
