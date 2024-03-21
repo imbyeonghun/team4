@@ -91,7 +91,33 @@
 	<select id="selectPostType" resultType="team4.cafe.app.model.vo.PostTypeVO">
 		select * from post_type
 	</select>
-	<!-- 모든 postList 가져오는 매퍼 -->
+	
+	<select id="selectCommentList" resultType="team4.cafe.app.model.vo.CommentVO">
+		select * from comment where cm_po_num = #{cri.poNum}
+		order by cm_num desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	<select id="selectTotalCommentCount" resultType="int">
+		select count(*) from comment where cm_po_num = #{cri.poNum}
+	</select>
+	<insert id="insertComment">
+		insert into comment(cm_po_num, cm_me_id, cm_content, cm_date)
+		values(#{co.cm_po_num},#{co.cm_me_id},#{co.cm_content}, now())
+	</insert>
+	<select id="selectComment" resultType="team4.cafe.app.model.vo.CommentVO">
+		select * from comment where cm_num = #{cm_num}
+	</select>
+	<delete id="deleteComment">
+		delete from comment where cm_num = #{cm_num}
+	</delete>
+	<update id="updateComment">
+		update comment
+		set
+			cm_content = #{co.cm_content}
+		where
+			cm_num = #{co.cm_num}
+	</update>
+
 	<select id="selectAllPost" resultType="team4.cafe.app.model.vo.PostVO">
 		SELECT 
     	*, me_name AS po_me_name
