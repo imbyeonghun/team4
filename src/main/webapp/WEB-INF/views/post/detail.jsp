@@ -49,8 +49,8 @@
 								<div class="col-3">
 									<div>댓글 내용</div>
 									<div class="btn-group">
-										<button class="btn btn-outline-warning btn-comment-delete">수정</button>
-										<button class="btn btn-outline-danger">삭제</button>
+										<button class="btn btn-outline-warning btn-comment-update">수정</button>
+										<button class="btn btn-outline-danger btn-comment-delete">삭제</button>
 									</div>
 								</div>
 							</div>

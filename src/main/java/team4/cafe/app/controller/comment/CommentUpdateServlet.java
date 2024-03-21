@@ -24,6 +24,7 @@ public class CommentUpdateServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println(num);
 		String content = request.getParameter("content");
 		
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");

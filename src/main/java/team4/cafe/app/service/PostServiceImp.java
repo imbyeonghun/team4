@@ -154,4 +154,19 @@ public class PostServiceImp implements PostService{
 		return postDao.deleteComment(num);
 	}
 
+	@Override
+	public boolean updateComment(CommentVO comment) {
+		if( comment == null ||
+			!checkString(comment.getCm_content()) ||
+			!checkString(comment.getCm_me_id())){
+			return false;
+		}
+		CommentVO dbComment = postDao.selectComment(comment.getCm_num());
+		if( dbComment == null ||
+			!dbComment.getCm_me_id().equals(comment.getCm_me_id())){
+			return false;
+		}
+		return postDao.updateComment(comment);
+	}
+
 }
