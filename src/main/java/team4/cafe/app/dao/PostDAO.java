@@ -31,5 +31,9 @@ public interface PostDAO {
 
 	ArrayList<PostTypeVO> selectPostType();
 
+	ArrayList<PostVO> selectAllPost(@Param("cri")Criteria cri);
+
+	int selectAllPostCount();
+
 
 }

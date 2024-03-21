@@ -77,7 +77,8 @@
 								<td>${post.po_date}</td>
 								<td>${post.po_view}</td>
 							</tr>	
-						</c:forEach>				
+						</c:forEach>	
+							
 					</tbody>
 				</table>
 				<form action="<c:url value="/post/list"/>" class="mb-3 mt-3">

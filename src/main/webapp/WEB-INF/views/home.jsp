@@ -100,9 +100,28 @@
 				<br>
 				<h3 style="color: #7dafd4;">최신글 목록</h3>
 				<hr style="width : 700px">
-				<div class="">
-					
-				</div>
+				<div class="new-PostList">
+					<c:if test='${empty postList}'>
+								<p>최신 등록된 게시글이 없습니다.</p>
+							</c:if>
+					<table class="table table-hover" style="width : 700px">
+						<tbody>
+							<c:forEach items="${postList}" var="post">
+								<tr>
+									<!-- c:choose로 될거같음 말머리 뜨게 -->
+									<td>${post.po_num}</td>
+									<td><c:url value="/post/detail" var="url">
+											<c:param name="num">${post.po_num}</c:param>
+											<c:param name="bo_num">${post.po_bo_num}</c:param>
+										</c:url> <a href="${url}">${post.po_title}</a></td>
+									<td>${post.po_me_name}</td>
+									<td>${post.po_date}</td>
+									<td>${post.po_view}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					</div>
 
 
 
