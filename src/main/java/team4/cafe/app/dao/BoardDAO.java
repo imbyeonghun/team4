@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.CategoryVO;
+import team4.cafe.app.model.vo.GradeVO;
 import team4.cafe.app.pagination.BoardCriteria;
 import team4.cafe.app.pagination.Criteria;
 
@@ -38,5 +39,7 @@ public interface BoardDAO {
 	BoardVO selectBoard(@Param("bo_num") int bo_num);
 
 	int getAllBoardCount();
+
+	ArrayList<GradeVO> selectGradeList();
 
 }
