@@ -6,19 +6,35 @@
 <head>
 <meta charset="UTF-8">
 <title>말머리 등록</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<jsp:include page = "/WEB-INF/views/header.jsp"/>
-<div class="container">
-	<div class="input-group mb-3 mt-3">
-		<input type="text" class="form-control" id="pcName" placeholder="말머리 입력" name="pcName">
-		<hr>
-		<div class="input-group-append">
-			<button class="btn btn-success" type="submit">말머리 등록</button>
+	<div class="header">
+    	<jsp:include page = "/WEB-INF/views/header.jsp"/>
+  	</div>
+
+	<div class="container">
+		<div class="input-group mb-3 mt-3">
+			<input type="text" class="form-control" id="pcName" placeholder="말머리 입력" name="pcName">
+			<hr>
+			<div class="input-group-append">
+				<button class="btn btn-success" type="submit">말머리 등록</button>
+			</div>
 		</div>
+		<div class="main mt-5 pb-5 text-center">
+      	<table class="table">
+			<thead class="table-secondary">
+				<tr>
+       				<th class="w-30"></th>
+      				<th class="w-30"></th>
+      				<th class="w-auto"></th>
+      				<th class="w-auto"></th>
+     			</tr>
+			</thead>
+			<tbody>
+		
+			</tbody>
+		</table>
+    </div>
 	</div>
-</div>
 </body>
 </html>

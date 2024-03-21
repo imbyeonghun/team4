@@ -24,13 +24,13 @@
 	        </c:forEach>
 	    </select>
     </div>
-    <div class="insertBoard  mt-3 mb-3 input-group">
+    <div class="insertBoard  mt-4 mb-4 input-group">
       	<input type="text" placeholder="게시판 이름을 입력" id="addBoard"
       	class="col-9 form-control">
 	  	<button type="button" id="insertBoard"
 	  	class="col-3 btn btn-outline-secondary">게시판 등록</button>
     </div> 
-    <div class="main mt-3 pb-5">
+    <div class="main mt-5 pb-5 text-center">
       	<table class="table">
 			<thead class="table-secondary">
 				<tr>
