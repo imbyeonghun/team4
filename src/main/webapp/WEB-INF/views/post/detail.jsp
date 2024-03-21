@@ -231,7 +231,7 @@ function initComment() {
 	$(".btn-complete").remove();
 }
 
-$(document).on("click","btn-complete", function(){
+$(document).on("click",".btn-complete", function(){
 	let num = $(this).data("num");
 	let content = $(".com-input").val();
 	$.ajax({
@@ -244,7 +244,7 @@ $(document).on("click","btn-complete", function(){
 		success : function(data){
 			if(data == "ok"){
 				alert("댓글을 수정했습니다.");
-				getCommentList(cri);
+				displayCommentAndPagination(cri);
 			}else{
 				alert("댓글을 수정하지 못했습니다.");
 			}
