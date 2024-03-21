@@ -46,4 +46,9 @@ public interface PostService {
 	boolean updateComment(CommentVO comment);
 
 
+	ArrayList<PostTypeVO> getPostTypeList(Criteria cri);
+
+	int getPostTypeCount(Criteria cri);
+
+
 }
