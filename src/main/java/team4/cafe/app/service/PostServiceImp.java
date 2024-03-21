@@ -114,4 +114,17 @@ public class PostServiceImp implements PostService{
 		return postDao.selectPostType();
 	}
 
+	@Override
+	public ArrayList<PostVO> getAllPostList(Criteria cri) {
+		if(cri == null) {
+			cri = new Criteria();
+		}
+		return postDao.selectAllPost(cri);
+	}
+
+	@Override
+	public int getAllPostCount() {
+		return postDao.selectAllPostCount();
+	}
+
 }
