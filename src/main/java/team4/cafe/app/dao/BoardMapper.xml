@@ -32,7 +32,14 @@
 		insert into board(bo_name,bo_co_num) values(#{board.bo_name},#{board.bo_co_num})
 	</insert>
 	<update id="updateBoard">
-		update board set bo_name=#{board.bo_name} where bo_num=#{board.bo_co_num} 
+		update board set 
+		<if test='board.bo_name!=null'>
+			bo_name=#{board.bo_name},
+		</if>
+		<if test="board.bo_gr_name!=null">
+			bo_gr_name=#{board.bo_gr_name} 
+		</if>
+		where bo_num=#{board.bo_num} 
 	</update>
 	<delete id="deleteBoard">
 		delete from board where bo_num=#{bo_num}
@@ -47,5 +54,8 @@
 
 	<select id="getAllBoardCount" resultType="int">
 		select count(*) from board
+	</select>
+	<select id="selectGradeList" resultType="team4.cafe.app.model.vo.GradeVO">
+		select * from grade
 	</select>
 </mapper>

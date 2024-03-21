@@ -7,33 +7,38 @@
   <meta charset="UTF-8">
   <title>카테고리 관리</title>
    <script src="//code.jquery.com/jquery-3.6.1.js"></script>
+   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/manager.css">
 </head>
 <body>
   <div class="header">
   	<jsp:include page = "/WEB-INF/views/header.jsp"/>
   </div>
-  <div class="container">
-    <div class="insertCategory">
-        <input type="text" placeholder="카테고리 이름을 입력" id="addCategory">
-        <button type="button" id="insertCategory">카테고리 등록</button> 
+  <div class="container mt-5 mb-4">
+    <div class="insertCategory input-group">
+        <input type="text" placeholder="카테고리 이름을 입력" id="addCategory"
+        class="col-9 form-control">
+        <button type="button" id="insertCategory"
+        class="col-3 btn btn-outline-secondary">카테고리 등록</button> 
     </div>  
-    <div class="main">
+    <div class="line mt-4">카테고리 목록</div>
+    <div class="main mt-3 pb-5">
     	
     </div>
     <!-- 페이지 -->
-  	<div class="comment-pagination">
+  	<div class="comment-pagination mt-3">
 		<ul class="pagination justify-content-center">
 			  				
 		</ul>
 	</div>
   </div>
-  <div class="update-box hidden">
-      <form  method="post" id="updateCategory">
-        <label for="update">카테고리 수정</label>
-        <input type="text" placeholder="카테고리명" name="update">
-        <button type="submit">수정</button>
+ <div class="update-box w-75">
+      <form  method="post" id="updateCategory" class="input-group">
+        <label for="update" class="w-25 ">카테고리 수정</label>
+        <input type="text" placeholder="카테고리명" name="update" class="form-control">
+        <button type="submit" class="btn btn-outline-secondary">수정</button>
       </form>
-   </div>
+      <button type="button" class="btn-close"></button>
+  </div>
 <script type="text/javascript">
 let cri={
 		page:1
@@ -43,6 +48,11 @@ let cri={
 $(document).on("click","#btn-update",function(){
   let num=$(this).data('num');
   $("#updateCategory").attr("action",`<c:url value="/manager/category/update?num=\${num}" />`);
+  $(".update-box").show();
+});
+
+$(".btn-close").click(function(){
+	 $(".update-box").hide();
 });
 
 //카테고리 추가 이벤트
@@ -81,11 +91,13 @@ function printCategory(){
 			for(category of data.list){
 				str+=
 				`
-			      <div class="line">
-				      <div class="co-name">\${category.co_name }</div>
-				      <div class="action">
-				        <div data-num="\${category.co_num }" id="btn-update">수정</div>
-				        <div data-num="\${category.co_num }" id="btn-delete">삭제</div>
+			      <div class="line mt-2">
+				      <div class="co-name left">\${category.co_name }</div>
+				      <div class="right">
+				        <div data-num="\${category.co_num }" id="btn-update"
+				        	class="click left">수정</div>
+				        <div data-num="\${category.co_num }" id="btn-delete"
+				        	class="click right">삭제</div>
 				      </div>
 			      </div>
 			     `;
