@@ -37,7 +37,8 @@ DROP TABLE IF EXISTS `board`;
 CREATE TABLE `board` (
 	`bo_num`	int	PRIMARY KEY auto_increment,
 	`bo_name`	varchar(30) not	NULL,
-	`bo_co_num`	int	NOT NULL
+	`bo_co_num`	int	NOT NULL,
+    `bo_gr_name` varchar(10) NOT NULL default "Level1"
 );
 
 DROP TABLE IF EXISTS `post`;
@@ -84,6 +85,13 @@ REFERENCES `state` (
 
 ALTER TABLE `member` ADD CONSTRAINT `FK_grade_TO_member_1` FOREIGN KEY (
 	`me_gr_name`
+)
+REFERENCES `grade` (
+	`gr_name`
+);
+
+ALTER TABLE `board` ADD CONSTRAINT `FK_grade_TO_board_1` FOREIGN KEY (
+	`bo_gr_name`
 )
 REFERENCES `grade` (
 	`gr_name`

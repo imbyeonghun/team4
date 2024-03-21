@@ -1,5 +1,6 @@
 package team4.cafe.app.model.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import lombok.Data;
@@ -33,7 +34,6 @@ public class MemberVO {
 		this.me_email = me_email;
 		this.me_name = me_name;
 		this.me_date = me_date;
-		
 	}
 
 	public MemberVO(String me_id, String me_pw, String me_email, String me_name) {
@@ -49,3 +49,4 @@ public class MemberVO {
 		this.me_gr_name = me_gr_name;
 	}
 }
+

@@ -32,6 +32,7 @@ public interface PostDAO {
 
 	ArrayList<PostTypeVO> selectPostType();
 
+
 	ArrayList<CommentVO> selectCommentList(@Param("cri") Criteria cri);
 
 	int selectTotalCommentCount(@Param("cri") Criteria cri);
@@ -44,5 +45,11 @@ public interface PostDAO {
 	boolean deleteComment(@Param("cm_num") int num);
 
 	boolean updateComment(@Param("co") CommentVO comment);
+
+	ArrayList<PostVO> selectAllPost(@Param("cri")Criteria cri);
+
+	int selectAllPostCount();
+
+
 
 }

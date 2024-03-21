@@ -21,8 +21,6 @@
 		</div>
 		<!-- 9단길이의 첫번째 열 -->
 		<div class="col-md-9">
-			<div class="col-md-9">
-				<div class="container">
 					<div class="container">
 						<form action="<c:url value="/post/insert"/>" method="post">
 							<h1>게시글 등록</h1>
@@ -58,7 +56,6 @@
 						</form>
 					</div>
 				</div>
-			</div>
 		</div>
 	</div>
 </div>

@@ -33,6 +33,10 @@ public interface PostService {
 
 	ArrayList<CommentVO> getCommentList(Criteria cri);
 
+	ArrayList<PostVO> getAllPostList(Criteria cri);
+
+	int getAllPostCount();
+
 	int getTotalCommentCount(Criteria cri);
 
 	boolean insertComment(CommentVO comment);

@@ -13,16 +13,16 @@ import javax.servlet.http.HttpServletRequest;
 
 import team4.cafe.app.model.vo.MemberVO;
 
-@WebFilter()
-public class GuestFilter extends HttpFilter implements Filter {
+@WebFilter({"/manager/board","/manager/member","/manager/category"})
+public class ManagerFilter extends HttpFilter implements Filter {
 
 	private static final long serialVersionUID = 1L;
-
+	private String admin="운영자";
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpServletRequest = (HttpServletRequest)request;
-		MemberVO user = (MemberVO)httpServletRequest.getSession().getAttribute("user");
-		if(user != null) {
-			request.setAttribute("msg", "로그인 한 회원은 이용할 수 없는 서비스입니다.");
+		MemberVO user = (MemberVO)httpServletRequest.getSession().getAttribute("user");	
+		if(user==null||!user.getMe_gr_name().equals(admin)) {
+			request.setAttribute("msg", "운영자만 사용 가능합니다.");
 			request.setAttribute("url", "");
 			request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(httpServletRequest, response);
 			return;
