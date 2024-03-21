@@ -18,10 +18,10 @@
 
 <body>
 <!-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark"> -->
-<nav class="navbar navbar-expand-sm"  style="font-weight:bold;  background-color: #e3f2fd;"> 
+<nav class="navbar navbar-expand-sm"  style="font-weight:bold; background-color: #e3f2fd;"> 
   <div class="container-fluid">
     <a class="navbar-brand" href="<c:url value="/"/>">
-      <img  src="Logo.png" alt="Team4" style="width:40px;" class="rounded-pill">
+      <img  src="https://i.ibb.co/JkwJMcg/Logo.png" alt="Team4" style="width:120px;" class="rounded-pill">
     </a>
     <div class="collapse navbar-collapse justify-content-end"  id="collapsibleNavbar">
       <ul class="navbar-nav">
