@@ -109,7 +109,7 @@
 			for(category of data.caList){
 				let boStr=''
 				for(board of data.boList){
-					if(category.co_num == board.bo_co_num){
+					if(category.co_num == board.bo_co_num){	//게시판 출력
 						boStr +=
 							`
 								<p><a href="<c:url value="/post/list?bo_num=\${board.bo_num}"/>" class ="board post-list">\${board.bo_name}</a></p>

@@ -24,6 +24,9 @@ public class MainServlet extends HttpServlet {
 		Criteria cri = new Criteria(1, 10, "all", "");
 		ArrayList<PostVO> allPostList = postService.getAllPostList(cri);
 		
+		//기본 말머리 설정
+//		postService.insertPostType
+		
 		request.setAttribute("postList", allPostList);
 		request.getRequestDispatcher("/WEB-INF/views/home.jsp").forward(request, response);
 	}
