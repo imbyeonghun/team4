@@ -20,6 +20,7 @@ public class PostCategoryMainServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<PostTypeVO> postTypeList = postService.getPostTypeList();
 		request.setAttribute("postTypeList", postTypeList);
+		;;
 		request.getRequestDispatcher("/WEB-INF/views/manager/postCategory.jsp").forward(request, response);
 	}
 
