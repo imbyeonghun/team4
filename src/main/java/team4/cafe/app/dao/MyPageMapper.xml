@@ -93,4 +93,19 @@ left join comment on bo_num = cm_bo_num group by bo_num;
 	<update id="updateMemberSecession">
 		update member set me_st_state = '탈퇴' where me_id = #{me_id}
 	</update>
+	
+	<update id="updateMemberStop">
+		update member set 
+			me_st_state = '기간정지',
+			me_fail = 0
+		where me_id = #{user.me_id}
+	</update>
+	
+	<update id="updateFailCount">
+		update member set me_fail = ${user.me_fail} where me_id = #{user.me_id}
+	</update>
+	
+	<select id="selectMember" resultType="team4.cafe.app.model.vo.MemberVO">
+		select * from member where me_id = #{user.me_id}
+	</select>
 </mapper>

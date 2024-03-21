@@ -27,17 +27,24 @@ public class MyPageCheckServlet extends HttpServlet {
 		
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
 		String pw = user.getMe_pw();
-		
 		String checkPw = request.getParameter("checkPw");
-		System.out.println(pw);
-		System.out.println(checkPw);
 		
 		if(pw.equals(checkPw)) {
+			user.setMe_fail(0);
 			request.setAttribute("msg", "본인확인 완료");
 			request.setAttribute("url", "mypage/update");
 		}else {
+			user.setMe_fail(user.getMe_fail() + 1);
 			request.setAttribute("msg", "본인확인 실패");
 			request.setAttribute("url", "mypage/check");
+		}
+		myPageService.updateFailCount(user);
+		request.getSession().setAttribute("user", user);
+		
+		if(user.getMe_fail() >= 5) {
+			myPageService.updateMemberStop(user);
+			request.getSession().removeAttribute("user");
+			request.setAttribute("url", "mypage/");
 		}
 		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 	}
