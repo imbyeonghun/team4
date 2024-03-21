@@ -13,7 +13,6 @@
 	body{
 		margin:0;
 		padding:0;
-		
 	}
 	#wrap{
 		width:1100px;
@@ -73,13 +72,7 @@
 					| 댓 글 수 : <a href="<c:url value="/mypage/userComment"/>">${commentCount}개</a>
 				</div>
 				<a href="<c:url value="/mypage/check"/>">내 정보 수정</a>
-				<c:if test="${user.me_id == admin}">
-					<div>
-						<a href="<c:url value="#"/>">카페 관리</a>
-					</div>
-				</c:if>
-				<button type="button" class="btn btn-outline-success btn-secession">카페
-					탈퇴하기</button>
+				<button type="button" class="btn btn-outline-success btn-secession">카페 탈퇴하기</button>
 			</div>
 		</div>
 		<!-- footer 영역 -->

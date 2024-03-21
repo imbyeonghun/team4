@@ -20,6 +20,10 @@ public class PostVO {
 	private String po_bo_name;
 	private String po_me_name;
 	
+	// 지우지 말아주세요
+	private int commentCount;
+	private BoardVO board;
+	
 	public PostVO(int bo_num, int pt_num, String title, String userName, String content, Date po_date) {
 		this.po_bo_num = bo_num;
 		this.po_pt_num = pt_num;
