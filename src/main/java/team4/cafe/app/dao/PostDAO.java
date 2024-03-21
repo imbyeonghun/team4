@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Param;
 
 import team4.cafe.app.model.vo.BoardVO;
+import team4.cafe.app.model.vo.CommentVO;
 import team4.cafe.app.model.vo.PostTypeVO;
 import team4.cafe.app.model.vo.PostVO;
 import team4.cafe.app.pagination.Criteria;
@@ -31,9 +32,24 @@ public interface PostDAO {
 
 	ArrayList<PostTypeVO> selectPostType();
 
+
+	ArrayList<CommentVO> selectCommentList(@Param("cri") Criteria cri);
+
+	int selectTotalCommentCount(@Param("cri") Criteria cri);
+
+	boolean insertComment(@Param("co") CommentVO comment);
+	//매퍼에 insert 추가
+
+	CommentVO selectComment(@Param("cm_num") int num);
+
+	boolean deleteComment(@Param("cm_num") int num);
+
+	boolean updateComment(@Param("co") CommentVO comment);
+
 	ArrayList<PostVO> selectAllPost(@Param("cri")Criteria cri);
 
 	int selectAllPostCount();
+
 
 
 }
