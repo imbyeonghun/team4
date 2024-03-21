@@ -45,13 +45,12 @@
 					<div class="box-comment-list">
 						<!-- 댓글 보여주는 박스 -->
 						<div class="box-comment input-group">
-								<div class="col-3">아이디</div>
-								<div class="col-3">
-									<div>댓글 내용</div>
-									<div class="btn-group">
-										<button class="btn btn-outline-warning btn-comment-update">수정</button>
-										<button class="btn btn-outline-danger btn-comment-delete">삭제</button>
-									</div>
+							<div class="col-3">아이디</div>
+							<div class="col-3">
+								<div>댓글 내용</div>
+								<div class="btn-group">
+									<button class="btn btn-outline-warning btn-comment-update">수정</button>
+									<button class="btn btn-outline-danger btn-comment-delete">삭제</button>
 								</div>
 							</div>
 						</div>
@@ -134,9 +133,7 @@ function displayComment(commentList) {
 		`
 		<div class="box-comment input-group">
 			<div class="col-3">\${comment.cm_me_id}</div>
-			<div class="col-12 cm_content">
-				<span>\${comment.cm_content}</span>
-			</div>
+			<div class="col-3 cm_content"><span>\${comment.cm_content}</span></div>
 			\${btns}
 		</div>
 		`;
