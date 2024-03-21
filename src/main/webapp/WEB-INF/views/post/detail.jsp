@@ -11,7 +11,7 @@
 </head>
 <body>
 <jsp:include page = "/WEB-INF/views/header.jsp"/>
-<div class="container-fluid">
+<div class="container-fluid"></div>
 	<div class="row">
 		<!-- 사이드 바 영역 -->
 		<div class="col-md-3">
@@ -44,13 +44,15 @@
 					<h2>댓글</h2>
 					<div class="box-comment-list">
 						<!-- 댓글 보여주는 박스 -->
-						<div class="box-comment input-group">
-							<div class="col-3">아이디</div>
-							<div class="col-3">
-								<div>댓글 내용</div>
-								<div class="btn-group">
-									<button class="btn btn-outline-warning btn-comment-update">수정</button>
-									<button class="btn btn-outline-danger btn-comment-delete">삭제</button>
+						<div class="comment-list">
+							<div class="box-comment input-group">
+								<div class="col-3">아이디</div>
+								<div class="col-3">
+									<div>댓글 내용</div>
+									<div class="btn-group">
+										<button class="btn btn-outline-warning btn-comment-update">수정</button>
+										<button class="btn btn-outline-danger btn-comment-delete">삭제</button>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -138,7 +140,7 @@ function displayComment(commentList) {
 		</div>
 		`;
 	}
-	$(".box-comment-list").html(str);
+	$(".comment-list").html(str);
 }
 function displayCommentPagination(pm){
 	let pmStr = "";
