@@ -30,6 +30,10 @@ public interface PostService {
 
 	ArrayList<PostTypeVO> getPostTypeList();
 
+	ArrayList<PostVO> getAllPostList(Criteria cri);
+
+	int getAllPostCount();
+
 
 
 }

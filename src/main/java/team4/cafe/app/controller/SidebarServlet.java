@@ -33,8 +33,7 @@ public class SidebarServlet extends HttpServlet {
 	
 		//회원 수 & 게시글 수
 		int memberTotalCount = memberService.getAllMemberCount();
-		int postTotalCount = 2;
-//		int postTotalCount = postService.getAllPostCount();	//전체 게시글 수
+		int postTotalCount = postService.getAllPostCount();	//전체 게시글 수
 
 		JSONObject jobj = new JSONObject();
 		
