@@ -142,4 +142,11 @@
 	<select id="selectAllPostCount">
 		SELECT count(*) FROM post
 	</select>
+	
+	<select id="getPostTypeList" resultType="team4.cafe.app.model.vo.PostTypeVO">
+		select * from post_type LIMIT #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	<select id="getPostTypeCount" resultType="int">
+		select count(*) from post_type
+	</select>
 </mapper>

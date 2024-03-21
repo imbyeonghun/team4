@@ -20,9 +20,19 @@
         <button type="button" id="insertCategory"
         class="col-3 btn btn-outline-secondary">카테고리 등록</button> 
     </div>  
-    <div class="line mt-4">카테고리 목록</div>
-    <div class="main mt-3 pb-5">
-    	
+    <div class="main mt-5 pb-5 text-center">
+    	<table class="table">
+			<thead class="table-secondary">
+				<tr>
+       				<th class="w-50">카테고리 목록</th>
+      				<th class="w-25"></th>
+      				<th class="w-25"></th>
+     			</tr>
+			</thead>
+			<tbody>
+		
+			</tbody>
+		</table>
     </div>
     <!-- 페이지 -->
   	<div class="comment-pagination mt-3">
@@ -35,7 +45,7 @@
       <form  method="post" id="updateCategory" class="input-group">
         <label for="update" class="w-25 ">카테고리 수정</label>
         <input type="text" placeholder="카테고리명" name="update" class="form-control">
-        <button type="submit" class="btn btn-outline-secondary">수정</button>
+        <button type="button" class="btn btn-outline-secondary">수정</button>
       </form>
       <button type="button" class="btn-close"></button>
   </div>
@@ -50,7 +60,7 @@ $(document).on("click","#btn-update",function(){
   $("#updateCategory").attr("action",`<c:url value="/manager/category/update?num=\${num}" />`);
   $(".update-box").show();
 });
-
+//x버튼 누를시
 $(".btn-close").click(function(){
 	 $(".update-box").hide();
 });
@@ -91,18 +101,16 @@ function printCategory(){
 			for(category of data.list){
 				str+=
 				`
-			      <div class="line mt-2">
-				      <div class="co-name left">\${category.co_name }</div>
-				      <div class="right">
-				        <div data-num="\${category.co_num }" id="btn-update"
-				        	class="click left">수정</div>
-				        <div data-num="\${category.co_num }" id="btn-delete"
-				        	class="click right">삭제</div>
-				      </div>
-			      </div>
+			      <tr class="line mt-2">
+				      <td>\${category.co_name }</td>
+				      <td data-num="\${category.co_num }" id="btn-update"
+				        	class="click">수정</td>
+				      <td data-num="\${category.co_num }" id="btn-delete"
+				        	class="click ">삭제</td>
+			      </tr>
 			     `;
 			}
-			$(".main").html(str);	
+			$('.main>table>tbody').html(str);	
 			let pm = JSON.parse(data.pm);
 			let pmStr = "";
 			//이전 버튼 활성화 여부
