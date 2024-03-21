@@ -66,6 +66,7 @@
 								<td>
 									<c:url var="url" value="/post/detail">
 										<c:param name="num" value="${post.po_num}"/>
+										<c:param name="bo_num" value="${post.po_bo_num}"/>
 									</c:url>
 									<a href="${url}">${post.po_title}[${post.commentCount}]</a>
 								</td>

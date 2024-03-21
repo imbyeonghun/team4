@@ -53,7 +53,8 @@ left join comment on bo_num = cm_bo_num group by bo_num;
 	</select>
 
 	<select id="selectCommentListByUser" resultMap="CommentMap">
-		select * from comment
+		select comment.*, (select bo_num from board where bo_num = po_bo_num) as bo_num from comment
+		left join board on po_bo_num = bo_num
 		where cm_me_id = #{user.me_id} and
 		cm_content like concat('%', #{cri.search} , '%')
 		group by cm_num	
