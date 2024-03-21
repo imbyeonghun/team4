@@ -41,7 +41,7 @@ public class MyPageCheckServlet extends HttpServlet {
 		myPageService.updateFailCount(user);
 		request.getSession().setAttribute("user", user);
 		
-		if(user.getMe_fail() == 5) {
+		if(user.getMe_fail() >= 5) {
 			myPageService.updateMemberStop(user);
 			request.getSession().removeAttribute("user");
 			request.setAttribute("url", "mypage/");
