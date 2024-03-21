@@ -34,12 +34,20 @@ public class PostInsertServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/board/list");
 			return;
 		}
-		
 		int bo_num = Integer.parseInt(request.getParameter("num"));
 		BoardVO board = boardService.getBoard(bo_num);
 		ArrayList<PostTypeVO> typeList = postService.getPostTypeList();
 		request.setAttribute("board", board);
 		request.setAttribute("typeList", typeList);
+		System.out.println(board.getBo_gr_name());
+		//만약 게시판 등급이 유저 등급과 같지 않으면(등급 간의 등급을 정하지 않음) 글을 등록할 수 없다는 메세지 띄운 후 목록페이지 유지
+		if(!board.getBo_gr_name().equals(user.getMe_gr_name())) {
+			String str = "해당 게시판은 " + board.getBo_gr_name() +" 회원만 게시글을 등록할 수 있습니다.\\n당신은 " + user.getMe_gr_name() + " 회원입니다.";
+			request.setAttribute("msg", str);
+			request.setAttribute("url", "post/list?bo_num="+bo_num);
+			request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
+			return;
+		}
 		request.getRequestDispatcher("/WEB-INF/views/post/insert.jsp").forward(request, response);
 	}
 	
@@ -59,13 +67,7 @@ public class PostInsertServlet extends HttpServlet {
 			bo_num = 0;
 			pt_num = 0;
 		}
-		//bo_num으로 board 정보를 불러오기
-		BoardVO board = boardService.getBoard(bo_num);
-		//만약 게시판 등급이 유저 등급보다 낮거나 같지 않으면 글을 등록할 수 없다는 메세지 띄운 후 목록페이지 유지
-//		if(board.getBo_gr_name)
-			//request.setAttribute("url", "post/list?bo_num="+bo_num);
-//			request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
-		
+
 		//입력한 제목 받아온다.
 		String title = request.getParameter("title");
 		//입력한 내용 받아온다.
