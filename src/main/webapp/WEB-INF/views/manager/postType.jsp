@@ -16,9 +16,8 @@
 	<div class="container">
 		<div class="input-group mb-3 mt-3">
 			<input type="text" class="form-control" id="ptName" placeholder="말머리 입력" name="ptName">
-			<hr>
 			<div class="input-group-append">
-				<button class="btn btn-outline-secondary" type="button">말머리 등록</button>
+				<button class="btn btn-outline-secondary" type="button" id="insertPostType">말머리 등록</button>
 			</div>
 		</div>
 		<div class="main mt-5 pb-5 text-center">
@@ -52,9 +51,35 @@
       <button type="button" class="btn-close"></button>
  	 </div>
 	<script type="text/javascript">
+	
+	
 	let cri={
 		page:1
 	}
+	
+	//말머리 추가
+	$("#insertPostType").click(function(){
+		let ptName=$("#ptName").val();
+		$.ajax({
+			url : '<c:url value="/manager/postType/insert"/>',
+			method : 'post',
+			data : {
+				ptName
+			},
+			success : function(data){
+				if(data == "ok"){
+					alert("말머리를 추가했습니다.");
+					$("#ptName").val('');
+					printPostType(cri)
+				}else{
+					alert("말머리를 추가하지 못했습니다.");
+				}
+			}, 
+			error : function(a,b,c){
+				
+			}
+		});
+	});
 	
 	//말머리 출력
 	function printPostType(cri){

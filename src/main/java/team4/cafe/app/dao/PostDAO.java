@@ -54,6 +54,10 @@ public interface PostDAO {
 
 	int getPostTypeCount(Criteria cri);
 
+	boolean insertPostType(@Param("ptName")String ptName);
+
+	ArrayList<PostTypeVO> selectPostTypeList();
+
 
 
 }

@@ -181,7 +181,7 @@ public class PostServiceImp implements PostService{
 		return postDao.selectAllPostCount();
 	}
 
-	//포스트 타입 가져오기cri
+	//말머리 가져오기cri
 	@Override
 	public ArrayList<PostTypeVO> getPostTypeList(Criteria cri) {
 		if(cri==null) {
@@ -190,13 +190,27 @@ public class PostServiceImp implements PostService{
 		return postDao.getPostTypeList(cri);
 	}
 
-	//포스트타입 갯수 가져오기
+	//말머리 갯수 가져오기
 	@Override
 	public int getPostTypeCount(Criteria cri) {
 		if(cri==null) {
 			return 0;
 		}
 		return postDao.getPostTypeCount(cri);
+	}
+	//말머리 추가
+	@Override
+	public boolean insertPostType(String ptName) {
+		if(ptName==null) {
+			return false;
+		}
+		ArrayList<PostTypeVO> postTypeList=postDao.selectPostTypeList();
+		for(PostTypeVO post:postTypeList) {
+			if(post.getPt_name().equals(ptName)) {
+				return false;
+			}
+		}
+		return postDao.insertPostType(ptName);
 	}
 
 }

@@ -49,4 +49,6 @@ public interface PostService {
 
 	int getPostTypeCount(Criteria cri);
 
+	boolean insertPostType(String ptName);
+
 }
