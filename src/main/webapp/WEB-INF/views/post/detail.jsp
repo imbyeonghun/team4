@@ -138,7 +138,7 @@ function displayComment(commentList) {
 		</div>
 		`;
 	}
-	$(".input-group").html(str);
+	$(".box-comment-list").html(str);
 }
 function displayCommentPagination(pm){
 	let pmStr = "";
