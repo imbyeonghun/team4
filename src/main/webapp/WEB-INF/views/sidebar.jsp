@@ -32,6 +32,14 @@
 	.btnMenu:hover{
 		color: #e3f2fd; background-color: #7dafd4;
 	}
+	
+	.tab-group-btn{
+		text-align: center;
+	}
+	.btn-tab{
+		display :inline-block; color:#7dafd4; 
+	}
+	
 </style>
 
 </head>
@@ -47,12 +55,13 @@
 		<!-- 메뉴목록 -->
 		<ul class="list-group" >
 			<li class="list-group-item" style="background-color: #e3f2fd; color: #7dafd4;">
+			
 			<br>
-			<p style="font-weight: bold; font-size:20px; ">[ 카페정보 ]</p> 
+			<p style="font-weight: bold; font-size:20px;"  align="justify">[ 카페정보 ]</p> 
 			<div class="cafe-info">
 				<p style="height:50%; float:left; font-weight: bold;" align="justify" >회원 수</p>
 				<p class="memberTotalCount" style="height:50%; float:right;" align="justify">00명</p>
-				<p style="height:50%; float:left; font-weight: bold; font-weight: bold;" align="justify" >게시글 수</p>
+				<p style="height:50%; float:left; font-weight: bold;"  align="justify" >게시글 수</p>
 				<p class="postTotalCount" style="height:50%; float:right;" align="justify">00개</p>
 			</div>
 			<c:if test="${user == null}">
@@ -62,10 +71,17 @@
 				</div>
 			</c:if>
 			<c:if test="${user != null }">
-				<div class="btn-user">
-					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/mypage/myPageHome'/>'">개인정보</button>
-					<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/user/logout'/>'">로그아웃</button>
+				<p style="font-weight: bold; font-size:20px; height:50%; float:left;" align="justify">[ 내 정보 ]</p> 
+				<div class="cafe-info">
+					<p style="height: 50%; float: left; font-weight: bold;" align="justify" >닉 네 임</p>
+					<p class="userNickName" style="height: 50%; float: right;" align="justify">${user.me_name}</p>
+					<p style="height: 50%; float: left; font-weight: bold;" align="justify">내 등급</p>
+					<p class="userGrade" style="height: 50%; float: right;" align="justify">${user.me_gr_name}</p>
 				</div>
+	
+				<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/mypage/myPageHome'/>'">내 정보</button>
+				<button type="button" class="btn btn-outline-success btnMenu" onClick="location.href='<c:url value='/user/logout'/>'">로그아웃</button>
+
 			</c:if>
 			</li>
 		</ul>
@@ -80,6 +96,8 @@
 		<!-- 카테고리와 게시판을 출력하는 박스 -->
 		<ul class="list-group listCaBo"></ul>	
 	</div>	
+	
+	
 <!-- 카테고리와 게시판 출력 -->
 	<script type="text/javascript">
 	$.ajax({
@@ -99,7 +117,6 @@
 			if(data.PTC){
 				$('.postTotalCount').text(data.PTC + "개");
 			}
-			
 
 			//카테고리, 게시판 출력 
 			
