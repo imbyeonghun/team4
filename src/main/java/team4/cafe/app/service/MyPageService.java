@@ -24,4 +24,10 @@ public interface MyPageService {
 	int getTotalCountComment(Criteria cri);
 
 	boolean updateMemberSecession(String me_id);
+
+	MemberVO getMember(MemberVO user);
+
+	void updateMemberStop(MemberVO user);
+
+	void updateFailCount(MemberVO user);
 }
