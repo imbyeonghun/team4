@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import team4.cafe.app.model.vo.MemberVO;
 
-@WebFilter({"/manager/board","/manager/member","/manager/category"})
+@WebFilter({"/manager/board","/manager/member","/manager/category","/manager/postType"})
 public class ManagerFilter extends HttpFilter implements Filter {
 
 	private static final long serialVersionUID = 1L;
