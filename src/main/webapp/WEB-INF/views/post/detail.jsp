@@ -107,7 +107,7 @@ function displayCommentAndPagination(cri){
 		data : cri,
 		success : function(data){
 			displayComment(data.coList);
-			displayCommentPagination(data.pm);
+			displayCommentPagination(JSON.parse(data.pm));
 		}
 	});
 }
