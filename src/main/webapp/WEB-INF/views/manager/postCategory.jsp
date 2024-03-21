@@ -11,14 +11,16 @@
 </head>
 <body>
 <jsp:include page = "/WEB-INF/views/header.jsp"/>
-<div class="container">
-	<div class="input-group mb-3 mt-3">
-		<input type="text" class="form-control" id="pcName" placeholder="말머리 입력" name="pcName">
-		<hr>
-		<div class="input-group-append">
-			<button class="btn btn-success" type="submit">말머리 등록</button>
-		</div>
-	</div>
+<div class="container mt-5 mb-4">
+	<div class="select">
+    	<select name="postCategory" id="postCategory" class="form-control">
+    		<option value="0" <c:if test='${cri.coNum==0}' >selected</c:if>>카테고리 선택</option>
+      		<c:forEach items="${categoryList}" var="category">
+	        	<option value="${category.co_num}" <c:if test='${category.co_num==cri.coNum }' >selected</c:if>
+	        	>${category.co_name}</option>
+	        </c:forEach>
+	    </select>
+    </div>
 </div>
 </body>
 </html>

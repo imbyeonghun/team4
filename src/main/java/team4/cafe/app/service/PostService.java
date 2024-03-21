@@ -45,4 +45,5 @@ public interface PostService {
 
 	boolean updateComment(CommentVO comment);
 
+
 }

@@ -181,4 +181,5 @@ public class PostServiceImp implements PostService{
 		return postDao.selectAllPostCount();
 	}
 
+
 }
