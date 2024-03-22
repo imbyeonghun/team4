@@ -35,7 +35,20 @@
 	section{
 		padding-bottom : 110px;	/*footer의  height와 동일*/
 	}
-
+	.btnBox, .updateBox{
+		text-align: center;
+		width: 600px;
+		
+	}
+	.updateBox{
+		margin-left: 100px;
+	}
+	.box{
+		width: 600px;
+	}
+	.btnBox>button{
+		width: 300px;
+	}
 </style>
 </head>
 <body>
@@ -51,24 +64,26 @@
 			</div>
 			<!-- 9단길이의 첫번째 열 -->
 			<div class="col-md-9 container">
-				<h1>내 정보 수정</h1>
+				<h1 style="text-align: center;" class="mt-5">내 정보 수정</h1>
 				<form action="<c:url value="/mypage/update"/>" method="post" class="updateBox">
-					<div>
+					<div class="form-floating mt-3 mb-3 box">
+						<input type="password" class="form-control" id="pw" name="pw" value="" placeholder="Enter password">
 						<label for="pw">비밀번호</label>
-						<input type=password id="pw" name="pw" value="">
 						<div id="pw-error" class="error"></div>
 					</div>
-					<div>
+					<div class="form-floating mt-3 mb-3 box">
+						<input type="text" class="form-control" id="nickName" name="nickName" value=""  placeholder="Enter password">
 						<label for="name">닉네임</label>
-						<input type="text" id="nickName" name="nickName" value="">
 						<div id="nickName-error" class="error"></div>
 					</div>
-					<div>
+					<div class="form-floating mt-3 mb-3 box">
+						<input type="text" class="form-control" id="email" name="email" value=""  placeholder="Enter password">
 						<label for="email">이메일</label>
-						<input type="text" id="email" name="email" value="">
 						<div id="email-error" class="error"></div>
 					</div>
-					<button class="btn btn-outline-success">내 정보 수정</button>
+					<div class="btnBox">
+						<button class="btn btn-outline-success">내 정보 수정</button>
+					</div>
 				</form>
 			</div>
 		</div>
