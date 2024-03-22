@@ -97,7 +97,7 @@
 					<ul class="pagination justify-content-center">
 						<c:if test="${pm.prev}">
 							<li class="page-item">
-								<c:url var="prevUrl" value="/post/list/">
+								<c:url var="prevUrl" value="/post/list">
 									<c:param name="bo_num" value="${bo_num}"/>
 									<c:param name="type" value="${pm.cri.type}"/>
 									<c:param name="search" value="${pm.cri.search}"/>
