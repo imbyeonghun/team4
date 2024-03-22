@@ -67,7 +67,17 @@
 							<c:forEach items="${postList}" var="post">
 								<tr>
 								<!-- c:choose로 될거같음 말머리 뜨게 -->
+								<c:if test="${post.po_pt_num == 1}">
 									<td>${post.po_num}</td>
+								</c:if>
+								<c:if test="${post.po_pt_num != 1}">
+								<!-- 말머리 이름 출력 -->
+									<c:forEach items="${ptList}" var="postType">
+										<c:if test="${post.po_pt_num == postType.pt_num}">
+											<td style="font-weight: bold;">${postType.pt_name}</td>
+										</c:if>
+									</c:forEach>
+								</c:if>
 									<td>
 										<c:url value="/post/detail" var="url">
 											<c:param name="num">${post.po_num}</c:param>
@@ -151,6 +161,7 @@
 	<a style="color: #7dafd4;">CAFE</a>
 	</footer>
 </div>
+
 <script type="text/javascript">
 	let dateTag = document.querySelectorAll(".date");
 	for (const tag of dateTag) {

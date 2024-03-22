@@ -54,6 +54,7 @@
 					   					<option  value="${board.bo_num}" >${board.bo_name}</option>
 						   			</select>
 					   			</c:if>
+					   			
 					   			<select class="form-control" id="board" name="num">
 				   					<option  value="${board.bo_num}" >${board.bo_name}</option>
 					   			</select>
@@ -75,7 +76,7 @@
 					 		</div>
 					 		<div class="mb-3 mt-3">
 					   			<label for="writer" class="form-label">작성자</label>
-					   			<input type="text" class="form-control" id="writer" name="writer" value="${user.me_name}">
+					   			<input readonly="readonly" type="text" class="form-control" id="writer" name="writer" value="${user.me_name}">
 					 		</div>
 					 		<div class="mb-3 mt-3">
 					   			<label for="content" class="form-label">내용</label>
