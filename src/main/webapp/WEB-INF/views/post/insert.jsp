@@ -26,9 +26,10 @@
 							<h1>게시글 등록</h1>
 							<div class="mb-3 mt-3">
 					   			<label for="board" class="form-label">게시판</label>
-					   			<select class="form-control" id="board" name="num">
-				   					<option value="${board.bo_num}">${board.bo_name}</option>
+					   			<select readonly class="form-control" id="board" name="num">
+				   					<option  value="${board.bo_num}" >${board.bo_name}</option>
 					   			</select>
+					   			
 					 		</div>
 					 		<c:if test='${user.me_id == "admin"}'>
 						 		<div class="mb-3 mt-3">

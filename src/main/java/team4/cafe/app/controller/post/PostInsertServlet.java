@@ -70,19 +70,16 @@ public class PostInsertServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/post/list");
 			return;
 		}
+		System.out.println("서블릿이 넘겨받은 bo_num : " + request.getParameter("num"));
 		//게시판 번호는 현재 선택된 게시판 번호로
-		int bo_num,pt_num;
+		int bo_num=0,pt_num=1;
 		try {
 			bo_num = Integer.parseInt(request.getParameter("num"));
-			pt_num = Integer.parseInt(request.getParameter("pt_num"));
+				pt_num = Integer.parseInt(request.getParameter("pt_num"));
 		} catch (Exception e) {
-			bo_num = 0;
-			pt_num = 0;
+			
 		}
 
-		if(pt_num == 0) {
-			pt_num = 1;
-		}
 		
 		//입력한 제목 받아온다.
 		String title = request.getParameter("title");
