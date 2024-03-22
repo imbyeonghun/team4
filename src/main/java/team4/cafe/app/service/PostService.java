@@ -27,7 +27,7 @@ public interface PostService {
 
 	ArrayList<BoardVO> getBoardList();
 
-	int getTotalCount(Criteria cri);
+	int getTotalCount(int bo_num, Criteria cri);
 
 	ArrayList<PostTypeVO> getPostTypeList();
 
@@ -48,5 +48,11 @@ public interface PostService {
 	ArrayList<PostTypeVO> getPostTypeList(Criteria cri);
 
 	int getPostTypeCount(Criteria cri);
+
+	boolean insertPostType(String ptName);
+
+	boolean deletePostType(int num);
+
+	boolean updatePostType(int num, String name);
 
 }

@@ -27,7 +27,6 @@ public class UpdateBoardServlet extends HttpServlet {
 		}
 		String bo_name=request.getParameter("update");
 		BoardVO board=new BoardVO(num,bo_name,gr_name);
-		System.out.println(board);
 		boolean res=bs.updateBoard(board);
 		if(res) {
 			request.setAttribute("msg","수정 완료");

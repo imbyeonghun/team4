@@ -54,6 +54,16 @@ public interface PostDAO {
 
 	int getPostTypeCount(Criteria cri);
 
+	boolean insertPostType(@Param("ptName")String ptName);
+
+	ArrayList<PostTypeVO> selectPostTypeList();
+
+	boolean deletePostType(@Param("pt_num")int num);
+
+	boolean updatePostType(@Param("pt_num")int num,@Param("ptName")String name);
+
+	int selectTotalCount(@Param("bo_num")int bo_num, Criteria cri);
+
 
 
 }

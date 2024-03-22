@@ -28,11 +28,11 @@
       	<input type="text" placeholder="게시판 이름을 입력" id="addBoard"
       	class="col-9 form-control">
 	  	<button type="button" id="insertBoard"
-	  	class="col-3 btn btn-outline-secondary">게시판 등록</button>
+	  	class="col-3 btn btn-outline-info">게시판 등록</button>
     </div> 
     <div class="main mt-5 pb-5 text-center">
       	<table class="table">
-			<thead class="table-secondary">
+			<thead class="table-info">
 				<tr>
        				<th class="w-30">게시판</th>
       				<th class="w-30">제한 등급</th>
@@ -51,20 +51,30 @@
 		</ul>
 	</div>
   </div>
-  <div class="update-box w-75">
-    <form  method="post" id="updateBoard" class="input-group">
-      <label for="update" class="p-2 me-3">게시판 수정</label>
-      <select name="grade" id="grade" class="form-control w-30">
-      		<c:forEach items="${gradeList}" var="grade">
-	        	<option value="${grade.gr_name}" 
-	        	>${grade.gr_name}</option> 
-	        </c:forEach>
-	   </select>
-      <input type="text" placeholder="게시판 이름" name="update" class="form-control w-auto">
-      <button type="submit" class="btn btn-outline-secondary">수정</button>
-    </form>
-    <button type="button" class="btn-close"></button>
-  </div>
+  <div class="modal" id="myModal">
+	  <form class="modal-dialog  modal-dialog-centered" method="post" id="updateBoard">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	         <label for="update">게시판 수정</label>
+	         <button type="button" class="btn-close m-2" data-bs-dismiss="modal"></button>
+	      </div>
+	      <div class="modal-body input-group">
+	       	<select name="grade" id="grade" class="form-control w-25">
+	      		<c:forEach items="${gradeList}" var="grade">
+		        	<option value="${grade.gr_name}" 
+		        	>${grade.gr_name}</option> 
+		        </c:forEach>
+		   	</select>
+		   	 <input type="text" placeholder="게시판 이름" name="update" class="form-control w-75">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="submit" class="btn btn-outline-secondary" data-bs-dismiss="modal">수정</button>
+	      </div>
+	    </div>
+	  </form>
+	</div>
+  
+  
 <script type="text/javascript">
 let cri={
 	page:1,
@@ -76,12 +86,6 @@ $(document).on("click","#btn-update", function(){
   let gr = $(this).data("gr");
   $("#updateBoard").attr("action",`<c:url value="/manager/board/update?num=\${num}" />`);
   $("#grade").val(gr).prop("selected", true);
-  $(".update-box").show();
-  console.log(gr);
-});
-
-$(".btn-close").click(function(){
-	 $(".update-box").hide();
 });
 
 //카테고리 선택후 게시판 관리 기능
@@ -108,6 +112,7 @@ $(document).on("click","#insertBoard", function(){
 		success : function(data){
 			if(data == "ok"){
 				alert("게시판을 추가했습니다.");
+				$("#addBoard").val('');
 				printBoard(cri);
 			}else{
 				alert("게시판을 추가하지 못했습니다.");
@@ -155,10 +160,11 @@ function printBoard(cri){
 					str+=
 					`
 					<tr class="line mt-2">
-		       			<td>\${board.bo_name}</td>
+		       			<td class="bold">\${board.bo_name}</td>
 		       			<td>\${board.bo_gr_name}</td>
-		        		<td data-num="\${board.bo_num}" data-gr="\${board.bo_gr_name}" id="btn-update"
-	          				class="click ">수정</td>
+		        		<td data-num="\${board.bo_num}" data-gr="\${board.bo_gr_name}" 
+		        			data-bs-toggle="modal" data-bs-target="#myModal"
+		        			id="btn-update"class="click">수정</td>
 	         			<td data-num="\${board.bo_num}" id="btn-delete"
 	         				class="click">삭제</td>		
 		      		</tr>
