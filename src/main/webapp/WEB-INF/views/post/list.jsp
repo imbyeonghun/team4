@@ -76,7 +76,7 @@
 										<a href="${url}">${post.po_title}</a>
 									</td>
 									<td>${post.po_me_name}</td>
-									<td>${post.po_date}</td>
+									<td class="date">${post.po_date}</td>
 									<td>${post.po_view}</td>
 								</tr>	
 							</c:forEach>	
@@ -97,7 +97,7 @@
 					<ul class="pagination justify-content-center">
 						<c:if test="${pm.prev}">
 							<li class="page-item">
-								<c:url var="prevUrl" value="/post/list/">
+								<c:url var="prevUrl" value="/post/list">
 									<c:param name="bo_num" value="${bo_num}"/>
 									<c:param name="type" value="${pm.cri.type}"/>
 									<c:param name="search" value="${pm.cri.search}"/>
@@ -151,5 +151,29 @@
 	<a style="color: #7dafd4;">CAFE</a>
 	</footer>
 </div>
+<script type="text/javascript">
+	let dateTag = document.querySelectorAll(".date");
+	for (const tag of dateTag) {
+		let asd = tag.innerText;
+		let date = toStringFormatting(asd);
+		tag.innerText = date;
+	}
+	
+	function toStringFormatting(source){
+		  let replaced_source = source.replace('KST', '');
+	      var  date = new Date(replaced_source);
+	      const year = date.getFullYear();
+	      const month = leftPad(date.getMonth() + 1);
+	      const day = leftPad(date.getDate());
+	      return [year, month, day].join('-');
+	}
+
+	function leftPad(value){
+		if (Number(value) >= 10) {
+			return value;
+		}
+		return "0" + value;
+	}
+</script>
 </body>
 </html>
