@@ -40,7 +40,6 @@ public class PostListServlet extends HttpServlet {
 			bo_num = 0;
 		}
 		
-		System.out.println(page);
 		//검색어, 검색 타입, 현재 페이지, 한 페이지 컨텐츠 개수를 이용하여 편재 페이지 정보 객체를 생성
 		Criteria cri = new Criteria(page, 10, type, search);
 		int totalCount = postService.getTotalCount(bo_num, cri);
