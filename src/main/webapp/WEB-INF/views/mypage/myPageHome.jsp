@@ -48,24 +48,24 @@
 			<div class="col-md-9 container">
 				<h1>내 정보</h1>
 				<div>
-					<label for="id">닉네임(아이디)</label> <input type="text" id="id"
-						name="id" value="${user.me_name}" readonly>
+					<label for="id">닉네임(아이디)</label> 
+					<input type="text" id="id" name="id" value="${user.me_name}" readonly>
 				</div>
 				<div>
-					<label for="grade">등급명</label> <input type="text" id="grade"
-						name="grade" value="${user.me_gr_name}" readonly>
+					<label for="grade">등급명</label>
+					<input type="text" id="grade" name="grade" value="${user.me_gr_name}" readonly>
 				</div>
 				<div>
-					<label for="email">이메일</label> <input type="text" id="email"
-						name="email" value="${user.me_email}" readonly>
+					<label for="email">이메일</label>
+					<input type="text" id="email" name="email" value="${user.me_email}" readonly>
 				</div>
 				<div>
-					<label for="date">가입일</label> <input type="text" id="date"
-						name="date" value="${user.me_date}" readonly>
+					<label for="date">가입일</label> 
+					<input type="text" id="date" name="date" value="${user.me_date}" readonly>
 				</div>
 				<div>
-					<label for="count">방문횟수</label> <input type="text" id="count"
-						name="count" value="${user.me_loginCount}" readonly>
+					<label for="count">방문횟수</label> 
+					<input type="text" id="count" name="count" value="${user.me_loginCount}" readonly>
 				</div>
 				<div>
 					게시글 수 : <a href="<c:url value="/mypage/userPost"/>">${postCount}개</a>
@@ -84,7 +84,7 @@
 			<a style="color: #7dafd4;">CAFE</a>
 		</footer>
 	</div>
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(".btn-secession").click(function(){
 		//확인 누르면 로그인 페이지로
 		if(confirm("정말 카페를 탈퇴하시겠습니까?")){
@@ -97,6 +97,29 @@
 			return;
 		}
 	});
+	
+	let dateTag = document.querySelector("#date");
+	let asd = dateTag.value;
+	console.log(asd);
+	let date = toStringFormatting(asd);
+	dateTag.value = date;
+	console.log(dateTag);
+	
+	function toStringFormatting(source){
+		  let replaced_source = source.replace('KST', '');
+	      var  date = new Date(replaced_source);
+	      const year = date.getFullYear();
+	      const month = leftPad(date.getMonth() + 1);
+	      const day = leftPad(date.getDate());
+	      return [year, month, day].join('-');
+	}
+
+	function leftPad(value){
+		if (Number(value) >= 10) {
+			return value;
+		}
+		return "0" + value;
+	}
 </script>
 </body>
 </html>

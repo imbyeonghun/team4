@@ -66,10 +66,11 @@
 								<td>
 									<c:url var="url" value="/post/detail">
 										<c:param name="num" value="${post.po_num}"/>
+										<c:param name="bo_num" value="${post.po_bo_num}"/>
 									</c:url>
 									<a href="${url}">${post.po_title}[${post.commentCount}]</a>
 								</td>
-								<td>${post.po_date}</td>
+								<td class="date">${post.po_date}</td>
 								<td>${post.po_view}</td>
 							</tr>
 						</c:forEach>
@@ -123,5 +124,29 @@
 				style="color: #7dafd4;">CAFE</a>
 		</footer>
 	</div>
+<script type="text/javascript">
+	let dateTag = document.querySelectorAll(".date");
+	for (const tag of dateTag) {
+		let asd = tag.innerText;
+		let date = toStringFormatting(asd);
+		tag.innerText = date;
+	}
+	
+	function toStringFormatting(source){
+		  let replaced_source = source.replace('KST', '');
+	      var  date = new Date(replaced_source);
+	      const year = date.getFullYear();
+	      const month = leftPad(date.getMonth() + 1);
+	      const day = leftPad(date.getDate());
+	      return [year, month, day].join('-');
+	}
+
+	function leftPad(value){
+		if (Number(value) >= 10) {
+			return value;
+		}
+		return "0" + value;
+	}
+</script>
 </body>
 </html>

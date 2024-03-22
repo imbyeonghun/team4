@@ -13,15 +13,13 @@
 	</header>
 	<div class="container">
 		<h1>본인 확인</h1>
-		<form action="<c:url value="/mypage/check"/>" method="post">
+		<form action="<c:url value="/mypage/check"/>" method="post" class="checkBox">
 			<div>
 				<label for="checkPw">비밀번호</label>
 				<input type="password" id="checkPw" name="checkPw" placeholder="비밀번호를 입력하세요">
+				<div id="pw-error" class="error" ></div>
+				<span>(현재 실패 횟수 : ${user.me_fail}회)</span>
 			</div>
-			<span>
-		    	비밀번호가 잘못되었습니다.
-		    	로그인 실패 5회 시 계정이 정지됩니다. (현재 로그인 실패 횟수 : ${user.me_fail}회)
-		    </span>
 		    <button type="submit">본인확인</button>
 	    </form>
 	</div>
