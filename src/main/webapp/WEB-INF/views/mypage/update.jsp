@@ -56,17 +56,17 @@
 					<div>
 						<label for="pw">비밀번호</label>
 						<input type=password id="pw" name="pw" value="">
-						<div id="pw-error" class="error" ></div>
+						<div id="pw-error" class="error"></div>
 					</div>
 					<div>
 						<label for="name">닉네임</label>
 						<input type="text" id="nickName" name="nickName" value="">
-						<div id="nickName-error" class="error" ></div>
+						<div id="nickName-error" class="error"></div>
 					</div>
 					<div>
 						<label for="email">이메일</label>
 						<input type="text" id="email" name="email" value="">
-						<div id="email-error" class="error" ></div>
+						<div id="email-error" class="error"></div>
 					</div>
 					<button class="btn btn-outline-success">내 정보 수정</button>
 				</form>
