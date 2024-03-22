@@ -127,7 +127,7 @@
 						</li>
 					</c:if>
 				</ul>
-				<a href="<c:url value="/post/insert?num=${bo_num}"/>" class="btn btn-outline-danger">글 등록</a>
+				<a href='<c:url value="/post/insert?num=${bo_num}"/>' class="btn btn-outline-danger">글 등록</a>
 			</div>
 
 

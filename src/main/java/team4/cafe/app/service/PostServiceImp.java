@@ -200,4 +200,5 @@ public class PostServiceImp implements PostService{
 		return postDao.getPostTypeCount(cri);
 	}
 
+
 }
