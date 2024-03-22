@@ -36,5 +36,7 @@ public interface MemberService {
 
 	void setMemberState(MemberVO user, String state);
 
+	int getGradeRank(String gr_name);
+
 
 }

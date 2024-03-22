@@ -18,6 +18,7 @@ import team4.cafe.app.model.vo.PostVO;
 import team4.cafe.app.service.BoardService;
 import team4.cafe.app.service.BoardServiceImp;
 import team4.cafe.app.service.MemberService;
+import team4.cafe.app.service.MemberServiceImp;
 import team4.cafe.app.service.MyPageService;
 import team4.cafe.app.service.MyPageServiceImp;
 import team4.cafe.app.service.PostService;
@@ -29,6 +30,8 @@ public class PostInsertServlet extends HttpServlet {
     private PostService postService = new PostServiceImp();
     private BoardService boardService = new BoardServiceImp();
     private MyPageService myPageService = new MyPageServiceImp();
+    private MemberService memberService = new MemberServiceImp();
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
@@ -41,10 +44,17 @@ public class PostInsertServlet extends HttpServlet {
 		ArrayList<PostTypeVO> typeList = postService.getPostTypeList();
 		request.setAttribute("board", board);
 		request.setAttribute("typeList", typeList);
-		System.out.println(board.getBo_gr_name());
-		//만약 게시판 등급이 유저 등급과 같지 않으면(등급 간의 등급을 정하지 않음) 글을 등록할 수 없다는 메세지 띄운 후 목록페이지 유지
-		if(!board.getBo_gr_name().equals(user.getMe_gr_name())) {
-			String str = "해당 게시판은 " + board.getBo_gr_name() +" 회원만 게시글을 등록할 수 있습니다.\\n당신은 " + user.getMe_gr_name() + " 회원입니다.";
+		System.out.println("보드 등급 : " + board.getBo_gr_name());
+		System.out.println("유저 등급 : " + user.getMe_gr_name());
+		//등급 이름으로 등급 순위 가져오기 
+		int boardGrRank = memberService.getGradeRank(board.getBo_gr_name());
+		int userGrRank = memberService.getGradeRank(user.getMe_gr_name());
+		
+		System.out.println("boardGrRank : " + boardGrRank + " userGrRank : " + userGrRank);
+
+		//만약 유저 등급이 게시판 등급보다 크거나 같으면 글을 등록할 수 없다는 메세지 띄운 후 목록페이지 유지
+		if(boardGrRank < userGrRank) {
+			String str = "해당 게시판은 " + board.getBo_gr_name() +" 회원이상만 게시글을 등록할 수 있습니다.\\n당신은 " + user.getMe_gr_name() + " 회원입니다.";
 			request.setAttribute("msg", str);
 			request.setAttribute("url", "post/list?bo_num="+bo_num);
 			request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
@@ -70,6 +80,10 @@ public class PostInsertServlet extends HttpServlet {
 			pt_num = 0;
 		}
 
+		if(pt_num == 0) {
+			pt_num = 1;
+		}
+		
 		//입력한 제목 받아온다.
 		String title = request.getParameter("title");
 		//입력한 내용 받아온다.

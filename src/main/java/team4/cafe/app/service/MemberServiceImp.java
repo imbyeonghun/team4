@@ -224,4 +224,13 @@ public class MemberServiceImp implements MemberService {
 		
 	}
 
+	@Override
+	public int getGradeRank(String gr_name) {
+		if(gr_name == null) {
+			return 4;	//최하 랭크
+		}
+		System.out.println("멤버서비스 - getGradeRank : " +  memberDAO.insertMemberGrRank(gr_name));
+		return memberDAO.insertMemberGrRank(gr_name);
+	}
+
 }

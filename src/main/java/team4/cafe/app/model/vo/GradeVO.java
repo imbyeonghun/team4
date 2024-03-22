@@ -7,4 +7,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GradeVO {
 	private String gr_name;
+	private int gr_rank;
 }
