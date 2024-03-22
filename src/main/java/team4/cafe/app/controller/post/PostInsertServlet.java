@@ -75,11 +75,10 @@ public class PostInsertServlet extends HttpServlet {
 		int bo_num=0,pt_num=1;
 		try {
 			bo_num = Integer.parseInt(request.getParameter("num"));
-				pt_num = Integer.parseInt(request.getParameter("pt_num"));
+			pt_num = Integer.parseInt(request.getParameter("pt_num"));
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}
-
 		
 		//입력한 제목 받아온다.
 		String title = request.getParameter("title");
