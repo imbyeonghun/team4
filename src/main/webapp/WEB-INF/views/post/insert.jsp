@@ -50,14 +50,14 @@
 							<div class="mb-3 mt-3">
 					   			<label for="board" class="form-label">게시판</label>
 					   			<c:if test="${board.bo_num == -1}">
+					   				<p>마이너스 1</p>
+					   			</c:if>
+					   			<c:if test="${board.bo_num != -1}">
 						   			<select class="form-control" id="board" name="num">
 					   					<option  value="${board.bo_num}" >${board.bo_name}</option>
 						   			</select>
-					   			</c:if>
 					   			
-					   			<select class="form-control" id="board" name="num">
-				   					<option  value="${board.bo_num}" >${board.bo_name}</option>
-					   			</select>
+					   			</c:if>
 					   			
 					 		</div>
 					 		<c:if test='${user.me_id == "admin"}'>

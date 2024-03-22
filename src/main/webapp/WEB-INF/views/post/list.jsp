@@ -143,7 +143,9 @@
 						<h1>등록된 게시글이 없습니다.</h1>
 					</c:otherwise>				
 				</c:choose>
-				<a href='<c:url value="/post/insert?num=${bo_num}"/>' class="btn btn-outline-danger">글 등록</a>
+				<c:if test="${bo_num != -1}">
+					<a href='<c:url value="/post/insert?num=${bo_num}"/>' class="btn btn-outline-danger">글 등록</a>
+				</c:if>
 			</div>
 
 
