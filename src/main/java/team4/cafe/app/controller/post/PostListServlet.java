@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import team4.cafe.app.model.vo.BoardVO;
+import team4.cafe.app.model.vo.PostTypeVO;
 import team4.cafe.app.model.vo.PostVO;
 import team4.cafe.app.pagination.Criteria;
 import team4.cafe.app.pagination.PageMaker;
@@ -56,6 +57,8 @@ public class PostListServlet extends HttpServlet {
 		postList = postService.getPostList(bo_num, cri);
 		request.setAttribute("board", board);
 		request.setAttribute("postList", postList);
+		ArrayList<PostTypeVO> ptList = postService.getPostTypeList();
+		request.setAttribute("ptList", ptList);
 		request.getRequestDispatcher("/WEB-INF/views/post/list.jsp").forward(request, response);
 	}
 

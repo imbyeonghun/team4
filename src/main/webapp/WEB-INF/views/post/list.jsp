@@ -67,7 +67,17 @@
 							<c:forEach items="${postList}" var="post">
 								<tr>
 								<!-- c:choose로 될거같음 말머리 뜨게 -->
+								<c:if test="${post.po_pt_num == 1}">
 									<td>${post.po_num}</td>
+								</c:if>
+								<c:if test="${post.po_pt_num != 1}">
+								<!-- 말머리 이름 출력 -->
+									<c:forEach items="${ptList}" var="postType">
+										<c:if test="${post.po_pt_num == postType.pt_num}">
+											<td style="font-weight: bold;">${postType.pt_name}</td>
+										</c:if>
+									</c:forEach>
+								</c:if>
 									<td>
 										<c:url value="/post/detail" var="url">
 											<c:param name="num">${post.po_num}</c:param>
@@ -97,7 +107,7 @@
 					<ul class="pagination justify-content-center">
 						<c:if test="${pm.prev}">
 							<li class="page-item">
-								<c:url var="prevUrl" value="/post/list/">
+								<c:url var="prevUrl" value="/post/list">
 									<c:param name="bo_num" value="${bo_num}"/>
 									<c:param name="type" value="${pm.cri.type}"/>
 									<c:param name="search" value="${pm.cri.search}"/>
@@ -151,5 +161,6 @@
 	<a style="color: #7dafd4;">CAFE</a>
 	</footer>
 </div>
+
 </body>
 </html>
