@@ -3,9 +3,8 @@
 *{margin:0;padding:0;}
 .container{height: 500px; position: relative;}
  .click{cursor: pointer; margin: 0 5px;}
- .line{height: 50px; border-bottom:1px solid #888; font-size: 18px;
+ .line{height: 50px; border-bottom:2px solid #e3f2fd; font-size: 18px;
  width: 80%; margin: 0 auto; padding: 10px;}
  .w-30{width: 30%; }
- .main{border-bottom:1px solid #888;}
+ .main{border-bottom:2px solid #e3f2fd;}
 .bold{font-weight: bold; font-size: 18px; }
- 

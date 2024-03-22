@@ -28,11 +28,11 @@
       	<input type="text" placeholder="게시판 이름을 입력" id="addBoard"
       	class="col-9 form-control">
 	  	<button type="button" id="insertBoard"
-	  	class="col-3 btn btn-outline-secondary">게시판 등록</button>
+	  	class="col-3 btn btn-outline-info">게시판 등록</button>
     </div> 
     <div class="main mt-5 pb-5 text-center">
       	<table class="table">
-			<thead class="table-secondary">
+			<thead class="table-info">
 				<tr>
        				<th class="w-30">게시판</th>
       				<th class="w-30">제한 등급</th>
