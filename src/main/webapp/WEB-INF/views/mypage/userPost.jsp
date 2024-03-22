@@ -32,6 +32,9 @@
 		padding-bottom : 110px;	/*footer의  height와 동일*/
 	}
 
+	.container{
+		width:800px;
+	}
 </style>
 
 </head>
