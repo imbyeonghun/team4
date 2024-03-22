@@ -77,6 +77,12 @@ left join comment on bo_num = cm_bo_num group by bo_num;
 		where 
 			me_id = #{user.me_id}
 	</update>
+	<update id="updateGrade">
+		update member set  
+			me_gr_name = #{user.me_gr_name}
+		where 
+			me_id = #{user.me_id}
+	</update>
 	
 	<select id="selectTotalCountPost" resultType="int">
 		SELECT count(*)

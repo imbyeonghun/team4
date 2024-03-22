@@ -32,4 +32,6 @@ public interface MyPageDAO {
 	MemberVO selectMember(@Param("user")MemberVO user);
 
 	void updateFailCount(@Param("user")MemberVO user);
+
+	void updateGrade(@Param("user")MemberVO user);
 }
