@@ -13,6 +13,8 @@ import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.PostVO;
 import team4.cafe.app.pagination.Criteria;
 import team4.cafe.app.pagination.PageMaker;
+import team4.cafe.app.service.BoardService;
+import team4.cafe.app.service.BoardServiceImp;
 import team4.cafe.app.service.PostService;
 import team4.cafe.app.service.PostServiceImp;
 
@@ -20,6 +22,7 @@ import team4.cafe.app.service.PostServiceImp;
 public class PostListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PostService postService = new PostServiceImp();
+	private BoardService boardService = new BoardServiceImp();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String search = request.getParameter("search");
 		String type = request.getParameter("type");
@@ -37,23 +40,23 @@ public class PostListServlet extends HttpServlet {
 			bo_num = 0;
 		}
 		
-
-		
 		System.out.println(page);
 		//검색어, 검색 타입, 현재 페이지, 한 페이지 컨텐츠 개수를 이용하여 편재 페이지 정보 객체를 생성
 		Criteria cri = new Criteria(page, 10, type, search);
-		int totalCount = postService.getTotalCount(cri);
+		int totalCount = postService.getTotalCount(bo_num, cri);
 		PageMaker pm = new PageMaker(5, cri, totalCount);
 		request.setAttribute("pm", pm);
 		//게시글 리스트를 화면에 출력한다.
 		request.setAttribute("bo_num", ""+bo_num);
 		//검색어, 검색타입에 맞는 전체 게시글 개수를 가져옴
+		BoardVO board = boardService.getBoard(bo_num);
 		ArrayList<PostVO> postList = new ArrayList<PostVO>();
 		if(bo_num == -1) {
 			postList = postService.getAllPostList(cri);
 		}else {
 			postList = postService.getPostList(bo_num, cri);
 		}
+		request.setAttribute("board", board);
 		request.setAttribute("postList", postList);
 		request.getRequestDispatcher("/WEB-INF/views/post/list.jsp").forward(request, response);
 	}

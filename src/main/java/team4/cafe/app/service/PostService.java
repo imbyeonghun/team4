@@ -27,7 +27,7 @@ public interface PostService {
 
 	ArrayList<BoardVO> getBoardList();
 
-	int getTotalCount(Criteria cri);
+	int getTotalCount(int bo_num, Criteria cri);
 
 	ArrayList<PostTypeVO> getPostTypeList();
 
