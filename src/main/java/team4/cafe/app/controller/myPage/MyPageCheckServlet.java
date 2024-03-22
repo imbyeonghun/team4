@@ -35,7 +35,8 @@ public class MyPageCheckServlet extends HttpServlet {
 			request.setAttribute("url", "mypage/update");
 		}else {
 			user.setMe_fail(user.getMe_fail() + 1);
-			request.setAttribute("msg", "본인확인 실패");
+			String text = "본인확인 실패 \n5회 실패시 계정이 정지됩니다.";
+			request.setAttribute("msg", "본인확인 실패 \\n5회 실패시 계정이 정지됩니다.");
 			request.setAttribute("url", "mypage/check");
 		}
 		myPageService.updateFailCount(user);

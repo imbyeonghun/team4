@@ -53,7 +53,9 @@ left join comment on bo_num = cm_bo_num group by bo_num;
 	</select>
 
 	<select id="selectCommentListByUser" resultMap="CommentMap">
-		select * from comment
+		select comment.*, (select bo_num from board where bo_num = po_bo_num) as cm_bo_num from comment
+		join post on po_num = cm_po_num
+		join board on po_bo_num = bo_num
 		where cm_me_id = #{user.me_id} and
 		cm_content like concat('%', #{cri.search} , '%')
 		group by cm_num	
@@ -74,6 +76,12 @@ left join comment on bo_num = cm_bo_num group by bo_num;
 			me_pw = #{user.me_pw},
 			me_name = #{user.me_name},
 			me_email = #{user.me_email}
+		where 
+			me_id = #{user.me_id}
+	</update>
+	<update id="updateGrade">
+		update member set  
+			me_gr_name = #{user.me_gr_name}
 		where 
 			me_id = #{user.me_id}
 	</update>

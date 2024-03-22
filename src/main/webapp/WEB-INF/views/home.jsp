@@ -13,7 +13,7 @@
 	body{
 		margin:0;
 		padding:0;
-		
+		position: static;
 	}
 	#wrap{
 		width:1100px;
@@ -102,8 +102,8 @@
 				<hr style="width : 700px">
 				<div class="new-PostList">
 					<c:if test='${empty postList}'>
-								<p>최신 등록된 게시글이 없습니다.</p>
-							</c:if>
+						<p>최신 등록된 게시글이 없습니다.</p>
+					</c:if>
 					<table class="table table-hover" style="width : 700px">
 						<tbody>
 							<c:forEach items="${postList}" var="post">
@@ -115,18 +115,14 @@
 											<c:param name="bo_num">${post.po_bo_num}</c:param>
 										</c:url> <a href="${url}">${post.po_title}</a></td>
 									<td>${post.po_me_name}</td>
-									<td>${post.po_date}</td>
+									<td class="date">${post.po_date}</td>
 									<td>${post.po_view}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-					</div>
-
-
-
+				</div>
 			</div>
-
 		</div>
 	</div>
 	</section>
@@ -139,5 +135,29 @@
 	<a style="color: #7dafd4;">CAFE</a>
 	</footer>
 </div>
+<script type="text/javascript">
+let dateTag = document.querySelectorAll(".date");
+for (const tag of dateTag) {
+	let asd = tag.innerText;
+	let date = toStringFormatting(asd);
+	tag.innerText = date;
+}
+
+function toStringFormatting(source){
+	  let replaced_source = source.replace('KST', '');
+      var  date = new Date(replaced_source);
+      const year = date.getFullYear();
+      const month = leftPad(date.getMonth() + 1);
+      const day = leftPad(date.getDate());
+      return [year, month, day].join('-');
+}
+
+function leftPad(value){
+	if (Number(value) >= 10) {
+		return value;
+	}
+	return "0" + value;
+}
+</script>
 </body>
 </html>
