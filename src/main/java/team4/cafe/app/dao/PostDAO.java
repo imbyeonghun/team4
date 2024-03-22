@@ -58,6 +58,8 @@ public interface PostDAO {
 
 	ArrayList<PostTypeVO> selectPostTypeList();
 
+	boolean deletePostType(@Param("pt_num")int num);
+
 
 
 }

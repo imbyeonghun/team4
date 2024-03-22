@@ -156,4 +156,7 @@
 		insert into post_type(pt_name) 
 		value(#{ptName})
 	</insert>
+	<delete id="deletePostType">
+		delete from post_type where pt_num=#{pt_num}
+	</delete>
 </mapper>

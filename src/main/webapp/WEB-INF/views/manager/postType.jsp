@@ -80,6 +80,39 @@
 			}
 		});
 	});
+	//수정버튼 입력
+	$(document).on("click","#btn-update",function(){
+		  let num=$(this).data('num');
+		  $("#updatePostType").attr("action",`<c:url value="/manager/postType/update?num=\${num}" />`);
+		  $(".update-box").show();
+	});
+	
+	
+	
+	//삭제버튼 입력
+	$(document).on("click","#btn-delete",function(){
+		let num = $(this).data("num");
+		$.ajax({
+			url : '<c:url value="/manager/postType/delete" />',
+			method : 'post',
+			data : {
+				num
+			},
+			success : function(data){
+				console.log(data);
+				if(data == 'ok'){
+					alert("말머리를 삭제했습니다.");
+					printPostType(cri);
+				}else{
+					alert("말머리를 삭제하지 못했습니다.");
+				}
+			}, 
+			error : function(a,b,c){
+				
+			}
+		});
+	});
+	
 	
 	//말머리 출력
 	function printPostType(cri){

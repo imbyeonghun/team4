@@ -212,5 +212,10 @@ public class PostServiceImp implements PostService{
 		}
 		return postDao.insertPostType(ptName);
 	}
+	//말머리 삭제
+	@Override
+	public boolean deletePostType(int num) {
+		return postDao.deletePostType(num);
+	}
 
 }
