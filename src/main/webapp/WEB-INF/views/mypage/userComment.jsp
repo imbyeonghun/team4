@@ -43,7 +43,7 @@
 									</c:url>
 									<a href="${url}">${list.cm_content}</a>
 								</td>
-								<td>${list.cm_date}</td>
+								<td class="date">${list.cm_date}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -87,5 +87,29 @@
 			</div>
 		</div>
 	</div>
+<script type="text/javascript">
+	let dateTag = document.querySelectorAll(".date");
+	for (const tag of dateTag) {
+		let asd = tag.innerText;
+		let date = toStringFormatting(asd);
+		tag.innerText = date;
+	}
+	
+	function toStringFormatting(source){
+		  let replaced_source = source.replace('KST', '');
+	      var  date = new Date(replaced_source);
+	      const year = date.getFullYear();
+	      const month = leftPad(date.getMonth() + 1);
+	      const day = leftPad(date.getDate());
+	      return [year, month, day].join('-');
+	}
+
+	function leftPad(value){
+		if (Number(value) >= 10) {
+			return value;
+		}
+		return "0" + value;
+	}
+</script>
 </body>
 </html>

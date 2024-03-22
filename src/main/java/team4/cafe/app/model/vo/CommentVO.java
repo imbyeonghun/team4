@@ -16,7 +16,7 @@ public class CommentVO {
 	private int cm_po_num;
 	
 	private PostVO post;
-	private int bo_num;
+	private int cm_bo_num;
 	
 	public CommentVO(int po_num, String content, String me_id) {
 		this.cm_po_num = po_num;
