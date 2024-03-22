@@ -51,7 +51,7 @@ CREATE TABLE `post` (
 	`po_view`	int not	NULL default 0,
 	`po_bo_num`	int	NOT NULL,
 	`po_me_id`	varchar(20)	NOT NULL,
-	`po_pt_num`	int	NULL
+	`po_pt_num`	int	NULL  default 1
 );
 
 DROP TABLE IF EXISTS `comment`;
@@ -73,7 +73,8 @@ CREATE TABLE `state` (
 DROP TABLE IF EXISTS `grade`;
 
 CREATE TABLE `grade` (
-	`gr_name`	varchar(10)	PRIMARY KEY
+	`gr_name`	varchar(10)	PRIMARY KEY,
+    `gr_rank`	int		/* 등급 순위 */
 );
 
 ALTER TABLE `member` ADD CONSTRAINT `FK_state_TO_member_1` FOREIGN KEY (

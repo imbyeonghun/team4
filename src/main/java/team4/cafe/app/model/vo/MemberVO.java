@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 /* 
   [카페 등급]
   운영자 : 
-  Level 1 : 기본값, 게시글 0, 댓글 0
-  Level 2 : 게시글 10, 댓글 10
-  Level 3 : 게시글 20, 댓글 20
+  Level 1 : 기본값, 게시글 0
+  Level 2 : 게시글 10
+  Level 3 : 게시글 20
  */
 
 @Data

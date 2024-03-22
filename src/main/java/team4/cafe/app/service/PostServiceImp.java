@@ -49,6 +49,7 @@ public class PostServiceImp implements PostService{
 			!checkString(post.getPo_title())) {
 			return false;
 		}
+		System.out.println(post);
 		return postDao.insertPost(post);
 	}
 	
@@ -179,6 +180,24 @@ public class PostServiceImp implements PostService{
 	@Override
 	public int getAllPostCount() {
 		return postDao.selectAllPostCount();
+	}
+
+	//포스트 타입 가져오기cri
+	@Override
+	public ArrayList<PostTypeVO> getPostTypeList(Criteria cri) {
+		if(cri==null) {
+			return null;
+		}
+		return postDao.getPostTypeList(cri);
+	}
+
+	//포스트타입 갯수 가져오기
+	@Override
+	public int getPostTypeCount(Criteria cri) {
+		if(cri==null) {
+			return 0;
+		}
+		return postDao.getPostTypeCount(cri);
 	}
 
 }

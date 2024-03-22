@@ -36,10 +36,8 @@
 		<if test='board.bo_name!=null'>
 			bo_name=#{board.bo_name},
 		</if>
-		<if test="board.bo_gr_name!=null">
 			bo_gr_name=#{board.bo_gr_name} 
-		</if>
-		where bo_num=#{board.bo_num} 
+		where bo_num = #{board.bo_num} 
 	</update>
 	<delete id="deleteBoard">
 		delete from board where bo_num=#{bo_num}

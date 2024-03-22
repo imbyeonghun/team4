@@ -50,6 +50,10 @@ public interface PostDAO {
 
 	int selectAllPostCount();
 
+	ArrayList<PostTypeVO> getPostTypeList(@Param("cri")Criteria cri);
+
+	int getPostTypeCount(Criteria cri);
+
 
 
 }

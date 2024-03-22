@@ -24,13 +24,13 @@
 	        </c:forEach>
 	    </select>
     </div>
-    <div class="insertBoard  mt-3 mb-3 input-group">
+    <div class="insertBoard  mt-4 mb-4 input-group">
       	<input type="text" placeholder="게시판 이름을 입력" id="addBoard"
       	class="col-9 form-control">
 	  	<button type="button" id="insertBoard"
 	  	class="col-3 btn btn-outline-secondary">게시판 등록</button>
     </div> 
-    <div class="main mt-3 pb-5">
+    <div class="main mt-5 pb-5 text-center">
       	<table class="table">
 			<thead class="table-secondary">
 				<tr>
@@ -55,7 +55,6 @@
     <form  method="post" id="updateBoard" class="input-group">
       <label for="update" class="p-2 me-3">게시판 수정</label>
       <select name="grade" id="grade" class="form-control w-30">
-    		<option value="null">등급 선택</option>
       		<c:forEach items="${gradeList}" var="grade">
 	        	<option value="${grade.gr_name}" 
 	        	>${grade.gr_name}</option> 
@@ -71,10 +70,14 @@ let cri={
 	page:1,
 	coNum:0,
 }
+
 $(document).on("click","#btn-update", function(){
   let num=$(this).data('num');
+  let gr = $(this).data("gr");
   $("#updateBoard").attr("action",`<c:url value="/manager/board/update?num=\${num}" />`);
+  $("#grade").val(gr).prop("selected", true);
   $(".update-box").show();
+  console.log(gr);
 });
 
 $(".btn-close").click(function(){
@@ -154,7 +157,7 @@ function printBoard(cri){
 					<tr class="line mt-2">
 		       			<td>\${board.bo_name}</td>
 		       			<td>\${board.bo_gr_name}</td>
-		        		<td data-num="\${board.bo_num}" id="btn-update"
+		        		<td data-num="\${board.bo_num}" data-gr="\${board.bo_gr_name}" id="btn-update"
 	          				class="click ">수정</td>
 	         			<td data-num="\${board.bo_num}" id="btn-delete"
 	         				class="click">삭제</td>		
