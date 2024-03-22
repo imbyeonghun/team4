@@ -62,6 +62,8 @@ public interface PostDAO {
 
 	boolean updatePostType(@Param("pt_num")int num,@Param("ptName")String name);
 
+	int selectTotalCount(@Param("bo_num")int bo_num, Criteria cri);
+
 
 
 }
