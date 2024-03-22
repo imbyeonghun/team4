@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import team4.cafe.app.model.vo.BoardVO;
+import team4.cafe.app.model.vo.PostTypeVO;
 import team4.cafe.app.model.vo.PostVO;
 import team4.cafe.app.pagination.Criteria;
 import team4.cafe.app.pagination.PageMaker;
@@ -26,6 +27,8 @@ public class PostListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String search = request.getParameter("search");
 		String type = request.getParameter("type");
+		System.out.println("검색 search : " + search);
+		System.out.println("검색 타입 : " + type);
 		//게시판 번호를 받아온다
 		int bo_num, page;
 		//게시판 번호와 일치하는 게시글 리스트를 불러온다
@@ -50,13 +53,11 @@ public class PostListServlet extends HttpServlet {
 		//검색어, 검색타입에 맞는 전체 게시글 개수를 가져옴
 		BoardVO board = boardService.getBoard(bo_num);
 		ArrayList<PostVO> postList = new ArrayList<PostVO>();
-		if(bo_num == -1) {
-			postList = postService.getAllPostList(cri);
-		}else {
-			postList = postService.getPostList(bo_num, cri);
-		}
+		postList = postService.getPostList(bo_num, cri);
 		request.setAttribute("board", board);
 		request.setAttribute("postList", postList);
+		ArrayList<PostTypeVO> ptList = postService.getPostTypeList();
+		request.setAttribute("ptList", ptList);
 		request.getRequestDispatcher("/WEB-INF/views/post/list.jsp").forward(request, response);
 	}
 

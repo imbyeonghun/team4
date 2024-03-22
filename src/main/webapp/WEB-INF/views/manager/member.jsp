@@ -22,12 +22,12 @@
 					<option value="name" <c:if test='${cri.type == "name" }'>selected</c:if>>닉네임</option>
 				</select>
 				<input type="text"  placeholder="검색어" name="search" value="${cri.search }" class="form-control w-50">
-				<button type="submit" id="search" class="btn btn-outline-secondary w-25">검색</button>
+				<button type="submit" id="search" class="btn btn-outline-info w-25">검색</button>
 			</div>
 		</form>
 		<div class="main mt-5 pb-5 text-center">
 			<table class="table">
-				<thead class="table-secondary">
+				<thead class="table-info">
 					<tr>
 	       				<th>등급</th>
 	      				<th>아이디</th>

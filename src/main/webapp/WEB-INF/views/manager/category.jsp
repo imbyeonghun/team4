@@ -18,11 +18,11 @@
         <input type="text" placeholder="카테고리 이름을 입력" id="addCategory"
         class="col-9 form-control">
         <button type="button" id="insertCategory"
-        class="col-3 btn btn-outline-secondary">카테고리 등록</button> 
+        class="col-3 btn btn-outline-info">카테고리 등록</button> 
     </div>  
     <div class="main mt-5 pb-5 text-center">
     	<table class="table">
-			<thead class="table-secondary">
+			<thead class="table-info">
 				<tr>
        				<th class="w-50">카테고리 목록</th>
       				<th class="w-25"></th>

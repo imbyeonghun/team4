@@ -17,12 +17,12 @@
 		<div class="input-group mb-3 mt-3">
 			<input type="text" class="form-control" id="ptName" placeholder="말머리 입력" name="ptName">
 			<div class="input-group-append">
-				<button class="btn btn-outline-secondary" type="button" id="insertPostType">말머리 등록</button>
+				<button class="btn btn-outline-info" type="button" id="insertPostType">말머리 등록</button>
 			</div>
 		</div>
 		<div class="main mt-5 pb-5 text-center">
 	      	<table class="table">
-				<thead class="table-secondary">
+				<thead class="table-info">
 					<tr>
 	       				<th class="w-50">말머리</th>
 	      				<th class="w-25"></th>

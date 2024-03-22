@@ -30,7 +30,12 @@
 	section{
 		padding-bottom : 110px;	/*footer의  height와 동일*/
 	}
-
+	.container{
+		width: 500px;
+	}
+	.container>div{
+		margin-bottom: 20px;
+	}
 </style>
 </head>
 <body>
@@ -46,33 +51,33 @@
 			</div>
 			<!-- 9단길이의 첫번째 열 -->
 			<div class="col-md-9 container">
-				<h1>내 정보</h1>
+				<h1 style="padding-bottom: 20px; text-align: center;">내 정보</h1>
 				<div>
 					<label for="id">닉네임(아이디)</label> 
-					<input type="text" id="id" name="id" value="${user.me_name}" readonly>
+					<input type="text" class="form-control" class="form-control" id="id" name="id" value="${user.me_name}" readonly>
 				</div>
 				<div>
 					<label for="grade">등급명</label>
-					<input type="text" id="grade" name="grade" value="${user.me_gr_name}" readonly>
+					<input type="text" class="form-control" id="grade" name="grade" value="${user.me_gr_name}" readonly>
 				</div>
 				<div>
 					<label for="email">이메일</label>
-					<input type="text" id="email" name="email" value="${user.me_email}" readonly>
+					<input type="text" class="form-control" id="email" name="email" value="${user.me_email}" readonly>
 				</div>
 				<div>
 					<label for="date">가입일</label> 
-					<input type="text" id="date" name="date" value="${user.me_date}" readonly>
+					<input type="text" class="form-control" id="date" name="date" value="${user.me_date}" readonly>
 				</div>
 				<div>
 					<label for="count">방문횟수</label> 
-					<input type="text" id="count" name="count" value="${user.me_loginCount}" readonly>
+					<input type="text" class="form-control" id="count" name="count" value="${user.me_loginCount}" readonly>
 				</div>
 				<div>
 					게시글 수 : <a href="<c:url value="/mypage/userPost"/>">${postCount}개</a>
-					| 댓 글 수 : <a href="<c:url value="/mypage/userComment"/>">${commentCount}개</a>
+					&nbsp;&nbsp;|&nbsp;&nbsp; 댓 글 수 : <a href="<c:url value="/mypage/userComment"/>">${commentCount}개</a>
 				</div>
-				<a href="<c:url value="/mypage/check"/>">내 정보 수정</a>
-				<button type="button" class="btn btn-outline-success btn-secession">카페 탈퇴하기</button>
+				<a href="<c:url value="/mypage/check"/>"><button type="button" class="btn btn-outline-success">내 정보 수정</button></a>
+				&nbsp;&nbsp;<button type="button" class="btn btn-outline-danger btn-secession">카페 탈퇴하기</button>
 			</div>
 		</div>
 		<!-- footer 영역 -->

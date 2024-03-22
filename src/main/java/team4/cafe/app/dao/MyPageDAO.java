@@ -21,9 +21,9 @@ public interface MyPageDAO {
 
 	ArrayList<CommentVO> selectCommentListByUser(@Param("user")MemberVO user, @Param("cri")Criteria cri);
 
-	int selectTotalCountPost(@Param("cri")Criteria cri);
+	int selectTotalCountPost(@Param("cri")Criteria cri, @Param("user")MemberVO user);
 
-	int selectTotalCountComment(@Param("cri")Criteria cri);
+	int selectTotalCountComment(@Param("cri")Criteria cri, @Param("user")MemberVO user);
 
 	boolean updateMemberSecession(@Param("me_id")String me_id);
 

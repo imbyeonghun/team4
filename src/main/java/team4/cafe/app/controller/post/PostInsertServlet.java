@@ -93,25 +93,27 @@ public class PostInsertServlet extends HttpServlet {
 		
 		boolean res = postService.insertPost(post);
 		String str ="";
-		if(myPageService.getPostCount(user)>=10) {
-			str += "등급이 Level2로 올랐습니다.";
-			//레벨셋해서
-			//유저 등급 을 레벨2로
-			user.setMe_gr_name("Level2");
-			//DB에 저장
-			myPageService.updateUserInfo(user);
-			//세션에 저장
-			HttpSession session =  request.getSession();
-			session.setAttribute("user", user);
-		}else if(myPageService.getPostCount(user)>=20) {
-			str += "등급이 Level3로 올랐습니다.";
-			//유저 등급 3으로 
-			user.setMe_gr_name("Level3");
-			//DB에 저장
-			myPageService.updateUserGrade(user);
-			//세션에 저장
-			HttpSession session =  request.getSession();
-			session.setAttribute("user", user);
+		if(!(user.getMe_gr_name().equals("운영자"))) {
+			if(myPageService.getPostCount(user) == 10) {
+				str += "등급이 Level2로 올랐습니다.";
+				//레벨셋해서
+				//유저 등급 을 레벨2로
+				user.setMe_gr_name("Level2");
+				//DB에 저장
+				myPageService.updateUserInfo(user);
+				//세션에 저장
+				HttpSession session =  request.getSession();
+				session.setAttribute("user", user);
+			}else if(myPageService.getPostCount(user) == 20) {
+				str += "등급이 Level3로 올랐습니다.";
+				//유저 등급 3으로 
+				user.setMe_gr_name("Level3");
+				//DB에 저장
+				myPageService.updateUserGrade(user);
+				//세션에 저장
+				HttpSession session =  request.getSession();
+				session.setAttribute("user", user);
+			}
 		}
 		
 		if(res) {
