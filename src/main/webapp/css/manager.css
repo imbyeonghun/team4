@@ -8,11 +8,11 @@
  .left{float: left;}
  .right{float: right;}
  .w-30{width: 30%; }
- .Tcenter{text-align: center;}
  .update-box{border: 1px solid #888; background-color: #fff; 
    position: absolute; top: 25%;  padding: 30px; left: calc(37% - 25%);
    display: none; z-index: 20;
  }
  .btn-close{position: absolute; top: 0; right: 0;}
  .main{border-bottom:1px solid #888;}
- li{list-style: none;}
+.bold{font-weight: bold; font-size: 18px; }
+ 

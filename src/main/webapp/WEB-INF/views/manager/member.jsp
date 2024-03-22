@@ -13,23 +13,27 @@
   <div class="header">
   	<jsp:include page = "/WEB-INF/views/header.jsp"/>
   </div>
-<div class="container">
+<div class="container mt-5 mb-4">
 	<form class="search">
-		<select name="type" >
-			<option value="all" <c:if test='${cri.type == "all" }'>selected</c:if>>전체</option>
-			<option value="grand" <c:if test='${cri.type == "grand" }'>selected</c:if>>등급</option>
-			<option value="name" <c:if test='${cri.type == "name" }'>selected</c:if>>닉네임</option>
-		</select>
-		<input type="text"  placeholder="검색어" name="search" value="${cri.search }">
-		<button type="submit" id="search">검색</button>
+		<div class="input-group">
+			<select name="type" class="form-control w-25">
+				<option value="all" <c:if test='${cri.type == "all" }'>selected</c:if>>전체</option>
+				<option value="grand" <c:if test='${cri.type == "grand" }'>selected</c:if>>등급</option>
+				<option value="name" <c:if test='${cri.type == "name" }'>selected</c:if>>닉네임</option>
+			</select>
+			<input type="text"  placeholder="검색어" name="search" value="${cri.search }" class="form-control w-50">
+			<button type="submit" id="search" class="btn btn-outline-secondary w-25">검색</button>
+		</div>
 	</form>
-	<div class="main">
+	<div class="main mt-5 pb-5 text-center">
 		<table class="table">
 			<thead class="table-secondary">
 				<tr>
-       				<th>Firstname</th>
-      				<th>Lastname</th>
-      				<th>Email</th>
+       				<th>등급</th>
+      				<th>아이디</th>
+      				<th>닉네임</th>
+      				<th>가입일</th>
+      				<th>상태</th>
      			</tr>
 			</thead>
 			<tbody>
@@ -37,29 +41,32 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="comment-pagination">
+	<div class="comment-pagination mt-3">
 		<ul class="pagination justify-content-center">
 			  				
 		</ul>
 	</div>
 </div>
-<div class="control-box hidden">
-    <div>
-    	<div id="userID"></div>
-    	<select name="grade" id="grade">
+<div class="update-box w-75">
+    <h4>회원 정보 수정</h4>
+    <div class="input-group">
+    	<label id="userID" class="bold me-2"></label>
+    	<select name="grade" id="grade" class="form-control w-25">
     		<option value="default">등급</option>
 	    	<c:forEach items="${gradeList }" var="grade">
     			<option value="${grade.gr_name}">${grade.gr_name}</option>
 	    	</c:forEach>
     	</select>
-    	<select name="state" id="state">
+    	<select name="state" id="state" class="form-control w-25">
     		<option value="default">상태</option>
     		<c:forEach items="${stateList }" var="state">
     			<option value="${state.st_state}">${state.st_state}</option>
 	    	</c:forEach>
     	</select>
-    	<button type="button" id="update">수정</button>
+    	<button type="button" id="update" class="btn btn-outline-secondary w-25">수정</button>
     </div>
+    <button type="button" class="btn-close"></button>
+    
 </div>
 <script type="text/javascript">
 let cri={
@@ -67,7 +74,7 @@ let cri={
 	type:null,
 	search:null
 }
-
+//검색
 $(document).on("submit","#search",function(){
 	cri.search=$("[name=search]").val();
 	cri.type=$("select").val();
@@ -75,9 +82,15 @@ $(document).on("submit","#search",function(){
 		cri.type=null;
 	}
 });
+//x버튼 누를시
+$(".btn-close").click(function(){
+	 $(".update-box").hide();
+});
+
 
 $(document).on("click",".line",function(){
 	let text=$(this).data("name");
+	$(".update-box").show();
 	$("#userID").text(text);
 });
 let st;
@@ -107,6 +120,7 @@ $(document).on("click","#update",function(){
 			}else{
 				alert("수정 실패");
 			}
+			$(".update-box").hide();
 		},error : function(a, b, c){
 			
 		}
@@ -131,18 +145,16 @@ function printMember(cri){
 			for(member of data.list){
 				str+=
 				`
-				<div class="line mt-2" data-name="\${member.me_id}">
-					<ul class="left click">
-						<li>등급:<span>\${member.me_gr_name}</span></li>
-						<li>아이디<span>\${member.me_id}</span></li>
-						<li>닉네임<span>\${member.me_name}</span></li>
-						<li>가입일<span>\${toStringFormatting(member.me_date)}</span></li>
-						<li>상태<span>\${member.me_st_state}</span></li>
-					</ul>
-				</div>
+				<tr class="line mt-2 click" data-name="\${member.me_id}">
+					<td>\${member.me_gr_name}</td>
+					<td>\${member.me_id}</td>
+					<td>\${member.me_name}</td>
+					<td>\${toStringFormatting(member.me_date)}</li>
+					<td>\${member.me_st_state}</td>
+				</tr>
 				`;
 			}
-			$('.main').html(str);
+			$('.main>table>tbody').html(str);
 			let pm = JSON.parse(data.pm);
 			let pmStr = "";
 			//이전 버튼 활성화 여부
