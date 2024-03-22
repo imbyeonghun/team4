@@ -87,11 +87,11 @@
 						<div class="input-group">
 							<select name="type" class="form-control">
 								<option value="all"<c:if test='${pm.cri.type == "all"}'>selected</c:if>>전체</option>
-								<option value="po_title"<c:if test='${pm.cri.type == "po_title"}'>selected</c:if>>제목</option>
-								<option value="po_me_name"<c:if test='${pm.cri.type == "po_me_name"}'>selected</c:if>>작성자</option>
+								<option value="title"<c:if test='${pm.cri.type == "title"}'>selected</c:if>>제목</option>
+								<option value="name" <c:if test='${pm.cri.type == "name"}'>selected</c:if>>작성자</option>
 							</select>
 							<input type="text" class="form-control" placeholder="검색어" name="search" value="${pm.cri.search}">
-							<span class="btn btn-outline-warning">검색</span>
+							<button  class="btn btn-outline-warning">검색</button>
 						</div>
 					</form>
 					<ul class="pagination justify-content-center">
