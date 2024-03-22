@@ -79,19 +79,25 @@ public class MyPageServiceImp implements MyPageService {
 	}
 
 	@Override
-	public int getTotalCountPost(Criteria cri) {
+	public int getTotalCountPost(Criteria cri, MemberVO user) {
 		if(cri == null) {
 			cri = new Criteria();
 		}
-		return myPageDao.selectTotalCountPost(cri);
+		if(user == null) {
+			return 0;
+		}
+		return myPageDao.selectTotalCountPost(cri, user);
 	}
 
 	@Override
-	public int getTotalCountComment(Criteria cri) {
+	public int getTotalCountComment(Criteria cri, MemberVO user) {
 		if(cri == null) {
 			cri = new Criteria();
 		}
-		return myPageDao.selectTotalCountComment(cri);
+		if(user == null) {
+			return 0;
+		}
+		return myPageDao.selectTotalCountComment(cri, user);
 	}
 
 	@Override

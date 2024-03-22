@@ -19,9 +19,9 @@ public interface MyPageService {
 
 	ArrayList<CommentVO> getCommentListByUser(MemberVO user, Criteria cri);
 
-	int getTotalCountPost(Criteria cri);
+	int getTotalCountPost(Criteria cri, MemberVO user);
 
-	int getTotalCountComment(Criteria cri);
+	int getTotalCountComment(Criteria cri, MemberVO user);
 
 	boolean updateMemberSecession(String me_id);
 
