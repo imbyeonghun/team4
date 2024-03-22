@@ -40,15 +40,13 @@ public class PostUpdateServlet extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int num, bo_num, pt_num;
+		int num=0,  bo_num=0,pt_num=1;
 		try {
 			num = Integer.parseInt(request.getParameter("num"));
 			bo_num = Integer.parseInt(request.getParameter("bo_num"));
 			pt_num = Integer.parseInt(request.getParameter("pt_num"));
 		} catch (Exception e) {
-			num = 0;
-			bo_num = 0;
-			pt_num = 0;
+			e.printStackTrace();
 		}
 		System.out.println(bo_num);
 		String title = request.getParameter("title");
@@ -62,10 +60,10 @@ public class PostUpdateServlet extends HttpServlet {
 		if(res) {
 			request.setAttribute("msg", "게시글을 수정했습니다.");
 			//여기
-			request.setAttribute("url", "/post/list?bo_num="+bo_num);
+			request.setAttribute("url","/post/detail?num="+num +"&bo_num="+bo_num);
 		}else {
 			request.setAttribute("msg", "게시글을 수정하지 못했습니다.");
-			request.setAttribute("url", "/");
+			request.setAttribute("url", "/post/detail?num="+num +"&bo_num="+bo_num);
 		}
 		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 	}
