@@ -108,11 +108,21 @@
 						<tbody>
 							<c:forEach items="${postList}" var="post">
 								<tr>
-									<!-- c:choose로 될거같음 말머리 뜨게 -->
-									<td>${post.po_num}</td>
-									<td><c:url value="/post/detail" var="url">
-											<c:param name="num">${post.po_num}</c:param>
-											<c:param name="bo_num">${post.po_bo_num}</c:param>
+									<!-- 말머리 이름 출력 -->
+									<c:if test="${post.po_pt_num == 1}">
+										<td>${post.po_num}</td>
+									</c:if>
+									<c:if test="${post.po_pt_num != 1}">
+										<c:forEach items="${ptList}" var="postType">
+											<c:if test="${post.po_pt_num == postType.pt_num}">
+												<td style="font-weight: bold;">[${postType.pt_name}]</td>
+											</c:if>
+										</c:forEach>
+									</c:if>
+									<td>
+										<c:url value="/post/detail" var="url">
+										<c:param name="num">${post.po_num}</c:param>
+										<c:param name="bo_num">${post.po_bo_num}</c:param>
 										</c:url> <a href="${url}">${post.po_title}</a></td>
 									<td>${post.po_me_name}</td>
 									<td class="date">${post.po_date}</td>

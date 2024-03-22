@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import team4.cafe.app.model.vo.PostTypeVO;
 import team4.cafe.app.model.vo.PostVO;
 import team4.cafe.app.pagination.Criteria;
 import team4.cafe.app.service.PostService;
@@ -24,8 +25,8 @@ public class MainServlet extends HttpServlet {
 		Criteria cri = new Criteria(1, 10, "all", "");
 		ArrayList<PostVO> allPostList = postService.getAllPostList(cri);
 		
-		//기본 말머리 설정
-//		postService.insertPostType
+		ArrayList<PostTypeVO> ptList = postService.getPostTypeList();
+		request.setAttribute("ptList", ptList);
 		
 		request.setAttribute("postList", allPostList);
 		request.getRequestDispatcher("/WEB-INF/views/home.jsp").forward(request, response);
