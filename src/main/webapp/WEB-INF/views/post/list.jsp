@@ -76,7 +76,7 @@
 										<a href="${url}">${post.po_title}</a>
 									</td>
 									<td>${post.po_me_name}</td>
-									<td>${post.po_date}</td>
+									<td class="date">${post.po_date}</td>
 									<td>${post.po_view}</td>
 								</tr>	
 							</c:forEach>	
