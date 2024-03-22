@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import team4.cafe.app.dao.BoardDAO;
 import team4.cafe.app.model.vo.MemberVO;
+import team4.cafe.app.model.vo.PostVO;
 import team4.cafe.app.service.BoardService;
 import team4.cafe.app.service.BoardServiceImp;
 import team4.cafe.app.service.PostService;
@@ -29,16 +30,16 @@ public class PostDeleteServlet extends HttpServlet {
 		}
 		//회원정보를 가져옴
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
-		
+		PostVO post = postService.getPost(po_num);
 		//board에게 삭제라하고 시킴
 		boolean res = postService.deletePost(user, po_num);
 		//회원이면 게시글을 삭제한다
 		if(res) {
 			request.setAttribute("msg", "게시글을 삭제했습니다.");
-			request.setAttribute("url", "/post/list");
+			request.setAttribute("url", "/post/list?bo_num="+post.getPo_bo_num());
 		}else {
 			request.setAttribute("msg", "게시글을 삭제하지 못했습니다.");
-			request.setAttribute("url", "/post/list");
+			request.setAttribute("url", "/post/detail?num="+po_num +"&bo_num="+post.getPo_bo_num());
 		}
 		//게시글을 삭제하고 메세지 띄움
 		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
