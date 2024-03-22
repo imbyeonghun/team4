@@ -217,5 +217,20 @@ public class PostServiceImp implements PostService{
 	public boolean deletePostType(int num) {
 		return postDao.deletePostType(num);
 	}
+	
+	//말머리 수정
+	@Override
+	public boolean updatePostType(int num, String name) {
+		if(name==null) {
+			return false;
+		}
+		ArrayList<PostTypeVO> postTypeList=postDao.selectPostTypeList();
+		for(PostTypeVO post:postTypeList) {
+			if(post.getPt_name().equals(name)) {
+				return false;
+			}
+		}
+		return postDao.updatePostType(num,name);
+	}
 
 }

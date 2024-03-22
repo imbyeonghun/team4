@@ -24,10 +24,9 @@
 	      	<table class="table">
 				<thead class="table-secondary">
 					<tr>
-	       				<th class="w-30">말머리</th>
-	      				<th class="w-30"></th>
-	      				<th class="w-auto"></th>
-	      				<th class="w-auto"></th>
+	       				<th class="w-50">말머리</th>
+	      				<th class="w-25"></th>
+	      				<th class="w-25"></th>
 	     			</tr>
 				</thead>
 				<tbody>
@@ -42,16 +41,23 @@
 			</ul>
 		</div>
 	</div>
-	 <div class="update-box w-75">
-      <form  method="post" id="updatePostType" class="input-group">
-        <label for="update" class="w-25 ">말머리 수정</label>
-        <input type="text" placeholder="말머리 명" name="update" class="form-control">
-        <button type="button" class="btn btn-outline-secondary">수정</button>
-      </form>
-      <button type="button" class="btn-close"></button>
- 	 </div>
+	<div class="modal" id="myModal">
+	  <form class="modal-dialog modal-dialog-centered" method="post" id="updatePostType">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	         <label for="update" class="w-25 ">말머리 수정</label>
+	         <button type="button" class="btn-close m-2" data-bs-dismiss="modal"></button>
+	      </div>
+	      <div class="modal-body">
+	        <input type="text" placeholder="말머리 명" name="update" class="form-control">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="submit" class="btn btn-outline-secondary" data-bs-dismiss="modal">수정</button>
+	      </div>
+	    </div>
+	  </form>
+	</div>
 	<script type="text/javascript">
-	
 	
 	let cri={
 		page:1
@@ -80,11 +86,11 @@
 			}
 		});
 	});
+	
 	//수정버튼 입력
 	$(document).on("click","#btn-update",function(){
 		  let num=$(this).data('num');
 		  $("#updatePostType").attr("action",`<c:url value="/manager/postType/update?num=\${num}" />`);
-		  $(".update-box").show();
 	});
 	
 	
@@ -127,8 +133,9 @@
 						str+=
 						`
 						<tr class="line mt-2">
-			       			<td>\${postType.pt_name}</td>
+			       			<td class="bold">\${postType.pt_name}</td>
 			        		<td data-num="\${postType.pt_num}" id="btn-update"
+			        			data-bs-toggle="modal" data-bs-target="#myModal"
 		          				class="click ">수정</td>
 		         			<td data-num="\${postType.pt_num}" id="btn-delete"
 		         				class="click">삭제</td>		

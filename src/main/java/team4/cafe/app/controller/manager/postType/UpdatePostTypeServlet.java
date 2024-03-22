@@ -26,11 +26,11 @@ public class UpdatePostTypeServlet extends HttpServlet {
 		System.out.println(num+" "+name);
 		boolean res=ps.updatePostType(num,name);
 		if(res) {
-			request.setAttribute("msg", "");
+			request.setAttribute("msg", "수정 완료");
 		}else {
-			request.setAttribute("msg", "");
+			request.setAttribute("msg", "수정 실패");
 		}
-		request.setAttribute("url","/manager/category");
+		request.setAttribute("url","/manager/postType");
 		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 	}
 

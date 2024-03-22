@@ -53,4 +53,6 @@ public interface PostService {
 
 	boolean deletePostType(int num);
 
+	boolean updatePostType(int num, String name);
+
 }

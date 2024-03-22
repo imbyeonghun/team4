@@ -60,6 +60,8 @@ public interface PostDAO {
 
 	boolean deletePostType(@Param("pt_num")int num);
 
+	boolean updatePostType(@Param("pt_num")int num,@Param("ptName")String name);
+
 
 
 }

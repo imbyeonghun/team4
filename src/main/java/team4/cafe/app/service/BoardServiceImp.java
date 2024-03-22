@@ -48,7 +48,7 @@ public class BoardServiceImp implements BoardService {
 	//카테고리 등록
 	@Override
 	public boolean insertCategory(String category) {
-		if(category==null) {
+		if(checked(category)) {
 			return false;
 		}
 		ArrayList<CategoryVO>categoryList=boardDao.selectCategoryList();
@@ -69,7 +69,7 @@ public class BoardServiceImp implements BoardService {
 	//카테고리 수정
 	@Override
 	public boolean updateCategory(CategoryVO category) {
-		if(category==null||category.getCo_name()==null) {
+		if(category==null||checked(category.getCo_name())) {
 			return false;
 		}
 		ArrayList<CategoryVO> categoryList=boardDao.selectCategoryList();
@@ -109,12 +109,16 @@ public class BoardServiceImp implements BoardService {
 		if(board==null||board.getBo_num()==0) {
 			return false;
 		}
-		if(checked(board.getBo_name())) {
-			board.setBo_name(null);
-		}
 		if(checked(board.getBo_gr_name())) {
 			return false;
 		}
+		BoardVO dbBoard=boardDao.selectBoard(board.getBo_num());
+		if(checked(board.getBo_name())) {
+			board.setBo_name(null);
+			if(board.getBo_gr_name().equals(dbBoard.getBo_gr_name())) {
+				return false;
+			}
+		}	
 		return boardDao.updateBoard(board);
 	}
 	

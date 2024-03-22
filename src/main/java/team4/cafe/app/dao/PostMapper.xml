@@ -159,4 +159,7 @@
 	<delete id="deletePostType">
 		delete from post_type where pt_num=#{pt_num}
 	</delete>
+	<update id="updatePostType">
+		update post_type set pt_name=#{ptName} where pt_num=#{pt_num}
+	</update>
 </mapper>
