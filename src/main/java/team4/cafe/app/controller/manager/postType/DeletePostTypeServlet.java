@@ -7,11 +7,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import team4.cafe.app.service.PostService;
+import team4.cafe.app.service.PostServiceImp;
+
 @WebServlet("/manager/postType/delete")
 public class DeletePostTypeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private PostService ps=new PostServiceImp();  
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int num=0;
+		try {
+			num=Integer.parseInt(request.getParameter("num"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		boolean res=ps.deletePostType(num);
+		response.getWriter().write(res?"ok":"");
 		
 	}
 

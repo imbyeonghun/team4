@@ -146,7 +146,20 @@
 	<select id="getPostTypeList" resultType="team4.cafe.app.model.vo.PostTypeVO">
 		select * from post_type LIMIT #{cri.pageStart}, #{cri.perPageNum}
 	</select>
+	<select id="selectPostTypeList" resultType="team4.cafe.app.model.vo.PostTypeVO">
+		select * from post_type
+	</select>
 	<select id="getPostTypeCount" resultType="int">
 		select count(*) from post_type
 	</select>
+	<insert id="insertPostType">
+		insert into post_type(pt_name) 
+		value(#{ptName})
+	</insert>
+	<delete id="deletePostType">
+		delete from post_type where pt_num=#{pt_num}
+	</delete>
+	<update id="updatePostType">
+		update post_type set pt_name=#{ptName} where pt_num=#{pt_num}
+	</update>
 </mapper>

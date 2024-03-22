@@ -41,14 +41,23 @@
 		</ul>
 	</div>
   </div>
- <div class="update-box w-75">
-      <form  method="post" id="updateCategory" class="input-group">
-        <label for="update" class="w-25 ">카테고리 수정</label>
-        <input type="text" placeholder="카테고리명" name="update" class="form-control">
-        <button type="button" class="btn btn-outline-secondary">수정</button>
-      </form>
-      <button type="button" class="btn-close"></button>
-  </div>
+  <div class="modal" id="myModal">
+	  <form class="modal-dialog modal-dialog-centered" method="post" id="updateCategory">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	         <label for="update">카테고리 수정</label>
+	         <button type="button" class="btn-close m-2" data-bs-dismiss="modal"></button>
+	      </div>
+	      <div class="modal-body">
+	        <input type="text" placeholder="카테고리명" name="update" class="form-control">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="submit" class="btn btn-outline-secondary" data-bs-dismiss="modal">수정</button>
+	      </div>
+	    </div>
+	  </form>
+	</div>
+  
 <script type="text/javascript">
 let cri={
 		page:1
@@ -58,11 +67,6 @@ let cri={
 $(document).on("click","#btn-update",function(){
   let num=$(this).data('num');
   $("#updateCategory").attr("action",`<c:url value="/manager/category/update?num=\${num}" />`);
-  $(".update-box").show();
-});
-//x버튼 누를시
-$(".btn-close").click(function(){
-	 $(".update-box").hide();
 });
 
 //카테고리 추가 이벤트
@@ -102,9 +106,9 @@ function printCategory(){
 				str+=
 				`
 			      <tr class="line mt-2">
-				      <td>\${category.co_name }</td>
+				      <td class="bold">\${category.co_name }</td>
 				      <td data-num="\${category.co_num }" id="btn-update"
-				        	class="click">수정</td>
+				        	class="click" data-bs-toggle="modal" data-bs-target="#myModal">수정</td>
 				      <td data-num="\${category.co_num }" id="btn-delete"
 				        	class="click ">삭제</td>
 			      </tr>

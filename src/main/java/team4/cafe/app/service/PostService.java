@@ -49,4 +49,10 @@ public interface PostService {
 
 	int getPostTypeCount(Criteria cri);
 
+	boolean insertPostType(String ptName);
+
+	boolean deletePostType(int num);
+
+	boolean updatePostType(int num, String name);
+
 }
