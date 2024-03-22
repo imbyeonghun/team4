@@ -36,5 +36,7 @@ public interface MemberDAO {
 
 	void updateMemberState(@Param("me_id")String me_id, @Param("me_st_state")String state);
 
+	int insertMemberGrRank(@Param("gr_name")String gr_name);
+
 
 }

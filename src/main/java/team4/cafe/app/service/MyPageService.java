@@ -30,4 +30,6 @@ public interface MyPageService {
 	void updateMemberStop(MemberVO user);
 
 	void updateFailCount(MemberVO user);
+
+	void updateUserGrade(MemberVO user);
 }

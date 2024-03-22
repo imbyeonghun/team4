@@ -125,4 +125,12 @@ public class MyPageServiceImp implements MyPageService {
 		}
 		myPageDao.updateFailCount(user);
 	}
+
+	@Override
+	public void updateUserGrade(MemberVO user) {
+		if(user == null) {
+			return;
+		}
+		myPageDao.updateGrade(user);
+	}
 }

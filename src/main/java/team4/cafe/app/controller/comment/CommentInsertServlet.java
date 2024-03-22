@@ -6,9 +6,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import team4.cafe.app.model.vo.CommentVO;
 import team4.cafe.app.model.vo.MemberVO;
+import team4.cafe.app.service.MyPageService;
+import team4.cafe.app.service.MyPageServiceImp;
 import team4.cafe.app.service.PostService;
 import team4.cafe.app.service.PostServiceImp;
 
@@ -29,6 +32,8 @@ public class CommentInsertServlet extends HttpServlet {
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		CommentVO comment = new CommentVO(po_num, content, user.getMe_id());
 		boolean res = postService.insertComment(comment);
+		
+
 		response.getWriter().write(res?"ok":"");
 	}
 
