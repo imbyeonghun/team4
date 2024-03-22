@@ -60,16 +60,6 @@
 							<th>조회수</th>		     
 						</tr>
 					</thead>
-					<tbody>
-						<c:forEach items="${postList}" var="post">
-							<tr>
-								<th>번호</th>
-								<th>제목</th>
-								<th>닉네임</th>
-								<th>작성시간</th>
-								<th>조회수</th>		     
-							</tr>
-						</thead>
 						<tbody>
 							<c:forEach items="${postList}" var="post">
 								<tr>
@@ -145,11 +135,6 @@
 							</li>
 						</c:if>
 					</ul>
-					</c:when>
-					<c:otherwise>
-						<h1>등록된 게시글이 없습니다.</h1>
-					</c:otherwise>				
-				</c:choose>
 				<a href='<c:url value="/post/insert?num=${bo_num}"/>' class="btn btn-outline-danger">글 등록</a>
 			</div>
 		</div>
