@@ -14,7 +14,7 @@
 	  	<jsp:include page = "/WEB-INF/views/header.jsp"/>
 	</div>
 	<div class="container mt-5 mb-4">
-		<form class="search">
+		<div class="search" >
 			<div class="input-group">
 				<select name="type" class="form-control w-25">
 					<option value="all" <c:if test='${cri.type == "all" }'>selected</c:if>>전체</option>
@@ -22,9 +22,9 @@
 					<option value="name" <c:if test='${cri.type == "name" }'>selected</c:if>>닉네임</option>
 				</select>
 				<input type="text"  placeholder="검색어" name="search" value="${cri.search }" class="form-control w-50">
-				<button type="submit" id="search" class="btn btn-outline-info w-25">검색</button>
+				<button type="button" id="search" class="btn btn-outline-info w-25">검색</button>
 			</div>
-		</form>
+		</div>
 		<div class="main mt-5 pb-5 text-center">
 			<table class="table">
 				<thead class="table-info">
@@ -80,13 +80,26 @@ let cri={
 	search:null
 }
 //검색
-$(document).on("submit","#search",function(){
+$(document).on("click","#search",function(){
+	search();
+});
+
+$(document).on("keypress","[name=search]",function(key){
+	if(key.keyCode==13){	
+		$('#search').click();
+	}
+});
+
+
+function search() {
 	cri.search=$("[name=search]").val();
 	cri.type=$("select").val();
+	console.log(cri);
 	if(cri.search==""){
 		cri.type=null;
 	}
-});
+	printMember(cri);
+}
 
 //클릭 이벤트
 $(document).on("click",".line",function(){
