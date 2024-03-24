@@ -62,14 +62,15 @@
 						<tbody>
 							<c:forEach items="${postList}" var="post">
 								<tr>
+
+								<!-- 말머리 이름 출력 -->
 								<c:if test="${post.po_pt_num == 1}">
 									<td>${post.po_num}</td>
 								</c:if>
 								<c:if test="${post.po_pt_num != 1}">
-								<!-- 말머리 이름 출력 -->
 									<c:forEach items="${ptList}" var="postType">
 										<c:if test="${post.po_pt_num == postType.pt_num}">
-											<td style="font-weight: bold;">${postType.pt_name}</td>
+											<td style="font-weight: bold;">[${postType.pt_name}]</td>
 										</c:if>
 									</c:forEach>
 								</c:if>
@@ -135,7 +136,14 @@
 							</li>
 						</c:if>
 					</ul>
-				<a href='<c:url value="/post/insert?num=${bo_num}"/>' class="btn btn-outline-danger">글 등록</a>
+					</c:when>
+					<c:otherwise>
+						<h1>등록된 게시글이 없습니다.</h1>
+					</c:otherwise>				
+				</c:choose>
+				<c:if test="${bo_num != -1}">
+					<a href='<c:url value="/post/insert?num=${bo_num}"/>' class="btn btn-outline-danger">글 등록</a>
+				</c:if>
 			</div>
 		</div>
 	
