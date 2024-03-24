@@ -14,6 +14,12 @@ import team4.cafe.app.model.vo.BoardVO;
 import team4.cafe.app.model.vo.MemberVO;
 import team4.cafe.app.model.vo.PostTypeVO;
 import team4.cafe.app.model.vo.PostVO;
+import team4.cafe.app.service.BoardService;
+import team4.cafe.app.service.BoardServiceImp;
+import team4.cafe.app.service.MemberService;
+import team4.cafe.app.service.MemberServiceImp;
+import team4.cafe.app.service.MyPageService;
+import team4.cafe.app.service.MyPageServiceImp;
 import team4.cafe.app.service.PostService;
 import team4.cafe.app.service.PostServiceImp;
 
@@ -21,6 +27,9 @@ import team4.cafe.app.service.PostServiceImp;
 public class PostUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private PostService postService = new PostServiceImp();
+    private BoardService boardService = new BoardServiceImp();
+    private MyPageService myPageService = new MyPageServiceImp();
+    private MemberService memberService = new MemberServiceImp();
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//게시판, 게시글 번호를 받아온다
@@ -55,6 +64,21 @@ public class PostUpdateServlet extends HttpServlet {
 		PostVO post = new PostVO(bo_num, pt_num, title, "", content, today);
 		post.setPo_num(num);
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		
+		//게시판 등급에 따라 수정 불가
+		BoardVO board = boardService.getBoard(bo_num);
+		//등급 이름으로 등급 순위 가져오기 
+		int boardGrRank = memberService.getGradeRank(board.getBo_gr_name());
+		int userGrRank = memberService.getGradeRank(user.getMe_gr_name());
+		
+		//만약 유저 등급이 게시판 등급보다 크거나 같으면 글을 등록할 수 없다는 메세지 띄운 후 목록페이지 유지
+		if(boardGrRank < userGrRank) {
+			String str = "해당 게시판은 " + board.getBo_gr_name() +" 회원이상만 게시글을 등록할 수 있습니다.\\n당신은 " + user.getMe_gr_name() + " 회원입니다.";
+			request.setAttribute("msg", str);
+			request.setAttribute("url", "/post/detail?num="+num +"&bo_num="+bo_num);
+			request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
+			return;
+		}
 		
 		boolean res = postService.updatePost(post, user);
 		if(res) {
