@@ -57,12 +57,6 @@ public class PostUpdateServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(bo_num);
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		Date today = new Date();
-		PostVO post = new PostVO(bo_num, pt_num, title, "", content, today);
-		post.setPo_num(num);
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		
 		//게시판 등급에 따라 수정 불가
@@ -70,6 +64,8 @@ public class PostUpdateServlet extends HttpServlet {
 		//등급 이름으로 등급 순위 가져오기 
 		int boardGrRank = memberService.getGradeRank(board.getBo_gr_name());
 		int userGrRank = memberService.getGradeRank(user.getMe_gr_name());
+		
+		System.out.println("boardGrRank : " + boardGrRank + " userGrRank : " + userGrRank);
 		
 		//만약 유저 등급이 게시판 등급보다 크거나 같으면 글을 등록할 수 없다는 메세지 띄운 후 목록페이지 유지
 		if(boardGrRank < userGrRank) {
@@ -79,6 +75,13 @@ public class PostUpdateServlet extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 			return;
 		}
+		
+		System.out.println(bo_num);
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		Date today = new Date();
+		PostVO post = new PostVO(bo_num, pt_num, title, "", content, today);
+		post.setPo_num(num);
 		
 		boolean res = postService.updatePost(post, user);
 		if(res) {
