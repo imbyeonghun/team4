@@ -49,7 +49,6 @@ public class PostServiceImp implements PostService{
 			!checkString(post.getPo_title())) {
 			return false;
 		}
-		System.out.println(post);
 		return postDao.insertPost(post);
 	}
 	

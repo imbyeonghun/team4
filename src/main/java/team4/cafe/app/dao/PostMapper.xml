@@ -15,18 +15,17 @@
    			JOIN
 		member ON me_id = po_me_id
 		<if test='cri.type=="all"'>
-			where po_title like concat('%', #{cri.search},'%') 
-				or me_name = #{cri.search}
+			where po_title like concat('%',#{cri.search},'%') 
+				or po_me_id = #{cri.search}
 		</if>
 		<if test='cri.type=="title"'>
-			where po_title like concat('%', #{cri.search},'%') 
+			where po_title like concat('%',#{cri.search},'%') 
 		</if>
 		<if test='cri.type=="name"'>
-			where me_name = #{cri.search}
+			where po_me_id = #{cri.search}
+			or me_name = #{cri.search}
 		</if>
-		<if test='bo_num != -1'>
-			and po_bo_num = #{bo_num}
-		</if>
+		and po_bo_num = #{bo_num}
 		ORDER BY po_num DESC
 		LIMIT #{cri.pageStart}, #{cri.perPageNum}
 	</select>
@@ -79,10 +78,7 @@
 			post
 				JOIN
 		member ON me_id = po_me_id
-		<if test="bo_num != -1">
-			where 
-				po_bo_num = #{bo_num}
-		</if>
+		where po_bo_num = #{bo_num}
 	</select>
 	<select id="selectPostType" resultType="team4.cafe.app.model.vo.PostTypeVO">
 		select * from post_type
