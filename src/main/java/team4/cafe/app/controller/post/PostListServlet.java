@@ -24,11 +24,10 @@ public class PostListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PostService postService = new PostServiceImp();
 	private BoardService boardService = new BoardServiceImp();
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String search = request.getParameter("search");
 		String type = request.getParameter("type");
-		System.out.println("검색 search : " + search);
-		System.out.println("검색 타입 : " + type);
 		//게시판 번호를 받아온다
 		int bo_num, page;
 		//게시판 번호와 일치하는 게시글 리스트를 불러온다
@@ -51,11 +50,10 @@ public class PostListServlet extends HttpServlet {
 		//게시글 리스트를 화면에 출력한다.
 		request.setAttribute("bo_num", ""+bo_num);
 		//검색어, 검색타입에 맞는 전체 게시글 개수를 가져옴
-		BoardVO board = boardService.getBoard(bo_num);
-		ArrayList<PostVO> postList = new ArrayList<PostVO>();
-		postList = postService.getPostList(bo_num, cri);
-		request.setAttribute("board", board);
+		ArrayList<PostVO> postList = postService.getPostList(bo_num, cri);
 		request.setAttribute("postList", postList);
+		BoardVO board = boardService.getBoard(bo_num);
+		request.setAttribute("board", board);
 		ArrayList<PostTypeVO> ptList = postService.getPostTypeList();
 		request.setAttribute("ptList", ptList);
 		request.getRequestDispatcher("/WEB-INF/views/post/list.jsp").forward(request, response);

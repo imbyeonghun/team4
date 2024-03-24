@@ -177,8 +177,6 @@
 			poNum : '${post.po_num}'
 	}
 	
-	displayCommentAndPagination(cri);
-	
 	function displayCommentAndPagination(cri){
 		$.ajax({
 			url : '<c:url value="/comment/list"/>',
@@ -190,6 +188,8 @@
 			}
 		});
 	}
+	
+	displayCommentAndPagination(cri);
 	
 	function displayComment(commentList) {
 		let str = '';

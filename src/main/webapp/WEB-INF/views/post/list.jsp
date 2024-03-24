@@ -48,8 +48,7 @@
 		<!-- 9단길이의 첫번째 열 -->
 		<div class="col-md-9">
 			<div class="container">
-				<h1>${board.bo_name}</h1>
-				<p>목록</p>
+				<h5>${board.bo_name}</h5>
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -89,7 +88,7 @@
 								
 						</tbody>
 					</table>
-					<form action="<c:url value="/post/list"/>" class="mb-3 mt-3">
+					<form action="<c:url value="/post/list"/>" class="mb-3 mt-3" method="get">
 						<div class="input-group">
 							<select name="type" class="form-control">
 								<option value="all"<c:if test='${pm.cri.type == "all"}'>selected</c:if>>전체</option>
@@ -97,6 +96,7 @@
 								<option value="name" <c:if test='${pm.cri.type == "name"}'>selected</c:if>>작성자</option>
 							</select>
 							<input type="text" class="form-control" placeholder="검색어" name="search" value="${pm.cri.search}">
+							<input type="hidden" name="bo_num" value="${bo_num}">
 							<button  class="btn btn-outline-warning">검색</button>
 						</div>
 					</form>
