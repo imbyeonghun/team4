@@ -47,25 +47,22 @@
 		</div>
 		<!-- 9단길이의 첫번째 열 -->
 		<div class="col-md-9">
-			
 			<div class="container">
-			<c:choose>
-				<c:when test="${postList.size() != null}">
-					<h1>${board.bo_name}</h1>
-					<p>목록</p>
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th>번호</th>
-								<th>제목</th>
-								<th>닉네임</th>
-								<th>작성시간</th>
-								<th>조회수</th>		     
-							</tr>
-						</thead>
+				<h5>${board.bo_name}</h5>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>제목</th>
+							<th>닉네임</th>
+							<th>작성시간</th>
+							<th>조회수</th>		     
+						</tr>
+					</thead>
 						<tbody>
 							<c:forEach items="${postList}" var="post">
 								<tr>
+
 								<!-- 말머리 이름 출력 -->
 								<c:if test="${post.po_pt_num == 1}">
 									<td>${post.po_num}</td>
@@ -92,7 +89,7 @@
 								
 						</tbody>
 					</table>
-					<form action="<c:url value="/post/list"/>" class="mb-3 mt-3">
+					<form action="<c:url value="/post/list"/>" class="mb-3 mt-3" method="get">
 						<div class="input-group">
 							<select name="type" class="form-control">
 								<option value="all"<c:if test='${pm.cri.type == "all"}'>selected</c:if>>전체</option>
@@ -100,6 +97,7 @@
 								<option value="name" <c:if test='${pm.cri.type == "name"}'>selected</c:if>>작성자</option>
 							</select>
 							<input type="text" class="form-control" placeholder="검색어" name="search" value="${pm.cri.search}">
+							<input type="hidden" name="bo_num" value="${bo_num}">
 							<button  class="btn btn-outline-warning">검색</button>
 						</div>
 					</form>
@@ -147,8 +145,6 @@
 					<a href='<c:url value="/post/insert?num=${bo_num}"/>' class="btn btn-outline-danger">글 등록</a>
 				</c:if>
 			</div>
-
-
 		</div>
 	
 	</div>
