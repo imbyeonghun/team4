@@ -40,11 +40,11 @@ public class MyPageUserPost extends HttpServlet {
 		}
 		
 		// 검색어, 검색 타입, 현재 페이지, 한 페이지 컨텐츠 개수를 이용하여 현재 페이지 정보 객체를 생성
-		Criteria cri = new Criteria(page, 2, "all", search);
+		Criteria cri = new Criteria(page, 10, "all", search);
 		
 		int totalCount = myPageService.getTotalCountPost(cri, user);
 		
-		PageMaker pm = new PageMaker(2, cri, totalCount);
+		PageMaker pm = new PageMaker(5, cri, totalCount);
 		
 		// 회원이 작성한 게시글을 가져오는데 해당 게시글에 게시판도 가져옴
 		ArrayList<BoardVO> postList = myPageService.getPostListByUser(user, cri);
