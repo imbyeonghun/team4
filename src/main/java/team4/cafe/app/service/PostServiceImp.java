@@ -241,7 +241,7 @@ public class PostServiceImp implements PostService{
 		return postDao.updatePostType(num,name);
 	}
 
-	
+		
 
 
 }
