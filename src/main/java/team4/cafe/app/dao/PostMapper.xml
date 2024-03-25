@@ -26,7 +26,7 @@
 			or me_name = #{cri.search}
 		</if>
 		and po_bo_num = #{bo_num}
-		ORDER BY po_num DESC
+		ORDER BY po_pt_num desc,po_num  desc
 		LIMIT #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<insert id="insertPost">
