@@ -13,7 +13,7 @@
 	<div class="header">
     	<jsp:include page = "/WEB-INF/views/header.jsp"/>
   	</div>
-	<div class="container">
+	<div class="container mt-5 mb-4"">
 		<div class="input-group mb-3 mt-3">
 			<input type="text" class="form-control" id="ptName" placeholder="말머리 입력" name="ptName">
 			<div class="input-group-append">
