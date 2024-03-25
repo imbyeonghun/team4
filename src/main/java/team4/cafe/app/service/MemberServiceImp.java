@@ -19,7 +19,7 @@ import team4.cafe.app.pagination.Criteria;
 
 public class MemberServiceImp implements MemberService {
 
-	MemberDAO memberDAO;
+	private MemberDAO memberDAO;
 	
 	public MemberServiceImp() {
 		String resource = "team4/cafe/app/config/mybatis-config.xml";

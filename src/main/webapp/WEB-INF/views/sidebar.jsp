@@ -10,7 +10,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <style type="text/css">
-	.post-list {text-decoration: none; color: black;}
+	.post-list {text-decoration: none; color: #7dafd4; font-weight: normal;}
+	.ca-list {text-decoration: none; color: #7dafd4; font-weight: bold;}
 	
 	.list-group{
 		width:170px; align-content: center;
@@ -45,7 +46,7 @@
 </head>
 <body>
 
-	<div class="panel panel-info">
+	<div class="panel panel-info" >
 
 		<div class="panel-heading">
 			<h3 class="panel-title"></h3>
@@ -89,7 +90,7 @@
 		<!-- 카테고리 및 게시판 리스트 -->
 		<ul class="list-group">
 			<li class="list-group-item">
-				<a href="<c:url value="/post/list?bo_num=-1"/>" class ="post-list" > 전체 글 보기</a>
+				<a href="<c:url value="/post/list?bo_num=-1"/>" class ="post-list" style="font-weight: bold;"> 전체 글 보기</a>
 			</li>
 		</ul>
 		<hr style="border:0; height:1px; width:170px; background: black;">
@@ -129,7 +130,7 @@
 					if(category.co_num == board.bo_co_num){	//게시판 출력
 						boStr +=
 							`
-								<p><a href="<c:url value="/post/list?bo_num=\${board.bo_num}"/>" class ="board post-list">\${board.bo_name}</a></p>
+								<p><a href="<c:url value="/post/list?bo_num=\${board.bo_num}"/>" class ="board post-list" >\${board.bo_name}</a></p>
 							`;
 					}
 				}
@@ -145,7 +146,7 @@
 				}
 				
 				caStr += `
-					<li class="list-group-item">
+					<li class="list-group-item ca-list" >
 					\${category.co_name}
 						<hr>
 						\${boStr}
@@ -156,7 +157,7 @@
 			console.log(caStr);	//콘솔창 확인
 			if(caStr == ''){
 				caStr += `
-					<li class="list-group-item">
+					<li class="list-group-item" >
 					등록된 카테고리가 없습니다.
 					</li>
 					<hr style="border-width:1px 0 0 0; border-style:solid; border-color:#bbb;">

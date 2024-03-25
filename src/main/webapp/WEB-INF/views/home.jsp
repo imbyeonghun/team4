@@ -19,7 +19,7 @@
 		width:1100px;
 		position : relative;
 		min-height:100vh; margin: auto;
-		margin-top: 20px;
+		margin-top: 50px;
 	}
 	footer{
 		width: 100%;
@@ -55,7 +55,7 @@
 			<div class="container">
 
 				<!-- 카페홈 대문 -->
-				<div id="demo" class="carousel slide"  style="width: 700px;" data-bs-ride="carousel">
+				<div id="demo" class="carousel slide mb-3"  style="width: 700px; " data-bs-ride="carousel">
 					<!-- Indicators/dots -->
 					<div class="carousel-indicators" >
 						<button type="button" data-bs-target="#demo"
@@ -107,7 +107,11 @@
 					<table class="table table-hover" style="width : 700px">
 						<tbody>
 							<c:forEach items="${postList}" var="post">
-								<tr class="list">
+								<c:url value="/post/detail" var="url">
+									<c:param name="num">${post.po_num}</c:param>
+									<c:param name="bo_num">${post.po_bo_num}</c:param>
+								</c:url> 
+								<tr class="list" onClick="location.href='${url}'" style="cursor: pointer;">
 									<!-- 말머리 이름 출력 -->
 									<c:if test="${post.po_pt_num == 1}">
 										<td>${post.po_num}</td>
@@ -119,11 +123,7 @@
 											</c:if>
 										</c:forEach>
 									</c:if>
-									<td>
-										<c:url value="/post/detail" var="url">
-											<c:param name="num">${post.po_num}</c:param>
-											<c:param name="bo_num">${post.po_bo_num}</c:param>
-										</c:url> <a href="${url}">${post.po_title}</a></td>
+									<td>${post.po_title}</td>
 									<td>${post.po_me_name}</td>
 									<td class="date">${post.po_date}</td>
 									<td>${post.po_view}</td>
