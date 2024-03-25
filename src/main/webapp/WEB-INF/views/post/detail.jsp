@@ -63,8 +63,13 @@
 					   			<label for="content" class="form-label">내용</label>
 					   			<textarea rows="10" class="form-control" readonly="readonly">${post.po_content}</textarea>
 					 		</div>
-							<h2>댓글</h2>
 							<div class="box-comment-list">
+								<div class="input-group mb-3">
+									<input type="text" class="form-control textarea-comment" placeholder="Search">
+									<div class="btn-comment-insert">
+										<button class="btn btn-outline-success">댓글등록</button>
+									</div>
+								</div>
 								<!-- 댓글 보여주는 박스 -->
 								<div class="comment-list">
 									<div class="box-comment input-group">
@@ -78,8 +83,9 @@
 										</div>
 									</div>
 								</div>
+								<hr>
 								<!-- 댓글 페이지네이션 -->
-								<div class="box-comment-pagination">
+								<div class="box-comment-pagination mt-3">
 									<ul class="pagination justify-content-center">
 										<li class="page-item">
 											<a class="page-link" href="javascript:void(0);">이전</a>
@@ -92,11 +98,6 @@
 										</li>
 									</ul>
 								</div>
-							<hr>
-							<div class="comment-input-box">
-								<textarea class="form-control textarea-comment"></textarea>
-								<button class="btn btn-outline-success btn-comment-insert">댓글 등록</button>
-							</div>
 						</div>
 							
 						<a href="<c:url value="/post/list?bo_num=${post.po_bo_num}"/>" class="btn btn-outline-primary">목록으로</a>
