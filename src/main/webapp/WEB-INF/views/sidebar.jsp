@@ -19,8 +19,7 @@
 	.ca-list {text-decoration: none; color: #7dafd4; font-weight: bold;}
 	
 	.list-group{
-		width:170px; align-content: center;
-		
+		width:170px; align-content: center;	
 	}
 	.post-list:hover{
 		text-decoration: underline;
@@ -47,21 +46,15 @@
 	}
 	
 </style>
-
 </head>
 <body>
-	
 	<div class="panel panel-info" >
-
 		<div class="panel-heading">
 			<h3 class="panel-title"></h3>
 		</div>
-	
-
 		<!-- 메뉴목록 -->
 		<ul class="list-group" >
 			<li class="list-group-item" style="color: #7dafd4;">
-			
 			<br>
 			<p style="font-weight: bold; font-size:20px;"  align="justify">[ 카페정보 ]</p> 
 			<div class="cafe-info">
@@ -114,8 +107,6 @@
 		},
 		success : function(data){
 			
-			console.log("포스트 수 : "+data.PTC)
-			
 			//카페정보 출력
 			if(data.MTC){
 				$('.memberTotalCount').text(data.MTC + "명");
@@ -127,7 +118,6 @@
 			//카테고리, 게시판 출력 
 			
 			let caStr = '';	//카테고리 코드
-			console.log(data);
 
 			for(category of data.caList){
 				let boStr=''
@@ -138,9 +128,7 @@
 								<p><a href="<c:url value="/post/list?bo_num=\${board.bo_num}"/>" class ="board post-list" >\${board.bo_name}</a></p>
 							`;
 					}
-				}
-				
-				console.log(boStr);	//콘솔창 확인
+				}	
 				
 				//만약 카테고리의 게시판이 없다면
 				if(boStr == ''){
@@ -159,7 +147,6 @@
 					<hr style="border-width:1px 0 0 0; border-style:solid; border-color:#bbb;">
 				`;
 				
-			console.log(caStr);	//콘솔창 확인
 			if(caStr == ''){
 				caStr += `
 					<li class="list-group-item" >

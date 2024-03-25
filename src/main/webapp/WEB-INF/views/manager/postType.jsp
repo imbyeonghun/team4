@@ -105,7 +105,6 @@
 				num
 			},
 			success : function(data){
-				console.log(data);
 				if(data == 'ok'){
 					alert("말머리를 삭제했습니다.");
 					printPostType(cri);

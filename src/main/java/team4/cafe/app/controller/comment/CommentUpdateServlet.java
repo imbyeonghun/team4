@@ -33,5 +33,4 @@ public class CommentUpdateServlet extends HttpServlet {
 		boolean res = postService.updateComment(comment);
 		response.getWriter().write(res?"ok":"");
 	}
-
 }

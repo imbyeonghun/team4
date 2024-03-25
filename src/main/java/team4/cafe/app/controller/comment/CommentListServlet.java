@@ -23,7 +23,6 @@ import team4.cafe.app.service.PostServiceImp;
 @WebServlet("/comment/list")
 public class CommentListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
 	private PostService postService = new PostServiceImp();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

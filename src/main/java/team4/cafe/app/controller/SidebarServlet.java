@@ -36,13 +36,11 @@ public class SidebarServlet extends HttpServlet {
 		int postTotalCount = postService.getAllPostCount();	//전체 게시글 수
 
 		JSONObject jobj = new JSONObject();
-		
 		jobj.put("caList", categoryList);
 		jobj.put("boList", boardList);
 		jobj.put("MTC", memberTotalCount);
 		jobj.put("PTC", postTotalCount);
 
-		
 		response.setContentType("application/json; charset=utf-8");
 		response.getWriter().print(jobj);
 	}
