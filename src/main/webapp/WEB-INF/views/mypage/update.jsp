@@ -39,7 +39,6 @@
 	.btnBox, .updateBox{
 		text-align: center;
 		width: 600px;
-		
 	}
 	.updateBox{
 		margin-left: 100px;
@@ -49,6 +48,9 @@
 	}
 	.btnBox>button{
 		width: 300px;
+	}
+	.error{
+		color: red; font-size: 12px;
 	}
 </style>
 </head>
