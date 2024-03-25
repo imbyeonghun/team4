@@ -84,7 +84,7 @@
 					<div class="form-floating mt-3 mb-3 box">
 						<input type="text" class="form-control" id="email" name="email" value=""  placeholder="Enter password">
 						<label for="email">이메일</label>
-						<div id="email-error" class="errorEmail" style="color: red; font-size: 12px;"></div>
+						<div id="email-error" class="errorEmail" style="color: red; font-size:12px;"></div>
 					</div>
 					<div class="btnBox">
 						<button class="btn btn-outline-success">내 정보 수정</button>
