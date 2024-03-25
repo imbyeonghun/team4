@@ -18,7 +18,7 @@
 			<div class="input-group">
 				<select name="type" class="form-control w-25">
 					<option value="all" <c:if test='${cri.type == "all" }'>selected</c:if>>전체</option>
-					<option value="grand" <c:if test='${cri.type == "grand" }'>selected</c:if>>등급</option>
+					<option value="grade" <c:if test='${cri.type == "grade" }'>selected</c:if>>등급</option>
 					<option value="name" <c:if test='${cri.type == "name" }'>selected</c:if>>닉네임</option>
 				</select>
 				<input type="text"  placeholder="검색어" name="search" value="${cri.search }" class="form-control w-50">
@@ -94,7 +94,6 @@ $(document).on("keypress","[name=search]",function(key){
 function search() {
 	cri.search=$("[name=search]").val();
 	cri.type=$("select").val();
-	console.log(cri);
 	if(cri.search==""){
 		cri.type=null;
 	}
@@ -146,8 +145,11 @@ function printMember(cri){
 		success : function(data){
 			let str='';
 			if(data.list==0){
-				str+=`<h1>일치하는 결과가 없습니다</h1>`;
-				$('.main').html(str);
+				str+=`
+				<tr>
+					<td colspan="5">일치하는 결과가 없습니다</td>
+				</tr>`;
+				$('.main>table>tbody').html(str);
 				return;
 			}
 			for(member of data.list){
