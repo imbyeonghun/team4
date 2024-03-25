@@ -49,6 +49,7 @@
 	.btnBox>button{
 		width: 300px;
 	}
+	[]
 	.error{
 		color: red; font-size: 12px;
 	}
@@ -73,17 +74,17 @@
 					<div class="form-floating mt-3 mb-3 box">
 						<input type="password" class="form-control" id="pw" name="pw" value="" placeholder="Enter password">
 						<label for="pw">비밀번호</label>
-						<div id="pw-error" class="error"></div>
+						<div id="pw-error" class="errorPw" style="color: red; font-size: 12px;"></div>
 					</div>
 					<div class="form-floating mt-3 mb-3 box">
 						<input type="text" class="form-control" id="nickName" name="nickName" value=""  placeholder="Enter password">
 						<label for="name">닉네임</label>
-						<div id="nickName-error" class="error"></div>
+						<div id="nickName-error" class="errorNick" style="color: red; font-size: 12px;"></div>
 					</div>
 					<div class="form-floating mt-3 mb-3 box">
 						<input type="text" class="form-control" id="email" name="email" value=""  placeholder="Enter password">
 						<label for="email">이메일</label>
-						<div id="email-error" class="error"></div>
+						<div id="email-error" class="errorEmail" style="color: red; font-size:12px;"></div>
 					</div>
 					<div class="btnBox">
 						<button class="btn btn-outline-success">내 정보 수정</button>
@@ -103,24 +104,26 @@
 	</footer>
 	</div>
 <script type="text/javascript">
-	$(document).on("submit",".updateBox",function(){
-		$('.error').text("");
-
-		//비밀번호 : 빈 문자열 및 정규표현식 체크
-		let regexPw = /^[a-zA-Z0-9,.!@]{10,20}$/;
-		if($('input[name = pw]').val() != ''){
-			if(!regexPw.test($('input[name = pw]').val())){
-			$('#pw-error').text("* 비밀번호: 10~20자의 영문 대소문자, 숫자, 특수 문자(,.!@)만 사용 가능합니다.");
-			return false;
+	$(document).ready(function(){
+		$(".updateBox").submit(function() {
+			$('.errorPw').text("");
+	
+			//비밀번호 : 빈 문자열 및 정규표현식 체크
+			let regexPw = /^[a-zA-Z0-9,.!@]{10,20}$/;
+			if($('input[name = pw]').val() != ''){
+				if(!regexPw.test($('input[name = pw]').val())){
+				$('#pw-error').text("* 비밀번호: 10~20자의 영문 대소문자, 숫자, 특수 문자(,.!@)만 사용 가능합니다.");
+				return false;
+				}
 			}
-		}
-	})
+		});
+	});
 </script>
 
 <script type="text/javascript">
 	$(document).ready(function(){
 		$(".updateBox").submit(function() {
-			$('.error').text("");
+			$('.errorNick').text("");
 
 			let regexNickName =  /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{3,12}$/;
 			if($('input[name = nickName]').val() == ''){
@@ -153,7 +156,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$(".updateBox").submit(function() {
-			$('.error').text("");
+			$('.errorEmail').text("");
 
 			let regexEmail = /^[a-z0-9\.\-_]+@([a-z0-9\-]+\.)+[a-z]{2,6}$/;
 			if($('input[name = email]').val() == ''){
