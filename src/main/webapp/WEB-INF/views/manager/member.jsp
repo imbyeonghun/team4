@@ -42,7 +42,7 @@
 			</table>
 		</div>
 		<div class="comment-pagination mt-3">
-			<ul class="pagination justify-content-center">
+			<ul class="pagination pagination-sm justify-content-center">
 				  				
 			</ul>
 		</div>

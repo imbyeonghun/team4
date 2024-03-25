@@ -16,6 +16,11 @@
 			padding:0;
 			position: static;
 		}
+		.cf:after{
+			display: block;
+			content: "";
+			clear: both;
+		}
 		#wrap{
 			width:1100px;
 			position : relative;
@@ -32,6 +37,12 @@
 		section{
 			padding-bottom : 110px;	/*footer의  height와 동일*/
 		}
+		textarea{
+			resize: none;
+		}
+		.box-comment{
+			border-bottom: 1px solid #ddd; height: 50px; line-height: 50px;
+		}
 	</style>
 </head>
 <body>
@@ -44,7 +55,7 @@
 			<jsp:include page = "/WEB-INF/views/sidebar.jsp"/>
 		</div>
 		<!-- 9단길이의 첫번째 열 -->
-		<div class="col-md-8">
+		<div class="col-md-9">
 				<div class="container">
 							<h1>${post.po_bo_name}</h1>
 							<div class="mb-3 mt-3">
@@ -63,30 +74,26 @@
 					   			<label for="content" class="form-label">내용</label>
 					   			<textarea rows="10" class="form-control" readonly="readonly">${post.po_content}</textarea>
 					 		</div>
+					 		<div class="mt-2 mb-2 cf">
+					 			<a href="<c:url value="/post/list?bo_num=${post.po_bo_num}"/>" class="btn btn-outline-primary float-start">목록으로</a>
+								<c:if test="${post.po_me_id == user.me_id}">
+									<a href="<c:url value="/post/delete?num=${post.po_num}"/>"class="btn btn-outline-danger float-end">삭제</a>
+									<c:url value="/post/update" var="url">
+										<c:param name="num">${post.po_num}</c:param>
+										<c:param name="bo_num">${post.po_bo_num}</c:param>
+									</c:url>
+									<a href="${url}" class="btn btn-outline-success float-end  me-2">수정</a>
+								</c:if>
+							</div>
+					 		<hr>
 							<div class="box-comment-list">
-								<div class="input-group mb-3">
-									<input type="text" class="form-control textarea-comment" placeholder="Search">
-									<div class="btn-comment-insert">
-										<button class="btn btn-outline-success">댓글등록</button>
-									</div>
-								</div>
 								<!-- 댓글 보여주는 박스 -->
 								<div class="comment-list">
-									<div class="box-comment input-group">
-										<div class="col-3">아이디</div>
-										<div class="col-3">
-											<div>댓글 내용</div>
-											<div class="btn-group">
-												<button class="btn btn-outline-warning btn-comment-update">수정</button>
-												<button class="btn btn-outline-danger btn-comment-delete">삭제</button>
-											</div>
-										</div>
-									</div>
+									
 								</div>
-								<hr>
 								<!-- 댓글 페이지네이션 -->
-								<div class="box-comment-pagination mt-3">
-									<ul class="pagination justify-content-center">
+								<div class="box-comment-pagination mt-3 mb-3">
+									<ul class="pagination pagination-sm justify-content-center">
 										<li class="page-item">
 											<a class="page-link" href="javascript:void(0);">이전</a>
 										</li>
@@ -99,16 +106,13 @@
 									</ul>
 								</div>
 						</div>
-							
-						<a href="<c:url value="/post/list?bo_num=${post.po_bo_num}"/>" class="btn btn-outline-primary">목록으로</a>
-						<c:if test="${post.po_me_id == user.me_id}">
-							<a href="<c:url value="/post/delete?num=${post.po_num}"/>"class="btn btn-outline-danger">삭제</a>
-							<c:url value="/post/update" var="url">
-								<c:param name="num">${post.po_num}</c:param>
-								<c:param name="bo_num">${post.po_bo_num}</c:param>
-							</c:url>
-							<a href="${url}" class="btn btn-outline-danger">수정</a>
-						</c:if>
+						<hr>
+						<div class="input-group mb-3">
+							<input type="text" class="form-control textarea-comment" placeholder="댓글 등록">
+							<div class="btn-comment-insert">
+								<button class="btn btn-outline-success">댓글등록</button>
+							</div>
+						</div>
 					</div>
 		</div>
 	</div>
@@ -205,9 +209,9 @@
 			if('${user.me_id}' == comment.cm_me_id){
 				btns +=
 				`
-				<div class="btn-comment-group">
-					<button class="btn btn-outline-warning btn-comment-update" data-num="\${comment.cm_num}">수정</button>
-					<button class="btn btn-outline-danger btn-comment-delete" data-num="\${comment.cm_num}">삭제</button>
+				<div class="btn-comment-group col-3">
+					<button class="btn btn-outline-warning btn-comment-update col-5" data-num="\${comment.cm_num}">수정</button>
+					<button class="btn btn-outline-danger btn-comment-delete col-5" data-num="\${comment.cm_num}">삭제</button>
 				</div>
 				`;
 			}
@@ -215,7 +219,7 @@
 			`
 			<div class="box-comment input-group">
 				<div class="col-3">\${comment.cm_me_id}</div>
-				<div class="col-3 cm_content"><span>\${comment.cm_content}</span></div>
+				<div class="col-6 cm_content"><span>\${comment.cm_content}</span></div>
 				\${btns}
 			</div>
 			`;

@@ -33,6 +33,7 @@
 		padding-bottom : 110px;	/*footer의  height와 동일*/
 	}
 	.table{text-align: center;}
+	.w-30{width: 30%}
 </style>
 
 </head>
@@ -95,19 +96,10 @@
 						</c:choose>
 					</tbody>
 					</table>
-					<form action="<c:url value="/post/list"/>" class="mb-3 mt-3" method="get">
-						<div class="input-group">
-							<select name="type" class="form-control">
-								<option value="all"<c:if test='${pm.cri.type == "all"}'>selected</c:if>>전체</option>
-								<option value="title"<c:if test='${pm.cri.type == "title"}'>selected</c:if>>제목</option>
-								<option value="name" <c:if test='${pm.cri.type == "name"}'>selected</c:if>>작성자</option>
-							</select>
-							<input type="text" class="form-control" placeholder="검색어" name="search" value="${pm.cri.search}">
-							<input type="hidden" name="bo_num" value="${bo_num}">
-							<button  class="btn btn-outline-warning">검색</button>
-						</div>
-					</form>
-					<ul class="pagination justify-content-center">
+					<c:if test="${bo_num != -1}">
+						<a href='<c:url value="/post/insert?num=${bo_num}"/>' class="btn btn-outline-danger float-start">글 등록</a>
+					</c:if>
+					<ul class="pagination pagination-sm justify-content-center">
 						<c:if test="${pm.prev}">
 							<li class="page-item">
 								<c:url var="prevUrl" value="/post/list">
@@ -142,9 +134,19 @@
 							</li>
 						</c:if>
 					</ul>
-				<c:if test="${bo_num != -1}">
-					<a href='<c:url value="/post/insert?num=${bo_num}"/>' class="btn btn-outline-danger">글 등록</a>
-				</c:if>
+					<hr>
+					<form action="<c:url value="/post/list"/>" class="mb-3 mt-3" method="get">
+						<div class="input-group">
+							<select name="type" class="form-control w-30">
+								<option value="all"<c:if test='${pm.cri.type == "all"}'>selected</c:if>>전체</option>
+								<option value="title"<c:if test='${pm.cri.type == "title"}'>selected</c:if>>제목</option>
+								<option value="name" <c:if test='${pm.cri.type == "name"}'>selected</c:if>>작성자</option>
+							</select>
+							<input type="text" class="form-control w-50" placeholder="검색어" name="search" value="${pm.cri.search}">
+							<input type="hidden" name="bo_num" value="${bo_num}">
+							<button  class="btn btn-outline-warning w-auto">검색</button>
+						</div>
+					</form>
 			</div>
 		</div>
 	</div>
