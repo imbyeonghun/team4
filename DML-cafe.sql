@@ -10,3 +10,13 @@ insert into member(me_id, me_pw, me_email, me_name,
 	values("admin", "admin", "admin@cafe.com", "운영자", "2024-01-01", 0, 0, "이용중", "운영자");
 /* post_type 1번 기본 값 추가(공백 말머리) */
 insert into post_type(pt_name) values("");
+
+/* 댓글 존재하는 게시글 삭제시 삭제되게 comment cacade 수정*/
+ALTER TABLE `cafe`.`comment` 
+DROP FOREIGN KEY `FK_post_TO_comment_1`;
+ALTER TABLE `cafe`.`comment` 
+ADD CONSTRAINT `FK_post_TO_comment_1`
+  FOREIGN KEY (`cm_po_num`)
+  REFERENCES `cafe`.`post` (`po_num`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
