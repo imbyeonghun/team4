@@ -62,7 +62,6 @@
 						<tbody>
 							<c:forEach items="${postList}" var="post">
 								<tr>
-
 								<!-- 말머리 이름 출력 -->
 								<c:if test="${post.po_pt_num == 1}">
 									<td>${post.po_num}</td>
@@ -86,7 +85,6 @@
 									<td>${post.po_view}</td>
 								</tr>	
 							</c:forEach>	
-								
 						</tbody>
 					</table>
 					<form action="<c:url value="/post/list"/>" class="mb-3 mt-3" method="get">
@@ -136,17 +134,11 @@
 							</li>
 						</c:if>
 					</ul>
-					</c:when>
-					<c:otherwise>
-						<h1>등록된 게시글이 없습니다.</h1>
-					</c:otherwise>				
-				</c:choose>
 				<c:if test="${bo_num != -1}">
 					<a href='<c:url value="/post/insert?num=${bo_num}"/>' class="btn btn-outline-danger">글 등록</a>
 				</c:if>
 			</div>
 		</div>
-	
 	</div>
 	</section>
 	<!-- footer 영역 -->

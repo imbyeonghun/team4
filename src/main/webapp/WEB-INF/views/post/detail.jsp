@@ -136,6 +136,12 @@
 		let content = $(".textarea-comment").val();
 		let po_num = '${post.po_num}'
 		
+		if(content == ''){
+			alert("댓글 내용을 입력해주세요.");
+			return;
+		}
+		
+		
 		$.ajax({
 			url : '<c:url value="/comment/insert"/>',
 			method : 'post',
@@ -318,6 +324,12 @@
 	$(document).on("click",".btn-complete", function(){
 		let num = $(this).data("num");
 		let content = $(".com-input").val();
+		
+		if(content == ''){
+			alert("댓글 내용을 입력해주세요.");
+			return;
+		}
+		
 		$.ajax({
 			url : '<c:url value="/comment/update"/>',
 			method : 'post',
