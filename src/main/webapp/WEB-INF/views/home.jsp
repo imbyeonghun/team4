@@ -31,7 +31,9 @@
 	section{
 		padding-bottom : 110px;	/*footer의  height와 동일*/
 	}
-
+	.new-PostList{
+		text-align: center;
+	}
 </style>
 
 </head>
@@ -156,17 +158,15 @@ for (const tag of dateTag) {
 function toStringFormatting(source){
 	  let replaced_source = source.replace('KST', '');
       var  date = new Date(replaced_source);
-      const year = date.getFullYear();
-      const month = leftPad(date.getMonth() + 1);
-      const day = leftPad(date.getDate());
-      return [year, month, day].join('-');
-}
+      var year = date.getFullYear();
+      var month = ('0' + (date.getMonth() + 1)).slice(-2);
+      var day = ('0' + date.getDate()).slice(-2);
 
-function leftPad(value){
-	if (Number(value) >= 10) {
-		return value;
-	}
-	return "0" + value;
+      var hours = ('0' + date.getHours()).slice(-2); 
+      var minutes = ('0' + date.getMinutes()).slice(-2);
+      
+      var dateString = year + '-' + month  + '-' + day+' '+hours+':'+minutes;
+      return dateString;
 }
 
 //라인 누르면 게시글 상세 페이지로 이동

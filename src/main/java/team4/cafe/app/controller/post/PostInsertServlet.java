@@ -97,7 +97,7 @@ public class PostInsertServlet extends HttpServlet {
 				//유저 등급 을 레벨2로
 				user.setMe_gr_name("Level2");
 				//DB에 저장
-				myPageService.updateUserInfo(user);
+				myPageService.updateUserGrade(user);
 				//세션에 저장
 				HttpSession session =  request.getSession();
 				session.setAttribute("user", user);

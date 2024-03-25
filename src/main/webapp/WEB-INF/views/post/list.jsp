@@ -8,7 +8,7 @@
 <title>게시글 목록</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="//code.jquery.com/jquery-3.6.1.js"></script>
 <style type="text/css">
 
 	body{
@@ -32,6 +32,7 @@
 	section{
 		padding-bottom : 110px;	/*footer의  height와 동일*/
 	}
+	.table{text-align: center;}
 </style>
 
 </head>
@@ -59,33 +60,40 @@
 							<th>조회수</th>		     
 						</tr>
 					</thead>
-						<tbody>
-							<c:forEach items="${postList}" var="post">
-								<tr>
-								<!-- 말머리 이름 출력 -->
-								<c:if test="${post.po_pt_num == 1}">
-									<td>${post.po_num}</td>
-								</c:if>
-								<c:if test="${post.po_pt_num != 1}">
-									<c:forEach items="${ptList}" var="postType">
-										<c:if test="${post.po_pt_num == postType.pt_num}">
-											<td style="font-weight: bold;">[${postType.pt_name}]</td>
+					<tbody>
+						<c:choose>
+							<c:when test="${postList.size() != 0}">
+								<c:forEach items="${postList}" var="post">
+									<c:url value="/post/detail" var="url">
+										<c:param name="num">${post.po_num}</c:param>
+										<c:param name="bo_num">${post.po_bo_num}</c:param>
+									</c:url>
+									<tr onClick="location.href='${url}'" style="cursor: pointer;">
+									<!-- 말머리 이름 출력 -->
+										<c:if test="${post.po_pt_num == 1}">
+											<td>${post.po_num}</td>
 										</c:if>
-									</c:forEach>
-								</c:if>
-									<td>
-										<c:url value="/post/detail" var="url">
-											<c:param name="num">${post.po_num}</c:param>
-											<c:param name="bo_num">${post.po_bo_num}</c:param>
-										</c:url>
-										<a href="${url}">${post.po_title}</a>
-									</td>
-									<td>${post.po_me_name}</td>
-									<td class="date">${post.po_date}</td>
-									<td>${post.po_view}</td>
-								</tr>	
-							</c:forEach>	
-						</tbody>
+										<c:if test="${post.po_pt_num != 1}">
+											<c:forEach items="${ptList}" var="postType">
+												<c:if test="${post.po_pt_num == postType.pt_num}">
+													<td style="font-weight: bold;">[${postType.pt_name}]</td>
+												</c:if>
+											</c:forEach>
+										</c:if>
+										<td>${post.po_title}</td>
+										<td>${post.po_me_name}</td>
+										<td class="date">${post.po_date}</td>
+										<td>${post.po_view}</td>
+									</tr>	
+								</c:forEach>	
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td colspan="5" style="font-weight: bold; text-align:center; font-size: 24px;">게시글이 없습니다</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
+					</tbody>
 					</table>
 					<form action="<c:url value="/post/list"/>" class="mb-3 mt-3" method="get">
 						<div class="input-group">
@@ -162,17 +170,15 @@
 	function toStringFormatting(source){
 		  let replaced_source = source.replace('KST', '');
 	      var  date = new Date(replaced_source);
-	      const year = date.getFullYear();
-	      const month = leftPad(date.getMonth() + 1);
-	      const day = leftPad(date.getDate());
-	      return [year, month, day].join('-');
-	}
+	      var year = date.getFullYear();
+	      var month = ('0' + (date.getMonth() + 1)).slice(-2);
+	      var day = ('0' + date.getDate()).slice(-2);
 
-	function leftPad(value){
-		if (Number(value) >= 10) {
-			return value;
-		}
-		return "0" + value;
+	      var hours = ('0' + date.getHours()).slice(-2); 
+	      var minutes = ('0' + date.getMinutes()).slice(-2);
+	      
+	      var dateString = year + '-' + month  + '-' + day+' '+hours+':'+minutes;
+	      return dateString;
 	}
 </script>
 </body>
