@@ -44,13 +44,23 @@ public class PostListServlet extends HttpServlet {
 		
 		//검색어, 검색 타입, 현재 페이지, 한 페이지 컨텐츠 개수를 이용하여 편재 페이지 정보 객체를 생성
 		Criteria cri = new Criteria(page, 10, type, search);
-		int totalCount = postService.getTotalCount(bo_num, cri);
+		int totalCount;
+		if(bo_num == -1) {
+			totalCount = postService.getAllTotalCount(cri);
+		}else {
+			totalCount = postService.getTotalCount(bo_num, cri);
+		}
 		PageMaker pm = new PageMaker(5, cri, totalCount);
 		request.setAttribute("pm", pm);
 		//게시글 리스트를 화면에 출력한다.
 		request.setAttribute("bo_num", ""+bo_num);
 		//검색어, 검색타입에 맞는 전체 게시글 개수를 가져옴
-		ArrayList<PostVO> postList = postService.getPostList(bo_num, cri);
+		ArrayList<PostVO> postList = new ArrayList<PostVO>();
+		if(bo_num == -1) {
+			postList = postService.getAllPostList(cri);
+		}else {
+			postList = postService.getPostList(bo_num, cri);
+		}
 		request.setAttribute("postList", postList);
 		BoardVO board = boardService.getBoard(bo_num);
 		request.setAttribute("board", board);

@@ -80,6 +80,13 @@
 		member ON me_id = po_me_id
 		where po_bo_num = #{bo_num}
 	</select>
+	<select id="selectAllTotalCount" resultType="int">
+		SELECT count(*) 
+		FROM
+			post
+				JOIN
+		member ON me_id = po_me_id
+	</select>
 	<select id="selectPostType" resultType="team4.cafe.app.model.vo.PostTypeVO">
 		select * from post_type
 	</select>

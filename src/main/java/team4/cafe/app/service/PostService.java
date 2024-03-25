@@ -55,4 +55,6 @@ public interface PostService {
 
 	boolean updatePostType(int num, String name);
 
+	int getAllTotalCount(Criteria cri);
+
 }

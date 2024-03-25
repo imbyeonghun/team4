@@ -109,6 +109,14 @@ public class PostServiceImp implements PostService{
 		}
 		return postDao.selectTotalCount(bo_num, cri);
 	}
+	
+	@Override
+	public int getAllTotalCount(Criteria cri) {
+		if(cri == null) {
+			cri = new Criteria();
+		}
+		return postDao.selectAllTotalCount(cri);
+	}
 
 	@Override
 	public ArrayList<PostTypeVO> getPostTypeList() {
@@ -232,6 +240,8 @@ public class PostServiceImp implements PostService{
 		}
 		return postDao.updatePostType(num,name);
 	}
+
+	
 
 
 }

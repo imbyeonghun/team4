@@ -64,6 +64,8 @@ public interface PostDAO {
 
 	int selectTotalCount(@Param("bo_num")int bo_num, Criteria cri);
 
+	int selectAllTotalCount(@Param("cri")Criteria cri);
+
 
 
 }
