@@ -38,7 +38,7 @@
 		<if test='cri.type=="all"'>
 			where me_gr_name=#{cri.search} or me_name=#{cri.search}
 		</if>
-		<if test='cri.type=="grand"'>
+		<if test='cri.type=="grade"'>
 			where me_gr_name=#{cri.search}
 		</if>
 		<if test='cri.type=="name"'>
