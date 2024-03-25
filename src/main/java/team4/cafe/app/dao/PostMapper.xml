@@ -15,8 +15,10 @@
    			JOIN
 		member ON me_id = po_me_id
 		<if test='cri.type=="all"'>
-			where po_title like concat('%',#{cri.search},'%') 
+			where po_title like concat('%',#{cri.search},'%')
+				and po_bo_num = #{bo_num} 
 				or me_name = #{cri.search}
+				and po_bo_num = #{bo_num}
 		</if>
 		<if test='cri.type=="title"'>
 			where po_title like concat('%',#{cri.search},'%') 
