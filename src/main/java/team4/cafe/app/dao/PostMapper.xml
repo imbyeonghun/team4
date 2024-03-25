@@ -17,6 +17,7 @@
 		<if test='cri.type=="all"'>
 			where po_title like concat('%',#{cri.search},'%') 
 				or po_me_id = #{cri.search}
+				or me_name = #{cri.search}
 		</if>
 		<if test='cri.type=="title"'>
 			where po_title like concat('%',#{cri.search},'%') 
