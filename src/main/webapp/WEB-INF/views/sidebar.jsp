@@ -10,6 +10,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <style type="text/css">
+	.panel{
+	 	 display: flex; flex-direction: column; align-items:center; 
+	 	 border: 1px solid #e3f2fd; padding: 20px 0; border-radius: 10px;
+	 	 width: 210px; background-color:rgba(227, 242, 253,0.4); 
+	}
 	.post-list {text-decoration: none; color: #7dafd4; font-weight: normal;}
 	.ca-list {text-decoration: none; color: #7dafd4; font-weight: bold;}
 	
@@ -28,7 +33,7 @@
 	}
 	.btnMenu{
 		display : block; height: 35px; width:140px; text-align: center;
-		border-color:#7dafd4; color:#7dafd4; 
+		border-color:#7dafd4; color:#7dafd4; margin-bottom: 5px;
 	}
 	.btnMenu:hover{
 		color: #e3f2fd; background-color: #7dafd4;
@@ -45,7 +50,7 @@
 
 </head>
 <body>
-
+	
 	<div class="panel panel-info" >
 
 		<div class="panel-heading">
@@ -55,7 +60,7 @@
 
 		<!-- 메뉴목록 -->
 		<ul class="list-group" >
-			<li class="list-group-item" style="background-color: #e3f2fd; color: #7dafd4;">
+			<li class="list-group-item" style="color: #7dafd4;">
 			
 			<br>
 			<p style="font-weight: bold; font-size:20px;"  align="justify">[ 카페정보 ]</p> 

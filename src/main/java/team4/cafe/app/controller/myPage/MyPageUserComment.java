@@ -40,11 +40,11 @@ public class MyPageUserComment extends HttpServlet {
 			page = 1;
 		}
 		// 검색어, 검색 타입, 현재 페이지, 한 페이지 컨텐츠 개수를 이용하여 현재 페이지 정보 객체를 생성
-		Criteria cri = new Criteria(page, 2, "all", search);
+		Criteria cri = new Criteria(page, 10, "all", search);
 		
 		int totalCommentCount = myPageService.getTotalCountComment(cri, user);
 		
-		PageMaker pm = new PageMaker(2, cri, totalCommentCount);
+		PageMaker pm = new PageMaker(5, cri, totalCommentCount);
 
 		// 회원 정보를 주고, 게시글 이름 + 댓글을 가져온다
 		ArrayList<CommentVO> commentList = myPageService.getCommentListByUser(user, cri);

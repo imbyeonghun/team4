@@ -15,18 +15,19 @@
    			JOIN
 		member ON me_id = po_me_id
 		<if test='cri.type=="all"'>
-			where po_title like concat('%',#{cri.search},'%') 
-				or po_me_id = #{cri.search}
+			where po_title like concat('%',#{cri.search},'%')
+				and po_bo_num = #{bo_num} 
+				or me_name like concat('%',#{cri.search},'%')
+				and po_bo_num = #{bo_num}
 		</if>
 		<if test='cri.type=="title"'>
 			where po_title like concat('%',#{cri.search},'%') 
 		</if>
 		<if test='cri.type=="name"'>
-			where po_me_id = #{cri.search}
-			or me_name = #{cri.search}
+			where me_name like concat('%',#{cri.search},'%')
 		</if>
 		and po_bo_num = #{bo_num}
-		ORDER BY po_num DESC
+		ORDER BY po_pt_num desc,po_num  desc
 		LIMIT #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<insert id="insertPost">
@@ -78,7 +79,19 @@
 			post
 				JOIN
 		member ON me_id = po_me_id
-		where po_bo_num = #{bo_num}
+		<if test='cri.type=="all"'>
+			where po_title like concat('%',#{cri.search},'%')
+				and po_bo_num = #{bo_num} 
+				or me_name like concat('%',#{cri.search},'%')
+				and po_bo_num = #{bo_num}
+		</if>
+		<if test='cri.type=="title"'>
+			where po_title like concat('%',#{cri.search},'%') 
+		</if>
+		<if test='cri.type=="name"'>
+			where me_name like concat('%',#{cri.search},'%')
+		</if>
+		and po_bo_num = #{bo_num}
 	</select>
 	<select id="selectAllTotalCount" resultType="int">
 		SELECT count(*) 
@@ -86,6 +99,16 @@
 			post
 				JOIN
 		member ON me_id = po_me_id
+		<if test='cri.type=="all"'>
+			where po_title like concat('%',#{cri.search},'%')
+			or me_name like concat('%',#{cri.search},'%')
+		</if>
+		<if test='cri.type=="title"'>
+			where po_title like concat('%',#{cri.search},'%') 
+		</if>
+		<if test='cri.type=="name"'>
+			where me_name like concat('%',#{cri.search},'%')
+		</if>
 	</select>
 	<select id="selectPostType" resultType="team4.cafe.app.model.vo.PostTypeVO">
 		select * from post_type
@@ -126,15 +149,15 @@
 		member ON me_id = po_me_id
 		<if test='cri.type=="all"'>
 			where po_title like concat('%', #{cri.search},'%') 
-				or po_me_id = #{cri.search}
+				or me_name like concat('%',#{cri.search},'%')
 		</if>
 		<if test='cri.type=="title"'>
 			where po_title like concat('%', #{cri.search},'%') 
 		</if>
-		<if test='cri.type=="writer"'>
-			where po_me_id = #{cri.search}
+		<if test='cri.type=="name"'>
+			where me_name like concat('%',#{cri.search},'%')
 		</if>
-		ORDER BY po_num DESC
+		ORDER BY po_pt_num desc, po_num DESC
 		LIMIT #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<!-- 모든 게시글 수 -->

@@ -27,6 +27,9 @@
 	button{
 		width: 400px;
 	}
+	.error{
+		color: red; font-size: 12px;
+	}
 </style>
 </head>
 <body>
@@ -39,8 +42,7 @@
 			<div class="form-floating mt-3 mb-3">
 				<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="checkPw">
 				<label for="pwd">비밀번호</label>
-				<div id="pw-error" class="error" ></div>
-				<span>(현재 실패 횟수 : ${user.me_fail}회)</span>
+				<span class="error">(현재 실패 횟수 : ${user.me_fail}회)</span>
 			</div>
 		    <button type="submit" class="btn btn-outline-success">본인확인</button>
 	    </form>
