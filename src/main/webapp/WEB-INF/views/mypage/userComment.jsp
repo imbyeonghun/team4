@@ -64,7 +64,7 @@
 								<td>[${list.post.po_title}]</td>
 								<td>
 									<c:url var="url" value="/post/detail">
-										<c:param name="num" value="${list.cm_num}"/>
+										<c:param name="num" value="${list.cm_po_num}"/>
 										<c:param name="bo_num" value="${list.cm_bo_num}"/>
 									</c:url>
 									<a href="${url}">${list.cm_content}</a>
