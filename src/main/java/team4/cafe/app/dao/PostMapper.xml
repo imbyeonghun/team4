@@ -79,7 +79,19 @@
 			post
 				JOIN
 		member ON me_id = po_me_id
-		where po_bo_num = #{bo_num}
+		<if test='cri.type=="all"'>
+			where po_title like concat('%',#{cri.search},'%')
+				and po_bo_num = #{bo_num} 
+				or me_name = #{cri.search}
+				and po_bo_num = #{bo_num}
+		</if>
+		<if test='cri.type=="title"'>
+			where po_title like concat('%',#{cri.search},'%') 
+		</if>
+		<if test='cri.type=="name"'>
+			where me_name = #{cri.search}
+		</if>
+		and po_bo_num = #{bo_num}
 	</select>
 	<select id="selectAllTotalCount" resultType="int">
 		SELECT count(*) 
@@ -135,7 +147,7 @@
 		<if test='cri.type=="writer"'>
 			where po_me_id = #{cri.search}
 		</if>
-		ORDER BY po_num DESC
+		ORDER BY po_pt_num desc, po_num DESC
 		LIMIT #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<!-- 모든 게시글 수 -->
