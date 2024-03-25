@@ -82,7 +82,7 @@
 			   			<label for="content" class="form-label">내용</label>
 			   			<textarea rows="10" class="form-control" id="content" name="content"></textarea>
 			 		</div>
-			 		<button class="btn btn-outline-warning col-12">글 등록</button>
+			 		<button class="btn btn-outline-success col-12">글 등록</button>
 				</form>
 			</div>
 		</div>

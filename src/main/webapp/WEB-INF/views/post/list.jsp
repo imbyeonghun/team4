@@ -16,6 +16,11 @@
 		padding:0;
 		
 	}
+	.cf:after{
+		display: block;
+		content: "";
+		clear: both;
+	}
 	#wrap{
 		width:1100px;
 		position : relative;
@@ -96,44 +101,46 @@
 						</c:choose>
 					</tbody>
 					</table>
-					<c:if test="${bo_num != -1}">
-						<a href='<c:url value="/post/insert?num=${bo_num}"/>' class="btn btn-outline-danger float-start">글 등록</a>
-					</c:if>
-					<ul class="pagination pagination-sm justify-content-center">
-						<c:if test="${pm.prev}">
-							<li class="page-item">
-								<c:url var="prevUrl" value="/post/list">
-									<c:param name="bo_num" value="${bo_num}"/>
-									<c:param name="type" value="${pm.cri.type}"/>
-									<c:param name="search" value="${pm.cri.search}"/>
-									<c:param name="page" value="${pm.startPage-1}"/>
-								</c:url>
-								<a class="page-link" href="${prevUrl}">이전</a>
-							</li>
+					<div class="cf">
+						<c:if test="${bo_num != -1}">
+							<a href='<c:url value="/post/insert?num=${bo_num}"/>' class="btn btn-outline-success float-start">글 등록</a>
 						</c:if>
-						<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
-							<li class="page-item <c:if test="${pm.cri.page == i}">active</c:if>">
-								<c:url var="page" value="/post/list">
-									<c:param name="bo_num" value="${bo_num}"/>
-									<c:param name="type" value="${pm.cri.type}"/>
-									<c:param name="search" value="${pm.cri.search}"/>
-									<c:param name="page" value="${i}"/>
-								</c:url>
-								<a class="page-link" href="${page}">${i}</a>
-							</li>
-						</c:forEach>
-						<c:if test="${pm.next}">
-							<li class="page-item">
-								<c:url var="nextUrl" value="/post/list">
-									<c:param name="bo_num" value="${bo_num}"/>
-									<c:param name="type" value="${pm.cri.type}"/>
-									<c:param name="search" value="${pm.cri.search}"/>
-									<c:param name="page" value="${pm.endPage+1}"/>
-								</c:url>
-								<a class="page-link" href="${nextUrl}">다음</a>
-							</li>
-						</c:if>
-					</ul>
+						<ul class="pagination pagination-sm justify-content-center">
+							<c:if test="${pm.prev}">
+								<li class="page-item">
+									<c:url var="prevUrl" value="/post/list">
+										<c:param name="bo_num" value="${bo_num}"/>
+										<c:param name="type" value="${pm.cri.type}"/>
+										<c:param name="search" value="${pm.cri.search}"/>
+										<c:param name="page" value="${pm.startPage-1}"/>
+									</c:url>
+									<a class="page-link" href="${prevUrl}">이전</a>
+								</li>
+							</c:if>
+							<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
+								<li class="page-item <c:if test="${pm.cri.page == i}">active</c:if>">
+									<c:url var="page" value="/post/list">
+										<c:param name="bo_num" value="${bo_num}"/>
+										<c:param name="type" value="${pm.cri.type}"/>
+										<c:param name="search" value="${pm.cri.search}"/>
+										<c:param name="page" value="${i}"/>
+									</c:url>
+									<a class="page-link" href="${page}">${i}</a>
+								</li>
+							</c:forEach>
+							<c:if test="${pm.next}">
+								<li class="page-item">
+									<c:url var="nextUrl" value="/post/list">
+										<c:param name="bo_num" value="${bo_num}"/>
+										<c:param name="type" value="${pm.cri.type}"/>
+										<c:param name="search" value="${pm.cri.search}"/>
+										<c:param name="page" value="${pm.endPage+1}"/>
+									</c:url>
+									<a class="page-link" href="${nextUrl}">다음</a>
+								</li>
+							</c:if>
+						</ul>
+					</div>
 					<hr>
 					<form action="<c:url value="/post/list"/>" class="mb-3 mt-3" method="get">
 						<div class="input-group">

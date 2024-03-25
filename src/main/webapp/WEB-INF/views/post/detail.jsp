@@ -210,7 +210,7 @@
 				btns +=
 				`
 				<div class="btn-comment-group col-3">
-					<button class="btn btn-outline-warning btn-comment-update col-5" data-num="\${comment.cm_num}">수정</button>
+					<button class="btn btn-outline-success btn-comment-update col-5" data-num="\${comment.cm_num}">수정</button>
 					<button class="btn btn-outline-danger btn-comment-delete col-5" data-num="\${comment.cm_num}">삭제</button>
 				</div>
 				`;
