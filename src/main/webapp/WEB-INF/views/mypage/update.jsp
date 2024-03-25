@@ -18,6 +18,7 @@
 	body{
 		margin:0;
 		padding:0;
+		position: static;
 	}
 	#wrap{
 		width:1100px;
@@ -63,7 +64,8 @@
 				<jsp:include page = "/WEB-INF/views/sidebar.jsp"/>
 			</div>
 			<!-- 9단길이의 첫번째 열 -->
-			<div class="col-md-9 container">
+			<div class="col-md-8">
+				<div class="container">
 				<h1 style="text-align: center;" class="mt-5">내 정보 수정</h1>
 				<form action="<c:url value="/mypage/update"/>" method="post" class="updateBox">
 					<div class="form-floating mt-3 mb-3 box">
@@ -85,6 +87,7 @@
 						<button class="btn btn-outline-success">내 정보 수정</button>
 					</div>
 				</form>
+			</div>
 			</div>
 		</div>
 		
