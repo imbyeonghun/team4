@@ -31,8 +31,10 @@ left join comment on bo_num = cm_bo_num group by bo_num;
 	<select id="selectPostListByUser" resultMap="PostMap">
 		select post.*, (select count(cm_po_num) from comment where cm_po_num = po_num) as commentCount from post
 		left join comment on po_num = cm_po_num 
+		join board on bo_num = po_bo_num
 		where po_me_id = #{user.me_id} and
-		po_title like concat('%', #{cri.search} , '%')
+		(bo_name like concat('%', #{cri.search} , '%') OR 
+		 po_title like concat('%', #{cri.search} , '%'))
 		group by po_num
 		ORDER BY po_num DESC
 		limit #{cri.pageStart}, #{cri.perPageNum}
@@ -57,7 +59,8 @@ left join comment on bo_num = cm_bo_num group by bo_num;
 		join post on po_num = cm_po_num
 		join board on po_bo_num = bo_num
 		where cm_me_id = #{user.me_id} and
-		cm_content like concat('%', #{cri.search} , '%')
+		(po_title like concat('%', #{cri.search} , '%') or
+		cm_content like concat('%', #{cri.search} , '%'))
 		group by cm_num	
 		ORDER BY cm_num DESC
 		limit #{cri.pageStart}, #{cri.perPageNum}
@@ -89,15 +92,19 @@ left join comment on bo_num = cm_bo_num group by bo_num;
 	
 	<select id="selectTotalCountPost" resultType="int">
 		SELECT count(*) FROM post
-		where po_title like concat('%', #{cri.search} , '%') and
-		po_me_id = #{user.me_id}
+		join board on bo_num = po_bo_num
+		where po_me_id = #{user.me_id} and
+		(bo_name like concat('%', #{cri.search} , '%') OR 
+		 po_title like concat('%', #{cri.search} , '%'))
 	</select>
 	
 	<select id="selectTotalCountComment" resultType="int">
 		SELECT count(*)
 		FROM comment
-		where cm_content like concat('%', #{cri.search} , '%') and
-		cm_me_id = #{user.me_id}
+		join post on po_num = cm_po_num
+		where cm_me_id = #{user.me_id} and
+		(cm_content like concat('%', #{cri.search} , '%') OR 
+		 po_title like concat('%', #{cri.search} , '%'))
 	</select>
 
 	<update id="updateMemberSecession">
