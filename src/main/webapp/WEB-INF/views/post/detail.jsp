@@ -14,7 +14,7 @@
 		body{
 			margin:0;
 			padding:0;
-			
+			position: static;
 		}
 		#wrap{
 			width:1100px;
@@ -44,11 +44,8 @@
 			<jsp:include page = "/WEB-INF/views/sidebar.jsp"/>
 		</div>
 		<!-- 9단길이의 첫번째 열 -->
-		<div class="col-md-9">
-			<div class="col-md-9">
+		<div class="col-md-8">
 				<div class="container">
-					<div class="container">
-					
 							<h1>${post.po_bo_name}</h1>
 							<div class="mb-3 mt-3">
 					   			<label for="title" class="form-label">제목</label>
@@ -112,8 +109,6 @@
 							<a href="${url}" class="btn btn-outline-danger">수정</a>
 						</c:if>
 					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 	</section>
