@@ -35,10 +35,7 @@ public class PostInsertServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
-		if(user == null) {
-			response.sendRedirect(request.getContextPath()+"/board/list");
-			return;
-		}
+		
 		int bo_num = Integer.parseInt(request.getParameter("num"));
 		BoardVO board = boardService.getBoard(bo_num);
 		ArrayList<PostTypeVO> typeList = postService.getPostTypeList();
