@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import team4.cafe.app.model.vo.MemberVO;
 
 //로그인
-@WebFilter({"/post/insert", "/mypage/check", "/mypage/myPageHome"})
+@WebFilter({"/post/insert", "/mypage/check", "/mypage/myPageHome", "/mypage/update"})
 public class MemberFilter extends HttpFilter implements Filter {
 
 	private static final long serialVersionUID = 1L;
