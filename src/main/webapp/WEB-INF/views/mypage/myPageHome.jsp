@@ -18,7 +18,7 @@
 		width:1100px;
 		position : relative;
 		min-height:100vh; margin: auto;
-		margin-top: 20px;
+		margin-top: 50px;
 	}
 	footer{
 		width: 100%;

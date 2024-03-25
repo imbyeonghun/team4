@@ -19,7 +19,7 @@
 		width:1100px;
 		position : relative;
 		min-height:100vh; margin: auto;
-		margin-top: 20px;
+		margin-top: 50px;
 	}
 	footer{
 		width: 100%;
@@ -55,7 +55,7 @@
 			<div class="container">
 
 				<!-- 카페홈 대문 -->
-				<div id="demo" class="carousel slide"  style="width: 700px;" data-bs-ride="carousel">
+				<div id="demo" class="carousel slide mb-3"  style="width: 700px; " data-bs-ride="carousel">
 					<!-- Indicators/dots -->
 					<div class="carousel-indicators" >
 						<button type="button" data-bs-target="#demo"
