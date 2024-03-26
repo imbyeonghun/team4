@@ -34,29 +34,29 @@
 		update member set me_st_state = #{me_st_state} where me_id = #{me_id}
 	</update>
 	<select id="getMemberList" resultType="team4.cafe.app.model.vo.MemberVO">
-		select * from member 
+		select * from member where me_id != "admin"
 		<if test='cri.type=="all"'>
-			where me_gr_name=#{cri.search} or me_name=#{cri.search}
+			and (me_gr_name=#{cri.search} or me_name=#{cri.search})
 		</if>
 		<if test='cri.type=="grade"'>
-			where me_gr_name=#{cri.search}
+			and me_gr_name=#{cri.search}
 		</if>
 		<if test='cri.type=="name"'>
-			where me_name=#{cri.search}
+			and me_name=#{cri.search}
 		</if>
 		ORDER BY me_date DESC
 		LIMIT #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<select id="getMemberCount" resultType="int">
-		select count(*) from member 	
+		select count(*) from member where me_id != "admin"	
 		<if test='cri.type=="all"'>
-			where me_gr_name=#{cri.search} or me_name=#{cri.search}
+			and (me_gr_name=#{cri.search} or me_name=#{cri.search})
 		</if>
 		<if test='cri.type=="grand"'>
-			where me_gr_name=#{cri.search}
+			and me_gr_name=#{cri.search}
 		</if>
 		<if test='cri.type=="name"'>
-			where me_name=#{cri.search}
+			and me_name=#{cri.search}
 		</if>
 	</select>
 	<select id="getAllMemberCount" resultType="int">
