@@ -80,7 +80,7 @@
 					   			<label for="content" class="form-label">내용:</label>
 					   			<textarea rows="10" class="form-control" id="content" name="content">${post.po_content}</textarea>
 					 		</div>
-					 		<button type="submit" class="btn btn-outline-warning col-12">수정</button>
+					 		<button type="submit" class="btn btn-outline-success col-12">수정</button>
 						</form>
 					</div>
 				</div>
