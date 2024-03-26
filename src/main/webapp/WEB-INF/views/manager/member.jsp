@@ -202,6 +202,10 @@ function printMember(cri){
 		}
 	});
 }
+$(document).on('click','.comment-pagination .page-link',function(){
+	cri.page = $(this).data('page');
+	printMember(cri);
+});
 
 function toStringFormatting(source){
 	  let replaced_source = source.replace('KST', '');

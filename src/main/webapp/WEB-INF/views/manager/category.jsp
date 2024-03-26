@@ -94,7 +94,7 @@ $("#insertCategory").click(function(){
 });
 
 //카테고리 목록 출력
-function printCategory(){
+function printCategory(cri){
 	$.ajax({
 		url : '<c:url value="/manager/category/select" />',
 		method : 'post',
@@ -149,6 +149,12 @@ function printCategory(){
 		}
 	});
 }
+
+$(document).on('click','.comment-pagination .page-link',function(){
+	cri.page = $(this).data('page');
+	printCategory(cri);
+});
+
 
 //카테고리 삭제 기능
 $(document).on("click","#btn-delete",function(){

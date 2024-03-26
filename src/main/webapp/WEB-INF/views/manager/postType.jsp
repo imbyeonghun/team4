@@ -177,6 +177,11 @@
 			});
 	}
 	
+	$(document).on('click','.comment-pagination .page-link',function(){
+		cri.page = $(this).data('page');
+		printPostType(cri);
+	});
+	
 	printPostType(cri);
 	</script>
 </body>
