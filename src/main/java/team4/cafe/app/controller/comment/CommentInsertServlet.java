@@ -32,8 +32,6 @@ public class CommentInsertServlet extends HttpServlet {
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		CommentVO comment = new CommentVO(po_num, content, user.getMe_id());
 		boolean res = postService.insertComment(comment);
-		
-
 		response.getWriter().write(res?"ok":"");
 	}
 

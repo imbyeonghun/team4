@@ -105,10 +105,8 @@
 	
 	let dateTag = document.querySelector("#date");
 	let asd = dateTag.value;
-	console.log(asd);
 	let date = toStringFormatting(asd);
 	dateTag.value = date;
-	console.log(dateTag);
 	
 	function toStringFormatting(source){
 		  let replaced_source = source.replace('KST', '');

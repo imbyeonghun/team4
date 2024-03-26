@@ -158,7 +158,6 @@ public class PostServiceImp implements PostService{
 			!comment.getCm_me_id().equals(user.getMe_id())){
 				return false;
 		}
-		
 		return postDao.deleteComment(num);
 	}
 
@@ -206,6 +205,7 @@ public class PostServiceImp implements PostService{
 		}
 		return postDao.getPostTypeCount(cri);
 	}
+	
 	//말머리 추가
 	@Override
 	public boolean insertPostType(String ptName) {
@@ -220,6 +220,7 @@ public class PostServiceImp implements PostService{
 		}
 		return postDao.insertPostType(ptName);
 	}
+	
 	//말머리 삭제
 	@Override
 	public boolean deletePostType(int num) {
@@ -240,8 +241,4 @@ public class PostServiceImp implements PostService{
 		}
 		return postDao.updatePostType(num,name);
 	}
-
-		
-
-
 }

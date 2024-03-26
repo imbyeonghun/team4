@@ -205,6 +205,11 @@ function printBoard(cri){
 			}
 		});
 }
+
+$(document).on('click','.comment-pagination .page-link',function(){
+	cri.page = $(this).data('page');
+	printBoard(cri);
+});
 </script>
 </body>
 </html>

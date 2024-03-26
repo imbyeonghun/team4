@@ -89,6 +89,7 @@ public class BoardServiceImp implements BoardService {
 		}
 		return boardDao.getBoardList(cri);
 	}
+	
 	@Override
 	public ArrayList<BoardVO> selectBoardList() {
 		return boardDao.selectBoardList();
@@ -143,7 +144,6 @@ public class BoardServiceImp implements BoardService {
 		return boardDao.getBoardCount(cri);
 	}
 	
-	
 	//null,크기 확인
 	private boolean checked(String str) {
 		if(str==null||str.length()==0) {
@@ -167,5 +167,4 @@ public class BoardServiceImp implements BoardService {
 	public ArrayList<GradeVO> selectGradeList() {
 		return boardDao.selectGradeList();
 	}
-
 }

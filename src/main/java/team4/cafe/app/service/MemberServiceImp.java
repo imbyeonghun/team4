@@ -44,26 +44,17 @@ public class MemberServiceImp implements MemberService {
 			checkString(memberVO.getMe_email()) || 
 			checkString(memberVO.getMe_name()) || 
 			memberVO.getMe_date() == null) {
-			System.out.println("memberService.signup() : null값");
 			return false;
 		}
-		
-		System.out.println("memberService.signup() : null값 아님");
-		
 		//아이디 중복 체크
 		if((memberDAO.selectMember(memberVO.getMe_id())) != null) {
-			System.out.println("memberService.signup() : 아이디: 중복");
 			return false;
 		}
 		//닉네임 중복체크
 		if((memberDAO.selectMemberNickName(memberVO.getMe_name())) != null) {
-			System.out.println("memberService.signup() : 닉네임: 중복");
 			return false;
 		}
-		System.out.println("memberService.signup() : 중복 아님");
-		
-		//정규표현식 체크
-		
+		//정규표현식 체크	
 		String regexId = "^[a-zA-Z0-9]{8,20}$";
 		String regexPw = "^[a-zA-Z0-9,.!@]{10,20}$";	
 		String regexNickName =  "^[\\w\\Wㄱ-ㅎㅏ-ㅣ가-힣]{3,12}$";
@@ -72,28 +63,21 @@ public class MemberServiceImp implements MemberService {
 			!checkRegex(regexPw,memberVO.getMe_pw()) ||
 			!checkRegex(regexNickName,memberVO.getMe_name()) || 
 			!checkRegex(regexEmail,memberVO.getMe_email())){
-			System.out.println("memberService.signup() : 정규표현식 틀림");
 			return false;
-		}
-		
-		System.out.println("memberService.signup() : 정규표현식 맞음");
-		
+		}	
 		try {
 			return memberDAO.insertMember(memberVO);
 		}catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
-		
 	}
 	
 	//정규 표현식 체크
 	private boolean checkRegex(String regex, String str) {
 		if(!Pattern.matches(regex, str)) {
-			System.out.println("memberService.checkRegex() : 정규표현식 틀림");
 			return false;
 		}
-		System.out.println("memberService.checkRegex() : 정규표현식 맞음");
 		return true;
 	}
 
@@ -117,7 +101,6 @@ public class MemberServiceImp implements MemberService {
 			int loginCount = user.getMe_loginCount() + 1;
 			memberDAO.updateLoginCount(user.getMe_id(), loginCount);
 			//로그인 실패 횟수 0으로
-			
 			return user;
 		}
 		//비번이 틀리면 
@@ -143,7 +126,6 @@ public class MemberServiceImp implements MemberService {
 		return memberDAO.getMemberCount(cri);
 	}
 
-
 	@Override
 	public boolean checkId(String id) {
 		MemberVO member = memberDAO.selectMember(id);
@@ -155,7 +137,6 @@ public class MemberServiceImp implements MemberService {
 		MemberVO member = memberDAO.selectMemberNickName(nickName);
 		return member == null;
 	}
-
 
 	//상태 리스트
 	@Override
@@ -208,20 +189,16 @@ public class MemberServiceImp implements MemberService {
 		return memberDAO.selectMember(id);
 	}
 
-
-
 	@Override
 	public void setFailCount(MemberVO user, int loginFailCount) {
 		memberDAO.updateFailCount(user.getMe_id(), loginFailCount);
-		
 	}
 
 	@Override
 	public void setMemberState(MemberVO user, String state) {
 		if(user != null) {
 			memberDAO.updateMemberState(user.getMe_id(), state);
-		}
-		
+		}	
 	}
 
 	@Override
@@ -231,5 +208,4 @@ public class MemberServiceImp implements MemberService {
 		}
 		return memberDAO.insertMemberGrRank(gr_name);
 	}
-
 }

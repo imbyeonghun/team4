@@ -105,7 +105,6 @@
 				num
 			},
 			success : function(data){
-				console.log(data);
 				if(data == 'ok'){
 					alert("말머리를 삭제했습니다.");
 					printPostType(cri);
@@ -177,6 +176,11 @@
 				}
 			});
 	}
+	
+	$(document).on('click','.comment-pagination .page-link',function(){
+		cri.page = $(this).data('page');
+		printPostType(cri);
+	});
 	
 	printPostType(cri);
 	</script>

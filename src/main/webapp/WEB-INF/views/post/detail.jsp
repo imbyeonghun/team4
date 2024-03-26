@@ -277,7 +277,6 @@
 				num
 			},
 			success : function(data){
-				console.log(data);
 				if(data == 'ok'){
 					alert("댓글을 삭제했습니다.");
 					displayCommentAndPagination(cri);

@@ -36,13 +36,8 @@ public class SignupServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String nickName = request.getParameter("nickName");
 		Date date = new Date();
-		
-		System.out.println("SignupServlet : 입력된 회원정보 (" + id+", " +pw+", " +email+", " +nickName+", " +date +")");
-		
-		
 		if(memberService.signup(new MemberVO(id, pw, email, nickName, date))) {
 			//회원가입에 성공하면 로그인 상태로 회원가입 성공 안내 후 메인 페이지로 이동
-			System.out.println("SignupServlet : 회원가입 성공");
 			//로그인
 			MemberVO user = memberService.login(new LoginDTO(id,pw));
 			HttpSession session =  request.getSession();
@@ -53,14 +48,10 @@ public class SignupServlet extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 		}
 		else {
-			System.out.println("SignupServlet : 회원가입 실패");
 			//실패하면 안내문구 출력 후 회원가입 페이지 유지
 			request.setAttribute("msg", "회원가입에 실패했습니다.");
 			request.setAttribute("url", "user/signup");
 			request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 		}
 	}
-
-	
-
 }

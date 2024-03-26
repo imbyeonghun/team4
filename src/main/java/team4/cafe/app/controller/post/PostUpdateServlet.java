@@ -65,8 +65,6 @@ public class PostUpdateServlet extends HttpServlet {
 		int boardGrRank = memberService.getGradeRank(board.getBo_gr_name());
 		int userGrRank = memberService.getGradeRank(user.getMe_gr_name());
 		
-		System.out.println("boardGrRank : " + boardGrRank + " userGrRank : " + userGrRank);
-		
 		//만약 유저 등급이 게시판 등급보다 크거나 같으면 글을 등록할 수 없다는 메세지 띄운 후 목록페이지 유지
 		if(boardGrRank < userGrRank) {
 			String str = "해당 게시판은 " + board.getBo_gr_name() +" 회원이상만 게시글을 등록할 수 있습니다.\\n당신은 " + user.getMe_gr_name() + " 회원입니다.";
@@ -76,7 +74,6 @@ public class PostUpdateServlet extends HttpServlet {
 			return;
 		}
 		
-		System.out.println(bo_num);
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		Date today = new Date();

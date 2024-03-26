@@ -41,14 +41,9 @@ public class PostInsertServlet extends HttpServlet {
 		ArrayList<PostTypeVO> typeList = postService.getPostTypeList();
 		request.setAttribute("board", board);
 		request.setAttribute("typeList", typeList);
-		System.out.println("보드 등급 : " + board.getBo_gr_name());
-		System.out.println("유저 등급 : " + user.getMe_gr_name());
 		//등급 이름으로 등급 순위 가져오기 
 		int boardGrRank = memberService.getGradeRank(board.getBo_gr_name());
 		int userGrRank = memberService.getGradeRank(user.getMe_gr_name());
-		
-		System.out.println("boardGrRank : " + boardGrRank + " userGrRank : " + userGrRank);
-
 		//만약 유저 등급이 게시판 등급보다 크거나 같으면 글을 등록할 수 없다는 메세지 띄운 후 목록페이지 유지
 		if(boardGrRank < userGrRank) {
 			String str = "해당 게시판은 " + board.getBo_gr_name() +" 회원이상만 게시글을 등록할 수 있습니다.\\n당신은 " + user.getMe_gr_name() + " 회원입니다.";
@@ -67,7 +62,6 @@ public class PostInsertServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/post/list");
 			return;
 		}
-		System.out.println("서블릿이 넘겨받은 bo_num : " + request.getParameter("num"));
 		//게시판 번호는 현재 선택된 게시판 번호로
 		int bo_num=0,pt_num=1;
 		try {
